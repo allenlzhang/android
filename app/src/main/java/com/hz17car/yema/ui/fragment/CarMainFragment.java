@@ -2,7 +2,9 @@ package com.hz17car.yema.ui.fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
+import com.hz17car.yema.R;
 import com.hz17car.yema.base.BaseFragment;
 
 /**
@@ -12,7 +14,7 @@ import com.hz17car.yema.base.BaseFragment;
 public class CarMainFragment extends BaseFragment {
     @Override
     protected View inflateView(LayoutInflater inflater) {
-        return null;
-
+       View view = inflater.inflate(R.layout.layout_carmain,null,false);
+        return view;
     }
 }
