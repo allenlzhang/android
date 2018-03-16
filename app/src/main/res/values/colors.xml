@@ -83,4 +83,5 @@
     <color name="transparent_half">#80000000</color>
     <!-- 列表竖直灰线颜色 -->
     <color name="gray">#D0D0D0</color>
+    <color name="disclaimer">#b22d14</color>
 </resources>
