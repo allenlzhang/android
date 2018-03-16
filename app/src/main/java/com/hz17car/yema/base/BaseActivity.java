@@ -1,8 +1,8 @@
 package com.hz17car.yema.base;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,16 +23,27 @@ public class BaseActivity extends AppCompatActivity implements
 	/** 进入后台之前 要干的事的集合 */
 	protected static ArrayList<BeforeGoToBackground> mBackDoList = new ArrayList<BeforeGoToBackground>();
 
-	protected Context context;
+	protected Context mContext;
 
 	public boolean IsShowing() {
 		return mIsShowing;
+	}
+	/**
+	 * 简化按 ID 查找
+	 *
+	 * @param id
+	 * @param <T>
+	 * @return
+	 */
+	public <T> T $ViewByID(int id) {
+		return (T) findViewById(id);
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		context = this;
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		mContext = this;
 		ActivityControl.addActivity(this);
 		Log.e("info", this.getClass().getName() + "--onCreate");
 	}
@@ -136,4 +147,12 @@ public class BaseActivity extends AppCompatActivity implements
 			}
 		}
 	}
+	/**
+	 *标题头按钮点击事件
+	 */
+	public interface ClickTitleListener {
+		void titleLeftClik();//点击最左侧按钮（一般为返回键）
+		void titleRightClik();//点击最右侧按钮
+	}
+
 }
