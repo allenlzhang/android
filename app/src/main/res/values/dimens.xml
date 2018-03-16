@@ -1,4 +1,5 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="title_height">48dp</dimen>
+    <dimen name="text_size_small_s1">16dp</dimen>
 </resources>

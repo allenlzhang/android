@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/layout_background"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="102dip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="25dip"
+        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/car_main_txt_tire"
+            style="@style/car_main_txt1"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:drawablePadding="6dip"
+            android:drawableTop="@drawable/tire_car_main_selecter"
+            android:text="胎压检测" />
+
+        <TextView
+            android:id="@+id/car_main_txt_illegal"
+            style="@style/car_main_txt1"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:drawablePadding="6dip"
+            android:drawableTop="@drawable/tire_car_main_selecter"
+            android:text="定位寻车" />
+
+        <TextView
+            android:id="@+id/car_main_txt_findcar"
+            style="@style/car_main_txt1"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:drawablePadding="6dip"
+            android:drawableTop="@drawable/tire_car_main_selecter"
+            android:text="导航同步" />
+
+    </LinearLayout>
+
+</RelativeLayout>
