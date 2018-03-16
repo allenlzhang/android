@@ -51,6 +51,17 @@
     <!-- 页面背景色 -->
     <color name="layout_background">#161922</color>
 
+    <!-- 我的车秘书 时间linear背景色 -->
+    <color name="secretary_time_linear_bg_selected">#C6C6C6</color>
+    <color name="secretary_time_linear_bg_selected_no">#F6F6F6</color>
+    <!-- 我的车秘书 表格边框 -->
+    <color name="secretary_table_border">#DFDFDF</color>
+    <!-- 远程维修顾问边框 -->
+    <color name="remote_border">#D6D6D6</color>
+
+    <!-- 日历-格子选中背景 -->
+    <color name="calendar_cell_selected_bg">#FFF4D8</color>
+
     <!-- 页面布局选中色 -->
     <color name="block_background_selected">#E0E0E0</color>
     <color name="layout_bg_gray1">#F8F8F8</color>
@@ -72,4 +83,5 @@
     <color name="transparent_half">#80000000</color>
     <!-- 列表竖直灰线颜色 -->
     <color name="gray">#D0D0D0</color>
+    <color name="disclaimer">#b22d14</color>
 </resources>

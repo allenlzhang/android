@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">yema</string>
+    <!-- 用户中心（除主tab项以外的其它杂项）marller -->
+    <string name="usercenter_hint_phone">用手机号码登录</string>
+    <string name="usercenter_hint_phone1">请输入手机号码</string>
+    <string name="usercenter_hint_phone2">请设置新登录密码</string>
+    <string name="usercenter_hint_validate">请输入验证码</string>
+    <string name="usercenter_hint_password">密码</string>
+    <string name="usercenter_hint_password_reset">请再次输入密码</string>
+    <string name="usercenter_login">登录</string>
+    <string name="usercenter_register">—— 注册新用户 ——</string>
+    <string name="usercenter_forget_password">忘记密码？</string>
+    <string name="usercenter_reset_password">重设密码</string>
+    <string name="usercenter_push_validate">发送验证码</string>
+    <string name="usercenter_push_validate1">重发验证码</string>
+    <string name="_car_real_condation">实时车况</string>
+    <string name="usercenter_pin_code">请输入车辆PIN码</string>V
+    <string name="usercenter_vin_code">请输入车辆VIN码</string>
+    <string name="_car_select_type">请选择车型</string>
+    <string name="device_bind_tx">绑定设备</string>
+    <string name="device_activate_tip">激活设备后就能使用全部功能</string>
+    <string name="change_commit_txt">确认修改</string>
+    <string name="register_passwd_txt">请输入登录密码</string>
+    <string name="register_passwd_again_txt">请再次输入密码</string>
+    <string name="register_commit_txt">注册</string>
 </resources>
