@@ -1,11 +1,11 @@
-package com.hz17car.yema.ui.activity.adapter;
+package com.hz17car.yema.ui.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.hz17car.yema.ui.activity.fragment.HomeFragment;
-import com.hz17car.yema.ui.activity.fragment.TestFragment;
+import com.hz17car.yema.ui.fragment.HomeFragment;
+import com.hz17car.yema.ui.fragment.TestFragment;
 
 
 /**

@@ -1,7 +1,6 @@
 package com.hz17car.yema;
 
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hz17car.yema.base.BaseActivity;
-import com.hz17car.yema.ui.activity.adapter.FragmentAdapter;
-import com.hz17car.yema.ui.activity.view.NoScrollViewPager;
+import com.hz17car.yema.ui.adapter.FragmentAdapter;
+import com.hz17car.yema.ui.view.NoScrollViewPager;
 
 public class MainActivity extends BaseActivity {
 

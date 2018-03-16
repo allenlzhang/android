@@ -1,4 +1,4 @@
-package com.hz17car.yema.ui.activity.view;
+package com.hz17car.yema.ui.view;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

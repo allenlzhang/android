@@ -1,4 +1,4 @@
-package com.hz17car.yema.ui.activity.fragment;
+package com.hz17car.yema.ui.fragment;
 
 
 import android.os.Bundle;
