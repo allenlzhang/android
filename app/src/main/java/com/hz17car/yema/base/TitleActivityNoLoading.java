@@ -23,8 +23,6 @@ import com.hz17car.yema.R;
 public class TitleActivityNoLoading extends BaseActivity {
     protected ImageView back;//返回键
     protected TextView title;//标题
-    protected TextView title_right;//右侧按钮or文字
-    protected TextView mTxtDes;// 描述文字
 
     private RelativeLayout mLayMain;
     private View mMainView;
@@ -44,9 +42,8 @@ public class TitleActivityNoLoading extends BaseActivity {
         super.setContentView(R.layout.activity_titlenoloading);
         mLayMain = (RelativeLayout) findViewById(R.id.titlenoloading_lay_mainlayout);
 
-        back = (ImageView) findViewById(R.id.title_img_back);
-        title = (TextView) findViewById(R.id.title_txt_content);
-        title_right = (TextView) findViewById(R.id.title_txt_right);
+        back = (ImageView) findViewById(R.id.back);
+        title = (TextView) findViewById(R.id.title);
 
         setMainView(layoutResID);
     }
@@ -64,20 +61,11 @@ public class TitleActivityNoLoading extends BaseActivity {
         if (!TextUtils.isEmpty(content)) {
             title.setText(content);
         }
-        if (!TextUtils.isEmpty(titleRight)) {
-            title_right.setText(titleRight);
-        }
-        if (!TextUtils.isEmpty(titleRightColor)) {
-            title_right.setTextColor(Color.parseColor(titleRightColor));
-        }
-        if (titleRightBg > 0) {
-            title_right.setBackgroundResource(titleRightBg);
-        }
+
         if (clickTitleListener != null) {
             mClickTitleListener = clickTitleListener;
         }
         back.setOnClickListener(onClickListener);
-        title_right.setOnClickListener(onClickListener);
     }
 
     /**
@@ -126,20 +114,12 @@ public class TitleActivityNoLoading extends BaseActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.title_img_back:
+                case R.id.back:
                     //标题头左侧按钮
                     if (mClickTitleListener != null) {
                         mClickTitleListener.titleLeftClik();
                     } else {
                         onBackPressed();
-                    }
-                    break;
-                case R.id.title_txt_right:
-                    //标题头右侧按钮
-                    if (mClickTitleListener != null) {
-                        mClickTitleListener.titleRightClik();
-                    } else {
-
                     }
                     break;
 

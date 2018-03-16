@@ -18,6 +18,7 @@
             android:layout_weight="1"
             android:drawablePadding="6dip"
             android:drawableTop="@drawable/tire_car_main_selecter"
+            android:clickable="true"
             android:text="胎压检测" />
 
         <TextView
@@ -26,7 +27,8 @@
             android:layout_width="0dip"
             android:layout_weight="1"
             android:drawablePadding="6dip"
-            android:drawableTop="@drawable/tire_car_main_selecter"
+            android:drawableTop="@drawable/find_car_main_selecter"
+            android:clickable="true"
             android:text="定位寻车" />
 
         <TextView
@@ -35,7 +37,8 @@
             android:layout_width="0dip"
             android:layout_weight="1"
             android:drawablePadding="6dip"
-            android:drawableTop="@drawable/tire_car_main_selecter"
+            android:drawableTop="@drawable/daohang_car_main_selecter"
+            android:clickable="true"
             android:text="导航同步" />
 
     </LinearLayout>
