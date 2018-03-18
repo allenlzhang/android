@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.PersonInfoActivity" />
+        <activity android:name=".ui.activity.CarManagerActivity" />
+        <activity android:name=".ui.activity.TravelAlbumActivity" />
+        <activity android:name=".ui.activity.PhotoDisplayActivity" />
+        <activity android:name=".ui.activity.MaintenanceMileageEditActivity" />
+        <activity android:name=".ui.activity.NicknameEditActivity" />
+        <activity android:name=".ui.activity.AboutYemaActivity"></activity>
     </application>
 
 </manifest>
