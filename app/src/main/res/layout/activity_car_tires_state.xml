@@ -12,8 +12,8 @@
 
     <RelativeLayout
         android:id="@+id/activity_car_tire_pressure_relative"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/sub_head"
         android:layout_marginTop="10dip"
         android:paddingLeft="5dip"
@@ -28,33 +28,155 @@
             android:src="@drawable/icon_car" >
         </ImageView>
 
-        <ImageView
-            android:id="@+id/activity_car_tire_pressure_lay1"
-            style="@style/car_tire_prssure_lay"
-            android:layout_alignTop="@id/activity_car_tire_pressure_img"
-            android:layout_marginTop="15dip"
-            android:layout_toLeftOf="@id/activity_car_tire_pressure_img" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_alignTop="@+id/activity_car_tire_pressure_img"
+            android:layout_alignLeft="@+id/activity_car_tire_pressure_img"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="-30dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/activity_car_tire_pressure_lay1"
+                style="@style/car_tire_prssure_lay"
+                android:background="@drawable/tire_nol"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/l_t_pa_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:text="1111Kpa"
+                    />
+                <TextView
+                    android:id="@+id/l_t_temp_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="@color/text_color_gray1"
+                    android:text="2222"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
 
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_alignTop="@id/activity_car_tire_pressure_img"
+    android:layout_alignRight="@+id/activity_car_tire_pressure_img"
+    android:layout_marginRight="-10dp"
+    android:layout_marginTop="-30dp"
+    android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/activity_car_tire_pressure_lay2"
             style="@style/car_tire_prssure_lay"
-            android:layout_alignTop="@id/activity_car_tire_pressure_img"
-            android:layout_marginTop="15dip"
-            android:layout_toRightOf="@id/activity_car_tire_pressure_img" />
-
+            android:background="@drawable/tire_nol"
+            />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <TextView
+            android:id="@+id/r_t_pa_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:text="1111Kpa"
+            />
+        <TextView
+            android:id="@+id/r_t_temp_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="@color/text_color_gray1"
+            android:text="2222"
+            />
+    </LinearLayout>
+</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_alignBottom="@id/activity_car_tire_pressure_img"
+            android:layout_alignLeft="@+id/activity_car_tire_pressure_img"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginBottom="-30dp"
+            android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/activity_car_tire_pressure_lay3"
             style="@style/car_tire_prssure_lay"
+            android:background="@drawable/tire_nol"
+            />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/l_b_pa_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:text="1111Kpa"
+                    />
+                <TextView
+                    android:id="@+id/l_b_temp_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="@color/text_color_gray1"
+                    android:text="2222"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_alignBottom="@id/activity_car_tire_pressure_img"
-            android:layout_marginBottom="15dip"
-            android:layout_toLeftOf="@id/activity_car_tire_pressure_img" />
-
+            android:layout_alignRight="@+id/activity_car_tire_pressure_img"
+            android:layout_marginRight="-10dp"
+            android:layout_marginBottom="-30dp"
+            android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/activity_car_tire_pressure_lay4"
             style="@style/car_tire_prssure_lay"
-            android:layout_alignBottom="@id/activity_car_tire_pressure_img"
-            android:layout_marginBottom="15dip"
-            android:layout_toRightOf="@id/activity_car_tire_pressure_img" />
+            android:background="@drawable/tire_nol"
+            />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/r_b_pa_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:text="1111Kpa"
+                    />
+                <TextView
+                    android:id="@+id/r_b_temp_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="@color/text_color_gray1"
+                    android:text="2222"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
 </RelativeLayout>
