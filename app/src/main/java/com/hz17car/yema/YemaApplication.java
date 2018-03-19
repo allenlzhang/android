@@ -6,6 +6,7 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import com.bumptech.glide.Glide;
 import com.hz17car.yema.dao.DBManager;
 import com.hz17car.yema.utils.CipherUtils;
 import com.hz17car.yema.utils.ILog;
@@ -55,6 +56,7 @@ public class YemaApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        Glide.init(Glide.get(instance.getApplicationContext()));
         DBManager.init(this);
         PackageManager = getPackageManager();
         try {

@@ -1,7 +1,6 @@
 
 package com.hz17car.yema.base;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -83,10 +82,20 @@ public class LoadingActivity extends BaseActivity{
         if (!TextUtils.isEmpty(content)) {
             title.setText(content);
         }
+//        if (!TextUtils.isEmpty(titleRight)) {
+//            title_right.setText(titleRight);
+//        }
+//        if (!TextUtils.isEmpty(titleRightColor)) {
+//            title_right.setTextColor(Color.parseColor(titleRightColor));
+//        }
+//        if (titleRightBg > 0) {
+//            title_right.setBackgroundResource(titleRightBg);
+//        }
         if (clickTitleListener != null) {
             mClickTitleListener = clickTitleListener;
         }
         back.setOnClickListener(onClickListener);
+//        title_right.setOnClickListener(onClickListener);
     }
 
 
@@ -225,17 +234,25 @@ public class LoadingActivity extends BaseActivity{
     private OnClickListener onClickListener=new OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.back:
-                    //标题头左侧按钮
-                    if (mClickTitleListener != null) {
-                        mClickTitleListener.titleLeftClik();
-                    } else {
-                        onBackPressed();
-                    }
-                    break;
-
-            }
+//            switch (v.getId()) {
+//                case R.id.title_img_back:
+//                    //标题头左侧按钮
+//                    if (mClickTitleListener != null) {
+//                        mClickTitleListener.titleLeftClik();
+//                    } else {
+//                        onBackPressed();
+//                    }
+//                    break;
+//                case R.id.title_txt_right:
+//                    //标题头右侧按钮
+//                    if (mClickTitleListener != null) {
+//                        mClickTitleListener.titleRightClik();
+//                    } else {
+//
+//                    }
+//                    break;
+//
+//            }
         }
     };
 

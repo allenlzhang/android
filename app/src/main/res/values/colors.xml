@@ -83,5 +83,10 @@
     <color name="transparent_half">#80000000</color>
     <!-- 列表竖直灰线颜色 -->
     <color name="gray">#D0D0D0</color>
-    <color name="disclaimer">#b22d14</color>
+    <!--yema created by marller-->
+    <color name="setting_item_bg">#2e2d33</color>
+    <color name="setting_item_divider_bg">#4d4d4d</color>
+    <color name="scarlet">#b22d14</color>
+    <color name="main_color">#171922</color>
+    <color name="title_bar_right_btn_bg">#171922</color>
 </resources>

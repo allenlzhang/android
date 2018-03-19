@@ -4,9 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.hz17car.yema.ui.fragment.CarMainFragment;
 import com.hz17car.yema.ui.fragment.HomeFragment;
-import com.hz17car.yema.ui.fragment.RemoteMainFragment;
+import com.hz17car.yema.ui.fragment.SettingMainFragment;
 import com.hz17car.yema.ui.fragment.TestFragment;
 
 
@@ -28,15 +27,16 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
                 HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
             case 1:
-                CarMainFragment carMainFragment = new CarMainFragment();
-                return carMainFragment;
+                TestFragment twoFragment = new TestFragment();
+                twoFragment.setText("座驾");
+                return twoFragment;
             case 2:
-                RemoteMainFragment remoteMainFragment = new RemoteMainFragment();
-                return remoteMainFragment;
+                TestFragment threeFragment = new TestFragment();
+                threeFragment.setText("远程");
+                return threeFragment;
             case 3:
-                TestFragment fourFragment = new TestFragment();
-                fourFragment.setText("设置");
-                return fourFragment;
+                SettingMainFragment settingFragment = new SettingMainFragment();
+                return settingFragment;
         }
         return null;
     }
