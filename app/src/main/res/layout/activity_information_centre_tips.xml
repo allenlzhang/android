@@ -69,14 +69,14 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.hz17car.yema.ui.pull.PullToRefreshListView
+    <com.carlt.yema.ui.pull.PullToRefreshListView
         android:id="@+id/activity_career_secretary_tips_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/activity_career_secretary_tips_title"
         android:paddingLeft="12dp"
         android:paddingRight="12dp" >
-    </com.hz17car.yema.ui.pull.PullToRefreshListView>
+    </com.carlt.yema.ui.pull.PullToRefreshListView>
 
     <TextView
         android:id="@+id/activity_career_secretary_tips_empty"

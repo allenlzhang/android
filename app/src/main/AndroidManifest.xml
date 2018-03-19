@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hz17car.yema">
+    package="com.carlt.yema">
 
     <application
         android:allowBackup="true"
@@ -9,23 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.carlt.yema.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.setting.PersonInfoActivity" />
-        <activity android:name=".ui.activity.setting.CarManagerActivity" />
-        <activity android:name=".ui.activity.setting.TravelAlbumActivity" />
-        <activity android:name=".ui.activity.setting.PhotoDisplayActivity" />
-        <activity android:name=".ui.activity.setting.MaintenanceMileageEditActivity" />
-        <activity android:name=".ui.activity.setting.NicknameEditActivity" />
-        <activity android:name=".ui.activity.setting.AboutYemaActivity" />
-        <activity android:name=".ui.activity.setting.PhoneAuthenticationActivity" />
-        <activity android:name=".ui.activity.setting.ResetCetifiedPhoneActivity" />
-        <activity android:name=".ui.activity.setting.AccountSecurityActivity"></activity>
+
+        <activity android:name="com.carlt.yema.ui.activity.setting.PersonInfoActivity" />
+        <activity android:name="com.carlt.yema.ui.activity.setting.CarManagerActivity" />
+        <activity android:name="com.carlt.yema.ui.activity.setting.TravelAlbumActivity" />
+        <activity android:name="com.carlt.yema.ui.activity.setting.PhotoDisplayActivity" />
+        <activity android:name="com.carlt.yema.ui.activity.setting.MaintenanceMileageEditActivity" />
+        <activity android:name="com.carlt.yema.ui.activity.setting.NicknameEditActivity" />
+        <activity android:name="com.carlt.yema.ui.activity.setting.AboutYemaActivity" />
+        <activity android:name="com.carlt.yema.ui.activity.setting.PhoneAuthenticationActivity" />
+        <activity android:name="com.carlt.yema.ui.activity.setting.ResetCetifiedPhoneActivity" />
+        <activity android:name="com.carlt.yema.ui.activity.setting.AccountSecurityActivity"></activity>
+        <activity android:name="com.carlt.yema.ui.activity.carstate.CarTiresStateActivity"></activity>
     </application>
 
 </manifest>
