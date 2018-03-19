@@ -10,7 +10,8 @@ import com.hz17car.yema.base.BaseActivity;
 import com.hz17car.yema.data.UseInfo;
 import com.hz17car.yema.preference.TokenInfo;
 import com.hz17car.yema.preference.UseInfoLocal;
-import com.hz17car.yema.ui.activity.LoginActivity;
+import com.hz17car.yema.ui.activity.login.UserLoginActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,7 +137,7 @@ public class ActivityControl {
 		mUseInfo.setPassword("");
 		UseInfoLocal.setUseInfo(mUseInfo);
 		TokenInfo.setToken("");
-		Intent mIntent = new Intent(context, LoginActivity.class);
+		Intent mIntent = new Intent(context, UserLoginActivity.class);
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(mIntent);
 
@@ -184,14 +185,14 @@ public class ActivityControl {
 		mUseInfo.setPassword("");
 		UseInfoLocal.setUseInfo(mUseInfo);
 		TokenInfo.setToken("");
-		Intent mIntent = new Intent(context, LoginActivity.class);
+		Intent mIntent = new Intent(context, UserLoginActivity.class);
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(mIntent);
 	}
 
 	public static void onTokenDisable() {
 		for (Activity activity : mActivityList) {
-			if (activity instanceof LoginActivity) {
+			if (activity instanceof UserLoginActivity) {
 				BaseActivity base = (BaseActivity) activity;
 				if (base.IsShowing()) {
 					return;
@@ -199,7 +200,7 @@ public class ActivityControl {
 			}
 		}
 		Intent mIntent = new Intent(YemaApplication.getInstanse(),
-				LoginActivity.class);
+				UserLoginActivity.class);
 		// Intent mIntent = new Intent(getApplicationContext(),
 		// LoginActivity.class);
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

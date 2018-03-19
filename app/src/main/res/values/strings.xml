@@ -72,7 +72,7 @@
     <string name="bind_phone_default">145****1245</string>
     <string name="logined_passwd_manage_txt">登录密码管理</string>
     <string name="remote_passwd_manage_txt">远程控制密码管理</string>
-    <string name="remote_control_fingerprint_unlock_txt">远程控制密码管理</string>
+    <string name="remote_control_fingerprint_unlock_txt">远程控制指纹解锁</string>
     <string name="remote_no_passwd_cycle_txt">远程控制5分钟无需密码</string>
     <!--绑定手机-->
     <string name="bind_phone_txt">绑定手机</string>

@@ -54,7 +54,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/logined_passwd_manage"
+                android:text="@string/logined_passwd_manage_txt"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -111,11 +111,10 @@
                 android:textSize="14sp" />
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                android:src="@mipmap/arrow_right" />
+            <CheckBox
+                android:id="@+id/btn_remote_fingerprint_ctr"
+                style="@style/manage_message_checkbox"
+                android:layout_centerVertical="true" />
         </LinearLayout>
 
         <View style="@style/setting_page_item_divider" />
@@ -129,15 +128,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/remote_passwd_manage_txt"
+                android:text="@string/remote_no_passwd_cycle_txt"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
 
             <CheckBox
-                android:id="@+id/activity_manage_message_checkbox8"
+                android:id="@+id/btn_remote_no_passwd_crt"
                 style="@style/manage_message_checkbox"
-                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true" />
         </LinearLayout>
     </LinearLayout>

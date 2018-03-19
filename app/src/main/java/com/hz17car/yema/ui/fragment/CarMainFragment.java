@@ -3,11 +3,9 @@ package com.hz17car.yema.ui.fragment;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.hz17car.yema.R;
 import com.hz17car.yema.base.BaseFragment;
-import com.hz17car.yema.ui.activity.LoginActivity;
 import com.hz17car.yema.ui.activity.carstate.CarTiresStateActivity;
 
 /**
