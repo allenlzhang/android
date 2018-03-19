@@ -141,12 +141,6 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <!-- 胎压监测 -->
-    <style name="car_tire_prssure_lay">
-        <item name="android:layout_width">95dip</item>
-        <item name="android:layout_height">94dip</item>
-        <item name="android:background">#DCDCDC</item>
-    </style>
 
     <!--yema created by marller-->
     <style name="setting_page_item_style">

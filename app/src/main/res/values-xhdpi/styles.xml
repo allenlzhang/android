@@ -608,7 +608,6 @@
     <style name="car_tire_prssure_lay">
         <item name="android:layout_width">95dip</item>
         <item name="android:layout_height">94dip</item>
-        <item name="android:background">#DCDCDC</item>
     </style>
 
     <style name="car_tire_prssure_txt1">

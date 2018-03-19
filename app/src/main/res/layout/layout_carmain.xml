@@ -157,7 +157,7 @@
             android:text="胎压检测" />
 
         <TextView
-            android:id="@+id/car_main_txt_illegal"
+            android:id="@+id/car_main_txt_findcar"
             style="@style/car_main_txt1"
             android:layout_width="0dip"
             android:layout_weight="1"
@@ -167,7 +167,7 @@
             android:text="定位寻车" />
 
         <TextView
-            android:id="@+id/car_main_txt_findcar"
+            android:id="@+id/car_main_txt_carlocation"
             style="@style/car_main_txt1"
             android:layout_width="0dip"
             android:layout_weight="1"

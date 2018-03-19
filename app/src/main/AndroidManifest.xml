@@ -22,7 +22,8 @@
         <activity android:name=".ui.activity.PhotoDisplayActivity" />
         <activity android:name=".ui.activity.MaintenanceMileageEditActivity" />
         <activity android:name=".ui.activity.NicknameEditActivity" />
-        <activity android:name=".ui.activity.AboutYemaActivity"></activity>
+        <activity android:name=".ui.activity.AboutYemaActivity" />
+        <activity android:name=".ui.activity.carstate.CarTiresStateActivity"></activity>
     </application>
 
 </manifest>
