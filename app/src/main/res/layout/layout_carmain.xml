@@ -36,6 +36,7 @@
         android:id="@+id/car_main_lay_safety"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_weight="1" >
 
         <RelativeLayout
@@ -93,6 +94,7 @@
         android:id="@+id/car_main_lay_maintain"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_weight="1" >
 
         <RelativeLayout

@@ -3,15 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/layout_background" >
+    <include
+        android:id="@+id/title"
+        layout="@layout/layout_title_remote"/>
     <ScrollView
+        android:layout_below="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:background="@color/layout_background"
             android:layout_height="match_parent" >
-
             <RelativeLayout
                 android:id="@+id/remote_main_lay_state"
                 android:layout_width="match_parent"

@@ -7,20 +7,29 @@
     >
 
     <ImageView
-        android:id="@+id/back"
+        android:id="@+id/state_car_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="12dip"
-        android:src="@drawable/back_bg" />
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:src="@drawable/car_zhuangtai_selector" />
 
-    <TextView
-        android:id="@+id/title"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textSize="24sp"
         android:layout_centerInParent="true"
-        android:textColor="@color/white"
-        android:text="title" />
+        android:src="@mipmap/title_image"
+        />
+
+    <ImageView
+        android:id="@+id/remote_history_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp"
+        android:clickable="true"
+        android:src="@drawable/car_remote_icon_selector" />
 </RelativeLayout>
