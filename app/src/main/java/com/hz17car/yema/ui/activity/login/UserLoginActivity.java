@@ -1,4 +1,4 @@
-package com.hz17car.yema.ui.activity;
+package com.hz17car.yema.ui.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.hz17car.yema.R;
 import com.hz17car.yema.YemaApplication;
 import com.hz17car.yema.base.BaseActivity;
+import com.hz17car.yema.ui.view.UUToast;
 
 /**
  * Created by marller on 2018\3\15 0015.
@@ -119,11 +120,11 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
      * */
     private boolean isInputDataInvalid(){
         if (TextUtils.isEmpty(user_phone.getText().toString())) {
-            Toast.makeText(this,"手机号码不正确",Toast.LENGTH_LONG).show();
+            UUToast.showUUToast(this,"手机号码不正确",Toast.LENGTH_LONG);
             return false;
         }
         if (TextUtils.isEmpty(user_passwd.getText().toString())) {
-            Toast.makeText(this,"密码不正确",Toast.LENGTH_LONG).show();
+            UUToast.showUUToast(this,"密码不正确",Toast.LENGTH_LONG);
             return false;
         }
         return true;

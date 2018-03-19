@@ -1,6 +1,5 @@
-package com.hz17car.yema.ui.activity;
+package com.hz17car.yema.ui.activity.login;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;

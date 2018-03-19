@@ -1,4 +1,4 @@
-package com.hz17car.yema.ui.activity;
+package com.hz17car.yema.ui.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;

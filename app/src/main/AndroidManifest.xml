@@ -16,14 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.PersonInfoActivity" />
-        <activity android:name=".ui.activity.CarManagerActivity" />
-        <activity android:name=".ui.activity.TravelAlbumActivity" />
-        <activity android:name=".ui.activity.PhotoDisplayActivity" />
-        <activity android:name=".ui.activity.MaintenanceMileageEditActivity" />
-        <activity android:name=".ui.activity.NicknameEditActivity" />
-        <activity android:name=".ui.activity.AboutYemaActivity" />
-        <activity android:name=".ui.activity.carstate.CarTiresStateActivity"></activity>
+        <activity android:name=".ui.activity.setting.PersonInfoActivity" />
+        <activity android:name=".ui.activity.setting.CarManagerActivity" />
+        <activity android:name=".ui.activity.setting.TravelAlbumActivity" />
+        <activity android:name=".ui.activity.setting.PhotoDisplayActivity" />
+        <activity android:name=".ui.activity.setting.MaintenanceMileageEditActivity" />
+        <activity android:name=".ui.activity.setting.NicknameEditActivity" />
+        <activity android:name=".ui.activity.setting.AboutYemaActivity" />
+        <activity android:name=".ui.activity.setting.PhoneAuthenticationActivity" />
+        <activity android:name=".ui.activity.setting.ResetCetifiedPhoneActivity" />
+        <activity android:name=".ui.activity.setting.AccountSecurityActivity"></activity>
     </application>
 
 </manifest>

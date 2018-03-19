@@ -11,10 +11,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hz17car.yema.R;
-import com.hz17car.yema.ui.activity.AboutYemaActivity;
-import com.hz17car.yema.ui.activity.CarManagerActivity;
-import com.hz17car.yema.ui.activity.PersonInfoActivity;
-import com.hz17car.yema.ui.activity.TravelAlbumActivity;
+import com.hz17car.yema.ui.activity.setting.AboutYemaActivity;
+import com.hz17car.yema.ui.activity.setting.CarManagerActivity;
+import com.hz17car.yema.ui.activity.setting.PersonInfoActivity;
+import com.hz17car.yema.ui.activity.setting.PhoneAuthenticationActivity;
+import com.hz17car.yema.ui.activity.setting.TravelAlbumActivity;
 
 
 /**
@@ -96,6 +97,8 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
                 startActivity(travelAlbum);
                 break;
             case R.id.btn_account_security:
+                Intent certifiedIntent=new Intent(this.getActivity(), PhoneAuthenticationActivity.class);
+                startActivity(certifiedIntent);
                 break;
             case R.id.btn_car_manager:
                 Intent carManager=new Intent(this.getActivity(), CarManagerActivity.class);

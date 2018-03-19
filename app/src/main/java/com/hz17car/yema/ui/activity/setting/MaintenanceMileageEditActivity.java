@@ -1,7 +1,8 @@
-package com.hz17car.yema.ui.activity;
+package com.hz17car.yema.ui.activity.setting;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,18 +10,23 @@ import android.widget.TextView;
 import com.hz17car.yema.R;
 import com.hz17car.yema.base.BaseActivity;
 
-public class NicknameEditActivity extends BaseActivity implements View.OnClickListener{
+
+/**
+ * 上次保养里程修改Activity
+ *
+ * */
+public class MaintenanceMileageEditActivity extends BaseActivity implements OnClickListener{
 
     private ImageView back;
     private TextView title;
 
-    private EditText nickname_input;//里程输入框
-    private TextView nickname_input_commit;//确认修改按钮
+    private EditText maintenance_mileage_input;//里程输入框
+    private TextView maintenance_mileage_commit;//确认修改按钮
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nickname_edit);
+        setContentView(R.layout.activity_maintenance_mlieage_edit);
         initComponent();
     }
 
@@ -28,12 +34,12 @@ public class NicknameEditActivity extends BaseActivity implements View.OnClickLi
         back=findViewById(R.id.back);
         back.setOnClickListener(this);
         title=findViewById(R.id.title);
-        title.setText("修改昵称");
+        title.setText("修改上次保养里程");
 
-        nickname_input=findViewById(R.id.nickname_input);
+        maintenance_mileage_input=findViewById(R.id.maintenance_mileage_input);
 
-        nickname_input_commit=findViewById(R.id.nickname_input_commit);
-        nickname_input_commit.setOnClickListener(this);
+        maintenance_mileage_commit=findViewById(R.id.maintenance_mileage_commit);
+        maintenance_mileage_commit.setOnClickListener(this);
     }
 
     @Override
@@ -42,7 +48,7 @@ public class NicknameEditActivity extends BaseActivity implements View.OnClickLi
             case R.id.back:
                 finish();
                 break;
-            case R.id.nickname_input_commit:
+            case R.id.maintenance_mileage_commit:
                 break;
         }
     }

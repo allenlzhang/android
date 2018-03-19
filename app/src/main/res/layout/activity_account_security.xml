@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/main_color"
-    tools:context="com.hz17car.yema.ui.activity.setting.CarManagerActivity">
+    android:orientation="vertical"
+    tools:context="com.hz17car.yema.ui.activity.setting.AccountSecurityActivity">
 
-    <include layout="@layout/layout_title" />
+    <include
+        layout="@layout/layout_title"/>
 
     <LinearLayout
-        android:id="@+id/edit_car_type"
+        android:id="@+id/edit_certified_phone"
         style="@style/setting_page_item_style"
         android:layout_marginTop="10dp"
         android:background="@color/setting_item_bg"
@@ -20,14 +21,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/car_type_txt"
+            android:text="@string/bind_phone_txt"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/car_type_txt"
             style="@style/setting_subpage_item_content"
-            android:text="@string/car_type_txt_default" />
+            android:textColor="@color/text_color_gray1"
+            android:text="@string/bind_phone_default" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -35,7 +37,6 @@
             android:contentDescription="@string/app_name"
             android:src="@mipmap/arrow_right" />
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,16 +51,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/car_purchase_time_txt"
+                android:text="@string/logined_passwd_manage"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/purchase_time_txt"
-                style="@style/setting_subpage_item_content"
-                android:text="@string/default_time_txt" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -77,16 +75,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/last_maintenance_mileage_txt"
+                android:text="@string/remote_passwd_manage_txt"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/maintenance_mileage_txt"
-                style="@style/setting_subpage_item_content"
-                android:text="@string/last_maintenance_mileage" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -94,25 +89,27 @@
                 android:contentDescription="@string/app_name"
                 android:src="@mipmap/arrow_right" />
         </LinearLayout>
-        <View style="@style/setting_page_item_divider" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/setting_item_bg"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/edit_maintenance_time"
             style="@style/setting_page_item_style"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/last_maintenance_time_txt"
+                android:text="@string/remote_control_fingerprint_unlock_txt"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/maintenance_time_txt"
-                style="@style/setting_subpage_item_content"
-                android:text="@string/default_time_txt" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -120,57 +117,28 @@
                 android:contentDescription="@string/app_name"
                 android:src="@mipmap/arrow_right" />
         </LinearLayout>
+
         <View style="@style/setting_page_item_divider" />
 
         <LinearLayout
-            android:id="@+id/edit_insured_time"
             style="@style/setting_page_item_style"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/last_insured_time_txt"
+                android:text="@string/remote_passwd_manage_txt"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/insured_time_txt"
-                style="@style/setting_subpage_item_content"
-                android:text="@string/default_time_txt" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                android:src="@mipmap/arrow_right" />
-        </LinearLayout>
-        <View style="@style/setting_page_item_divider" />
-
-        <LinearLayout
-            android:id="@+id/edit_nspection_time"
-            style="@style/setting_page_item_style"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/last_inspection_time_txt"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/nspection_time_txt"
-                style="@style/setting_subpage_item_content"
-                android:text="@string/default_time_txt" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                android:src="@mipmap/arrow_right" />
+            <CheckBox
+                android:id="@+id/activity_manage_message_checkbox8"
+                style="@style/manage_message_checkbox"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
