@@ -27,12 +27,15 @@
         <activity android:name=".ui.activity.setting.ResetCetifiedPhoneActivity" />
         <activity android:name=".ui.activity.setting.AccountSecurityActivity" />
         <activity android:name=".ui.activity.carstate.CarTiresStateActivity" />
-        <activity android:name=".ui.activity.carstate.CarSaftyListActivity" />
-        <activity android:name=".ui.activity.carstate.MainTestingActivity" />
-        <activity android:name=".ui.activity.carstate.CarStateNowActivity" />
-        <activity android:name=".ui.activity.carstate.CarLocationActivity" />
-        <activity android:name=".ui.activity.carstate.CarSynchronizeLocationActivity" />
-        <activity android:name=".ui.activity.remote.RemoteLogActivity"></activity>
+        <activity android:name=".ui.activity.setting.RemotePasswdManageActivity" />
+        <activity android:name=".ui.activity.setting.ResetRemotePasswdActivity" />
+        <activity android:name=".ui.activity.setting.VcodeResetRemotePasswdActivity" />
+        <activity android:name=".ui.activity.setting.GeneralManageActivity" />
+        <activity android:name=".ui.activity.setting.MsgManageActivity" />
+        <activity android:name=".ui.activity.setting.DeviceManageActivity"/>
+        <activity android:name=".ui.activity.setting.LoginPasswdManageActivity"/>
+        <activity android:name=".ui.activity.setting.ResetLoginPasswdActivity"/>
+        <activity android:name=".ui.activity.setting.VcodeResetPasswdActivity"/>
     </application>
 
 </manifest>

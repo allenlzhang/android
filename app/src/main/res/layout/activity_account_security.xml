@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:background="@color/main_color"
     android:orientation="vertical"
-    tools:context="com.hz17car.yema.com.carlt.yema.ui.activity.setting.AccountSecurityActivity">
+    tools:context=".ui.activity.setting.AccountSecurityActivity">
 
     <include
         layout="@layout/layout_title"/>
 
     <LinearLayout
-        android:id="@+id/edit_certified_phone"
+        android:id="@+id/certified_phone_manage"
         style="@style/setting_page_item_style"
         android:layout_marginTop="10dp"
         android:background="@color/setting_item_bg"
@@ -26,7 +26,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/car_type_txt"
+            android:id="@+id/verified_phone"
             style="@style/setting_subpage_item_content"
             android:textColor="@color/text_color_gray1"
             android:text="@string/bind_phone_default" />
@@ -45,7 +45,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/edit_purchase_time"
+            android:id="@+id/logined_passwd_reset"
             style="@style/setting_page_item_style"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -69,7 +69,7 @@
         <View style="@style/setting_page_item_divider" />
 
         <LinearLayout
-            android:id="@+id/edit_maintenance_mileage"
+            android:id="@+id/remote_passwd_reset"
             style="@style/setting_page_item_style"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -134,7 +134,7 @@
 
 
             <CheckBox
-                android:id="@+id/btn_remote_no_passwd_crt"
+                android:id="@+id/btn_remote_no_passwd_ctr"
                 style="@style/manage_message_checkbox"
                 android:layout_centerVertical="true" />
         </LinearLayout>

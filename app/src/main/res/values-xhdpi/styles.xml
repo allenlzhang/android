@@ -700,8 +700,8 @@
         <item name="android:paddingTop">15dip</item>
         <item name="android:paddingBottom">15dip</item>
         <item name="android:layout_marginBottom">22dip</item>
-        <item name="android:layout_marginLeft">15dip</item>
-        <item name="android:layout_marginRight">15dip</item>
+        <item name="android:layout_marginLeft">12dip</item>
+        <item name="android:layout_marginRight">12dip</item>
     </style>
 
     <style name="rili_head_text">

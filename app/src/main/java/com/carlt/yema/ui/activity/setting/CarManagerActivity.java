@@ -2,6 +2,7 @@ package com.carlt.yema.ui.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -74,7 +75,7 @@ public class CarManagerActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.edit_maintenance_mileage:
                 Intent editMaintenance=new Intent(this,MaintenanceMileageEditActivity.class);
-                startActivity(editMaintenance);
+                startActivityForResult(editMaintenance,0);
                 break;
             case R.id.edit_maintenance_time:
                 break;
@@ -83,5 +84,16 @@ public class CarManagerActivity extends BaseActivity implements View.OnClickList
             case R.id.edit_nspection_time:
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+           String mileage=data.getStringExtra("mileage");
+            if (!TextUtils.isEmpty(mileage) ){
+                maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), Integer.parseInt(mileage)));
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

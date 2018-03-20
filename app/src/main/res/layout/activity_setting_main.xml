@@ -245,7 +245,7 @@
                         android:layout_gravity="center_vertical"
                         android:contentDescription="@string/app_name"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/icon_device_manager" />
+                        android:src="@mipmap/icon_general_manage" />
 
                     <TextView
                         android:layout_width="0dp"

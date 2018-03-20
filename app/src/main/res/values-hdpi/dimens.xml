@@ -8,5 +8,5 @@
 
     <!-- 生涯主页-progress宽度 -->
     <dimen name="career_progress_width">213dip</dimen>
-
+    <dimen name="cache_clean_radius">24px</dimen>
 </resources>

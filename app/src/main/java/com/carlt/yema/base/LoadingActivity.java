@@ -3,7 +3,6 @@ package com.carlt.yema.base;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,9 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.R;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.protocolparser.BaseParser;
 
 
 /**

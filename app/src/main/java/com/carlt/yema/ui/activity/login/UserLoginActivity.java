@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.carlt.yema.YemaApplication;
-import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.R;
+import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.ui.view.UUToast;
 
 /**
  * Created by marller on 2018\3\15 0015.

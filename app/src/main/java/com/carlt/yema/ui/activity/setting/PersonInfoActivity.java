@@ -15,7 +15,6 @@ import com.carlt.yema.utils.DensityUtil;
 
 import java.util.Arrays;
 import java.util.List;
-
 /**
  * Created by marller on 2018\3\17 0017.
  */

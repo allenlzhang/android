@@ -70,4 +70,5 @@
     <dimen name="pop_width_list">235dip</dimen>
     <dimen name="pop_width_rg">163dip</dimen>
     <dimen name="pop_width_txt">209dip</dimen>
+    <dimen name="cache_clean_radius">32px</dimen>
 </resources>

@@ -1,5 +1,6 @@
 package com.carlt.yema.ui.activity.setting;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,6 +50,11 @@ public class MaintenanceMileageEditActivity extends BaseActivity implements OnCl
                 finish();
                 break;
             case R.id.maintenance_mileage_commit:
+                String mileage=maintenance_mileage_input.getText().toString();
+                Intent intent=new Intent();
+                intent.putExtra("mileage",mileage);
+                setResult(RESULT_OK,intent);
+                finish();
                 break;
         }
     }

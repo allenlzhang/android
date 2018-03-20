@@ -1,6 +1,8 @@
 package com.carlt.yema.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.DisplayMetrics;
 
 public class DensityUtil {
 
@@ -42,5 +44,24 @@ public class DensityUtil {
         float fontScale=context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue/fontScale+0.5f);
     }
+
+    /**
+     * px转换成sp
+     */
+    public static int getScreenWidth(Activity context){
+        DisplayMetrics dm=new DisplayMetrics();
+        context.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        return dm.widthPixels;
+    }
+
+    /**
+     * px转换成sp
+     */
+    public static int getScreenHeight(Activity context){
+        DisplayMetrics dm=new DisplayMetrics();
+        context.getWindowManager().getDefaultDisplay().getMetrics(dm);;
+        return dm.heightPixels;
+    }
+
 }
 

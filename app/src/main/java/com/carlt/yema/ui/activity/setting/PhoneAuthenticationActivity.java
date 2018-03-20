@@ -34,7 +34,7 @@ public class PhoneAuthenticationActivity extends BaseActivity implements View.On
         certified_input_commit.setOnClickListener(this);
 
         title=findViewById(R.id.title);
-        title.setText("身份认证");
+        title.setText("修改手机号码");
         certified_phone_input=findViewById(R.id.certified_phone_input);
         certified_code_input=findViewById(R.id.certified_code_input);
     }
@@ -43,6 +43,7 @@ public class PhoneAuthenticationActivity extends BaseActivity implements View.On
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
+                finish();
                 break;
             case R.id.certified_input_commit:
                 Intent resetCertified=new Intent(this,ResetCetifiedPhoneActivity.class);

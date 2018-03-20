@@ -76,8 +76,30 @@
     <string name="remote_no_passwd_cycle_txt">远程控制5分钟无需密码</string>
     <!--绑定手机-->
     <string name="bind_phone_txt">绑定手机</string>
+    <string name="vertified_code_get_tip">验证码将发送到原手机号上</string>
     <string name="certified_code_input_txt">请填写原手机号码</string>
     <!--修改绑定手机-->
     <string name="certified_code_reset_txt">请填写新手机号码</string>
+    <!--修改登录密码手机-->
+    <string name="login_passwd_remember_txt">记得原登录密码</string>
+    <string name="login_passwd_forget_txt">忘记原登录密码</string>
+    <string name="old_passwd_txt">请输入原登录密码</string>
+    <!--修改远程密码-->
+    <string name="remote_passwd_remember_txt">记得远程控制密码</string>
+    <string name="remote_passwd_forget_txt">忘记远程控制密码</string>
+    <string name="old_remote_passwd_txt">请输入原远程操作密码</string>
+    <string name="new_remote_passwd_txt">输入密码</string>
+    <string name="new_remote_passwd_again_txt">再次输入密码</string>
+
+    <!--通用管理-->
+    <string name="remote_voice_affect_txt">远程音效</string>
+    <!--消息管理-->
+    <string name="insurance_expiration_reminder_txt">允许推送保险到期提醒</string>
+    <string name="annual_inspection_reminder_txt">允许推送年检到期提醒</string>
+    <string name="driving_report_txt">允许推送行车报告</string>
+    <!--设备管理-->
+    <string name="device_binded_txt">已绑定设备: %1$s</string>
+    <!--清除缓存-->
+    <string name="cache_clean_tips">确定清除缓存？</string>
 
 </resources>

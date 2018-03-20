@@ -16,36 +16,35 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
     private TextView title;//标题
 
     private EditText reset_phone_input;//新手机号
-    private EditText reset_certified_code_input;//验证码
 
     private TextView reset_phone_commit;//修改提交
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone_authentication);
+        setContentView(R.layout.activity_reset_cetified_phone);
         initComponent();
     }
 
     private void initComponent() {
         back=findViewById(R.id.back);
         back.setOnClickListener(this);
-        reset_phone_commit=findViewById(R.id.certified_input_commit);
+        reset_phone_commit=findViewById(R.id.reset_phone_commit);
         reset_phone_commit.setOnClickListener(this);
 
         title=findViewById(R.id.title);
-        title.setText("绑定手机");
-        reset_phone_input=findViewById(R.id.certified_phone_input);
-        reset_certified_code_input=findViewById(R.id.certified_code_input);
+        title.setText("修改手机号码");
+        reset_phone_input=findViewById(R.id.reset_phone_input);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
+                finish();
                 break;
             case R.id.reset_phone_commit:
-                Intent resetCertified=new Intent();
+                Intent resetCertified=new Intent(this,AccountSecurityActivity.class);
                 startActivity(resetCertified);
                 break;
         }
