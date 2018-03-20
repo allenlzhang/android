@@ -3,6 +3,7 @@ package com.carlt.yema.ui.fragment;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.R;
@@ -30,6 +31,8 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         View viewSafetyLay = $ViewByID(R.id.car_main_lay_safety);//安防提醒
         View viewMainTainLay = $ViewByID(R.id.car_main_lay_maintain);//车况检测
         View viewMainState = $ViewByID(R.id.car_state_iv);//实时车况
+        TextView titleTV = $ViewByID(R.id.carmian_title);
+        titleTV.setText("野马汽车品牌");
         view1.setOnClickListener(this);
         view2.setOnClickListener(this);
         view3.setOnClickListener(this);

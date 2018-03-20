@@ -11,5 +11,7 @@ public class CarSaftyListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_safty_list);
+
+        initTitle("安防提醒");
     }
 }

@@ -10,7 +10,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.carlt.yema.R;
 import com.carlt.yema.control.ActivityControl;
 
 import java.util.ArrayList;
@@ -48,6 +50,34 @@ public class BaseActivity extends AppCompatActivity implements
 		Log.e("info", this.getClass().getName() + "--onCreate");
 	}
 
+	/**
+     * 使用此方法，需要在 setContentView activity 里 加入layout_title
+     *
+	 * 只有 一个文字标题和返回键的标题
+	 * @param titleString
+	 */
+	protected void initTitle(String titleString) {
+        View backTV = null;
+        TextView titleTV = null;
+        try{
+            backTV = $ViewByID(R.id.back);
+            titleTV = $ViewByID(R.id.title);
+        }catch (Exception e){
+		    //是设置标题出错
+		    return;
+        }
+		if(null != backTV){
+			backTV.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					finish();
+				}
+			});
+		}
+		if(null != titleTV){
+			titleTV.setText(titleString);
+		}
+	}
 
 	@Override
 	protected void onDestroy() {
@@ -147,12 +177,4 @@ public class BaseActivity extends AppCompatActivity implements
 			}
 		}
 	}
-	/**
-	 *标题头按钮点击事件
-	 */
-	public interface ClickTitleListener {
-		void titleLeftClik();//点击最左侧按钮（一般为返回键）
-		void titleRightClik();//点击最右侧按钮
-	}
-
 }

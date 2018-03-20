@@ -41,8 +41,6 @@ public class LoadingActivity extends BaseActivity{
 
     LayoutInflater mInflater;
 
-    private ClickTitleListener mClickTitleListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,34 +66,6 @@ public class LoadingActivity extends BaseActivity{
 
         mTxtRetryError.setOnClickListener(mClickListener);
         setMainView(layoutResID);
-    }
-
-    /**
-     * 设置该页面Title展示相关数据
-     * @param content            标题内容（必填）
-     * @param titleRight         标题右侧按钮文字(可为null)
-     * @param titleRightColor    标题右侧按钮颜色(可为null)
-     * @param titleRightBg       标题右侧按钮背景(可为-1)
-     * @param clickTitleListener 标题两个按钮点击事件(可为null,为null时调用系统的返回方法，右侧按钮点击无效果)
-     */
-    protected void initTitle(String content, String titleRight, String titleRightColor, int titleRightBg, ClickTitleListener clickTitleListener) {
-        if (!TextUtils.isEmpty(content)) {
-            title.setText(content);
-        }
-//        if (!TextUtils.isEmpty(titleRight)) {
-//            title_right.setText(titleRight);
-//        }
-//        if (!TextUtils.isEmpty(titleRightColor)) {
-//            title_right.setTextColor(Color.parseColor(titleRightColor));
-//        }
-//        if (titleRightBg > 0) {
-//            title_right.setBackgroundResource(titleRightBg);
-//        }
-        if (clickTitleListener != null) {
-            mClickTitleListener = clickTitleListener;
-        }
-        back.setOnClickListener(onClickListener);
-//        title_right.setOnClickListener(onClickListener);
     }
 
 

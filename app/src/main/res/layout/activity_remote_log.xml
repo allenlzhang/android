@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <ListView
-        android:id="@+id/remotelog_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="10dip" >
-    </ListView>
-
+    android:layout_height="match_parent"
+    android:background="@color/layout_background"
+    >
+    <!--<ListView-->
+        <!--android:id="@+id/remotelog_list"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dip" >-->
+    <!--</ListView>-->
     <TextView
         android:id="@+id/remotelog_txt_empty"
         style="@style/public_nodata_txt"
