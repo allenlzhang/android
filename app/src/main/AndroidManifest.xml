@@ -3,19 +3,24 @@
     package="com.carlt.yema">
 
     <application
+        android:name=".YemaApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activity.login.UserLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.login.DeviceBindActivity" />
+        <activity android:name=".ui.activity.login.ResetPasswdActivity" />
+        <activity android:name=".ui.activity.login.ActivateBindActivity" />
+        <activity android:name=".ui.activity.login.UserRegisterActivity" />
         <activity android:name=".ui.activity.setting.PersonInfoActivity" />
         <activity android:name=".ui.activity.setting.CarManagerActivity" />
         <activity android:name=".ui.activity.setting.TravelAlbumActivity" />
@@ -36,6 +41,7 @@
         <activity android:name=".ui.activity.setting.LoginPasswdManageActivity"/>
         <activity android:name=".ui.activity.setting.ResetLoginPasswdActivity"/>
         <activity android:name=".ui.activity.setting.VcodeResetPasswdActivity"/>
+        <activity android:name=".ui.activity.setting.TermsDeclareActivity"/>
     </application>
 
 </manifest>

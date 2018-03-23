@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.bumptech.glide.Glide;
@@ -47,15 +48,20 @@ public class YemaApplication extends Application {
 
     public static String NIMEI;//手机唯一标识吗 (新的)
 
+    public static String IMEI;//手机唯一标识吗 (旧的)
+
     public final static String packDate = "_2017112001";// 打包日期，打包的时候记得改
 
     private static YemaApplication instance;
+
+    public static Context ApplicationContext;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        ApplicationContext=this.getApplicationContext();
         Glide.init(Glide.get(instance.getApplicationContext()));
         DBManager.init(this);
         PackageManager = getPackageManager();
@@ -79,6 +85,7 @@ public class YemaApplication extends Application {
         ILog.e("info", "display==" + android.os.Build.DISPLAY);
 
         NIMEI = getNewUniquePsuedoID();
+        IMEI=getUniquePsuedoID();
 
         // 屏幕信息
         DisplayMetrics dm = new DisplayMetrics();
@@ -111,6 +118,44 @@ public class YemaApplication extends Application {
         m_szDevIDShort = "ZT-" + UUID.nameUUIDFromBytes(m_szDevIDShort.getBytes()).toString();
         ILog.e("Tags:", "m_szDevIDShort==:" + m_szDevIDShort);
         ILog.e("Tags:", "NEW:" + CipherUtils.md5(m_szDevIDShort));
+        return CipherUtils.md5(m_szDevIDShort);
+    }
+
+    public static String getUniquePsuedoID() {
+        // Build.BOARD // 主板
+        // Build.BRAND // android系统定制商
+        // Build.CPU_ABI // cpu指令集
+        // Build.DEVICE // 设备参数
+        // Build.DISPLAY // 显示屏参数
+        // Build.FINGERPRINT // 硬件名称
+        // Build.HOST
+        // Build.ID // 修订版本列表
+        // Build.MANUFACTURER // 硬件制造商
+        // Build.MODEL // 版本
+        // Build.PRODUCT // 手机制造商
+        // Build.TAGS // 描述build的标签
+        // Build.TIME
+        // Build.TYPE // builder类型
+        // Build.USER
+        Log.e("build", "Build.BRAND==" + Build.BRAND);
+        Log.e("build", "Build.CPU_ABI==" + Build.CPU_ABI);
+        Log.e("build", "Build.DEVICE==" + Build.DEVICE);
+        Log.e("build", "Build.HOST==" + Build.HOST);
+        Log.e("build", "Build.MANUFACTURER==" + Build.MANUFACTURER);
+        Log.e("build", "Build.MODEL==" + Build.MODEL);
+        Log.e("build", "Build.PRODUCT==" + Build.PRODUCT);
+        Log.e("build", "Build.TYPE==" + Build.TYPE);
+        Log.e("build", "Build.USER==" + Build.USER);
+        Log.e("build", "Build.FINGERPRINT==" + Build.FINGERPRINT);
+        Log.e("build", "Build.SERIAL==" + Build.SERIAL);
+        Log.e("build", "Build.HARDWARE==" + Build.HARDWARE);
+        String m_szDevIDShort = Build.BRAND + Build.CPU_ABI + Build.DEVICE
+                + Build.HOST + Build.MANUFACTURER + Build.MODEL + Build.PRODUCT
+                + Build.TYPE + Build.USER + Build.FINGERPRINT + Build.SERIAL
+                + Build.HARDWARE;
+        m_szDevIDShort = "ZT-"
+                + UUID.nameUUIDFromBytes(m_szDevIDShort.getBytes()).toString();
+        Log.e("Tags:", "OLD:" + CipherUtils.md5(m_szDevIDShort));
         return CipherUtils.md5(m_szDevIDShort);
     }
 

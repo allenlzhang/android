@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.text.TextUtils;
 
 import com.carlt.yema.YemaApplication;
-import com.carlt.yema.preference.TokenInfo;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.data.UseInfo;
+import com.carlt.yema.preference.TokenInfo;
 import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.ui.activity.login.UserLoginActivity;
 
@@ -49,11 +49,11 @@ public class ActivityControl {
 		return null;
 	}
 
-//	/**
-//	 * 信鸽注册（该方法在登录成功后调用）
-//	 */
-//	public static void initXG() {
-//
+	/**
+	 * 信鸽注册（该方法在登录成功后调用）
+	 */
+	public static void initXG() {
+
 //		Context mContext = YemaApplication.getInstanse();
 //		// 新建自定义样式
 //		XGBasicPushNotificationBuilder build = new XGBasicPushNotificationBuilder();
@@ -118,7 +118,7 @@ public class ActivityControl {
 //		}
 //		Intent service = new Intent(mContext, XGPushServiceV3.class);
 //		mContext.startService(service);
-//	}
+	}
 
 	public static void exit(Context context) {
 

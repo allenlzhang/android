@@ -30,6 +30,9 @@ import okhttp3.Response;
  */
 
 public class HttpLinker {
+
+    private static final String TAG="HttpLinker";
+
     private static OkHttpClient mHttpClient = new OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
@@ -43,6 +46,7 @@ public class HttpLinker {
             .build();
 
     public static void post(String url, HashMap<String, String> param, Callback callback) {
+        param.put("client_id","0896756ebec5bc62a51b15b9a7541901");
         if(!TextUtils.isEmpty(LoginInfo.getToken())){
             url=url+"?token="+LoginInfo.getToken();
         }

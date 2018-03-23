@@ -2,8 +2,8 @@ package com.carlt.yema.ui.activity.carstate;
 
 import android.os.Bundle;
 
-import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.R;
+import com.carlt.yema.base.BaseActivity;
 
 /**
  * 胎压检测

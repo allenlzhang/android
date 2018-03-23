@@ -1,5 +1,6 @@
 package com.carlt.yema.ui.activity.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.ui.activity.setting.TermsDeclareActivity;
 
 public class UserRegisterActivity extends BaseActivity implements View.OnClickListener{
 
@@ -24,8 +26,11 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
     private ImageView register_passwd_again_toggle;//显示&隐藏密码按钮
 
     private TextView titleText;//页面标题
+    private TextView register_txt_declaration;//页面标题
     private TextView register_verification_send;//发送验证码按钮
     private TextView register_commit;//确认修改
+
+    private final static String URL_PROVISION = "http://m.cheler.com/domy.html";// 服务条款URL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,9 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
         register_verification_send=findViewById(R.id.register_verification_send);
         register_verification_send.setOnClickListener(this);
 
+        register_txt_declaration=findViewById(R.id.register_txt_declaration);
+        register_txt_declaration.setOnClickListener(this);
+
         register_commit=findViewById(R.id.register_commit);
         register_commit.setOnClickListener(this);
 
@@ -68,6 +76,11 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
                 passwdInputAgainToggle(view.getTag().toString());
                 break;
             case R.id.bt_verification_send:
+                break;
+            case R.id.register_txt_declaration:
+                Intent termsDeclare=new Intent(this, TermsDeclareActivity.class);
+                termsDeclare.putExtra(TermsDeclareActivity.URL_INFO, URL_PROVISION);
+                startActivity(termsDeclare);
                 break;
             case R.id.register_commit:
                 break;

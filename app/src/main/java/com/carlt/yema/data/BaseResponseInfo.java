@@ -12,6 +12,10 @@ public class BaseResponseInfo<T> {
     public final static int ERRO = 0;
     public final static String NET_ERROR = "网络异常";
 
+    public final static int NO_TOKEN = 1002;
+
+    public final static int TOKEN_DISABLE = 1003;
+
     public final static int TOKEN_EMPTY = 1001;//token为空
     public final static int TOKEN_EXPIRES = 1002;//无效的access token
     public final static int TOKEN_RESET = 1003;//用户token重置被踢

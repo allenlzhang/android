@@ -29,6 +29,7 @@
     <string name="register_passwd_txt">请输入登录密码</string>
     <string name="register_passwd_again_txt">请再次输入密码</string>
     <string name="register_commit_txt">注册</string>
+    <string name="login_failed">登录失败</string>
 
     <!--我的界面-->
     <string name="default_time_txt">2018-3-17</string>

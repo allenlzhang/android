@@ -3,8 +3,8 @@ package com.carlt.yema.ui.fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.R;
+import com.carlt.yema.base.BaseFragment;
 
 /**
  * Created by Marlon on 2018/3/15.

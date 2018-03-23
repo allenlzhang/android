@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
-
 /**
  * Created by Marlon on 2018/3/14.
  */
