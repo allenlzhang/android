@@ -48,8 +48,8 @@ public class HttpLinker {
 
     public static void post(String url, HashMap<String, String> param, Callback callback) {
         param.put("client_id", URLConfig.getClientID());
-        if(!TextUtils.isEmpty(LoginInfo.getToken())){
-            url=url+"?token="+LoginInfo.getToken();
+        if(!TextUtils.isEmpty(LoginInfo.getAccess_token())){
+            url=url+"?token="+LoginInfo.getAccess_token();
         }
         FormBody.Builder formBuilder = new FormBody.Builder();
         Iterator<String> iterators = param.keySet().iterator();
@@ -73,8 +73,8 @@ public class HttpLinker {
 
 
     public static Response postSync(String url, HashMap<String, String> param) throws IOException {
-        if (!TextUtils.isEmpty(LoginInfo.getToken())) {
-            url = url + "?token=" + LoginInfo.getToken();
+        if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
+            url = url + "?token=" + LoginInfo.getAccess_token();
         }
         FormBody.Builder formBuilder = new FormBody.Builder();
         Iterator<String> iterators = param.keySet().iterator();
@@ -97,8 +97,8 @@ public class HttpLinker {
     }
 
     public static void get(String url, HashMap<String, String> param, Callback callback) {
-        if(!TextUtils.isEmpty(LoginInfo.getToken())){
-            param.put("token",LoginInfo.getToken());
+        if(!TextUtils.isEmpty(LoginInfo.getAccess_token())){
+            param.put("token",LoginInfo.getAccess_token());
         }
         String urlP = url + CreatString(param);
         Request request = new Request.Builder()
@@ -111,8 +111,8 @@ public class HttpLinker {
     }
 
     public static Response getSync(String url, HashMap<String, String> param) throws IOException {
-        if(!TextUtils.isEmpty(LoginInfo.getToken())){
-            param.put("token",LoginInfo.getToken());
+        if(!TextUtils.isEmpty(LoginInfo.getAccess_token())){
+            param.put("token",LoginInfo.getAccess_token());
         }
         String urlP = url + CreatString(param);
         Request request = new Request.Builder()
@@ -126,8 +126,8 @@ public class HttpLinker {
 
 
     public static void uploadFile(String url, HashMap<String, Object> map, File file, Callback callback) {
-        if (!TextUtils.isEmpty(LoginInfo.getToken())) {
-            url = url + "?token=" + LoginInfo.getToken();
+        if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
+            url = url + "?token=" + LoginInfo.getAccess_token();
         }
         MultipartBody.Builder multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         if (file != null) {
@@ -156,8 +156,8 @@ public class HttpLinker {
 
     //上传图片
     public static Response uploadImage(String url, HashMap<String, Object> map, File file) throws IOException {
-        if (!TextUtils.isEmpty(LoginInfo.getToken())) {
-            url = url + "?token=" + LoginInfo.getToken();
+        if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
+            url = url + "?token=" + LoginInfo.getAccess_token();
         }
         MultipartBody.Builder multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         if (file != null) {

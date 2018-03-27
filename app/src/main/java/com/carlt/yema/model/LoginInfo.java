@@ -2,6 +2,7 @@ package com.carlt.yema.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.carlt.yema.YemaApplication;
@@ -9,6 +10,7 @@ import com.carlt.yema.data.remote.RemoteMainInfo;
 import com.carlt.yema.preference.TokenInfo;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarMainFunInfo;
+import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,9 +68,6 @@ public class LoginInfo extends BaseResponseInfo {
     // 最后一次登录时间
     public static long Last_Login_Time = -1;
 
-    // TOKEN
-    private static String token = "";
-
     // TOKEN生命周期
     private static String expiresIn = "";
     // 经销商id
@@ -106,6 +105,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     private static String createdate = "";// 注册时间
 
+    @SerializedName("access_token")
     private static String access_token = "";// 授权登陆token
 
     private static String expires_in = "";// 授权生命周期
@@ -360,7 +360,6 @@ public class LoginInfo extends BaseResponseInfo {
         LoginInfo.setAvatar_img((destroy.optString("avatar_img", "")));
         LoginInfo.setMobile((destroy.optString("mobile", "")));
         LoginInfo.setVisitor(destroy.optBoolean("isVisitor"));
-        LoginInfo.setToken((destroy.optString("access_token", "")));
         TokenInfo.setToken("");
         LoginInfo.setExpiresIn((destroy.optString("expires_in", "")));
         LoginInfo.setDealerId((destroy.optString("expires_in", "")));
@@ -403,17 +402,6 @@ public class LoginInfo extends BaseResponseInfo {
         LoginInfo.setAuthen_name(destroy.optString("authen_name", ""));
         LoginInfo.setAuthen_card(destroy.optString("authen_card", ""));
 
-    }
-
-    public static String getToken() {
-        token = user_pref.getString("token", token);
-        return token;
-    }
-
-    public static void setToken(String token) {
-        LoginInfo.token = token;
-        Log.e("info", "login_token==" + LoginInfo.token);
-        user_pref.edit().putString("token", token).commit();
     }
 
     public static String getExpiresIn() {
@@ -597,12 +585,14 @@ public class LoginInfo extends BaseResponseInfo {
     }
 
     public static String getAccess_token() {
-        access_token = user_pref.getString("access_token", access_token);
+        if(TextUtils.isEmpty(access_token)){
+            access_token = user_pref.getString("access_token", access_token);
+        }
         return access_token;
     }
 
     public static void setAccess_token(String access_token) {
-        LoginInfo.access_token = access_token;
+        access_token = access_token;
         user_pref.edit().putString("access_token", access_token).commit();
     }
 

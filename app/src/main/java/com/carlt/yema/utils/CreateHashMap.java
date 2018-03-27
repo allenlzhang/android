@@ -12,7 +12,7 @@ public class CreateHashMap {
 
     private static HashMap create(String keys[], String values[]) {
         HashMap<String, String> params = new HashMap<>();
-        String token= LoginInfo.getToken();
+        String token= LoginInfo.getAccess_token();
         ILog.e("info","token=="+token);
 //        if(!TextUtils.isEmpty(token)){
 //            params.put("token", LoginInfo.getToken());

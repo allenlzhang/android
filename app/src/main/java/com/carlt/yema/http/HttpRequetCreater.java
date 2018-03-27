@@ -156,8 +156,8 @@ public class HttpRequetCreater {
     private static Response getRequestExecute(HashMap<String, String> mp, String requestUrl, String method) throws IOException {
         Request request;
         if ("GET".equals(method)) {//Get Request
-            if (!TextUtils.isEmpty(LoginInfo.getToken())) {
-                mp.put("token", LoginInfo.getToken());
+            if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
+                mp.put("token", LoginInfo.getAccess_token());
             }
             requestUrl = requestUrl + CreatString(mp);
             request = new Request.Builder()
@@ -165,8 +165,8 @@ public class HttpRequetCreater {
                     .get()
                     .build();
         } else {//Post Request
-            if (!TextUtils.isEmpty(LoginInfo.getToken())) {
-                requestUrl = requestUrl + "?token=" + LoginInfo.getToken();
+            if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
+                requestUrl = requestUrl + "?token=" + LoginInfo.getAccess_token();
             }
             FormBody.Builder formBuilder = new FormBody.Builder();
             Iterator<String> iterators = mp.keySet().iterator();

@@ -1694,7 +1694,7 @@ public class CreatPostString {
 				&& LoginInfo.getDealerId().length() > 0) {
 			mMap.put("dealerId", LoginInfo.getDealerId());
 		}
-		String token = LoginInfo.getToken();
+		String token = LoginInfo.getAccess_token();
 		if (token != null && !token.equals("")) {
 			mMap.put("token", token);
 		}

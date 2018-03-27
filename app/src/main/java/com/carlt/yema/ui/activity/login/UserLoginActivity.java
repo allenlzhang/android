@@ -33,6 +33,10 @@ import com.carlt.yema.utils.CipherUtils;
 import com.carlt.yema.utils.CreatPostString;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -179,6 +183,16 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     public void onResponse(Call call, Response response) throws IOException {
         Log.d(TAG, "__onResponse__" + response.toString());
         String content = response.body().string();
+        try {
+            JSONObject mJson = new JSONObject(content);
+            JSONObject mJSON_data = mJson.getJSONObject("data");
+            JSONObject mJSON_data2 = mJSON_data.getJSONObject("member");
+            String access_token = mJSON_data2.getString("access_token");
+            LoginInfo.setAccess_token(access_token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         Gson gson = new Gson();
          mLoginInfo=gson.fromJson(content, LoginInfo.class);
 
@@ -304,6 +318,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String content = response.body().string();
+
                 Gson gson = new Gson();
                 mLoginInfo=gson.fromJson(content, LoginInfo.class);
                 if (mLoginInfo.getFlag() == 200) {
@@ -338,7 +353,9 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         Intent carPage = new Intent(this, MainActivity.class);
         carPage.putExtra("page", "1");
         startActivity(carPage);
-//        accountBinding(this);
+        String token = LoginInfo.getAccess_token();
+        //暂时屏蔽业务逻辑代码。之后@马乐补上
+            //        accountBinding(this);
         //
     }
 
