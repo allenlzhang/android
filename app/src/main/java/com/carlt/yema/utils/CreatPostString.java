@@ -88,8 +88,7 @@ public class CreatPostString {
 		mMap.put("version", YemaApplication.Version + "");
 		mMap.put("mobile", userName);
 		mMap.put("password", CipherUtils.md5(psWord));
-		mMap.put("move_deviceid", YemaApplication.IMEI);
-		mMap.put("new_move_deviceid", YemaApplication.NIMEI);
+		mMap.put("move_deviceid", YemaApplication.NIMEI);
 		// mMap.put("move_deviceid", YemaApplication.NIMEI);
 		mMap.put("move_device_name", YemaApplication.MODEL_NAME);
 		mMap.put("move_model", YemaApplication.MODEL);

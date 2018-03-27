@@ -234,8 +234,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         mMap.put("version", YemaApplication.Version + "");
         mMap.put("mobile", userPhone);
         mMap.put("password", CipherUtils.md5(passwd));
-        mMap.put("move_deviceid", YemaApplication.IMEI);
-        mMap.put("new_move_deviceid", YemaApplication.NIMEI);
+        mMap.put("move_deviceid", YemaApplication.NIMEI);
         mMap.put("move_device_name", YemaApplication.MODEL_NAME);
         mMap.put("move_model", YemaApplication.MODEL);
         mMap.put("softtype", "android");
@@ -335,8 +334,12 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         mUseInfo.setAccount(userPhone);
         mUseInfo.setPassword(passwd);
         UseInfoLocal.setUseInfo(mUseInfo);
-        accountBinding(this);
-
+        //TODO TEST DATA
+        Intent carPage = new Intent(this, MainActivity.class);
+        carPage.putExtra("page", "1");
+        startActivity(carPage);
+//        accountBinding(this);
+        //
     }
 
     /**

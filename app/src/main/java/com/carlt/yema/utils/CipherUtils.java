@@ -33,12 +33,12 @@ import javax.crypto.spec.DESKeySpec;
  * @version 1.1
  */
 public final class CipherUtils {
-    private final static String PRE_FIX="YEMA_";
+//    private final static String PRE_FIX="YEMA_";
     /**
      * MD5加密
      */
     public static String md5(String string) {
-        string=PRE_FIX+string;
+//        string=PRE_FIX+string;
         byte[] hash;
         try {
             hash = MessageDigest.getInstance("MD5").digest(

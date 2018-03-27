@@ -99,8 +99,8 @@ public class YemaApplication extends Application {
         ILog.e("info", "ScreenWith==" + ScreenWith);
         ILog.e("info", "ScreenHeight==" + ScreenHeight);
         // 错误LOG
-        CrashHandler crashHandler = CrashHandler.getInstance();
-        crashHandler.init(getApplicationContext());
+//        CrashHandler crashHandler = CrashHandler.getInstance();
+//        crashHandler.init(getApplicationContext());
     }
 
     public static YemaApplication getInstanse(){

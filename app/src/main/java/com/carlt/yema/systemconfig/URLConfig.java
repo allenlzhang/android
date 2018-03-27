@@ -13,33 +13,25 @@ public class URLConfig {
 	// 车乐测试服务器
 	private final static String C1 = "0896756ebec5bc62a51b15b9a7541901";
 
-	// 众泰API域名 测试服
-	private final static String U5 = "http://zlinkapi.linewin.cc/";
+	// 车乐正式服务器
+	private final static String C2 = "0896756ebec5bc62a51b15b9a7541901";
 
-	// 众泰API域名 正式服
-	private final static String U6 = "http://zlinkapi.geni4s.com/";// 众泰API域名 正式服
+	//野马域名 测试服
+	private final static String U1_YEMA_TEST = "http://yemaapi.linewin.cc/";
+
+	//野马域名 预发布服
+	private final static String U1_YEMA_PRE = "http://yemaapi.linewin.cc/";
+
 	// 众泰野马API域名 正式服
-	private final static String U6_Yema = "http://yemaapi.geni4s.com/";
-	// 众泰API域名 预发布服
-	private final static String U7 = "http://pre-zlinkapi.geni4s.com/";
-
-	// 众泰API域名-游客版 测试服
-	private final static String U8 = "http://zlinkdemoapi.linewin.cc/";
-
-	// 众泰API域名-游客版 正式服
-	private final static String U9 = "http://zlinkdemoapi.geni4s.com/";
-	// 众泰API域名-游客版 预发布服
-	private final static String U10 = "http://pre-zlinkdemoapi.geni4s.com/";
+	private final static String U1_Yema = "http://yemaapi.geni4s.com/";
 
 	// 远程下发-正式服务器
-	private final static String U_R1 = "https://remote-zlink.geni4s.com/";
+	private final static String U_R1 = "https://remote-wildhorse.geni4s.com/";
 	// 远程下发-预发布服务器
-	private final static String U_R2 = "https://pre-remote-zlink.geni4s.com/";
+	private final static String U_R2 = "https://pre-remote-wildhorse.geni4s.com/";
 	// 远程下发-测试服务器
-	private final static String U_R3 = "http://remote-zlink.linewin.cc/";
+	private final static String U_R3 = "http://remote-wildhorse.linewin.cc/";
 
-	// 车乐正式服务器
-	private final static String C2 = "890ce20d220196ed6dbb0f51793e44ef";
 
 	public final static String CAR_BREAK_URL = "http://v.juhe.cn/wz/query";// 车辆违章查询
 
@@ -59,21 +51,21 @@ public class URLConfig {
 		String url = "";
 			// 正常版
 			if (YemaApplication.Formal_Version) {
-				url = U6 + version + s;
+				url = U1_Yema + version + s;
 			} else {
 				switch (flag) {
 					case VERSION_FORMAL:
 						// 正式服
-						url = U6_Yema + version + s;
+						url = U1_Yema + version + s;
 						break;
 
 					case VERSION_PREPARE:
 						// 预发布服
-						url = U6_Yema + version + s;
+						url = U1_YEMA_TEST + version + s;
 						break;
 					case VERSION_TEST:
 						// 测试服
-						url = U6_Yema + version + s;
+						url = U1_YEMA_TEST + version + s;
 						break;
 				}
 			}

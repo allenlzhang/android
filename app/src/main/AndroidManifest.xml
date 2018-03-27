@@ -13,23 +13,20 @@
         <activity android:name=".ui.activity.login.UserLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".MainActivity"> </activity>
         <activity android:name=".ui.activity.carstate.CarSaftyListActivity" />
         <activity android:name=".ui.activity.carstate.MainTestingActivity" />
         <activity android:name=".ui.activity.carstate.CarStateNowActivity" />
         <activity android:name=".ui.activity.carstate.CarLocationActivity" />
         <activity android:name=".ui.activity.carstate.CarSynchronizeLocationActivity" />
         <activity android:name=".ui.activity.remote.RemoteLogActivity"></activity>
-
         <activity android:name=".ui.activity.login.DeviceBindActivity" />
         <activity android:name=".ui.activity.login.ResetPasswdActivity" />
         <activity android:name=".ui.activity.login.ActivateBindActivity" />
         <activity android:name=".ui.activity.login.UserRegisterActivity" />
-
         <activity android:name=".ui.activity.setting.PersonInfoActivity" />
         <activity android:name=".ui.activity.setting.CarManagerActivity" />
         <activity android:name=".ui.activity.setting.TravelAlbumActivity" />
