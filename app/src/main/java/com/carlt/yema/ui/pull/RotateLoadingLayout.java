@@ -16,8 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
-
-
 /**
  * 这个类封装了下拉刷新的布局
  * 

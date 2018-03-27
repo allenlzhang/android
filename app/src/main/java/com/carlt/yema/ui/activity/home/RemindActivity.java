@@ -2,8 +2,8 @@ package com.carlt.yema.ui.activity.home;
 
 import android.os.Bundle;
 
-import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.R;
+import com.carlt.yema.base.LoadingActivity;
 
 /**
  * Created by Marlon on 2018/3/16.

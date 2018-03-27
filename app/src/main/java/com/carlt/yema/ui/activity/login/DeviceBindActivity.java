@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
@@ -12,6 +13,7 @@ import com.carlt.yema.base.BaseActivity;
 public class DeviceBindActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView back;//返回按钮
+    private LinearLayout title_bar;
 
     private TextView titleText;//页面标题
     private TextView btn_select_car;//选择爱车
@@ -39,10 +41,19 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
         bind_commit.setOnClickListener(this);
         car_pin_code = findViewById(R.id.car_pin_code);
         car_vin_code = findViewById(R.id.car_vin_code);
+
+//        title_bar=findViewById(R.id.device_bind_title_bar);
+//        title_bar.setBackgroundColor(getResources().getColor(R.color.main_color));
     }
 
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
+            case R.id.bind_commit:
+                break;
+        }
     }
 }

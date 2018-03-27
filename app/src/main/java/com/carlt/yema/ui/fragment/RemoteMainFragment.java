@@ -5,9 +5,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.carlt.yema.R;
 import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.utils.PlayRadio;
-import com.carlt.yema.R;
 
 /**
  * Created by liu on 2018/3/16.

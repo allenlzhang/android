@@ -17,7 +17,9 @@ public class URLConfig {
 	private final static String U5 = "http://zlinkapi.linewin.cc/";
 
 	// 众泰API域名 正式服
-	private final static String U6 = "http://zlinkapi.geni4s.com/";
+	private final static String U6 = "http://zlinkapi.geni4s.com/";// 众泰API域名 正式服
+	// 众泰野马API域名 正式服
+	private final static String U6_Yema = "http://yemaapi.geni4s.com/";
 	// 众泰API域名 预发布服
 	private final static String U7 = "http://pre-zlinkapi.geni4s.com/";
 
@@ -53,7 +55,7 @@ public class URLConfig {
 
 	// 获取众泰API URL
 	private static String getZLinkURL(String s) {
-		String version = YemaApplication.Version + "/";
+		String version = YemaApplication.Version_API + "/";
 		String url = "";
 			// 正常版
 			if (YemaApplication.Formal_Version) {
@@ -62,16 +64,16 @@ public class URLConfig {
 				switch (flag) {
 					case VERSION_FORMAL:
 						// 正式服
-						url = U6 + version + s;
+						url = U6_Yema + version + s;
 						break;
 
 					case VERSION_PREPARE:
 						// 预发布服
-						url = U7 + version + s;
+						url = U6_Yema + version + s;
 						break;
 					case VERSION_TEST:
 						// 测试服
-						url = U5 + version + s;
+						url = U6_Yema + version + s;
 						break;
 				}
 			}
