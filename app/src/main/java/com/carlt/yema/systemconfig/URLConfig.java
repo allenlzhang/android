@@ -46,7 +46,7 @@ public class URLConfig {
 	private static String M_WEATHER_URL = "http://api.map.baidu.com/telematics/v3/weather";
 
 	// 获取众泰API URL
-	private static String getZLinkURL(String s) {
+	private static String getYemaURL(String s) {
 		String version = YemaApplication.Version_API + "/";
 		String url = "";
 			// 正常版
@@ -661,198 +661,197 @@ public class URLConfig {
 	private static String M_SAFE_CHANGEDEVICEVERIFY = "safe/changeDeviceVerify";
 
 	public static String getM_CAR_GETCAREXTINFO_URL() {
-		return getZLinkURL(M_CAR_GETCAREXTINFO);
+		return getYemaURL(M_CAR_GETCAREXTINFO);
 	}
 
 	//
 	public static String getM_APPSPIC_GETAPPSPICS_URL() {
-		return getZLinkURL(M_APPSPIC_GETAPPSPICS);
+		return getYemaURL(M_APPSPIC_GETAPPSPICS);
 	}
 
 	public static String getM_SUBMIT_SOS_URL_URL() {
-		return getZLinkURL(M_SUBMIT_SOS_URL);
+		return getYemaURL(M_SUBMIT_SOS_URL);
 	}
 
 	public static String getM_SUBMIT_EVALUATION_URL() {
-		return getZLinkURL(M_SUBMIT_EVALUATION_URL);
+		return getYemaURL(M_SUBMIT_EVALUATION_URL);
 	}
 
 	public static String getM_ORDER_LIST_URL() {
-		return getZLinkURL(M_ORDER_LIST_URL);
+		return getYemaURL(M_ORDER_LIST_URL);
 	}
 
 	public static String getM_ORDER_DETIAL_URL() {
-		return getZLinkURL(M_ORDER_DETIAL_URL);
+		return getYemaURL(M_ORDER_DETIAL_URL);
 	}
 
 	public static String getM_LOGIN_URL() {
-		return getZLinkURL(M_LOGIN_NEW_URL);
+		return getYemaURL(M_LOGIN_NEW_URL);
 	}
 
 	public static String getM_VERSION_URL() {
-		return getZLinkURL(M_VERSION_URL);
+		return getYemaURL(M_VERSION_URL);
 	}
 
 	public static String getM_REGISTER_NEW_URL() {
-		return getZLinkURL(M_REGISTER_NEW_URL);
+		return getYemaURL(M_REGISTER_NEW_URL);
 	}
 
 	public static String getM_BRANDLLIST_URL() {
-		return getZLinkURL(M_BRANDLLIST_URL);
+		return getYemaURL(M_BRANDLLIST_URL);
 	}
 
 	public static String getM_MODELLIST_URL() {
-		return getZLinkURL(M_MODELLIST_URL);
+		return getYemaURL(M_MODELLIST_URL);
 	}
-
 	public static String getM_OPTIONLIST_URL() {
-		return getZLinkURL(M_OPTIONLIST_URL);
+		return getYemaURL(M_OPTIONLIST_URL);
 	}
 	public static String getM_CARLIST_URL() {
-		return getZLinkURL(M_CARLIST_URL);
+		return getYemaURL(M_CARLIST_URL);
 	}
 	public static String getM_COMM_UPGRADE() {
-		return getZLinkURL(M_COMM_UPGRADE);
+		return getYemaURL(M_COMM_UPGRADE);
 	}
 
 	public static String getM_CAREER_URL() {
-		return getZLinkURL(M_CAREER_URL);
+		return getYemaURL(M_CAREER_URL);
 	}
 
 	public static String getM_USERINFO_NEW_URL() {
-		return getZLinkURL(M_USERINFO_NEW_URL);
+		return getYemaURL(M_USERINFO_NEW_URL);
 	}
 
 	public static String getM_CHALLENGELIST_URL() {
-		return getZLinkURL(M_CHALLENGELIST_URL);
+		return getYemaURL(M_CHALLENGELIST_URL);
 	}
 
 	public static String getM_EDITPASSWORD_URL() {
-		return getZLinkURL(M_EDITPASSWORD_URL);
+		return getYemaURL(M_EDITPASSWORD_URL);
 	}
 
 	public static String getM_AUTHMOBILE_URL() {
-		return getZLinkURL(M_AUTHMOBILE_URL);
+		return getYemaURL(M_AUTHMOBILE_URL);
 	}
 
 	public static String getM_EDITMOBILE_URL() {
-		return getZLinkURL(M_EDITMOBILE_URL);
+		return getYemaURL(M_EDITMOBILE_URL);
 	}
 
 	public static String getM_VALIDATE_NEW_URL() {
-		return getZLinkURL(M_VALIDATE_NEW_URL);
+		return getYemaURL(M_VALIDATE_NEW_URL);
 	}
 
 	public static String getM_VALIDATE_CHECK_URL() {
-		return getZLinkURL(M_VALIDATE_CHECK_URL);
+		return getYemaURL(M_VALIDATE_CHECK_URL);
 	}
 
 	public static String getM_USEROTHERINFO_URL() {
-		return getZLinkURL(M_USEROTHERINFO_URL);
+		return getYemaURL(M_USEROTHERINFO_URL);
 	}
 
 	public static String getM_RETRIEVEPASSWORD_URL() {
-		return getZLinkURL(M_RETRIEVEPASSWORD_URL);
+		return getYemaURL(M_RETRIEVEPASSWORD_URL);
 	}
 
 	public static String getM_MYLICENCE_URL() {
-		return getZLinkURL(M_MYLICENCE_URL);
+		return getYemaURL(M_MYLICENCE_URL);
 	}
 
 	public static String getM_REPORT_URL() {
-		return getZLinkURL(M_REPORT_URL);
+		return getYemaURL(M_REPORT_URL);
 	}
 
 	public static String getM_MONTHREPORT_URL() {
-		return getZLinkURL(M_MONTHREPORT_URL);
+		return getYemaURL(M_MONTHREPORT_URL);
 	}
 
 	public static String getM_REPORTDATE_URL() {
-		return getZLinkURL(M_REPORTDATE_URL);
+		return getYemaURL(M_REPORTDATE_URL);
 	}
 
 	public static String getM_CARLOG_URL() {
-		return getZLinkURL(M_CARLOG_URL);
+		return getYemaURL(M_CARLOG_URL);
 	}
 
 	public static String getM_MONTHREPORTSTATISTIC_URL() {
-		return getZLinkURL(M_MONTHREPORTSTATISTIC_URL);
+		return getYemaURL(M_MONTHREPORTSTATISTIC_URL);
 	}
 
 	public static String getM_GETCOOR_URL() {
-		return getZLinkURL(M_GETCOOR_URL);
+		return getYemaURL(M_GETCOOR_URL);
 	}
 
 	public static String getM_USER_MONTH_POINT_URL() {
-		return getZLinkURL(M_USER_MONTH_POINT_URL);
+		return getYemaURL(M_USER_MONTH_POINT_URL);
 	}
 
 	public static String getM_USER_WEEK_POINT_URL() {
-		return getZLinkURL(M_USER_WEEK_POINT_URL);
+		return getYemaURL(M_USER_WEEK_POINT_URL);
 	}
 
 	public static String getM_USER_DAY_POINT_URL() {
-		return getZLinkURL(M_USER_DAY_POINT_URL);
+		return getYemaURL(M_USER_DAY_POINT_URL);
 	}
 
 	public static String getM_PRIZELIST_URL() {
-		return getZLinkURL(M_PRIZELIST_URL);
+		return getYemaURL(M_PRIZELIST_URL);
 	}
 
 	public static String getM_PRIZEDETAIL_URL() {
-		return getZLinkURL(M_PRIZEDETAIL_URL);
+		return getYemaURL(M_PRIZEDETAIL_URL);
 	}
 
 	public static String getM_RECOMMENDSALES_URL() {
-		return getZLinkURL(M_RECOMMENDSALES_URL);
+		return getYemaURL(M_RECOMMENDSALES_URL);
 	}
 
 	public static String getM_SECRETARY_CATEGORY_URL() {
-		return getZLinkURL(M_SECRETARY_CATEGORY_URL_NEW);
+		return getYemaURL(M_SECRETARY_CATEGORY_URL_NEW);
 	}
 
 	public static String getM_SECRETARY_DELETE_URL() {
-		return getZLinkURL(M_SECRETARY_DELETE_URL_NEW);
+		return getYemaURL(M_SECRETARY_DELETE_URL_NEW);
 	}
 
 	public static String getM_SECRETARY_GETBIID_URL() {
-		return getZLinkURL(M_SECRETARY_GETBIID_URL);
+		return getYemaURL(M_SECRETARY_GETBIID_URL);
 	}
 
 	public static String getM_SECRETARY_MESSAGE_URL() {
-		return getZLinkURL(M_SECRETARY_MESSAGE_URL_NEW);
+		return getYemaURL(M_SECRETARY_MESSAGE_URL_NEW);
 	}
 
 	public static String getM_SAFETY_MESSAGE_URL() {
-		return getZLinkURL(M_SAFETY_MESSAGE_URL);
+		return getYemaURL(M_SAFETY_MESSAGE_URL);
 	}
 
 	public static String getM_TRAFFICVIOLATION_URL() {
-		return getZLinkURL(M_TRAFFICVIOLATION_URL);
+		return getYemaURL(M_TRAFFICVIOLATION_URL);
 	}
 
 	public static String getM_SAVECAR_URL() {
-		return getZLinkURL(M_SAVECAR_URL);
+		return getYemaURL(M_SAVECAR_URL);
 	}
 
 	public static String getM_GETCARLIST_URL() {
-		return getZLinkURL(M_GETCARLIST_URL);
+		return getYemaURL(M_GETCARLIST_URL);
 	}
 
 	public static String getM_GETCARINFO_URL() {
-		return getZLinkURL(M_GETCARINFO_URL);
+		return getYemaURL(M_GETCARINFO_URL);
 	}
 
 	public static String getM_DELCAR_URL() {
-		return getZLinkURL(M_DELCAR_URL);
+		return getYemaURL(M_DELCAR_URL);
 	}
 
 	public static String getM_SETMYCAR_URL() {
-		return getZLinkURL(M_SETMYCAR_URL);
+		return getYemaURL(M_SETMYCAR_URL);
 	}
 
 	public static String getM_INITVIOLATION_URL() {
-		return getZLinkURL(M_INITVIOLATION_URL);
+		return getYemaURL(M_INITVIOLATION_URL);
 	}
 
 	public static String getM_OFFENCES_URL() {
@@ -864,11 +863,11 @@ public class URLConfig {
 	}
 
 	public static String getM_INITVIOLATION_NEW_URL() {
-		return getZLinkURL(M_INITVIOLATION_NEW_URL);
+		return getYemaURL(M_INITVIOLATION_NEW_URL);
 	}
 
 	public static String getM_CAR_STATU_URL() {
-		return getZLinkURL(M_CAR_STATU_URL);
+		return getYemaURL(M_CAR_STATU_URL);
 	}
 
 	public static String getM_CAR_STATUS_URL() {
@@ -876,7 +875,7 @@ public class URLConfig {
 	}
 
 	public static String getM_CARRELATED_NAVIGATION_URL() {
-		return getZLinkURL(M_CARRELATED_NAVIGATION_URL);
+		return getYemaURL(M_CARRELATED_NAVIGATION_URL);
 	}
 
 	public static String getM_NAVIGATION_URL() {
@@ -884,35 +883,35 @@ public class URLConfig {
 	}
 
 	public static String getM_CAR_CURCARCONFIG_URL() {
-		return getZLinkURL(M_CAR_CURCARCONFIG_URL);
+		return getYemaURL(M_CAR_CURCARCONFIG_URL);
 	}
 
 	public static String getM_CAR_OPERATIONCONFIG_URL() {
-		return getZLinkURL(M_CAR_OPERATIONCONFIG_URL);
+		return getYemaURL(M_CAR_OPERATIONCONFIG_URL);
 	}
 
 	public static String getM_MONTHORDERSTATE_URL() {
-		return getZLinkURL(M_MONTHORDERSTATE_URL);
+		return getYemaURL(M_MONTHORDERSTATE_URL);
 	}
 
 	public static String getM_DAYORDERSTATE_URL() {
-		return getZLinkURL(M_DAYORDERSTATE_URL);
+		return getYemaURL(M_DAYORDERSTATE_URL);
 	}
 
 	public static String getM_SUBMITORDER_URL() {
-		return getZLinkURL(M_SUBMITORDER_URL);
+		return getYemaURL(M_SUBMITORDER_URL);
 	}
 
 	public static String getM_RECEIVEPRIZE_URL() {
-		return getZLinkURL(M_RECEIVEPRIZE_URL);
+		return getYemaURL(M_RECEIVEPRIZE_URL);
 	}
 
 	public static String getM_ACTIVITYSIGN_URL() {
-		return getZLinkURL(M_ACTIVITYSIGN_URL);
+		return getYemaURL(M_ACTIVITYSIGN_URL);
 	}
 
 	public static String getM_CHECKFAULT_URL() {
-		return getZLinkURL(M_CHECKFAULT_URL);
+		return getYemaURL(M_CHECKFAULT_URL);
 	}
 
 	public static String getM_CHECK_URL() {
@@ -920,19 +919,19 @@ public class URLConfig {
 	}
 
 	public static String getM_DIAGNOSE_URL() {
-		return getZLinkURL(M_DIAGNOSE_URL);
+		return getYemaURL(M_DIAGNOSE_URL);
 	}
 
 	public static String getM_SUBMITPROBLEM_URL() {
-		return getZLinkURL(M_SUBMITPROBLEM_URL);
+		return getYemaURL(M_SUBMITPROBLEM_URL);
 	}
 
 	public static String getM_HELPPHONE_URL() {
-		return getZLinkURL(M_HELPPHONE_URL);
+		return getYemaURL(M_HELPPHONE_URL);
 	}
 
 	public static String getM_TIREPRESSURE_URL() {
-		return getZLinkURL(M_TIREPRESSURE_URL);
+		return getYemaURL(M_TIREPRESSURE_URL);
 	}
 
 	public static String getM_TIREPRESSURE_REMOTE_URL() {
@@ -940,7 +939,7 @@ public class URLConfig {
 	}
 
 	public static String getM_DIRECTPRESSURE_URL() {
-		return getZLinkURL(M_DIRECTPRESSURE_URL);
+		return getYemaURL(M_DIRECTPRESSURE_URL);
 	}
 
 	public static String getM_DIRECTPRESSURE_REMOTE_URL() {
@@ -948,11 +947,11 @@ public class URLConfig {
 	}
 
 	public static String getM_TIREPROGRESS_URL() {
-		return getZLinkURL(M_TIREPROGRESS_URL);
+		return getYemaURL(M_TIREPROGRESS_URL);
 	}
 
 	public static String getM_TIREPRESLEARN_URL() {
-		return getZLinkURL(M_TIREPRESLEARN_URL);
+		return getYemaURL(M_TIREPRESLEARN_URL);
 	}
 
 	public static String getM_TIREPRESLEARN_REMOTE_URL() {
@@ -960,67 +959,67 @@ public class URLConfig {
 	}
 
 	public static String getM_STARTCHALLENGE_URL() {
-		return getZLinkURL(M_STARTCHALLENGE_URL);
+		return getYemaURL(M_STARTCHALLENGE_URL);
 	}
 
 	public static String getM_ENDCHALLENGE_URL() {
-		return getZLinkURL(M_ENDCHALLENGE_URL);
+		return getYemaURL(M_ENDCHALLENGE_URL);
 	}
 
 	public static String getM_CHALLENGESCORE_URL() {
-		return getZLinkURL(M_CHALLENGESCORE_URL);
+		return getYemaURL(M_CHALLENGESCORE_URL);
 	}
 
 	public static String getM_CHALLENGEBEST_URL() {
-		return getZLinkURL(M_CHALLENGEBEST_URL);
+		return getYemaURL(M_CHALLENGEBEST_URL);
 	}
 
 	public static String getM_FRIEND_LIST_URL() {
-		return getZLinkURL(M_FRIEND_LIST_URL);
+		return getYemaURL(M_FRIEND_LIST_URL);
 	}
 
 	public static String getM_UPDATEFRIEND_URL() {
-		return getZLinkURL(M_UPDATEFRIEND_URL);
+		return getYemaURL(M_UPDATEFRIEND_URL);
 	}
 
 	public static String getM_SEARCHFRIEND_URL() {
-		return getZLinkURL(M_SEARCHFRIEND_URL);
+		return getYemaURL(M_SEARCHFRIEND_URL);
 	}
 
 	public static String getM_FRIEND_DETIAL_URL() {
-		return getZLinkURL(M_FRIEND_DETIAL_URL);
+		return getYemaURL(M_FRIEND_DETIAL_URL);
 	}
 
 	public static String getM_FRIENDS_SHARE_LIST_URL() {
-		return getZLinkURL(M_FRIENDS_SHARE_LIST_URL);
+		return getYemaURL(M_FRIENDS_SHARE_LIST_URL);
 	}
 
 	public static String getM_FRIENDS_MYFEED_LIST_URL() {
-		return getZLinkURL(M_FRIENDS_MYFEED_LIST_URL);
+		return getYemaURL(M_FRIENDS_MYFEED_LIST_URL);
 	}
 
 	public static String getM_FEED_DETIAL_URL() {
-		return getZLinkURL(M_FEED_DETIAL_URL);
+		return getYemaURL(M_FEED_DETIAL_URL);
 	}
 
 	public static String getM_DELETE_FEED_URL() {
-		return getZLinkURL(M_DELETE_FEED_URL);
+		return getYemaURL(M_DELETE_FEED_URL);
 	}
 
 	public static String getM_FRIENDS_POKE_URL() {
-		return getZLinkURL(M_FRIENDS_POKE_URL);
+		return getYemaURL(M_FRIENDS_POKE_URL);
 	}
 
 	public static String getM_FRIENDS_PK_URL() {
-		return getZLinkURL(M_FRIENDS_PK_URL);
+		return getYemaURL(M_FRIENDS_PK_URL);
 	}
 
 	public static String getM_PUSH_SET_URL() {
-		return getZLinkURL(M_PUSH_SET_URL_NEW);
+		return getYemaURL(M_PUSH_SET_URL_NEW);
 	}
 
 	public static String getM_UPDATE_PUSH_URL() {
-		return getZLinkURL(M_UPDATE_PUSH_URL_NEW);
+		return getYemaURL(M_UPDATE_PUSH_URL_NEW);
 	}
 
 	public static String getM_UPDATEPUSH_URL() {
@@ -1028,15 +1027,15 @@ public class URLConfig {
 	}
 
 	public static String getM_BIND_DEVICE_URL() {
-		return getZLinkURL(M_BIND_DEVICE_URL);
+		return getYemaURL(M_BIND_DEVICE_URL);
 	}
 
 	public static String getM_UPLOAD_IMG_URL() {
-		return getZLinkURL(M_UPLOAD_IMG_URL);
+		return getYemaURL(M_UPLOAD_IMG_URL);
 	}
 
 	public static String getM_EDITINFO_URL() {
-		return getZLinkURL(M_EDITINFO_URL);
+		return getYemaURL(M_EDITINFO_URL);
 	}
 
 	public static String getM_SWITCHCAR_URL() {
@@ -1044,31 +1043,31 @@ public class URLConfig {
 	}
 
 	public static String getM_EDITCARINFO_URL() {
-		return getZLinkURL(M_EDITCARINFO_URL);
+		return getYemaURL(M_EDITCARINFO_URL);
 	}
 
 	public static String getM_MAINTAINLOG_URL() {
-		return getZLinkURL(M_MAINTAINLOG_URL);
+		return getYemaURL(M_MAINTAINLOG_URL);
 	}
 
 	public static String getM_INVITE_PRIZE_URL() {
-		return getZLinkURL(M_INVITE_PRIZE_URL);
+		return getYemaURL(M_INVITE_PRIZE_URL);
 	}
 
 	public static String getM_CAR_MAIN_URL() {
-		return getZLinkURL(M_CAR_MAIN_URL);
+		return getYemaURL(M_CAR_MAIN_URL);
 	}
 
 	public static String getM_REPORTSHARE_URL() {
-		return getZLinkURL(M_REPORTSHARE_URL);
+		return getYemaURL(M_REPORTSHARE_URL);
 	}
 
 	public static String getM_LICENSESHARE_URL() {
-		return getZLinkURL(M_LICENSESHARE_URL);
+		return getYemaURL(M_LICENSESHARE_URL);
 	}
 
 	public static String getM_DEVICEACTIVATE_URL() {
-		return getZLinkURL(M_DEVICEACTIVATE_URL);
+		return getYemaURL(M_DEVICEACTIVATE_URL);
 	}
 
 	public static String getM_DEVICEACTIVE_URL() {
@@ -1076,39 +1075,39 @@ public class URLConfig {
 	}
 
 	public static String getM_DEVICEUPDATE_URL() {
-		return getZLinkURL(M_DEVICEUPDATE_URL);
+		return getYemaURL(M_DEVICEUPDATE_URL);
 	}
 
 	public static String getM_CAROBD_URL() {
-		return getZLinkURL(M_CAROBD_URL);
+		return getYemaURL(M_CAROBD_URL);
 	}
 
 	public static String getM_CHECKPIN_URL() {
-		return getZLinkURL(M_CHECKPIN_URL);
+		return getYemaURL(M_CHECKPIN_URL);
 	}
 
 	public static String getM_CHECKVINDEVICE_URL() {
-		return getZLinkURL(M_CHECKVINDEVICE_URL);
+		return getYemaURL(M_CHECKVINDEVICE_URL);
 	}
 
 	public static String getM_GETEXTINFO_URL() {
-		return getZLinkURL(M_GETEXTINFO_URL);
+		return getYemaURL(M_GETEXTINFO_URL);
 	}
 
 	public static String getM_REMOTE_INDEX_URL() {
-		return getZLinkURL(M_REMOTE_INDEX_URL);
+		return getYemaURL(M_REMOTE_INDEX_URL);
 	}
 
 	public static String getM_REMOTE_AIRCONITEM_URL() {
-		return getZLinkURL(M_REMOTE_AIRCONITEM_URL);
+		return getYemaURL(M_REMOTE_AIRCONITEM_URL);
 	}
 
 	public static String getM_SAFE_REMOTEPWDVERIFY_URL() {
-		return getZLinkURL(M_SAFE_REMOTEPWDVERIFY_URL);
+		return getYemaURL(M_SAFE_REMOTEPWDVERIFY_URL);
 	}
 
 	public static String getM_CAR_LOCATING_URL() {
-		return getZLinkURL(M_CAR_LOCATING_URL);
+		return getYemaURL(M_CAR_LOCATING_URL);
 	}
 
 	public static String getM_CARLOCATING_URL() {
@@ -1116,7 +1115,7 @@ public class URLConfig {
 	}
 
 	public static String getM_AUTOCLOSEWIN_URL() {
-		return getZLinkURL(M_AUTOCLOSEWIN_URL);
+		return getYemaURL(M_AUTOCLOSEWIN_URL);
 	}
 
 	public static String getM_AUTOCLOSEWINSW_URL() {
@@ -1124,7 +1123,7 @@ public class URLConfig {
 	}
 
 	public static String getM_REMOTESTART_URL() {
-		return getZLinkURL(M_REMOTESTART_URL);
+		return getYemaURL(M_REMOTESTART_URL);
 	}
 
 	public static String getM_START_URL() {
@@ -1132,7 +1131,7 @@ public class URLConfig {
 	}
 
 	public static String getM_CANCEL_REMOTESTART_URL() {
-		return getZLinkURL(M_CANCEL_REMOTESTART_URL);
+		return getYemaURL(M_CANCEL_REMOTESTART_URL);
 	}
 
 	public static String getM_STALL_URL() {
@@ -1140,7 +1139,7 @@ public class URLConfig {
 	}
 
 	public static String getM_OPENTRUNK_URL() {
-		return getZLinkURL(M_OPENTRUNK_URL);
+		return getYemaURL(M_OPENTRUNK_URL);
 	}
 
 	public static String getM_TRUNK_URL() {
@@ -1152,7 +1151,7 @@ public class URLConfig {
 	}
 
 	public static String getM_WINDOW_URL() {
-		return getZLinkURL(M_WINDOW_URL);
+		return getYemaURL(M_WINDOW_URL);
 	}
 
 	public static String getM_WINDOW_REMOTE_URL() {
@@ -1160,7 +1159,7 @@ public class URLConfig {
 	}
 
 	public static String getM_LOCKING_URL() {
-		return getZLinkURL(M_LOCKING_URL);
+		return getYemaURL(M_LOCKING_URL);
 	}
 
 	public static String getM_LOCK_URL() {
@@ -1168,7 +1167,7 @@ public class URLConfig {
 	}
 
 	public static String getM_SKYLIGHT_URL() {
-		return getZLinkURL(M_SKYLIGHT_URL);
+		return getYemaURL(M_SKYLIGHT_URL);
 	}
 
 	public static String getM_SKYLIGHT_REMOTE_URL() {
@@ -1176,7 +1175,7 @@ public class URLConfig {
 	}
 
 	public static String getM_STATUS_URL() {
-		return getZLinkURL(M_STATUS_URL);
+		return getYemaURL(M_STATUS_URL);
 	}
 
 	public static String getM_CAR_STATE_URL() {
@@ -1184,31 +1183,31 @@ public class URLConfig {
 	}
 
 	public static String getM_REMOTEOPERATION_URL() {
-		return getZLinkURL(M_REMOTEOPERATION_URL);
+		return getYemaURL(M_REMOTEOPERATION_URL);
 	}
 
 	public static String getM_GETCARSETTING_URL() {
-		return getZLinkURL(M_GETCARSETTING_URL);
+		return getYemaURL(M_GETCARSETTING_URL);
 	}
 
 	public static String getM_FINDING_URL() {
-		return getZLinkURL(M_FINDING_URL);
+		return getYemaURL(M_FINDING_URL);
 	}
 
 	public static String getM_SOS_LIST_URL() {
-		return getZLinkURL(M_SOS_LIST_URL);
+		return getYemaURL(M_SOS_LIST_URL);
 	}
 
 	public static String getM_SOS_DETIAL_URL() {
-		return getZLinkURL(M_SOS_DETIAL_URL);
+		return getYemaURL(M_SOS_DETIAL_URL);
 	}
 
 	public static String getM_BINDVINCAR_URL() {
-		return getZLinkURL(M_BINDVINCAR_URL);
+		return getYemaURL(M_BINDVINCAR_URL);
 	}
 
 	public static String getM_RECOMMEND_MAINTAIN_URL() {
-		return getZLinkURL(M_RECOMMEND_MAINTAIN_URL);
+		return getYemaURL(M_RECOMMEND_MAINTAIN_URL);
 	}
 
 	public static String getM_WHEATER_URL() {
@@ -1216,7 +1215,7 @@ public class URLConfig {
 	}
 
 	public static String getM_AIRCYLINDER_URL() {
-		return getZLinkURL(M_AIRCYLINDER_URL);
+		return getYemaURL(M_AIRCYLINDER_URL);
 	}
 
 	public static String getM_AIRPURIFY_URL() {
@@ -1224,7 +1223,7 @@ public class URLConfig {
 	}
 
 	public static String getM_SEATHEAT_URL() {
-		return getZLinkURL(M_HEATSEAT_URL);
+		return getYemaURL(M_HEATSEAT_URL);
 	}
 
 	public static String getM_CHAIRHEATING_URL() {
@@ -1232,159 +1231,159 @@ public class URLConfig {
 	}
 
 	public static String getM_SAFE_SAFEINDEX_URL() {
-		return getZLinkURL(M_SAFE_SAFEINDEX_URL);
+		return getYemaURL(M_SAFE_SAFEINDEX_URL);
 	}
 
 	public static String getM_SAFE_GETLOGINLOG_URL() {
-		return getZLinkURL(M_SAFE_GETLOGINLOG_URL);
+		return getYemaURL(M_SAFE_GETLOGINLOG_URL);
 	}
 
 	public static String getM_SAFE_GETAUTHORIZEDEVICE_URL() {
-		return getZLinkURL(M_SAFE_GETAUTHORIZEDEVICE_URL);
+		return getYemaURL(M_SAFE_GETAUTHORIZEDEVICE_URL);
 	}
 
 	public static String getM_SAFE_DELAUTHORIZEDEVICE_URL() {
-		return getZLinkURL(M_SAFE_DELAUTHORIZEDEVICE_URL);
+		return getYemaURL(M_SAFE_DELAUTHORIZEDEVICE_URL);
 	}
 
 	public static String getM_SAFE_FREEZING_URL() {
-		return getZLinkURL(M_SAFE_FREEZING_URL);
+		return getYemaURL(M_SAFE_FREEZING_URL);
 	}
 
 	public static String getM_SAFE_SENDAUTHORIZE_URL() {
-		return getZLinkURL(M_SAFE_SENDAUTHORIZE_URL);
+		return getYemaURL(M_SAFE_SENDAUTHORIZE_URL);
 	}
 
 	public static String getM_SAFE_AUTHORIZEPAGE_URL() {
-		return getZLinkURL(M_SAFE_AUTHORIZEPAGE_URL);
+		return getYemaURL(M_SAFE_AUTHORIZEPAGE_URL);
 	}
 
 	public static String getM_SAFE_DEALAUTHORIZE_URL() {
-		return getZLinkURL(M_SAFE_DEALAUTHORIZE_URL);
+		return getYemaURL(M_SAFE_DEALAUTHORIZE_URL);
 	}
 
 	public static String getM_SAFE_GETAUTHORIZESTATUS_URL() {
-		return getZLinkURL(M_SAFE_GETAUTHORIZESTATUS_URL);
+		return getYemaURL(M_SAFE_GETAUTHORIZESTATUS_URL);
 	}
 
 	public static String getM_SAFE_UPDATESWITCH_URL() {
-		return getZLinkURL(M_SAFE_UPDATESWITCH_URL);
+		return getYemaURL(M_SAFE_UPDATESWITCH_URL);
 	}
 
 	public static String getM_SAFE_REALAUTHEN_URL() {
-		return getZLinkURL(M_SAFE_REALAUTHEN_URL);
+		return getYemaURL(M_SAFE_REALAUTHEN_URL);
 	}
 
 	public static String getM_SAFE_AUTHENTICATION_URL() {
-		return getZLinkURL(M_SAFE_AUTHENTICATION_URL);
+		return getYemaURL(M_SAFE_AUTHENTICATION_URL);
 	}
 
 	public static String getM_SAFE_SETREMOTEPWD_URL() {
-		return getZLinkURL(M_SAFE_SETREMOTEPWD_URL);
+		return getYemaURL(M_SAFE_SETREMOTEPWD_URL);
 	}
 
 	public static String getM_SAFE_RESETREMOTEPWD_URL() {
-		return getZLinkURL(M_SAFE_RESETREMOTEPWD_URL);
+		return getYemaURL(M_SAFE_RESETREMOTEPWD_URL);
 	}
 
 	public static String getM_SAFE_FORGETREMOTEPWD_URL() {
-		return getZLinkURL(M_SAFE_FORGETREMOTEPWD_URL);
+		return getYemaURL(M_SAFE_FORGETREMOTEPWD_URL);
 	}
 
 	public static String getM_SAFE_UPDATELESSPWDSWITCH_URL() {
-		return getZLinkURL(M_SAFE_UPDATELESSPWDSWITCH_URL);
+		return getYemaURL(M_SAFE_UPDATELESSPWDSWITCH_URL);
 	}
 
 	public static String getM_SAFE_CHANGEMAINDEVICE_URL() {
-		return getZLinkURL(M_SAFE_CHANGEMAINDEVICE_URL);
+		return getYemaURL(M_SAFE_CHANGEMAINDEVICE_URL);
 	}
 
 	public static String getM_SAFE_NOAUTHORIZELOGIN_URL() {
-		return getZLinkURL(M_SAFE_NOAUTHORIZELOGIN_URL);
+		return getYemaURL(M_SAFE_NOAUTHORIZELOGIN_URL);
 	}
 
 	public static String getM_SAFE_NOAUTHORIZECHANGEDEVICE_URL() {
-		return getZLinkURL(M_SAFE_NOAUTHORIZECHANGEDEVICE_URL);
+		return getYemaURL(M_SAFE_NOAUTHORIZECHANGEDEVICE_URL);
 	}
 
 	public static String getM_SAFE_MAINDEVICEAUTHORIZE_URL() {
-		return getZLinkURL(M_SAFE_MAINDEVICEAUTHORIZE_URL);
+		return getYemaURL(M_SAFE_MAINDEVICEAUTHORIZE_URL);
 	}
 
 	public static String getM_RENEW_FEELIST_URL() {
-		return getZLinkURL(M_RENEW_FEELIST_URL);
+		return getYemaURL(M_RENEW_FEELIST_URL);
 	}
 
 	public static String getM_RENEW_ALIPAY_URL() {
-		return getZLinkURL(M_RENEW_ALIPAY_URL);
+		return getYemaURL(M_RENEW_ALIPAY_URL);
 	}
 
 	public static String getM_RENEW_SYNCAPI_URL() {
-		return getZLinkURL(M_RENEW_SYNCAPI_URL);
+		return getYemaURL(M_RENEW_SYNCAPI_URL);
 	}
 
 	public static String getM_RENEW_PAYLOG_URL() {
-		return getZLinkURL(M_RENEW_PAYLOG_URL);
+		return getYemaURL(M_RENEW_PAYLOG_URL);
 	}
 
 	public static String getM_CAR_BINDVINDEVICE() {
-		return getZLinkURL(M_CAR_BINDVINDEVICE);
+		return getYemaURL(M_CAR_BINDVINDEVICE);
 	}
 
 	public static String getM_USERCENTER_CHECK_PWD() {
-		return getZLinkURL(M_USERCENTER_CHECK_PWD);
+		return getYemaURL(M_USERCENTER_CHECK_PWD);
 	}
 
 	public static String getM_USER_ACCESSTOKEN() {
-		return getZLinkURL(M_USER_ACCESSTOKEN);
+		return getYemaURL(M_USER_ACCESSTOKEN);
 	}
 
 	public static String getM_USER_SAVEXINGETOKEN_URL() {
-		return getZLinkURL(M_USER_SAVEXINGETOKEN_URL);
+		return getYemaURL(M_USER_SAVEXINGETOKEN_URL);
 	}
 
 	public static String getM_TRANSFER_GET_QRCODE_URL() {
-		return getZLinkURL(M_TRANSFER_GET_QRCODE_URL);
+		return getYemaURL(M_TRANSFER_GET_QRCODE_URL);
 	}
 
 	public static String getM_TRANSFER_OLD_OPERATION() {
-		return getZLinkURL(M_TRANSFER_OLD_OPERATION);
+		return getYemaURL(M_TRANSFER_OLD_OPERATION);
 	}
 
 	public static String getM_TRANSFER_NEW_OPERATION() {
-		return getZLinkURL(M_TRANSFER_NEW_OPERATION);
+		return getYemaURL(M_TRANSFER_NEW_OPERATION);
 	}
 
 	public static String getM_TRANSFER_OLD_CHECKING() {
-		return getZLinkURL(M_TRANSFER_OLD_CHECKING);
+		return getYemaURL(M_TRANSFER_OLD_CHECKING);
 	}
 
 	public static String getM_TRANSFER_NEW_CHECKING() {
-		return getZLinkURL(M_TRANSFER_NEW_CHECKING);
+		return getYemaURL(M_TRANSFER_NEW_CHECKING);
 	}
 
 	public static String getM_SAFE_REMOTE_CTL_SOUND_URL() {
-		return getZLinkURL(M_SAFE_REMOTE_CTL_SOUND_URL);
+		return getYemaURL(M_SAFE_REMOTE_CTL_SOUND_URL);
 	}
 
 	public static String getM_SAFE_APPSETTING_URL() {
-		return getZLinkURL(M_SAFE_APPSETTING_URL);
+		return getYemaURL(M_SAFE_APPSETTING_URL);
 	}
 
 	public static String getM_CAR_CHANGEDEVICE_URL() {
-		return getZLinkURL(M_CAR_CHANGEDEVICE_URL);
+		return getYemaURL(M_CAR_CHANGEDEVICE_URL);
 	}
 
 	public static String getM_CAR_CHANGEDEVICEBIND_URL() {
-		return getZLinkURL(M_CAR_CHANGEDEVICEBIND_URL);
+		return getYemaURL(M_CAR_CHANGEDEVICEBIND_URL);
 	}
 
 	public static String getM_CAR_CHANGEDEVICEBINDFILL_URL() {
-		return getZLinkURL(M_CAR_CHANGEDEVICEBINDFILL_URL);
+		return getYemaURL(M_CAR_CHANGEDEVICEBINDFILL_URL);
 	}
 
 	public static String getM_CAR_CHANGEDEVICEACTIVATE_URL() {
-		return getZLinkURL(M_CAR_CHANGEDEVICEACTIVATE_URL);
+		return getYemaURL(M_CAR_CHANGEDEVICEACTIVATE_URL);
 	}
 
 	public static String getM_CHANGEACTIVE_URL() {
@@ -1392,31 +1391,31 @@ public class URLConfig {
 	}
 
 	public static String getM_CAR_CHECKDEVICEUPGRADE_URL() {
-		return getZLinkURL(M_CAR_CHECKDEVICEUPGRADE_URL);
+		return getYemaURL(M_CAR_CHECKDEVICEUPGRADE_URL);
 	}
 
 	public static String getM_TRANSFER_NEW_CANCLE_URL() {
-		return getZLinkURL(M_TRANSFER_NEW_CANCLE_URL);
+		return getYemaURL(M_TRANSFER_NEW_CANCLE_URL);
 	}
 
 	public static String getM_CANCLE_XINGGETOKEN() {
-		return getZLinkURL(M_CANCLE_XINGGETOKEN);
+		return getYemaURL(M_CANCLE_XINGGETOKEN);
 	}
 
 	public static String getM_ADVERT_GETADVERT_URL() {
-		return getZLinkURL(M_ADVERT_GETADVERT_URL);
+		return getYemaURL(M_ADVERT_GETADVERT_URL);
 	}
 
 	public static String getM_DEALER_GETDEALERINFO() {
-		return getZLinkURL(M_DEALER_GETDEALERINFO);
+		return getYemaURL(M_DEALER_GETDEALERINFO);
 	}
 
 	public static String getM_TOOLS_ADDCOLLAPSELOG() {
-		return getZLinkURL(M_TOOLS_ADDCOLLAPSELOG);
+		return getYemaURL(M_TOOLS_ADDCOLLAPSELOG);
 	}
 
 	public static String getM_SAFE_CHANGEDEVICEVERIFY() {
-		return getZLinkURL(M_SAFE_CHANGEDEVICEVERIFY);
+		return getYemaURL(M_SAFE_CHANGEDEVICEVERIFY);
 	}
 
 }

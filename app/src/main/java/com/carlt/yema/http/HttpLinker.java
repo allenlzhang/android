@@ -3,6 +3,7 @@ package com.carlt.yema.http;
 
 import android.text.TextUtils;
 
+import com.carlt.yema.YemaApplication;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.utils.FileUtil;
@@ -48,8 +49,8 @@ public class HttpLinker {
 
     public static void post(String url, HashMap<String, String> param, Callback callback) {
         param.put("client_id", URLConfig.getClientID());
-        if(!TextUtils.isEmpty(LoginInfo.getAccess_token())){
-            url=url+"?token="+LoginInfo.getAccess_token();
+        if(!TextUtils.isEmpty(YemaApplication.TOKEN)){
+            param.put("token", YemaApplication.TOKEN);
         }
         FormBody.Builder formBuilder = new FormBody.Builder();
         Iterator<String> iterators = param.keySet().iterator();

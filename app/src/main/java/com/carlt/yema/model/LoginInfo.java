@@ -62,7 +62,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCityName(String cityName) {
         LoginInfo.cityName = cityName;
-        user_pref.edit().putString("cityName", cityName).commit();
+        user_pref.edit().putString("cityName", cityName).apply();
     }
 
     // 最后一次登录时间
@@ -411,7 +411,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setExpiresIn(String expiresIn) {
         LoginInfo.expiresIn = expiresIn;
-        user_pref.edit().putString("expiresIn", expiresIn).commit();
+        user_pref.edit().putString("expiresIn", expiresIn).apply();
     }
 
     public static String getDealerId() {
@@ -421,7 +421,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setDealerId(String dealerId) {
         LoginInfo.dealerId = dealerId;
-        user_pref.edit().putString("dealerId", dealerId).commit();
+        user_pref.edit().putString("dealerId", dealerId).apply();
     }
 
     public static String getUseId() {
@@ -431,7 +431,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setUseId(String useId) {
         LoginInfo.useId = useId;
-        user_pref.edit().putString("useId", useId).commit();
+        user_pref.edit().putString("useId", useId).apply();
     }
 
     public static String getMobile() {
@@ -441,7 +441,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setMobile(String mobile) {
         LoginInfo.mobile = mobile;
-        user_pref.edit().putString("mobile", mobile).commit();
+        user_pref.edit().putString("mobile", mobile).apply();
     }
 
     public static boolean isVisitor() {
@@ -451,7 +451,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setVisitor(boolean isVisitor) {
         LoginInfo.isVisitor = isVisitor;
-        user_pref.edit().putBoolean("isVisitor", isVisitor).commit();
+        user_pref.edit().putBoolean("isVisitor", isVisitor).apply();
     }
 
     public static String getUsername() {
@@ -461,7 +461,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setUsername(String username) {
         LoginInfo.username = username;
-        user_pref.edit().putString("username", username).commit();
+        user_pref.edit().putString("username", username).apply();
     }
 
     public static String getSSID() {
@@ -471,7 +471,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setSSID(String sSID) {
         SSID = sSID;
-        user_pref.edit().putString("SSID", SSID).commit();
+        user_pref.edit().putString("SSID", SSID).apply();
     }
 
     public static String getSSIDPWD() {
@@ -481,7 +481,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setSSIDPWD(String sSIDPWD) {
         SSIDPWD = sSIDPWD;
-        user_pref.edit().putString("SSIDPWD", SSIDPWD).commit();
+        user_pref.edit().putString("SSIDPWD", SSIDPWD).apply();
     }
 
     public static String getLifetime() {
@@ -491,7 +491,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setLifetime(String lifetime) {
         LoginInfo.lifetime = lifetime;
-        user_pref.edit().putString("lifetime", lifetime).commit();
+        user_pref.edit().putString("lifetime", lifetime).apply();
     }
 
     public static String getWeixinbind() {
@@ -501,7 +501,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setWeixinbind(String weixinbind) {
         LoginInfo.weixinbind = weixinbind;
-        user_pref.edit().putString("weixinbind", weixinbind).commit();
+        user_pref.edit().putString("weixinbind", weixinbind).apply();
     }
 
     public static String getClwbind() {
@@ -511,7 +511,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setClwbind(String clwbind) {
         LoginInfo.clwbind = clwbind;
-        user_pref.edit().putString("clwbind", clwbind).commit();
+        user_pref.edit().putString("clwbind", clwbind).apply();
     }
 
     public static String getRegip() {
@@ -521,7 +521,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setRegip(String regip) {
         LoginInfo.regip = regip;
-        user_pref.edit().putString("regip", regip).commit();
+        user_pref.edit().putString("regip", regip).apply();
     }
 
     public static String getAvatar_id() {
@@ -531,7 +531,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setAvatar_id(String avatar_id) {
         LoginInfo.avatar_id = avatar_id;
-        user_pref.edit().putString("avatar_id", avatar_id).commit();
+        user_pref.edit().putString("avatar_id", avatar_id).apply();
     }
 
     public static String getOriginate() {
@@ -541,7 +541,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setOriginate(String originate) {
         LoginInfo.originate = originate;
-        user_pref.edit().putString("originate", originate).commit();
+        user_pref.edit().putString("originate", originate).apply();
     }
 
     public static String getLastlogin() {
@@ -551,7 +551,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setLastlogin(String lastlogin) {
         LoginInfo.lastlogin = lastlogin;
-        user_pref.edit().putString("lastlogin", lastlogin).commit();
+        user_pref.edit().putString("lastlogin", lastlogin).apply();
     }
 
     public static String getLoginoauth() {
@@ -561,7 +561,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setLoginoauth(String loginoauth) {
         LoginInfo.loginoauth = loginoauth;
-        user_pref.edit().putString("loginoauth", loginoauth).commit();
+        user_pref.edit().putString("loginoauth", loginoauth).apply();
     }
 
     public static String getLogintimes() {
@@ -571,7 +571,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setLogintimes(String logintimes) {
         LoginInfo.logintimes = logintimes;
-        user_pref.edit().putString("logintimes", logintimes).commit();
+        user_pref.edit().putString("logintimes", logintimes).apply();
     }
 
     public static String getCreatedate() {
@@ -581,7 +581,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCreatedate(String createdate) {
         LoginInfo.createdate = createdate;
-        user_pref.edit().putString("createdate", createdate).commit();
+        user_pref.edit().putString("createdate", createdate).apply();
     }
 
     public static String getAccess_token() {
@@ -593,7 +593,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setAccess_token(String access_token) {
         access_token = access_token;
-        user_pref.edit().putString("access_token", access_token).commit();
+        user_pref.edit().putString("access_token", access_token).apply();
     }
 
     public static String getExpires_in() {
@@ -603,7 +603,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setExpires_in(String expires_in) {
         LoginInfo.expires_in = expires_in;
-        user_pref.edit().putString("expires_in", expires_in).commit();
+        user_pref.edit().putString("expires_in", expires_in).apply();
     }
 
     public static String getcId() {
@@ -613,7 +613,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setcId(String cId) {
         LoginInfo.cId = cId;
-        car_pref.edit().putString("cId", cId).commit();
+        car_pref.edit().putString("cId", cId).apply();
     }
 
     public static String getBrandid() {
@@ -623,7 +623,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setBrandid(String brandid) {
         LoginInfo.brandid = brandid;
-        car_pref.edit().putString("brandid", brandid).commit();
+        car_pref.edit().putString("brandid", brandid).apply();
     }
 
     public static String getColor() {
@@ -633,7 +633,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setColor(String color) {
         LoginInfo.color = color;
-        car_pref.edit().putString("color", color).commit();
+        car_pref.edit().putString("color", color).apply();
     }
 
     public static String getProvince() {
@@ -643,7 +643,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setProvince(String province) {
         LoginInfo.province = province;
-        car_pref.edit().putString("province", province).commit();
+        car_pref.edit().putString("province", province).apply();
     }
 
     public static String getCity() {
@@ -653,7 +653,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCity(String city) {
         LoginInfo.city = city;
-        car_pref.edit().putString("city", city).commit();
+        car_pref.edit().putString("city", city).apply();
     }
 
     public static String getModelid() {
@@ -663,7 +663,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setModelid(String modelid) {
         LoginInfo.modelid = modelid;
-        car_pref.edit().putString("modelid", modelid).commit();
+        car_pref.edit().putString("modelid", modelid).apply();
     }
 
     public static String getVC() {
@@ -673,7 +673,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setVC(String vC) {
         VC = vC;
-        car_pref.edit().putString("VC", VC).commit();
+        car_pref.edit().putString("VC", VC).apply();
     }
 
     public static String getProtocol() {
@@ -683,7 +683,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setProtocol(String protocol) {
         LoginInfo.protocol = protocol;
-        car_pref.edit().putString("protocol", protocol).commit();
+        car_pref.edit().putString("protocol", protocol).apply();
     }
 
     public static String getAccePark() {
@@ -693,7 +693,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setAccePark(String accePark) {
         LoginInfo.accePark = accePark;
-        car_pref.edit().putString("accePark", accePark).commit();
+        car_pref.edit().putString("accePark", accePark).apply();
     }
 
     public static String getAcceRun() {
@@ -703,7 +703,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setAcceRun(String acceRun) {
         LoginInfo.acceRun = acceRun;
-        car_pref.edit().putString("acceRun", acceRun).commit();
+        car_pref.edit().putString("acceRun", acceRun).apply();
     }
 
     public static String getAcceDir() {
@@ -713,7 +713,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setAcceDir(String acceDir) {
         LoginInfo.acceDir = acceDir;
-        car_pref.edit().putString("acceDir", acceDir).commit();
+        car_pref.edit().putString("acceDir", acceDir).apply();
     }
 
     public static String getVBatTh() {
@@ -723,7 +723,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setVBatTh(String vBatTh) {
         VBatTh = vBatTh;
-        car_pref.edit().putString("VBatTh", VBatTh).commit();
+        car_pref.edit().putString("VBatTh", VBatTh).apply();
     }
 
     public static String getVbat() {
@@ -733,7 +733,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setVbat(String vbat) {
         Vbat = vbat;
-        car_pref.edit().putString("Vbat", Vbat).commit();
+        car_pref.edit().putString("Vbat", Vbat).apply();
     }
 
     public static String getCredit() {
@@ -743,7 +743,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCredit(String credit) {
         LoginInfo.credit = credit;
-        car_pref.edit().putString("credit", credit).commit();
+        car_pref.edit().putString("credit", credit).apply();
     }
 
     public static String getLicencenumber() {
@@ -753,7 +753,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setLicencenumber(String licencenumber) {
         LoginInfo.licencenumber = licencenumber;
-        car_pref.edit().putString("licencenumber", licencenumber).commit();
+        car_pref.edit().putString("licencenumber", licencenumber).apply();
     }
 
     public static String getLicencedate() {
@@ -763,7 +763,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setLicencedate(String licencedate) {
         LoginInfo.licencedate = licencedate;
-        car_pref.edit().putString("licencedate", licencedate).commit();
+        car_pref.edit().putString("licencedate", licencedate).apply();
     }
 
     public static String getIsrunning() {
@@ -773,7 +773,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setIsrunning(String isrunning) {
         LoginInfo.isrunning = isrunning;
-        car_pref.edit().putString("isrunning", isrunning).commit();
+        car_pref.edit().putString("isrunning", isrunning).apply();
     }
 
     public static String getTag() {
@@ -783,7 +783,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setTag(String tag) {
         LoginInfo.tag = tag;
-        car_pref.edit().putString("tag", tag).commit();
+        car_pref.edit().putString("tag", tag).apply();
     }
 
     public static String getUpdatedate() {
@@ -793,7 +793,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setUpdatedate(String updatedate) {
         LoginInfo.updatedate = updatedate;
-        car_pref.edit().putString("updatedate", updatedate).commit();
+        car_pref.edit().putString("updatedate", updatedate).apply();
     }
 
     public static String getCity_code_id() {
@@ -803,7 +803,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCity_code_id(String city_code_id) {
         LoginInfo.city_code_id = city_code_id;
-        car_pref.edit().putString("city_code_id", city_code_id).commit();
+        car_pref.edit().putString("city_code_id", city_code_id).apply();
     }
 
     public static String getCity_code() {
@@ -813,7 +813,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCity_code(String city_code) {
         LoginInfo.city_code = city_code;
-        car_pref.edit().putString("city_code", city_code).commit();
+        car_pref.edit().putString("city_code", city_code).apply();
     }
 
     public static String getCarno() {
@@ -823,7 +823,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCarno(String carno) {
         LoginInfo.carno = carno;
-        car_pref.edit().putString("carno", carno).commit();
+        car_pref.edit().putString("carno", carno).apply();
     }
 
     public static String getShortstandcarno() {
@@ -834,7 +834,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setShortstandcarno(String shortstandcarno) {
         LoginInfo.shortstandcarno = shortstandcarno;
-        car_pref.edit().putString("shortstandcarno", shortstandcarno).commit();
+        car_pref.edit().putString("shortstandcarno", shortstandcarno).apply();
     }
 
     public static String getDealerName() {
@@ -844,7 +844,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setDealerName(String dealerName) {
         LoginInfo.dealerName = dealerName;
-        car_pref.edit().putString("dealerName", dealerName).commit();
+        car_pref.edit().putString("dealerName", dealerName).apply();
     }
 
     public static String getOptionid() {
@@ -854,7 +854,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setOptionid(String optionid) {
         LoginInfo.optionid = optionid;
-        car_pref.edit().putString("optionid", optionid).commit();
+        car_pref.edit().putString("optionid", optionid).apply();
     }
 
     public static String getCarid() {
@@ -864,7 +864,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCarid(String carid) {
         LoginInfo.carid = carid;
-        car_pref.edit().putString("carid", carid).commit();
+        car_pref.edit().putString("carid", carid).apply();
     }
 
     public static String getCarname() {
@@ -874,7 +874,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCarname(String carname) {
         LoginInfo.carname = carname;
-        car_pref.edit().putString("carname", carname).commit();
+        car_pref.edit().putString("carname", carname).apply();
     }
 
     public static String getCarlogo() {
@@ -884,7 +884,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCarlogo(String carlogo) {
         LoginInfo.carlogo = carlogo;
-        car_pref.edit().putString("carlogo", carlogo).commit();
+        car_pref.edit().putString("carlogo", carlogo).apply();
     }
 
     public static String getCanQueryVio() {
@@ -894,7 +894,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCanQueryVio(String canQueryVio) {
         LoginInfo.canQueryVio = canQueryVio;
-        car_pref.edit().putString("canQueryVio", canQueryVio).commit();
+        car_pref.edit().putString("canQueryVio", canQueryVio).apply();
     }
 
     public static String getCarcity() {
@@ -904,7 +904,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setCarcity(String carcity) {
         LoginInfo.carcity = carcity;
-        car_pref.edit().putString("carcity", carcity).commit();
+        car_pref.edit().putString("carcity", carcity).apply();
     }
 
     public static String getStandcarno() {
@@ -914,7 +914,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setStandcarno(String standcarno) {
         LoginInfo.standcarno = standcarno;
-        car_pref.edit().putString("standcarno", standcarno).commit();
+        car_pref.edit().putString("standcarno", standcarno).apply();
     }
 
     public static String getEngineno() {
@@ -924,7 +924,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setEngineno(String engineno) {
         LoginInfo.engineno = engineno;
-        car_pref.edit().putString("engineno", engineno).commit();
+        car_pref.edit().putString("engineno", engineno).apply();
     }
 
     public static String getRegistno() {
@@ -934,7 +934,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setRegistno(String registno) {
         LoginInfo.registno = registno;
-        car_pref.edit().putString("registno", registno).commit();
+        car_pref.edit().putString("registno", registno).apply();
     }
 
     public static String getSummileage() {
@@ -944,7 +944,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setSummileage(String summileage) {
         LoginInfo.summileage = summileage;
-        car_pref.edit().putString("summileage", summileage).commit();
+        car_pref.edit().putString("summileage", summileage).apply();
     }
 
     public static String getBuydate() {
@@ -954,7 +954,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setBuydate(String buydate) {
         LoginInfo.buydate = buydate;
-        car_pref.edit().putString("buydate", buydate).commit();
+        car_pref.edit().putString("buydate", buydate).apply();
     }
 
     public static String getRealname() {
@@ -964,7 +964,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setRealname(String realname) {
         LoginInfo.realname = realname;
-        car_pref.edit().putString("realname", realname).commit();
+        car_pref.edit().putString("realname", realname).apply();
     }
 
     public static String getDeviceidstring() {
@@ -974,7 +974,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setDeviceidstring(String deviceidstring) {
         LoginInfo.deviceidstring = deviceidstring;
-        car_pref.edit().putString("deviceidstring", deviceidstring).commit();
+        car_pref.edit().putString("deviceidstring", deviceidstring).apply();
     }
 
     public static String getPin(String mobile) {
@@ -984,12 +984,12 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setPin(String mobile, String pin) {
         LoginInfo.pin = pin;
-        car_pref.edit().putString(mobile + "_pin", pin).commit();
+        car_pref.edit().putString(mobile + "_pin", pin).apply();
     }
 
     public static void setVin(String mobile, String vin) {
         LoginInfo.vin = vin;
-        car_pref.edit().putString(mobile + "_vin", vin).commit();
+        car_pref.edit().putString(mobile + "_vin", vin).apply();
     }
 
     public static String getVin(String mobile) {
@@ -1006,7 +1006,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setServiceExpire(boolean isServiceExpire) {
         LoginInfo.isServiceExpire = isServiceExpire;
         user_ext_pref.edit().putBoolean("service_time_expire", isServiceExpire)
-                .commit();
+                .apply();
     }
 
     public static boolean isBindCar() {
@@ -1016,7 +1016,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setBindCar(boolean isBindCar) {
         LoginInfo.isBindCar = isBindCar;
-        car_pref.edit().putBoolean("isBindCar", isBindCar).commit();
+        car_pref.edit().putBoolean("isBindCar", isBindCar).apply();
     }
 
     public static boolean isDeviceActivate() {
@@ -1027,7 +1027,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setDeviceActivate(boolean isDeviceActivate) {
         LoginInfo.isDeviceActivate = isDeviceActivate;
         car_pref.edit().putBoolean("isDeviceActivate", isDeviceActivate)
-                .commit();
+                .apply();
     }
 
     public static boolean isUpgradeing() {
@@ -1037,7 +1037,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setUpgradeing(boolean isUpgradeing) {
         LoginInfo.isUpgradeing = isUpgradeing;
-        car_pref.edit().putBoolean("isUpgradeing", isUpgradeing).commit();
+        car_pref.edit().putBoolean("isUpgradeing", isUpgradeing).apply();
     }
 
     public static boolean isGpsDevice() {
@@ -1047,7 +1047,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setGpsDevice(boolean isGpsDevice) {
         LoginInfo.isGpsDevice = isGpsDevice;
-        car_pref.edit().putBoolean("isGpsDevice", isGpsDevice).commit();
+        car_pref.edit().putBoolean("isGpsDevice", isGpsDevice).apply();
     }
 
     public static String getAvatar_img() {
@@ -1057,7 +1057,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setAvatar_img(String avatar_img) {
         LoginInfo.avatar_img = avatar_img;
-        car_pref.edit().putString("avatar_img", avatar_img).commit();
+        car_pref.edit().putString("avatar_img", avatar_img).apply();
     }
 
     public static String getGender() {
@@ -1067,7 +1067,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setGender(String gender) {
         LoginInfo.gender = gender;
-        car_pref.edit().putString("gender", gender).commit();
+        car_pref.edit().putString("gender", gender).apply();
     }
 
     public static boolean isMain() {
@@ -1077,7 +1077,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setMain(boolean isMain) {
         LoginInfo.isMain = isMain;
-        car_pref.edit().putBoolean("isMain", isMain).commit();
+        car_pref.edit().putBoolean("isMain", isMain).apply();
     }
 
     public static String getMainDevicename() {
@@ -1087,7 +1087,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setMainDevicename(String mainDevicename) {
         LoginInfo.mainDevicename = mainDevicename;
-        car_pref.edit().putString("mainDevicename", mainDevicename).commit();
+        car_pref.edit().putString("mainDevicename", mainDevicename).apply();
     }
 
     public static String getAuthorize_status() {
@@ -1099,7 +1099,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setAuthorize_status(String authorize_status) {
         LoginInfo.authorize_status = authorize_status;
         user_pref.edit().putString("authorize_status", authorize_status)
-                .commit();
+                .apply();
     }
 
     public static boolean isHasAuthorize() {
@@ -1109,7 +1109,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setHasAuthorize(boolean hasAuthorize) {
         LoginInfo.hasAuthorize = hasAuthorize;
-        user_pref.edit().putBoolean("hasAuthorize", hasAuthorize).commit();
+        user_pref.edit().putBoolean("hasAuthorize", hasAuthorize).apply();
     }
 
     public static boolean isNeedAuthorize() {
@@ -1119,7 +1119,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setNeedAuthorize(boolean needAuthorize) {
         LoginInfo.needAuthorize = needAuthorize;
-        user_pref.edit().putBoolean("needAuthorize", needAuthorize).commit();
+        user_pref.edit().putBoolean("needAuthorize", needAuthorize).apply();
     }
 
     public static boolean isFreezing() {
@@ -1129,7 +1129,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setFreezing(boolean isFreezing) {
         LoginInfo.isFreezing = isFreezing;
-        user_pref.edit().putBoolean("isFreezing", isFreezing).commit();
+        user_pref.edit().putBoolean("isFreezing", isFreezing).apply();
     }
 
     public static boolean isAuthen() {
@@ -1139,7 +1139,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setAuthen(boolean isAuthen) {
         LoginInfo.isAuthen = isAuthen;
-        user_pref.edit().putBoolean("isAuthen", isAuthen).commit();
+        user_pref.edit().putBoolean("isAuthen", isAuthen).apply();
     }
 
     public static boolean isNoneedpsw() {
@@ -1149,7 +1149,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setNoneedpsw(boolean isNoneedpsw) {
         LoginInfo.isNoneedpsw = isNoneedpsw;
-        user_pref.edit().putBoolean("isNoneedpsw", isNoneedpsw).commit();
+        user_pref.edit().putBoolean("isNoneedpsw", isNoneedpsw).apply();
     }
 
     public static String getAuthen_name() {
@@ -1159,7 +1159,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setAuthen_name(String authen_name) {
         LoginInfo.authen_name = authen_name;
-        user_pref.edit().putString("authen_name", authen_name).commit();
+        user_pref.edit().putString("authen_name", authen_name).apply();
     }
 
     public static String getAuthen_card() {
@@ -1169,7 +1169,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setAuthen_card(String authen_card) {
         LoginInfo.authen_card = authen_card;
-        user_pref.edit().putString("authen_card", authen_card).commit();
+        user_pref.edit().putString("authen_card", authen_card).apply();
     }
 
     public static String getSecretaryName() {
@@ -1179,7 +1179,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setSecretaryName(String secretaryName) {
         LoginInfo.secretaryName = secretaryName;
-        car_pref.edit().putString("secretaryName", secretaryName).commit();
+        car_pref.edit().putString("secretaryName", secretaryName).apply();
     }
 
     public static String getDealerUsername() {
@@ -1189,7 +1189,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setDealerUsername(String dealerUsername) {
         LoginInfo.dealerUsername = dealerUsername;
-        car_pref.edit().putString("dealerUsername", dealerUsername).commit();
+        car_pref.edit().putString("dealerUsername", dealerUsername).apply();
     }
 
     public static String getDealerAddres() {
@@ -1199,7 +1199,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setDealerAddres(String dealerAddres) {
         LoginInfo.dealerAddres = dealerAddres;
-        car_pref.edit().putString("dealerAddres", dealerAddres).commit();
+        car_pref.edit().putString("dealerAddres", dealerAddres).apply();
     }
 
     public static double getDealerLat() {
@@ -1216,7 +1216,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setDealerLat(double dealerLat) {
         LoginInfo.dealerLat = dealerLat;
         car_pref.edit().putString("dealerLat", Double.toString(dealerLat))
-                .commit();
+                .apply();
     }
 
     public static double getDealerLon() {
@@ -1233,7 +1233,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setDealerLon(double dealerLon) {
         LoginInfo.dealerLon = dealerLon;
         car_pref.edit().putString("dealerLon", Double.toString(dealerLon))
-                .commit();
+                .apply();
     }
 
     public static int getDealerZoom() {
@@ -1243,7 +1243,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setDealerZoom(int dealerZoom) {
         LoginInfo.dealerZoom = dealerZoom;
-        car_pref.edit().putInt("dealerZoom", dealerZoom).commit();
+        car_pref.edit().putInt("dealerZoom", dealerZoom).apply();
     }
 
     public static String getDealerTel() {
@@ -1253,7 +1253,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setDealerTel(String dealerTel) {
         LoginInfo.dealerTel = dealerTel;
-        car_pref.edit().putString("dealerTel", dealerTel).commit();
+        car_pref.edit().putString("dealerTel", dealerTel).apply();
     }
 
     public static String getServiceTel() {
@@ -1263,7 +1263,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setServiceTel(String serviceTel) {
         LoginInfo.serviceTel = serviceTel;
-        car_pref.edit().putString("serviceTel", serviceTel).commit();
+        car_pref.edit().putString("serviceTel", serviceTel).apply();
     }
 
     public static int getPush_prizeinfo_flag() {
@@ -1275,7 +1275,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setPush_prizeinfo_flag(int push_prizeinfo_flag) {
         LoginInfo.push_prizeinfo_flag = push_prizeinfo_flag;
         car_pref.edit().putInt("push_prizeinfo_flag", push_prizeinfo_flag)
-                .commit();
+                .apply();
     }
 
     public static String getLately_day() {
@@ -1285,7 +1285,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setLately_day(String lately_day) {
         LoginInfo.lately_day = lately_day;
-        car_pref.edit().putString("lately_day", lately_day).commit();
+        car_pref.edit().putString("lately_day", lately_day).apply();
     }
 
     public static String getLately_week() {
@@ -1295,7 +1295,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setLately_week(String lately_week) {
         LoginInfo.lately_week = lately_week;
-        car_pref.edit().putString("lately_week", lately_week).commit();
+        car_pref.edit().putString("lately_week", lately_week).apply();
     }
 
     public static String getLately_month() {
@@ -1305,7 +1305,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setLately_month(String lately_month) {
         LoginInfo.lately_month = lately_month;
-        car_pref.edit().putString("lately_month", lately_month).commit();
+        car_pref.edit().putString("lately_month", lately_month).apply();
     }
 
     public static String getMainten_miles() {
@@ -1315,7 +1315,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setMainten_miles(String mainten_miles) {
         LoginInfo.mainten_miles = mainten_miles;
-        car_pref.edit().putString("mainten_miles", mainten_miles).commit();
+        car_pref.edit().putString("mainten_miles", mainten_miles).apply();
     }
 
     public static String getMainten_time() {
@@ -1325,7 +1325,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setMainten_time(String mainten_time) {
         LoginInfo.mainten_time = mainten_time;
-        car_pref.edit().putString("mainten_time", mainten_time).commit();
+        car_pref.edit().putString("mainten_time", mainten_time).apply();
     }
 
     public static String getMainten_next_miles() {
@@ -1337,7 +1337,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setMainten_next_miles(String mainten_next_miles) {
         LoginInfo.mainten_next_miles = mainten_next_miles;
         car_pref.edit().putString("mainten_next_miles", mainten_next_miles)
-                .commit();
+                .apply();
     }
 
     public static String getMainten_next_day() {
@@ -1353,13 +1353,13 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setDevicetype(String devicetype) {
         LoginInfo.devicetype = devicetype;
-        car_pref.edit().putString("devicetype", devicetype).commit();
+        car_pref.edit().putString("devicetype", devicetype).apply();
     }
 
     public static void setMainten_next_day(String mainten_next_day) {
         LoginInfo.mainten_next_day = mainten_next_day;
         car_pref.edit().putString("mainten_next_day", mainten_next_day)
-                .commit();
+                .apply();
     }
 
     public static boolean isMainten() {
@@ -1369,7 +1369,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setMainten(boolean isMainten) {
         LoginInfo.isMainten = isMainten;
-        car_pref.edit().putBoolean("isMainten", isMainten).commit();
+        car_pref.edit().putBoolean("isMainten", isMainten).apply();
     }
 
     public static boolean isInstallorder() {
@@ -1379,7 +1379,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setInstallorder(boolean isInstallorder) {
         LoginInfo.isInstallorder = isInstallorder;
-        car_pref.edit().putBoolean("installorder", isInstallorder).commit();
+        car_pref.edit().putBoolean("installorder", isInstallorder).apply();
     }
 
     public static String getDeviceCategory() {
@@ -1389,7 +1389,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setDeviceCategory(String deviceCategory) {
         LoginInfo.deviceCategory = deviceCategory;
-        car_pref.edit().putString("before_device", deviceCategory).commit();
+        car_pref.edit().putString("before_device", deviceCategory).apply();
     }
 
     public static boolean isSetRemotePwd() {
@@ -1399,7 +1399,7 @@ public class LoginInfo extends BaseResponseInfo {
 
     public static void setSetRemotePwd(boolean isSetRemotePwd) {
         LoginInfo.isSetRemotePwd = isSetRemotePwd;
-        user_pref.edit().putBoolean("isSetRemotePwd", isSetRemotePwd).commit();
+        user_pref.edit().putBoolean("isSetRemotePwd", isSetRemotePwd).apply();
     }
 
     public static boolean isRemoteSoundOpen() {
@@ -1410,7 +1410,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setRemoteSoundOpen(boolean isRemoteSoundOpen) {
         LoginInfo.isRemoteSoundOpen = isRemoteSoundOpen;
         user_pref.edit().putBoolean("isRemoteSoundOpen", isRemoteSoundOpen)
-                .commit();
+                .apply();
     }
 
     public static RemoteMainInfo getRemoteMainInfo() {
@@ -1446,7 +1446,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setDemoAccount(boolean isDemoAccount) {
         LoginInfo.isDemoAccount = isDemoAccount;
         user_pref.edit().putBoolean("isDemoAccount", isDemoAccount)
-                .commit();
+                .apply();
     }
 
     public static boolean isTachograph() {
@@ -1458,7 +1458,7 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setTachograph(boolean isTachograph) {
         LoginInfo.isTachograph = isTachograph;
         user_pref.edit().putBoolean("isTachograph", isTachograph)
-                .commit();
+                .apply();
     }
 
 

@@ -16,15 +16,10 @@ import com.carlt.yema.data.BaseResponseInfo;
 
 public abstract class BaseFragment extends Fragment {
     protected View mView;
-    protected BaseActivity mAct;
     private boolean isDestory = false;
     protected Context mCtx;
 
     public BaseFragment() {
-    }
-
-    public void setLoadingActivity(BaseActivity loadingAct) {
-        this.mAct = loadingAct;
     }
 
     @Nullable
@@ -62,24 +57,12 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void actLoadError(BaseResponseInfo bInfo) {
-        if (mAct == null) {
-            return;
-        }
-//        mAct.LoadError(bInfo);
     }
 
     protected void actLoadNoData() {
-        if (mAct == null) {
-            return;
-        }
-//        mAct.LoadNodata();
     }
 
     protected void actLoadSuccess(BaseResponseInfo binfo) {
-        if (mAct == null) {
-            return;
-        }
-//        mAct.LoadSuccess(binfo);
     }
 
     /**

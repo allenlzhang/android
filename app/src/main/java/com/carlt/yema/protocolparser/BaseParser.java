@@ -26,6 +26,7 @@ public abstract class BaseParser<T> {
     public final static String MSG_ERRO_TIP = "数据获取失败，请稍后再试";
     public static String TAG = "http";
     protected BaseResponseInfo<T> mBaseResponseInfo;
+    protected Class<T> clazz ;
     protected JsonObject mJson;
     private ResultCallback mResultCallback;
     protected boolean isTest = false;// 是否是测试数据
@@ -34,6 +35,14 @@ public abstract class BaseParser<T> {
 
     public BaseParser(ResultCallback<T> callback) {
         //TAG = this.getClass().getName();
+        mBaseResponseInfo = new BaseResponseInfo<T>();
+        this.mResultCallback = callback;
+        if (this.mResultCallback != null) {
+            initHandler();
+        }
+    }
+    public BaseParser(ResultCallback<T> callback,Class<T> clazz) {
+        this.clazz = clazz;
         mBaseResponseInfo = new BaseResponseInfo<T>();
         this.mResultCallback = callback;
         if (this.mResultCallback != null) {
