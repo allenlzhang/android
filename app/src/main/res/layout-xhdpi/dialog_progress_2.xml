@@ -8,20 +8,15 @@
     android:paddingLeft="4dip"
     android:paddingRight="4dip" >
 
-    <RelativeLayout
-        android:id="@+id/top"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="25dp"
-        android:background="@mipmap/progress_dialog_outer" >
+
 
         <ImageView
             android:id="@+id/progress_img_animate"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="@mipmap/progress_dialog_inner"
+            android:layout_marginTop="15dp"
             android:contentDescription="@string/app_name" />
-    </RelativeLayout>
 
     <TextView
         android:id="@+id/progress_txt_text"
@@ -30,7 +25,7 @@
         android:layout_marginTop="18dp"
         android:gravity="center"
         android:text="正在获取数据..."
-        android:textColor="#30a4d7"
+        android:textColor="@color/scarlet"
         android:textSize="12sp" />
 
 </LinearLayout>

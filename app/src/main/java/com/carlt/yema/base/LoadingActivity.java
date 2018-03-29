@@ -23,11 +23,8 @@ import com.carlt.yema.protocolparser.BaseParser;
  *
  * @author Administrator
  */
-public class LoadingActivity extends BaseActivity{
-    protected ImageView back;//返回键
-    protected TextView title;//标题
+public class LoadingActivity extends BaseActivity {
     protected TextView mTxtDes;// 描述文字
-
     protected TextView mTxtEorrorSub;//错误信息副标题
     protected TextView mTxtNodata;// 没有数据时的描述文字
     protected Button mTxtRetryError;// 重试（刷新）
@@ -54,9 +51,6 @@ public class LoadingActivity extends BaseActivity{
         mViewError = findViewById(R.id.error_lay_main);
         mViewNodata = findViewById(R.id.nodata_lay_main);
 
-        back= (ImageView) findViewById(R.id.back);
-        title= (TextView) findViewById(R.id.title);
-
         mTxtDes = (TextView) findViewById(R.id.laoding_txt_des);
         mTxtEorrorSub = (TextView) findViewById(R.id.error_txt_des_sub);
         mTxtNodata = (TextView) findViewById(R.id.nodata_txt_des);
@@ -82,18 +76,6 @@ public class LoadingActivity extends BaseActivity{
         }
     };
 
-    /**
-     * Change the title associated with this activity.  If this is a
-     * top-level activity, the title for its window will change.  If it
-     * is an embedded activity, the parent can do whatever it wants
-     * with it.
-     *
-     * @param title
-     */
-    @Override
-    public void setTitle(CharSequence title) {
-        super.setTitle(title);
-    }
 
     /**
      * 添加主View
@@ -132,9 +114,7 @@ public class LoadingActivity extends BaseActivity{
         mViewError.setVisibility(View.GONE);
         mViewNodata.setVisibility(View.GONE);
         mMainView.setVisibility(View.GONE);
-
         mPBar.setVisibility(View.VISIBLE);
-//        mTxtDes.setText("loading...");
     }
 
     /**
@@ -170,7 +150,6 @@ public class LoadingActivity extends BaseActivity{
         mViewError.setVisibility(View.GONE);
         mViewNodata.setVisibility(View.VISIBLE);
         mMainView.setVisibility(View.GONE);
-
         mTxtNodata.setText("暂时没有内容");
     }
 
@@ -186,82 +165,11 @@ public class LoadingActivity extends BaseActivity{
         }
     };
 
-    public void addFragment(int id, Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(id, fragment)
-                .commit();
-    }
 
-    public void removeFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .remove(fragment)
-                .commit();
-    }
-
-    private OnClickListener onClickListener=new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-//            switch (v.getId()) {
-//                case R.id.title_img_back:
-//                    //标题头左侧按钮
-//                    if (mClickTitleListener != null) {
-//                        mClickTitleListener.titleLeftClik();
-//                    } else {
-//                        onBackPressed();
-//                    }
-//                    break;
-//                case R.id.title_txt_right:
-//                    //标题头右侧按钮
-//                    if (mClickTitleListener != null) {
-//                        mClickTitleListener.titleRightClik();
-//                    } else {
-//
-//                    }
-//                    break;
-//
-//            }
-        }
-    };
-
-    public void reTryLoadData(){
+    public void reTryLoadData() {
         //子类选择可以实现，重新加载
-    };
+    }
 
-//    protected CRControl.GetResultListCallback listener = new CRControl.GetResultListCallback() {
-//
-//        @Override
-//        public void onFinished(Object o) {
-//            Message msg = new Message();
-//            msg.what = 0;
-//            msg.obj = o;
-//            mHandler.sendMessage(msg);
-//        }
-//
-//        @Override
-//        public void onErro(Object o) {
-//            Message msg = new Message();
-//            msg.what = 1;
-//            msg.obj = o;
-//            mHandler.sendMessage(msg);
-//
-//        }
-//    };
-//
-//    private Handler mHandler = new Handler() {
-//
-//        @Override
-//        public void handleMessage(Message msg) {
-//            switch (msg.what) {
-//                case 0:
-//                    LoadSuccess(msg.obj);
-//                    break;
-//
-//                case 1:
-//                    LoadError(msg.obj);
-//                    break;
-//            }
-//        }
-//    };
+    ;
+
 }

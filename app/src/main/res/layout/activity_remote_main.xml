@@ -109,7 +109,7 @@
                 android:id="@+id/remote_main_lay_unspport"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#E6E6E6"
+                android:background="@color/layout_background"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="gone" >
@@ -128,7 +128,7 @@
                     android:layout_marginTop="20dip"
                     android:gravity="center"
                     android:text="该车型不支持远程控制功能"
-                    android:textColor="#999"
+                    android:textColor="#fff"
                     android:textSize="14sp" />
             </LinearLayout>
         </RelativeLayout>

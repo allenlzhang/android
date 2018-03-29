@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.R;
 import com.carlt.yema.control.CPControl;
+import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarIndexInfo;
 import com.carlt.yema.data.remote.RemoteMainInfo;
 import com.carlt.yema.protocolparser.BaseParser;
@@ -29,7 +31,7 @@ import java.util.HashMap;
  * Created by liu on 2018/3/16.
  */
 
-public class CarMainFragment extends BaseFragment implements View.OnClickListener{
+public class CarMainFragment extends BaseFragment implements View.OnClickListener {
     private static String TAG = "CarMainFragment";
 
     private CarIndexInfo carinfo;
@@ -45,7 +47,7 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected View inflateView(LayoutInflater inflater) {
-       View view = inflater.inflate(R.layout.layout_carmain,null,false);
+        View view = inflater.inflate(R.layout.layout_carmain, null, false);
         return view;
     }
 
@@ -89,42 +91,54 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onSuccess(Object bInfo) {
                 carinfo = (CarIndexInfo) bInfo;
-                loadSuss();
-                ILog.e(TAG,"onSuccess"+bInfo.toString());
+                remoteConfig();
+                ILog.e(TAG, "onSuccess" + bInfo.toString());
             }
-            @Override
-            public void onError(Object bInfo) {
-                ILog.e(TAG,"onError"+bInfo.toString());
-            }
-        },CarIndexInfo.class);
-        HashMap params = new HashMap();
-        parser.executePost(URLConfig.getM_CAR_MAIN_URL(),params);
 
-        carOperationConfigParser = new CarOperationConfigParser<String>(new BaseParser.ResultCallback() {
-            @Override
-            public void onSuccess(Object bInfo) {
-                RemoteMainInfo aReturn = carOperationConfigParser.getReturn();
-                ILog.e(TAG,"onSuccess parser2 "+aReturn.toString());
-            }
             @Override
             public void onError(Object bInfo) {
-                ILog.e(TAG,"onError"+bInfo.toString());
+                ILog.e(TAG, "onError" + bInfo.toString());
+                actLoadError((BaseResponseInfo) bInfo);
             }
-        });
-        HashMap params2 = new HashMap();
-        carOperationConfigParser.executePost(URLConfig.getM_CAR_CURCARCONFIG_URL(),params2);
+        }, CarIndexInfo.class);
+        HashMap params = new HashMap();
+        parser.executePost(URLConfig.getM_CAR_MAIN_URL(), params);
     }
-    private void loadSuss(){
-        if(null != carinfo){
-            if(!TextUtils.isEmpty(carinfo.getCarname())){
+
+    private void remoteConfig() {
+        if (YemaApplication.getInstanse().getRemoteMainInfo() == null) {
+            carOperationConfigParser = new CarOperationConfigParser<String>(new BaseParser.ResultCallback() {
+                @Override
+                public void onSuccess(Object bInfo) {
+                    YemaApplication.getInstanse().setRemoteMainInfo(carOperationConfigParser.getReturn());
+                    ILog.e(TAG, "onSuccess parser2 " + carOperationConfigParser.getReturn());
+                    loadSuss();
+                }
+
+                @Override
+                public void onError(Object bInfo) {
+                    ILog.e(TAG, "onError" + bInfo.toString());
+                    actLoadError((BaseResponseInfo) bInfo);
+                }
+            });
+            HashMap params2 = new HashMap();
+            carOperationConfigParser.executePost(URLConfig.getM_CAR_CURCARCONFIG_URL(), params2);
+        }else{
+            loadSuss();
+        }
+    }
+
+    private void loadSuss() {
+        if (null != carinfo) {
+            if (!TextUtils.isEmpty(carinfo.getCarname())) {
                 titleTV.setText(carinfo.getCarname());
             }
-            if(TextUtils.equals("1",carinfo.getIsrunning())){//1 表示行驶中，0 表示不在行驶中
+            if (TextUtils.equals("1", carinfo.getIsrunning())) {//1 表示行驶中，0 表示不在行驶中
                 headTxt.setText("您的爱车正在行驶中");
-            }else if(TextUtils.equals("0",carinfo.getIsrunning())){
+            } else if (TextUtils.equals("0", carinfo.getIsrunning())) {
                 headTxt.setText("您的爱车正在休息");
             }
-            if(!TextUtils.isEmpty(carinfo.getSafetymsg())){
+            if (!TextUtils.isEmpty(carinfo.getSafetymsg())) {
                 viewSafetyText.setText(carinfo.getSafetymsg());
             }
         }
@@ -133,7 +147,7 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.car_main_txt_tire://胎压检测
                 Intent mIntent = new Intent(getActivity(), CarTiresStateActivity.class);
                 startActivity(mIntent);

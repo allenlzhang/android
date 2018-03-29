@@ -5,8 +5,9 @@ import android.os.Bundle;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.base.LoadingActivity;
 
-public class CarSaftyListActivity extends BaseActivity {
+public class CarSaftyListActivity extends LoadingActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

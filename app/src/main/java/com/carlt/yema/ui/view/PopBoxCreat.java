@@ -3,10 +3,16 @@ package com.carlt.yema.ui.view;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.carlt.yema.R;
+import com.carlt.yema.YemaApplication;
 
 
 public class PopBoxCreat {
@@ -149,96 +155,96 @@ public class PopBoxCreat {
      * @param click
      */
 
-//    public static void createDialogNotitle(final Context context, String content1_msg,
-//                                           String content2_msg, final String btnL_msg, final String btnR_msg,
-//                                           final DialogWithTitleClick click) {
-//
-//        LayoutInflater inflater = LayoutInflater.from(context);
-//        View view = inflater.inflate(R.layout.dialog_notitle, null);
-//        final Dialog dialogI = new Dialog(context, R.style.dialog);
-//        TextView content1 = (TextView)view.findViewById(R.id.dialog_notitle_text_content1);
-//        TextView content2 = (TextView)view.findViewById(R.id.dialog_notitle_text_content2);
-//        TextView btnL = (TextView)view.findViewById(R.id.dialog_notitle_text_btnleft);
-//        TextView btnR = (TextView)view.findViewById(R.id.dialog_notitle_text_btnright);
-//        View viewTwo = view.findViewById(R.id.dialog_notitle_lay_bottom);
-//        TextView btnOne = (TextView)view.findViewById(R.id.dialog_notitle_text_btnone);
-//
-//        if (btnL_msg == null || btnL_msg.equals("")) {
-//            if (btnR_msg == null || btnR_msg.equals("")) {
-//                viewTwo.setVisibility(View.GONE);
-//                btnOne.setVisibility(View.GONE);
-//
-//            } else {
-//                viewTwo.setVisibility(View.GONE);
-//                btnOne.setVisibility(View.VISIBLE);
-//                btnOne.setText(btnR_msg);
-//            }
-//        } else {
-//            if (btnR_msg == null || btnR_msg.equals("")) {
-//                viewTwo.setVisibility(View.GONE);
-//                btnOne.setVisibility(View.VISIBLE);
-//                btnOne.setText(btnL_msg);
-//            } else {
-//                viewTwo.setVisibility(View.VISIBLE);
-//                btnOne.setVisibility(View.GONE);
-//                btnL.setText(btnL_msg);
-//                btnR.setText(btnR_msg);
-//            }
-//        }
-//
-//        if (content1_msg != null) {
-//            content1.setText(content1_msg);
-//        } else {
-//            content1.setText("");
-//        }
-//        if (content2_msg != null && !content2_msg.equals("")) {
-//            content2.setText(content2_msg);
-//            content2.setVisibility(View.VISIBLE);
-//            content1.setGravity(Gravity.NO_GRAVITY);
-//        } else {
-//            content2.setText("");
-//            content2.setVisibility(View.GONE);
-//            content1.setGravity(Gravity.CENTER);
-//        }
-//
-//        btnL.setOnClickListener(new OnClickListener() {
-//
-//            public void onClick(View v) {
-//
-//                click.onLeftClick();
-//                dialogI.dismiss();
-//
-//            }
-//        });
-//
-//        btnR.setOnClickListener(new OnClickListener() {
-//
-//            public void onClick(View v) {
-//
-//                click.onRightClick();
-//                dialogI.dismiss();
-//
-//            }
-//        });
-//
-//        btnOne.setOnClickListener(new OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                if (btnL_msg != null && !btnL_msg.equals("")) {
-//                    click.onLeftClick();
-//                } else if (btnR_msg != null && !btnR_msg.equals("")) {
-//                    click.onRightClick();
-//                }
-//                dialogI.dismiss();
-//            }
-//        });
-//
-//        int w = (int)(YemaApplication.ScreenDensity * 300);
-//        ViewGroup.LayoutParams parm = new ViewGroup.LayoutParams(w, LayoutParams.WRAP_CONTENT);
-//        dialogI.setContentView(view, parm);
-//        dialogI.show();
-//    }
+    public static void createDialogNotitle(final Context context, String content1_msg,
+                                           String content2_msg, final String btnL_msg, final String btnR_msg,
+                                           final DialogWithTitleClick click) {
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.dialog_notitle, null);
+        final Dialog dialogI = new Dialog(context, R.style.dialog);
+        TextView content1 = (TextView)view.findViewById(R.id.dialog_notitle_text_content1);
+        TextView content2 = (TextView)view.findViewById(R.id.dialog_notitle_text_content2);
+        TextView btnL = (TextView)view.findViewById(R.id.dialog_notitle_text_btnleft);
+        TextView btnR = (TextView)view.findViewById(R.id.dialog_notitle_text_btnright);
+        View viewTwo = view.findViewById(R.id.dialog_notitle_lay_bottom);
+        TextView btnOne = (TextView)view.findViewById(R.id.dialog_notitle_text_btnone);
+
+        if (btnL_msg == null || btnL_msg.equals("")) {
+            if (btnR_msg == null || btnR_msg.equals("")) {
+                viewTwo.setVisibility(View.GONE);
+                btnOne.setVisibility(View.GONE);
+
+            } else {
+                viewTwo.setVisibility(View.GONE);
+                btnOne.setVisibility(View.VISIBLE);
+                btnOne.setText(btnR_msg);
+            }
+        } else {
+            if (btnR_msg == null || btnR_msg.equals("")) {
+                viewTwo.setVisibility(View.GONE);
+                btnOne.setVisibility(View.VISIBLE);
+                btnOne.setText(btnL_msg);
+            } else {
+                viewTwo.setVisibility(View.VISIBLE);
+                btnOne.setVisibility(View.GONE);
+                btnL.setText(btnL_msg);
+                btnR.setText(btnR_msg);
+            }
+        }
+
+        if (content1_msg != null) {
+            content1.setText(content1_msg);
+        } else {
+            content1.setText("");
+        }
+        if (content2_msg != null && !content2_msg.equals("")) {
+            content2.setText(content2_msg);
+            content2.setVisibility(View.VISIBLE);
+            content1.setGravity(Gravity.NO_GRAVITY);
+        } else {
+            content2.setText("");
+            content2.setVisibility(View.GONE);
+            content1.setGravity(Gravity.CENTER);
+        }
+
+        btnL.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View v) {
+
+                click.onLeftClick();
+                dialogI.dismiss();
+
+            }
+        });
+
+        btnR.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View v) {
+
+                click.onRightClick();
+                dialogI.dismiss();
+
+            }
+        });
+
+        btnOne.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (btnL_msg != null && !btnL_msg.equals("")) {
+                    click.onLeftClick();
+                } else if (btnR_msg != null && !btnR_msg.equals("")) {
+                    click.onRightClick();
+                }
+                dialogI.dismiss();
+            }
+        });
+
+        int w = (int)(YemaApplication.ScreenDensity * 300);
+        ViewGroup.LayoutParams parm = new ViewGroup.LayoutParams(w, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialogI.setContentView(view, parm);
+        dialogI.show();
+    }
 
 //    /**
 //     * 无标题dialog,需要给出是否点击外部消失
@@ -480,45 +486,45 @@ public class PopBoxCreat {
 
     }
 
-//    /**
-//     * 没有按钮的对话框
-//     * @param context
-//     * @param content1_msg
-//     * @param content2_msg
-//     */
-//    public static void createDialogNobtn(final Context context, String content1_msg,
-//                                         String content2_msg) {
-//
-//        LayoutInflater inflater = LayoutInflater.from(context);
-//        View view = inflater.inflate(R.layout.dialog_notitle, null);
-//        final Dialog dialogI = new Dialog(context, R.style.dialog);
-//        TextView content1 = (TextView)view.findViewById(R.id.dialog_notitle_text_content1);
-//        TextView content2 = (TextView)view.findViewById(R.id.dialog_notitle_text_content2);
-//        View viewTwo = view.findViewById(R.id.dialog_notitle_lay_bottom);
-//        View line = view.findViewById(R.id.dialog_notitle_lay_line);
-//        viewTwo.setVisibility(View.GONE);
-//        line.setVisibility(View.GONE);
-//
-//        if (content1_msg != null) {
-//            content1.setText(content1_msg);
-//        } else {
-//            content1.setText("");
-//        }
-//        if (content2_msg != null && !content2_msg.equals("")) {
-//            content2.setText(content2_msg);
-//            content2.setVisibility(View.VISIBLE);
-//            content1.setGravity(Gravity.NO_GRAVITY);
-//        } else {
-//            content2.setText("");
-//            content2.setVisibility(View.GONE);
-//            content1.setGravity(Gravity.CENTER);
-//        }
-//
-//        int w = (int)(YemaApplication.ScreenDensity * 300);
-//        ViewGroup.LayoutParams parm = new ViewGroup.LayoutParams(w, LayoutParams.WRAP_CONTENT);
-//        dialogI.setContentView(view, parm);
-//        dialogI.show();
-//    }
+    /**
+     * 没有按钮的对话框
+     * @param context
+     * @param content1_msg
+     * @param content2_msg
+     */
+    public static void createDialogNobtn(final Context context, String content1_msg,
+                                         String content2_msg) {
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.dialog_notitle, null);
+        final Dialog dialogI = new Dialog(context, R.style.dialog);
+        TextView content1 = (TextView)view.findViewById(R.id.dialog_notitle_text_content1);
+        TextView content2 = (TextView)view.findViewById(R.id.dialog_notitle_text_content2);
+        View viewTwo = view.findViewById(R.id.dialog_notitle_lay_bottom);
+        View line = view.findViewById(R.id.dialog_notitle_lay_line);
+        viewTwo.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
+
+        if (content1_msg != null) {
+            content1.setText(content1_msg);
+        } else {
+            content1.setText("");
+        }
+        if (content2_msg != null && !content2_msg.equals("")) {
+            content2.setText(content2_msg);
+            content2.setVisibility(View.VISIBLE);
+            content1.setGravity(Gravity.NO_GRAVITY);
+        } else {
+            content2.setText("");
+            content2.setVisibility(View.GONE);
+            content1.setGravity(Gravity.CENTER);
+        }
+
+        int w = (int)(YemaApplication.ScreenDensity * 300);
+        ViewGroup.LayoutParams parm = new ViewGroup.LayoutParams(w,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialogI.setContentView(view, parm);
+        dialogI.show();
+    }
 
     public static UUDialog createDialogWithProgress(final Context context, String title_msg) {
         UUDialog mUUDialog = new UUDialog(context);

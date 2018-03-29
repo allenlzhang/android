@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import com.bumptech.glide.Glide;
 import com.carlt.yema.dao.DBManager;
+import com.carlt.yema.data.remote.RemoteMainInfo;
 import com.carlt.yema.utils.CipherUtils;
 import com.carlt.yema.utils.ILog;
 
@@ -57,6 +58,15 @@ public class YemaApplication extends Application {
 
     public static Context ApplicationContext;
 
+    private  RemoteMainInfo remoteMainInfo;
+
+    public RemoteMainInfo getRemoteMainInfo() {
+        return remoteMainInfo;
+    }
+
+    public void setRemoteMainInfo(RemoteMainInfo remoteMainInfo) {
+        this.remoteMainInfo = remoteMainInfo;
+    }
 
     @Override
     public void onCreate() {
