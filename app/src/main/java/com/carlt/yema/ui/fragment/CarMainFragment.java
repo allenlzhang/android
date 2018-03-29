@@ -90,7 +90,7 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         BaseParser parser = new DefaultParser<CarIndexInfo>(new BaseParser.ResultCallback() {
             @Override
             public void onSuccess(Object bInfo) {
-                carinfo = (CarIndexInfo) bInfo;
+                carinfo = ((BaseResponseInfo<CarIndexInfo>) bInfo).getValue();
                 remoteConfig();
                 ILog.e(TAG, "onSuccess" + bInfo.toString());
             }

@@ -41,6 +41,8 @@ public class BaseActivity extends AppCompatActivity implements
 		return (T) findViewById(id);
 	}
 
+	protected String TAG = this.getClass().getSimpleName();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

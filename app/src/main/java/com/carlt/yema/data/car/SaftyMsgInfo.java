@@ -111,4 +111,20 @@ public class SaftyMsgInfo extends BaseResponseInfo {
     public void setIstop(String istop) {
         this.istop = istop;
     }
+
+    @Override
+    public String toString() {
+        return "SaftyMsgInfo{" +
+                "relid='" + relid + '\'' +
+                ", pushstarttime='" + pushstarttime + '\'' +
+                ", pushendtime='" + pushendtime + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", img='" + img + '\'' +
+                ", class1='" + class1 + '\'' +
+                ", class2='" + class2 + '\'' +
+                ", createdate='" + createdate + '\'' +
+                ", istop='" + istop + '\'' +
+                '}';
+    }
 }

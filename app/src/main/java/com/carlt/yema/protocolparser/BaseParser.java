@@ -65,7 +65,7 @@ public abstract class BaseParser<T> {
                 switch (msg.what) {
                     case 0:
                         if (mResultCallback != null) {
-                            mResultCallback.onSuccess(mBaseResponseInfo.getValue());
+                            mResultCallback.onSuccess(mBaseResponseInfo);
                         }
                         break;
                     case 1:

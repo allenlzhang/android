@@ -12,7 +12,7 @@ public class DefaultParser<T> extends BaseParser<T> {
 
     private static JsonObject mJSON_data;
 
-    public DefaultParser(ResultCallback<T> callback, Class<T> clazz) {
+    public DefaultParser(ResultCallback<T> callback, Class clazz) {
         super(callback, clazz);
     }
     @Override
