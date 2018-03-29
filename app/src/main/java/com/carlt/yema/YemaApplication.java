@@ -57,6 +57,18 @@ public class YemaApplication extends Application {
     private static YemaApplication instance;
 
     public static Context ApplicationContext;
+	/**
+     * 是否已经展示了固件下载升级提示
+     */
+    private boolean isshowupdata;
+
+    public boolean isIsshowupdata() {
+        return isshowupdata;
+    }
+
+    public void setIsshowupdata(boolean isshowupdata) {
+        this.isshowupdata = isshowupdata;
+    }
 
     private  RemoteMainInfo remoteMainInfo;
 

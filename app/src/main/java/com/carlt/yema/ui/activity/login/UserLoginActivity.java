@@ -31,9 +31,9 @@ import com.carlt.yema.ui.view.UUAuthorDialog;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.CipherUtils;
 import com.carlt.yema.utils.CreatPostString;
+import com.carlt.yema.utils.StringUtils;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -77,10 +77,11 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     public final static int ERRO_CODE_DATA = 1025;// 用户名或密码错误
 
 
-
     UUAuthorDialog mAuthorDialog;
 
     private static final String TAG = "UserLoginActivity";
+
+    private Intent resultIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,14 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.layout.activity_user_login);
         initComponent();
         mUseInfo = UseInfoLocal.getUseInfo();
+        resultIntent = getIntent();
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        super.onNewIntent(intent);
     }
 
     private void initComponent() {
@@ -107,6 +116,11 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
 
         user_phone = findViewById(R.id.user_phone);
         user_passwd = findViewById(R.id.user_passwd);
+        if (resultIntent != null) {
+            if (!TextUtils.isEmpty(resultIntent.getStringExtra("account"))) {
+                user_phone.setText(resultIntent.getStringExtra("account"));
+            }
+        }
 
     }
 
@@ -155,7 +169,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    private  Handler mHandler = new Handler() {
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -189,18 +203,17 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
             JSONObject mJSON_data2 = mJSON_data.getJSONObject("member");
             String access_token = mJSON_data2.getString("access_token");
             LoginInfo.setAccess_token(access_token);
-            YemaApplication.TOKEN = access_token;
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         Gson gson = new Gson();
-         mLoginInfo=gson.fromJson(content, LoginInfo.class);
+        mLoginInfo = gson.fromJson(content, LoginInfo.class);
 
-        if (response.isSuccessful()&&mLoginInfo.getFlag()==200) {
+        if (response.isSuccessful() && mLoginInfo.getFlag() == 200) {
             Message msg = new Message();
             msg.what = 0;
-            msg.obj =mLoginInfo;
+            msg.obj = mLoginInfo;
             mHandler.sendMessage(msg);
         } else {
             mLoginInfo.setInfo(BaseParser.MSG_ERRO + mLoginInfo.getFlag());
@@ -229,7 +242,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
      * 判断用户输入是否合法
      */
     private boolean isInputDataInvalid(String phoneNum, String passwd) {
-        if (TextUtils.isEmpty(user_phone.getText().toString())) {
+        if (TextUtils.isEmpty(user_phone.getText().toString()) && !StringUtils.checkCellphone(phoneNum)) {
             UUToast.showUUToast(this, "手机号码不正确", Toast.LENGTH_LONG);
             return false;
         }
@@ -282,17 +295,15 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                 startActivity(carPage);
             } else {
                 // 未激活设备
-                String vinCode = LoginInfo.getVin(LoginInfo.getMobile());
-                String pinCode = LoginInfo.getPin(LoginInfo.getMobile());
                 Intent bindDevice = new Intent(mContext,
                         DeviceBindActivity.class);
-                bindDevice.putExtra("pin", pinCode);
-                bindDevice.putExtra("vin", vinCode);
+                bindDevice.putExtra("vin", user_phone.getText().toString());
                 mContext.startActivity(bindDevice);
             }
         } else {
             Intent bindDevice = new Intent(mContext,
                     DeviceBindActivity.class);
+            bindDevice.putExtra("vin", user_phone.getText().toString());
             mContext.startActivity(bindDevice);
 
         }
@@ -321,7 +332,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                 String content = response.body().string();
 
                 Gson gson = new Gson();
-                mLoginInfo=gson.fromJson(content, LoginInfo.class);
+                mLoginInfo = gson.fromJson(content, LoginInfo.class);
                 if (mLoginInfo.getFlag() == 200) {
                     Message msg = Message.obtain();
                     msg.what = 0;
@@ -340,12 +351,12 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
 
     /**
      * 加载成功
-     *
-     * */
+     */
     private void loadSuccess(Object obj) {
         if (mDialog != null && mDialog.isShowing()) {
             mDialog.dismiss();
         }
+
         mUseInfo.setAccount(userPhone);
         mUseInfo.setPassword(passwd);
         UseInfoLocal.setUseInfo(mUseInfo);
@@ -353,16 +364,12 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         Intent carPage = new Intent(this, MainActivity.class);
         carPage.putExtra("page", "1");
         startActivity(carPage);
-        String token = LoginInfo.getAccess_token();
-        //暂时屏蔽业务逻辑代码。之后@马乐补上
-            //        accountBinding(this);
-        //
+        accountBinding(this);
     }
 
     /**
      * 加载失败（野马项目没有授权流程）
-     *
-     * */
+     */
     private void LoadErro(Object erro) {
         if (mDialog != null && mDialog.isShowing()) {
             mDialog.dismiss();
@@ -379,6 +386,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
             } else {
                 UUToast.showUUToast(UserLoginActivity.this, "登录失败...");
             }
+
         }
     }
 

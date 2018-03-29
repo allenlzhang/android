@@ -3,10 +3,10 @@ package com.carlt.yema.utils;
 import android.util.Log;
 
 import com.carlt.yema.YemaApplication;
-import com.carlt.yema.data.RegisteInfo;
 import com.carlt.yema.data.UploadInfo;
 import com.carlt.yema.data.car.SecretaryMessageInfo;
 import com.carlt.yema.data.community.SubmitSOSInfo;
+import com.carlt.yema.data.login.UserRegisterParams;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.systemconfig.URLConfig;
 
@@ -149,7 +149,23 @@ public class CreatPostString {
 	}
 
 	// 获取经销商车型列表
-	public static String getDealerModel(int index, String id) {
+//	public static String getDealerModel(int index, String id) {
+//		HashMap<String, String> mMap = new HashMap<String, String>();
+//		switch (index) {
+//		case 1:
+//
+//			break;
+//		case 2:
+//			mMap.put("pid", id);
+//			break;
+//		case 3:
+//			mMap.put("optionid", id);
+//			break;
+//		}
+//		return CreatString(mMap);
+//	}
+	// 获取经销商车型列表
+	public static HashMap<String,String> getDealerModel(int index, String id) {
 		HashMap<String, String> mMap = new HashMap<String, String>();
 		switch (index) {
 		case 1:
@@ -162,7 +178,7 @@ public class CreatPostString {
 			mMap.put("optionid", id);
 			break;
 		}
-		return CreatString(mMap);
+		return mMap;
 	}
 
 	// // 获取经销商车型列表(针对获取车款级别列表)
@@ -193,19 +209,19 @@ public class CreatPostString {
 	}
 
 	// 生成注册参数
-	public static String getRegiste(RegisteInfo mRegisteInfo) {
+	public static String getRegiste(UserRegisterParams mRegisteParams) {
 		HashMap<String, String> mMap = new HashMap<String, String>();
 
-		mMap.put("mobile", mRegisteInfo.getMobile());
-		mMap.put("password", mRegisteInfo.getPassWord());
-		mMap.put("validate", mRegisteInfo.getValidate());
+		mMap.put("mobile", mRegisteParams.getMobile());
+		mMap.put("password", mRegisteParams.getPassword());
+		mMap.put("validate", mRegisteParams.getValidate());
 		mMap.put("move_deviceid", YemaApplication.NIMEI);
 		mMap.put("move_device_name", YemaApplication.MODEL_NAME);
-		if (mRegisteInfo.getInvite() != null
-				& !mRegisteInfo.getInvite().equals("")) {
-			mMap.put("invite", mRegisteInfo.getInvite());
-		}
-		mMap.put("originate", mRegisteInfo.getOriginate());
+//		if (mRegisteInfo.getInvite() != null
+//				& !mRegisteInfo.getInvite().equals("")) {
+//			mMap.put("invite", mRegisteInfo.getInvite());
+//		}
+		mMap.put("originate", mRegisteParams.getOriginate());
 		return CreatString(mMap);
 	}
 

@@ -63,14 +63,15 @@
             android:inputType="textPassword"
             android:maxLength="11" />
 
-        <ImageView
+        <CheckedTextView
             android:id="@+id/change_passwd_toggle"
             android:layout_width="25dp"
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
             android:layout_height="25dp"
             android:tag="on"
-            android:src="@mipmap/passwd_off" />
+            android:background="@mipmap/passwd_off"
+            />
     </LinearLayout>
     <LinearLayout
 
@@ -91,14 +92,15 @@
             android:inputType="textPassword"
             android:maxLength="11" />
 
-        <ImageView
+        <CheckedTextView
             android:id="@+id/change_passwd_again_toggle"
             android:layout_width="25dp"
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
             android:layout_height="25dp"
             android:tag="on"
-            android:src="@mipmap/passwd_off" />
+            android:background="@mipmap/passwd_off"
+           />
     </LinearLayout>
 
     <TextView

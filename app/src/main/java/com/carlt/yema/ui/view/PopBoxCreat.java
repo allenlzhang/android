@@ -17,7 +17,7 @@ import com.carlt.yema.YemaApplication;
 
 
 public class PopBoxCreat {
-//    private static UUUpdateDialog mUUDialog;
+    private static UUUpdateDialog mUUDialog;
 //    private static UUUpdateChangeDialog mUUDialogChange;
 
 	/**
@@ -579,23 +579,23 @@ public class PopBoxCreat {
 //        return mUUDialog;
 //    }
 //
-//    /**
-//     * 硬件升级提示框
-//     *
-//     * @param context
-//     * @param mListener
-//     * @return
-//     */
-//    public static UUUpdateDialog showUUUpdateDialog(final Context context, final DialogUpdateListener mListener) {
-//    	if(mUUDialog != null && mUUDialog.isShowing()){
-//    		return mUUDialog;
-//    	}
-//
-//		mUUDialog = new UUUpdateDialog(context, mListener);
-//		mUUDialog.show();
-//        return mUUDialog;
-//    }
-//
+    /**
+     * 硬件升级提示框
+     *
+     * @param context
+     * @param mListener
+     * @return
+     */
+    public static UUUpdateDialog showUUUpdateDialog(final Context context, final UUUpdateDialog.DialogUpdateListener mListener) {
+    	if(mUUDialog != null && mUUDialog.isShowing()){
+    		return mUUDialog;
+    	}
+
+		mUUDialog = new UUUpdateDialog(context, mListener);
+		mUUDialog.show();
+        return mUUDialog;
+    }
+
 //    /**
 //     * 硬件升级提示框-更换设备
 //     *

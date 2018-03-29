@@ -22,6 +22,11 @@ public class BaseResponseInfo<T> {
     public final static int PRARM_ERROR = 1004;//参数错误
     public final static int DATA_NONEXISTENT = 1005;//该条数据已经不存在
 
+    public final static int PHONE_REGISTERED = 2102;//该手机号已被注册
+    public final static int PHONE_ACTIVATE = 2105 ;//该手机号已激活,请直接登录
+    public final static int PHONE_UNREGISTERED = 2107;//该手机号还未注册
+    public final static int PHONE_ERROR = 2101;//该手机号不存在或没权限操作
+    public final static int PHONE_REPEAT = 1001;//token为空
 
     @SerializedName("code")
     private int flag;
