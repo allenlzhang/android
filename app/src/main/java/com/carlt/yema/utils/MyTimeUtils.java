@@ -1,9 +1,12 @@
 package com.carlt.yema.utils;
 
+import android.text.format.DateFormat;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Created by liu on 2017/10/20 0020.
@@ -30,6 +33,15 @@ public class MyTimeUtils {
         }
     }
 
+    /**
+     * 获取系统当前日期 格式：XXXX-0X-0X
+     *
+     * @return
+     */
+    public static String getDateFormat3() {
+        Calendar mCalendar = Calendar.getInstance();
+        return FORMAT_DAY.format(mCalendar.getTime());
+    }
     /**
      *  秒数转为 格式化时间，精确到秒
      * @param input
@@ -81,4 +93,27 @@ public class MyTimeUtils {
     public static String getFormatTime(Date date) {
         return FORMAT.format(date);
     }
+    /**
+     * 获取系统当前日期 格式：XXXX年XX月
+     *
+     * @return
+     */
+    public static String getDateFormat6() {
+        Calendar mCalendar = Calendar.getInstance();
+        mCalendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        int year = mCalendar.get(Calendar.YEAR);
+        int month = mCalendar.get(Calendar.MONTH);
+        month++;
+        StringBuffer mStringBuffer = new StringBuffer();
+        mStringBuffer.append(year);
+        mStringBuffer.append("年");
+        if(month<10){
+            mStringBuffer.append("0");
+        }
+        mStringBuffer.append(month);
+        mStringBuffer.append("月");
+
+        return mStringBuffer.toString();
+    }
+
 }

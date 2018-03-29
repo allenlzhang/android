@@ -1,4 +1,4 @@
-package com.hz17car.yema;
+package com.carlt.yema;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.hz17car.yema", appContext.getPackageName());
+        assertEquals("com.carlt.yema", appContext.getPackageName());
     }
 }

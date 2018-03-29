@@ -7,6 +7,6 @@
         style="@style/public_listView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:dividerHeight="0dip" />
+        android:background="#2e2d33"
+         />
 </LinearLayout>

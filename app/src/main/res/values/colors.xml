@@ -12,8 +12,6 @@
     <color name="viewpager_default">#F691A8</color>
     <color name="viewpager_selected">#ffffff</color>
     <color name="main_page_linear_border">#333333</color>
-    <!-- 标题背景色 -->
-    <color name="main_page_head_bg">#FaFaFa</color>
     <!-- 小题背景色 -->
     <color name="sub_head_bg">#E6E6E6</color>
     <color name="progressbar_bg">#CCCCCC</color>
@@ -72,7 +70,7 @@
     <color name="red_rose">#F13D6D</color>
     <color name="white">#FFFFFF</color>
     <color name="yellow">#FBF9DE</color>
-    <color name="orange">#FF6600</color>
+    <color name="orange">#B22D14</color>
     <color name="red">#FF0000</color>
     <color name="black">#000000</color>
     <color name="cheng1">#db5c0c</color>
@@ -80,6 +78,8 @@
     <color name="blue_light">#3EC0EA</color>
     <color name="red_light">#F77462</color>
     <color name="transparent">#00000000</color>
+    <!-- title背景颜色 -->
+    <color name="main_page_head_bg">#161922</color>
     <color name="transparent_half">#80000000</color>
     <!-- 列表竖直灰线颜色 -->
     <color name="gray">#D0D0D0</color>
@@ -92,4 +92,12 @@
     <color name="title_bar_right_btn_bg">#171922</color>
     <color name="dialog_btn_font_color">#2c77c0</color>
     <color name="dialog_background">#e6ffffff</color>
+      <color name="disclaimer">#b22d14</color>
+
+    <color name="blue_frame">#2c77c0</color>
+    <color name="blue_fill">#204369</color>
+    <color name="item_bg">#2e2d33</color>
+
+    <color name="bar_gragh_time_color">#2c77c0</color>
+    <color name="bar_gragh_miles_color">#04b59e</color>
 </resources>

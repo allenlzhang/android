@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.base.LoadingActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ import java.util.Map;
 /**
  * 车况检测报告
  */
-public class MainTestingActivity extends BaseActivity{
+public class MainTestingActivity extends LoadingActivity{
 
     private GridView gridView;
 

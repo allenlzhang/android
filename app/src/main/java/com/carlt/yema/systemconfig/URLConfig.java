@@ -659,6 +659,25 @@ public class URLConfig {
 	// 更换设备安全验证
 	private static String M_SAFE_CHANGEDEVICEVERIFY = "safe/changeDeviceVerify";
 
+	// 日报
+	private static String M_REPORTDAY_URL = "life/dayReport";
+	// 日志
+	private static String M_REPORTDAYLOG_URL = "life/daylogreport";
+	//读取里程
+	private static String M_MILESINFO = "remote/getMilesInfos";
+
+	public static String getM_REPORTDAY_URL(){
+		return getYemaURL(M_REPORTDAY_URL);
+	}
+
+	public static String getM_REPORTDAYLOG_URL(){
+		return getYemaURL(M_REPORTDAYLOG_URL);
+	}
+
+	public static String getM_MILESINFO_URL(){
+		return getUrlRemote(M_MILESINFO);
+	}
+
 	public static String getM_CAR_GETCAREXTINFO_URL() {
 		return getYemaURL(M_CAR_GETCAREXTINFO);
 	}

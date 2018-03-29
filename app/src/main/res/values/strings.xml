@@ -103,4 +103,8 @@
     <!--清除缓存-->
     <string name="cache_clean_tips">确定清除缓存？</string>
 
+    <string name="listItem_day_driveInfo">今日驾驶%1$s次</string>
+    <string name="day_score">分</string>
+    <string name="listItem_day_timeAndMile">%1$s至%2$s(%3$s)</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.carlt.yema.utils;
 
+import com.carlt.yema.YemaApplication;
 import com.carlt.yema.model.LoginInfo;
 
 import java.util.HashMap;
@@ -39,5 +40,74 @@ public class CreateHashMap {
             param = mp;
         }
     }
+
+
+    public static HashMap getNullData(){
+        return create(null,null);
+    }
+
+    /**
+     *行车报告 日报月报参数
+     * @param date
+     * @return
+     */
+    public static HashMap getDayReportMap(String date){
+        String keys[] = {"date"};
+        String values[] = {date};
+        return create(keys,values);
+    }
+
+    /**
+     * 信息中心 提醒参数
+     * @param class1
+     * @return
+     */
+    public static HashMap getMessageMap(int class1){
+        String keys[] = {"class1"};
+        String values[] = {class1+""};
+        return create(keys,values);
+    }
+
+    /**
+     * GPS 行车轨迹参数
+     * @param gpsStartTime
+     * @param gpsStopTime
+     * @param runSn
+     * @return
+     */
+    public static HashMap getReportGpsMap(String gpsStartTime,String gpsStopTime,String runSn){
+        String key[] = {"gpsStartTime","gpsStopTime","runSn"};
+        String values[] = {gpsStartTime,gpsStopTime,runSn};
+        return create(key,values);
+    }
+
+    /**
+     * 提醒删除参数
+     * @param class1
+     * @param messageid
+     * @return
+     */
+    public static HashMap getRemindDefaultMap(int class1,int messageid){
+        String key[] = {"class1","messageid"};
+        String values[] = {class1+"",messageid+""};
+        return create(key,values);
+    }
+
+
+
+    // 生成登录参数
+    public static HashMap getLogin(String userName, String psWord) {
+        StringBuffer sysinfo = new StringBuffer(YemaApplication.ANDROID_VERSION);
+        sysinfo.append(",");
+        sysinfo.append(YemaApplication.DISPLAY);
+        sysinfo.append(",");
+        sysinfo.append(YemaApplication.MODEL_NAME);
+        String keys[] = {"mobile","password","move_deviceid","move_device_name","move_model","softtype","version","sysinfo"};
+        String values[] ={userName,CipherUtils.md5(psWord),YemaApplication.NIMEI,YemaApplication.MODEL_NAME,YemaApplication.MODEL,"android",
+                YemaApplication.Version_API + "",sysinfo.toString()};
+
+        return create(keys,values);
+    }
+
 
 }

@@ -13,9 +13,10 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
-import com.carlt.yema.data.home.InformationCentreInfo;
-import com.carlt.yema.data.home.InformationCentreInfoList;
+import com.carlt.yema.data.home.InformationCategoryInfo;
+import com.carlt.yema.data.home.InformationCategoryInfoList;
 
 import java.util.ArrayList;
 
@@ -24,10 +25,6 @@ import java.util.ArrayList;
  */
 
 public class InformationCentreActivity extends LoadingActivity {
-
-    private ImageView back;// 头部返回键
-
-    private TextView title;// 标题文字
 
     public final static String TIPS_TITLE = "tips_title";
 
@@ -39,27 +36,14 @@ public class InformationCentreActivity extends LoadingActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_centre);
-        setTitle(R.layout.head_back);
-
-        initTitle();
+        initTitle("信息中心");
         init();
-        loadingDataUI();
+        initData();
     }
 
-    private void initTitle() {
-        back = (ImageView) findViewById(R.id.head_back_img1);
-        title = (TextView) findViewById(R.id.head_back_txt1);
-
-        back.setImageResource(R.drawable.arrow_back);
-        title.setText("信息中心");
-        back.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
+    private void initData() {
+        loadingDataUI();
+        EControl.GetInformationCentreInfoListResult(mCallback);
     }
 
 
@@ -68,39 +52,33 @@ public class InformationCentreActivity extends LoadingActivity {
     }
 
 
-
     @Override
-    public void loadDataSuccess(Object data) {
-        if (data != null) {
-            InformationCentreInfoList mCentreInfoLists;
-            mCentreInfoLists = (InformationCentreInfoList) data;
-            final ArrayList<InformationCentreInfo> mList = mCentreInfoLists.getmAllList();
-            TypeAdapter mAdapter = new TypeAdapter(mList);
-            mListView.setAdapter(mAdapter);
-            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    public void loadDataSuccess(Object bInfo) {
+        super.loadDataSuccess(bInfo);
+            if (bInfo != null) {
+                InformationCategoryInfoList mCentreInfoLists;
+                mCentreInfoLists = (InformationCategoryInfoList) ((BaseResponseInfo)bInfo).getValue();
+                final ArrayList<InformationCategoryInfo> mList = mCentreInfoLists.getmAllList();
+                TypeAdapter mAdapter = new TypeAdapter(mList);
+                mListView.setAdapter(mAdapter);
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    InformationCentreInfo mInfo = mList.get(position);
-                    String title_s = mInfo.getName();
-                    int type = mInfo.getId();
-                    Intent mIntent = new Intent(InformationCentreActivity.this, RemindActivity.class);
-                    mIntent.putExtra(TIPS_TITLE, title_s);
-                    mIntent.putExtra(TIPS_TYPE, type);
-                    startActivity(mIntent);
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        InformationCategoryInfo mInfo = mList.get(position);
+                        String title_s = mInfo.getName();
+                        int type = mInfo.getId();
+                        Intent mIntent = new Intent(InformationCentreActivity.this, RemindActivity.class);
+                        mIntent.putExtra(TIPS_TITLE, title_s);
+                        mIntent.putExtra(TIPS_TYPE, type);
+                        startActivity(mIntent);
 
-                }
-            });
+                    }
+                });
 
-            int unreadCount = mCentreInfoLists.getUnreadCount();
-//            if (unreadCount > 0) {
-//                mTextViewSecretary.setText(LoginInfo.getSecretaryName() + "：您有未读消息哦！");
-//            } else {
-//                mTextViewSecretary.setText(LoginInfo.getSecretaryName() + "：我是您的私人汽车助理");
-//            }
+                int unreadCount = mCentreInfoLists.getUnreadCount();
         }
     }
-
 
 
     private int count = 0;
@@ -109,7 +87,7 @@ public class InformationCentreActivity extends LoadingActivity {
     protected void onResume() {
         super.onResume();
         if (count > 0) {
-            loadingDataUI();
+            initData();
         }
         count++;
     }
@@ -118,9 +96,9 @@ public class InformationCentreActivity extends LoadingActivity {
 
         private LayoutInflater mInflater;
 
-        private ArrayList<InformationCentreInfo> mList;
+        private ArrayList<InformationCategoryInfo> mList;
 
-        public TypeAdapter(ArrayList<InformationCentreInfo> list) {
+        public TypeAdapter(ArrayList<InformationCategoryInfo> list) {
             mInflater = LayoutInflater.from(InformationCentreActivity.this);
             mList = list;
         }
@@ -153,7 +131,7 @@ public class InformationCentreActivity extends LoadingActivity {
             View line = convertView.findViewById(R.id.line);
 
             line.setVisibility(View.VISIBLE);
-            InformationCentreInfo mInfo = mList.get(position);
+            InformationCategoryInfo mInfo = mList.get(position);
             if(position == mList.size() - 1){
                 line.setVisibility(View.INVISIBLE);
             }
@@ -172,8 +150,8 @@ public class InformationCentreActivity extends LoadingActivity {
 
             // 最后一条消息内容
             string = mInfo.getLastmsg();
-            int count = mInfo.getMsgcount();
-            if (count > 0) {
+            String count = mInfo.getMsgcount();
+            if (Integer.parseInt(count) > 0) {
                 mImgDot.setVisibility(View.VISIBLE);
                 if (string != null && string.length() > 0) {
                     mTxtDes.setText("新消息：" + string);
