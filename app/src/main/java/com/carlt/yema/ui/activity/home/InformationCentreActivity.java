@@ -43,7 +43,7 @@ public class InformationCentreActivity extends LoadingActivity {
 
         initTitle();
         init();
-        LoadData();
+        loadingDataUI();
     }
 
     private void initTitle() {
@@ -70,7 +70,7 @@ public class InformationCentreActivity extends LoadingActivity {
 
 
     @Override
-    public void LoadSuccess(BaseResponseInfo data) {
+    public void loadDataSuccess(Object data) {
         if (data != null) {
             InformationCentreInfoList mCentreInfoLists;
             mCentreInfoLists = (InformationCentreInfoList) data;
@@ -99,20 +99,9 @@ public class InformationCentreActivity extends LoadingActivity {
 //                mTextViewSecretary.setText(LoginInfo.getSecretaryName() + "：我是您的私人汽车助理");
 //            }
         }
-        super.LoadSuccess(data);
     }
 
-    @Override
-    public void LoadError(BaseResponseInfo error) {
-        super.LoadError(error);
-    }
 
-    @Override
-    protected void LoadData() {
-        super.LoadData();
-//        CPControl.GetSecretaryCategoryResult(listener);
-
-    }
 
     private int count = 0;
 
@@ -120,7 +109,7 @@ public class InformationCentreActivity extends LoadingActivity {
     protected void onResume() {
         super.onResume();
         if (count > 0) {
-            LoadData();
+            loadingDataUI();
         }
         count++;
     }

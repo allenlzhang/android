@@ -68,7 +68,7 @@ public class LoadingActivity extends BaseActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.error_txt_retry:
-                    LoadData();
+                   loadingDataUI();
                     reTryLoadData();
                     break;
             }
@@ -96,7 +96,7 @@ public class LoadingActivity extends BaseActivity {
      *
      * @param data
      */
-    public void LoadSuccess(BaseResponseInfo data) {
+    public void loadSuccessUI(BaseResponseInfo data) {
         mViewLoading.setBackgroundResource(R.drawable.transparent_bg);
         mViewLoading.setVisibility(View.GONE);
         mViewError.setVisibility(View.GONE);
@@ -107,7 +107,7 @@ public class LoadingActivity extends BaseActivity {
     /**
      * 加载数据
      */
-    protected void LoadData() {
+    protected void loadingDataUI() {
         mTxtRetryError.setVisibility(View.GONE);
         mViewLoading.setBackgroundResource(R.drawable.transparent_bg);
         mViewLoading.setVisibility(View.VISIBLE);
@@ -122,7 +122,7 @@ public class LoadingActivity extends BaseActivity {
      *
      * @param error
      */
-    public void LoadError(BaseResponseInfo error) {
+    public void loadonErrorUI(BaseResponseInfo error) {
         //并不需要
         mViewLoading.setVisibility(View.GONE);
         mViewError.setVisibility(View.VISIBLE);
@@ -144,7 +144,7 @@ public class LoadingActivity extends BaseActivity {
     /**
      * 没有数据
      */
-    public void LoadNodata() {
+    public void loadNodataUI() {
         mViewLoading.setBackgroundResource(R.drawable.transparent_bg);
         mViewLoading.setVisibility(View.GONE);
         mViewError.setVisibility(View.GONE);
@@ -156,20 +156,26 @@ public class LoadingActivity extends BaseActivity {
     protected BaseParser.ResultCallback mCallback = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(Object bInfo) {
-            LoadSuccess((BaseResponseInfo) bInfo);
+            loadSuccessUI((BaseResponseInfo) bInfo);
+            loadDataSuccess(bInfo);
         }
 
         @Override
         public void onError(Object bInfo) {
-            LoadError((BaseResponseInfo) bInfo);
+            loadonErrorUI((BaseResponseInfo) bInfo);
+            loadDataError(bInfo);
         }
     };
+
+    public void loadDataError(Object bInfo) {
+    }
+
+    public void loadDataSuccess(Object bInfo) {
+    }
 
 
     public void reTryLoadData() {
         //子类选择可以实现，重新加载
     }
-
-    ;
 
 }

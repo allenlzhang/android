@@ -179,9 +179,8 @@ public class URLConfig {
 
 	// 删除车秘书消息
 	private static String M_SECRETARY_DELETE_URL_NEW = "life/deleteMessage";
-
-	// 车秘书消息
-	private static String M_SECRETARY_MESSAGE_URL_NEW = "life/message";
+	//安防信息
+	private static String M_SECRETARY_SECURITY_MSG = "life/securityMessage";
 
 	// 版本更新
 	private static String M_VERSION_URL = "comm/appupdate";
@@ -819,7 +818,7 @@ public class URLConfig {
 	}
 
 	public static String getM_SECRETARY_MESSAGE_URL() {
-		return getYemaURL(M_SECRETARY_MESSAGE_URL_NEW);
+		return getYemaURL(M_SECRETARY_SECURITY_MSG);
 	}
 
 	public static String getM_SAFETY_MESSAGE_URL() {
