@@ -20,7 +20,7 @@
         android:gravity="center"
         android:text=""
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_small" />
+        android:textSize="@dimen/title_text_size" />
 
     <ImageView
         android:id="@+id/head_back_img2"

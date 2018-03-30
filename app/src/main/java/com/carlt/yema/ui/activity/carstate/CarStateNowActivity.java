@@ -35,7 +35,7 @@ public class CarStateNowActivity extends LoadingActivity {
 
 
     private void initData() {
-        DefaultParser<CarNowStatusInfo> parser = new DefaultParser<CarNowStatusInfo>(new BaseParser.ResultCallback() {
+        DefaultParser<CarNowStatusInfo> parser = new DefaultParser<>(new BaseParser.ResultCallback() {
             @Override
             public void onSuccess(BaseResponseInfo bInfo) {
                 loadSuccessUI();

@@ -226,6 +226,12 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
 
     };
 
+    @Override
+    public void reTryLoadData() {
+        super.reTryLoadData();
+        initData();
+    }
+
     private boolean isSuccessDay;// 日报信息是否拉取成功
 
     private boolean isSuccessLog;// 行车日志是否拉取成功
@@ -248,6 +254,7 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
                     isSuccessDay = true;
                     mReportDayInfo = (ReportDayInfo)((BaseResponseInfo)msg.obj).getValue();
                     if (isSuccessDay && isSuccessLog) {
+                        loadSuccessUI();
                         loadDataSuccess(null);
                     }
                     break;
@@ -259,6 +266,7 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
                     isSuccessLog = true;
                     mDayLogInfos = (ArrayList<ReportDayLogInfo>)((BaseResponseInfo)msg.obj).getValue();
                     if (isSuccessDay && isSuccessLog) {
+                        loadSuccessUI();
                         loadDataSuccess(null);
                     }
                     break;

@@ -138,6 +138,13 @@ public class GpsTrailActivity extends LoadingActivity implements
 		initData();
 	}
 
+
+	@Override
+	public void reTryLoadData() {
+		super.reTryLoadData();
+		initData();
+	}
+
 	private void initData() {
 		if (isMapLoaded) {
 			if (mCarLogInfo != null) {
