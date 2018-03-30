@@ -15,6 +15,10 @@ import com.carlt.yema.utils.ILog;
 
 import java.util.HashMap;
 
+/**
+ * 实时车况
+ *
+ */
 public class CarStateNowActivity extends LoadingActivity {
 
     @Override
@@ -27,26 +31,13 @@ public class CarStateNowActivity extends LoadingActivity {
         initData();
     }
 
-
     //初始化view
     private void initView() {
 
     }
 
-
     private void initData() {
-        DefaultParser<CarNowStatusInfo> parser = new DefaultParser<>(new BaseParser.ResultCallback() {
-            @Override
-            public void onSuccess(BaseResponseInfo bInfo) {
-                loadSuccessUI();
-                ILog.e(TAG,bInfo.getValue().toString());
-            }
-
-            @Override
-            public void onError(BaseResponseInfo bInfo) {
-                loadonErrorUI(bInfo);
-            }
-        },CarNowStatusInfo.class);
+        DefaultParser<CarNowStatusInfo> parser = new DefaultParser<>(mCallback,CarNowStatusInfo.class);
         parser.executePost(URLConfig.getM_REMOTE_STATUS(),new HashMap());
     }
 

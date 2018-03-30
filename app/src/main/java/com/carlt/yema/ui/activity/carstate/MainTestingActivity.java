@@ -53,18 +53,7 @@ public class MainTestingActivity extends LoadingActivity{
     }
 
     private void initData() {
-        DefaultParser<WaringLampInfo> defaultParser = new DefaultParser<WaringLampInfo>(new BaseParser.ResultCallback() {
-            @Override
-            public void onSuccess(BaseResponseInfo bInfo) {
-                loadSuccessUI();
-                loadDataSuccess(bInfo);
-            }
-
-            @Override
-            public void onError(BaseResponseInfo bInfo) {
-                loadonErrorUI((BaseResponseInfo) bInfo);
-            }
-        }, WaringLampInfo.class);
+        DefaultParser<WaringLampInfo> defaultParser = new DefaultParser<>(mCallback, WaringLampInfo.class);
         defaultParser.executePost(URLConfig.getM_REMOTE_WARNINGLAMP(),new HashMap());
     }
 
