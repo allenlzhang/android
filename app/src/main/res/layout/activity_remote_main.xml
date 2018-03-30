@@ -6,6 +6,7 @@
     <include
         android:id="@+id/title"
         layout="@layout/layout_title_remote"/>
+
     <ScrollView
         android:layout_below="@+id/title"
         android:layout_width="match_parent"
@@ -14,33 +15,7 @@
             android:layout_width="match_parent"
             android:background="@color/layout_background"
             android:layout_height="match_parent" >
-            <RelativeLayout
-                android:id="@+id/remote_main_lay_state"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone" >
 
-                <com.carlt.yema.ui.view.MyGridView
-                    android:id="@+id/remote_main_gridView_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dip"
-                    android:layout_marginRight="15dip"
-                    android:layout_marginTop="10dip"
-                    android:horizontalSpacing="10dip"
-                    android:scrollbars="none"
-                    android:verticalSpacing="15dip" />
-
-                <ImageView
-                    android:id="@+id/remote_main_img_arrow"
-                    android:layout_width="33dip"
-                    android:layout_height="30dip"
-                    android:layout_below="@id/remote_main_gridView_state"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="3dip"
-                    android:src="@drawable/arrow_up_bg"
-                    />
-            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/remote_main_lay_normal"
@@ -130,8 +105,35 @@
                     android:text="该车型不支持远程控制功能"
                     android:textColor="#fff"
                     android:textSize="14sp" />
+
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
+    <RelativeLayout
+        android:id="@+id/remote_main_lay_state"
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <com.carlt.yema.ui.view.MyGridView
+            android:id="@+id/remote_main_gridView_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:layout_marginTop="10dip"
+            android:horizontalSpacing="10dip"
+            android:scrollbars="none"
+            android:verticalSpacing="15dip" />
 
+        <ImageView
+            android:id="@+id/remote_main_img_arrow"
+            android:layout_width="33dip"
+            android:layout_height="30dip"
+            android:layout_below="@id/remote_main_gridView_state"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="3dip"
+            android:src="@drawable/arrow_up_bg"
+            />
+    </RelativeLayout>
 </RelativeLayout>

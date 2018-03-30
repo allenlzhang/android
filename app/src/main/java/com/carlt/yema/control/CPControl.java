@@ -2,6 +2,7 @@ package com.carlt.yema.control;
 
 
 import com.carlt.yema.YemaApplication;
+import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.ReportGpsInfo;
 import com.carlt.yema.data.home.InformationCategoryInfoList;
 import com.carlt.yema.data.home.InformationMessageInfoList;
@@ -11,6 +12,7 @@ import com.carlt.yema.data.home.ReportDayInfo;
 import com.carlt.yema.data.home.ReportDayLogInfo;
 import com.carlt.yema.data.login.UserRegisterParams;
 import com.carlt.yema.data.remote.AirMainInfo;
+import com.carlt.yema.data.remote.CarStateInfo;
 import com.carlt.yema.data.set.ModifyCarInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultParser;
@@ -32,10 +34,12 @@ import com.carlt.yema.protocolparser.home.ReportGpsParser;
 import com.carlt.yema.protocolparser.home.ReportMonthParser;
 import com.carlt.yema.protocolparser.home.ReportMonthStatisticParser;
 import com.carlt.yema.protocolparser.login.UserRegisterParser;
+import com.carlt.yema.protocolparser.remote.CarStateInfoParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.utils.CreatPostString;
 import com.carlt.yema.utils.CreateHashMap;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -70,7 +74,20 @@ public class CPControl {
 	public static void GetRemoteCarTemp(GetResultListCallback mListener_temp, AirMainInfo mAirMainInfo1) {
 	}
 
-	public static void GetRemoteCarState(GetResultListCallback mListener_states, String deviceType) {
+	public static void GetRemoteCarState(final GetResultListCallback mListener_states ) {
+
+		CarStateInfoParser paser = new CarStateInfoParser(new BaseParser.ResultCallback() {
+			@Override
+			public void onSuccess(BaseResponseInfo bInfo) {
+				mListener_states.onFinished(bInfo);
+			}
+			@Override
+			public void onError(BaseResponseInfo bInfo) {
+				mListener_states.onErro(bInfo);
+			}
+		});
+		HashMap mapParam = new HashMap();
+		paser.executePost(URLConfig.getM_REMOTE_STATE(),mapParam);
 	}
 
 	public static void GetRemotePswVerify(String password, GetResultListCallback mListener_verify) {

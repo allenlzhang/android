@@ -127,10 +127,9 @@ public class RemoteMainFragment extends BaseFragment implements
     @Override
     protected View inflateView(LayoutInflater inflater) {
         view = inflater.inflate(R.layout.activity_remote_main,null,false);
-//        mPlayRadio = PlayRadio.getInstance(getActivity());
-
         return view;
     }
+
     CarOperationConfigParser carOperationConfigParser;
     @Override
     public void onResume() {
@@ -344,7 +343,6 @@ public class RemoteMainFragment extends BaseFragment implements
             msg.what = 5;
             msg.obj = o;
             mHandler.sendMessage(msg);
-
         }
     };
 
@@ -441,7 +439,7 @@ public class RemoteMainFragment extends BaseFragment implements
 
                 case 2:
                     // 获取车辆状态成功
-                    ArrayList<CarStateInfo> mDataList = (ArrayList<CarStateInfo>) msg.obj;
+                    ArrayList<CarStateInfo> mDataList = (ArrayList<CarStateInfo>) ((BaseResponseInfo)msg.obj).getValue();
                     if (mDataList != null && mDataList.size() > 0) {
                         mGridViewState.setNumColumns(3);
                         if (mAdapterStates == null) {
@@ -586,7 +584,7 @@ public class RemoteMainFragment extends BaseFragment implements
                     mViewState.setVisibility(View.GONE);
                 } else {
                     showWaitingDialog("正在获取数据...");
-                    CPControl.GetRemoteCarState(mListener_states, deviceType);
+                    CPControl.GetRemoteCarState(mListener_states);
                 }
                 break;
             case R.id.remote_history_iv:

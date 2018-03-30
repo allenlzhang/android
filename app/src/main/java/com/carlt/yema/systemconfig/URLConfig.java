@@ -175,6 +175,9 @@ public class URLConfig {
 	private static String M_REMOTE_WARNINGLAMP = "remote/warningLamp";
 	//实时车况
 	private static String M_REMOTE_STATUS = "remote/status";
+
+	//车辆状态
+	private static String M_REMOTE_STATE= "remote/state";
 	//胎压监测
 	private static String M_REMOTE_DRIECTRRESSURE = "remote/directPressure";
 
@@ -282,6 +285,10 @@ public class URLConfig {
 
 	public static String getM_REMOTE_STATUS() {
 		return getUrlRemote(M_REMOTE_STATUS);
+	}
+
+	public static String getM_REMOTE_STATE() {
+		return getUrlRemote(M_REMOTE_STATE);
 	}
 
 	public static String getM_REMOTE_DRIECTRRESSURE() {

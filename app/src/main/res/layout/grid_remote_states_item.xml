@@ -9,14 +9,13 @@
         android:id="@+id/remote_states_item_img_icon"
         android:layout_width="30dp"
         android:layout_height="30dp" />
-
     <TextView
         android:id="@+id/remote_states_item_txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
-        android:textColor="#666666"
-        android:textSize="13sp" />
+        android:textColor="@color/app_white"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/remote_states_item_txt_state"
@@ -24,6 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
         android:textColor="#999999"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 
 </LinearLayout>
