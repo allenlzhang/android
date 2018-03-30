@@ -6,12 +6,13 @@ import android.os.Bundle;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.base.LoadingActivity2;
 import com.carlt.yema.model.LoginInfo;
 
 /**
  * 定位寻车
  */
-public class FindCarActivity extends LoadingActivity {
+public class FindCarActivity extends LoadingActivity2 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

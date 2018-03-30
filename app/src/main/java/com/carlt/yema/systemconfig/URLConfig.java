@@ -156,78 +156,6 @@ public class URLConfig {
 	// 日历信息--日报
 	private static String M_USER_DAY_POINT_URL = "life/userdaypoint";
 
-<<<<<<< HEAD
-	// 绑定设备
-	private static String M_CAR_BINDVINDEVICE = "car/bindVinDevice";
-
-	// 获取二维码
-	private static String M_TRANSFER_GET_QRCODE_URL = "caroutting/sweepMake";
-
-	// 新车主取消
-	private static String M_TRANSFER_NEW_CANCLE_URL = "caroutting/cancelOutting";
-
-	// 旧车主操作过户
-	private static String M_TRANSFER_OLD_OPERATION = "caroutting/dealOutting";
-
-	// 新车主操作过户
-	private static String M_TRANSFER_NEW_OPERATION = "caroutting/sweepQrcode";
-
-	// 旧车主检测有没有过户请求
-	private static String M_TRANSFER_OLD_CHECKING = "caroutting/hasOutting";
-
-	// 新车主检测过户结果
-	private static String M_TRANSFER_NEW_CHECKING = "caroutting/outtingStatus";
-
-	// 我的奖品列表
-	private static String M_PRIZELIST_URL = "life/prize";
-
-	// 我的奖品详情
-	private static String M_PRIZEDETAIL_URL = "life/prizedetail";
-
-	// 获取推荐顾问
-	private static String M_RECOMMENDSALES_URL = "life/recommendsales";
-
-	// 获取车秘书消息详情
-	private static String M_SECRETARY_GETBIID_URL = "life/getByIdMessage";
-
-	// 车秘书提醒
-	private static String M_SAFETY_MESSAGE_URL = "life/message";
-
-	// 获取违章信息列表
-	private static String M_TRAFFICVIOLATION_URL = "car/getTrafficViolation";
-
-	// 保存违章车辆信息
-	private static String M_SAVECAR_URL = "violation/saveCar";
-
-	// 获取违章车辆列表
-	private static String M_GETCARLIST_URL = "violation/getCarList";
-
-	// 获取违章车辆
-	private static String M_GETCARINFO_URL = "violation/getCarInfo";
-
-	// 删除违章车辆
-	private static String M_DELCAR_URL = "violation/delCar";
-
-	// 设置为我的车辆
-	private static String M_SETMYCAR_URL = "violation/setMyCar";
-
-	// 获取首次违章查询信息列表
-	private static String M_INITVIOLATION_URL = "car/initViolation";
-
-	// 远程下发违章信息
-	private static String M_OFFENCES_URL = "remote/offences";
-	// 获取CarObd信息
-	private static String M_CAROBDINFO_URL = "user/getCarObdInfo";
-	// 获取实时车况列表
-	private static String M_CAR_STATU_URL = "car/status";
-	// 获取实时车况列表--改为远程相关接口
-	private static String M_CAR_STATUS_URL = "remote/status";
-	// 获取导航同步到车
-	private static String M_CARRELATED_NAVIGATION_URL = "carRelated/navigation";
-	// 获取导航同步到车--改为远程相关接口
-	private static String M_NAVIGATION_URL = "remote/navigation";
-=======
->>>>>>> af5d7e5a1d3b2803ff15525a90a5484575ad8362
 	// 获取用户绑定车款配置
 	private static String M_CAR_CURCARCONFIG_URL = "car/curCarConfig";
 
@@ -249,6 +177,13 @@ public class URLConfig {
 	private static String M_REMOTE_STATUS = "remote/status";
 	//胎压监测
 	private static String M_REMOTE_DRIECTRRESSURE = "remote/directPressure";
+
+	// 车秘书提醒
+	private static String M_SAFETY_MESSAGE_URL = "life/message";
+
+	public static String getM_SAFETY_MESSAGE_URL() {
+		return getYemaURL(M_SAFETY_MESSAGE_URL);
+	}
 
 	public static String getM_REPORTDAY_URL(){
 		return getYemaURL(M_REPORTDAY_URL);

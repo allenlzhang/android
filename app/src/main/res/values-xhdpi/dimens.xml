@@ -31,8 +31,6 @@
     <dimen name="report_month_paddingR">10dip</dimen>
     <dimen name="report_month_paddingV">10dip</dimen>
     <dimen name="report_month_paddingV2">7dip</dimen>
-    <!-- 标题头高度 -->
-    <dimen name="head_height">44dip</dimen>
     <!-- 副标题头高度 -->
     <dimen name="head_sub_height_text">51dip</dimen>
 
