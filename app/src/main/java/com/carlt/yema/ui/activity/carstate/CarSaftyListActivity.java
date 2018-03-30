@@ -2,6 +2,7 @@ package com.carlt.yema.ui.activity.carstate;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
@@ -12,6 +13,7 @@ import com.carlt.yema.data.car.SaftyMsgInfo;
 import com.carlt.yema.protocolparser.DefaultParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.ui.adapter.CarSaftyAdapter;
 import com.carlt.yema.utils.ILog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -27,6 +29,7 @@ public class CarSaftyListActivity extends LoadingActivity {
     //提醒小标题
     private TextView safyHeadTV;
 
+    private ListView mListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,7 @@ public class CarSaftyListActivity extends LoadingActivity {
 
     private void initView() {
         safyHeadTV = $ViewByID(R.id.layout_sub_head_txt);
+        mListView = $ViewByID(R.id.activity_car_query_illegal_list);
     }
 
     private void initData() {
@@ -75,7 +79,8 @@ public class CarSaftyListActivity extends LoadingActivity {
      * @param saftyMsgInfoLists
      */
     private void showData(List<SaftyMsgInfo> saftyMsgInfoLists) {
-        
+        CarSaftyAdapter adapter = new CarSaftyAdapter(CarSaftyListActivity.this,saftyMsgInfoLists);
+        mListView.setAdapter(adapter);
     }
 
     @Override
