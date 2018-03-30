@@ -223,20 +223,18 @@ public class RemoteMainFragment extends BaseFragment implements
 
     RemoteFunInfo skyWindowsInfo = null;
 
-    private CPControl.GetResultListCallback mListener = new CPControl.GetResultListCallback() {
+    private BaseParser.ResultCallback mListener = new BaseParser.ResultCallback() {
 
         @Override
-        public void onFinished(Object o) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             mHandler.sendEmptyMessage(0);
         }
-
         @Override
-        public void onErro(Object o) {
+        public void onError(BaseResponseInfo o) {
             Message msg = new Message();
             msg.what = 1;
             msg.obj = o;
             mHandler.sendMessage(msg);
-
         }
     };
     /**
@@ -327,66 +325,65 @@ public class RemoteMainFragment extends BaseFragment implements
     }
 
     // 校验远程密码
-    private CPControl.GetResultListCallback mListener_verify = new CPControl.GetResultListCallback() {
+    private BaseParser.ResultCallback mListener_verify = new BaseParser.ResultCallback() {
 
         @Override
-        public void onFinished(Object o) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 4;
-            msg.obj = o;
+            msg.obj = bInfo;
             mHandler.sendMessage(msg);
         }
 
         @Override
-        public void onErro(Object o) {
+        public void onError(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 5;
-            msg.obj = o;
+            msg.obj = bInfo;
             mHandler.sendMessage(msg);
         }
     };
 
 
     // 获取远程状态
-    private CPControl.GetResultListCallback mListener_states = new CPControl.GetResultListCallback() {
+    private BaseParser.ResultCallback mListener_states = new BaseParser.ResultCallback() {
 
         @Override
-        public void onFinished(Object o) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 2;
-            msg.obj = o;
+            msg.obj = bInfo;
             mHandler.sendMessage(msg);
         }
 
         @Override
-        public void onErro(Object o) {
+        public void onError(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 3;
-            msg.obj = o;
+            msg.obj = bInfo;
             mHandler.sendMessage(msg);
-
         }
     };
 
     // 获取车辆温度
-    private CPControl.GetResultListCallback mListener_temp = new CPControl.GetResultListCallback() {
+    private BaseParser.ResultCallback mListener_temp = new BaseParser.ResultCallback() {
 
         @Override
-        public void onFinished(Object o) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 8;
-            msg.obj = o;
+            msg.obj = bInfo;
             mHandler.sendMessage(msg);
         }
 
         @Override
-        public void onErro(Object o) {
+        public void onError(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 9;
-            msg.obj = o;
+            msg.obj = bInfo;
             mHandler.sendMessage(msg);
-
         }
+
     };
 
     /**

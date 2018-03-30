@@ -1,7 +1,6 @@
 
 package com.carlt.yema.ui.activity.home;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,11 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
-import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.control.CPControl;
-import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.ReportDayInfo;
 import com.carlt.yema.data.home.ReportDayLogInfo;
@@ -35,7 +32,6 @@ import com.carlt.yema.utils.MyTimeUtils;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 public class DayActivity extends LoadingActivity implements OnClickListener {

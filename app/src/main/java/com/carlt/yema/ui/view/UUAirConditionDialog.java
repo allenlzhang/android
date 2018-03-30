@@ -28,6 +28,7 @@ import com.carlt.yema.YemaApplication;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.remote.AirMainInfo;
 import com.carlt.yema.data.remote.RemoteFunInfo;
+import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.adapter.RemoteAirAdapter;
 import com.carlt.yema.utils.MyParse;
 import com.carlt.yema.utils.PlayRadio;
@@ -72,7 +73,7 @@ public class UUAirConditionDialog extends Dialog implements OnClickListener,
 
 	private final static int w_dip = 300;
 
-	public CPControl.GetResultListCallback mListener;
+	public BaseParser.ResultCallback mListener;
 
 	public android.view.View.OnClickListener mViewOutClick;
 

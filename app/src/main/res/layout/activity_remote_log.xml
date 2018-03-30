@@ -4,14 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/layout_background"
     >
-    <!--<ListView-->
-        <!--android:id="@+id/remotelog_list"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="10dip" >-->
-    <!--</ListView>-->
-    <TextView
-        android:id="@+id/remotelog_txt_empty"
-        style="@style/public_nodata_txt"
-        android:text="暂时没有您的远程操作记录" />
+    <ListView
+        android:id="@+id/remotelog_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip" >
+    </ListView>
 </RelativeLayout>

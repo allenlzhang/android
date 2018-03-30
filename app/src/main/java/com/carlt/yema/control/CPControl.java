@@ -33,62 +33,52 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CPControl {
-	public static void GetRemoteAir(GetResultListCallback mListener, String s, String s1) {
+	public static void GetRemoteAir(BaseParser.ResultCallback mListener, String s, String s1) {
 	}
 
-	public static void GetRemoteStart(GetResultListCallback mListener) {
+	public static void GetRemoteStart(BaseParser.ResultCallback mListener) {
 	}
 
-	public static void GetCancelRemoteStart(GetResultListCallback mListener) {
+	public static void GetCancelRemoteStart(BaseParser.ResultCallback mListener) {
 	}
 
-	public static void GetCarLocating(GetResultListCallback mListener) {
+	public static void GetCarLocating(BaseParser.ResultCallback mListener) {
 	}
 
-	public static void GetRemoteTrunk(GetResultListCallback mListener) {
+	public static void GetRemoteTrunk(BaseParser.ResultCallback mListener) {
 	}
 
-	public static void GetRemoteLock(String s, GetResultListCallback mListener) {
+	public static void GetRemoteLock(String s, BaseParser.ResultCallback mListener) {
 	}
 
-	public static void GetRemoteClosewin(GetResultListCallback mListener) {
+	public static void GetRemoteClosewin(BaseParser.ResultCallback mListener) {
 	}
 
-	public static void GetRemoteOpenwin(GetResultListCallback mListener) {
+	public static void GetRemoteOpenwin(BaseParser.ResultCallback mListener) {
 	}
 
-	public static void GetRemoteSkylight(String s, GetResultListCallback mListener) {
+	public static void GetRemoteSkylight(String s, BaseParser.ResultCallback mListener) {
 	}
 
-	public static void GetRemoteCarTemp(GetResultListCallback mListener_temp, AirMainInfo mAirMainInfo1) {
+	public static void GetRemoteCarTemp(BaseParser.ResultCallback mListener_temp, AirMainInfo mAirMainInfo1) {
 	}
 
-	public static void GetRemoteCarState(final GetResultListCallback mListener_states ) {
-
-		CarStateInfoParser paser = new CarStateInfoParser(new BaseParser.ResultCallback() {
-			@Override
-			public void onSuccess(BaseResponseInfo bInfo) {
-				mListener_states.onFinished(bInfo);
-			}
-			@Override
-			public void onError(BaseResponseInfo bInfo) {
-				mListener_states.onErro(bInfo);
-			}
-		});
+	public static void GetRemoteCarState(final BaseParser.ResultCallback mListener_states ) {
+		CarStateInfoParser paser = new CarStateInfoParser(mListener_states);
 		HashMap mapParam = new HashMap();
 		paser.executePost(URLConfig.getM_REMOTE_STATE(),mapParam);
 	}
 
-	public static void GetRemotePswVerify(String password, GetResultListCallback mListener_verify) {
+	public static void GetRemotePswVerify(String password, BaseParser.ResultCallback mListener_verify) {
 	}
 
-	public static void GetRealNameResult(String authen_name, String authen_card, GetResultListCallback listener_realname) {
+	public static void GetRealNameResult(String authen_name, String authen_card, BaseParser.ResultCallback listener_realname) {
 	}
 
-	public static void GetSetRemotePwdResult(String pswNew1, GetResultListCallback listener_set) {
+	public static void GetSetRemotePwdResult(String pswNew1, BaseParser.ResultCallback listener_set) {
 	}
 
-	public static void GetForgetRemotePwdResult(String name, String idcard, String mobile, String pswNew1, String validate, GetResultListCallback listener_forget) {
+	public static void GetForgetRemotePwdResult(String name, String idcard, String mobile, String pswNew1, String validate, BaseParser.ResultCallback listener_forget) {
 	}
 
 

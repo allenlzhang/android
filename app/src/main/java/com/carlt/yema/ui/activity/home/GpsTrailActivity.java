@@ -33,7 +33,6 @@ import com.amap.api.maps.model.TextOptions;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.control.CPControl;
-import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.ReportGpsInfo;
 import com.carlt.yema.data.home.ReportDayLogInfo;

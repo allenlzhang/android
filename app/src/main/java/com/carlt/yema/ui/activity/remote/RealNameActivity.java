@@ -15,6 +15,7 @@ import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.ui.view.ValidateEditText;
@@ -147,10 +148,10 @@ public class RealNameActivity extends BaseActivity implements OnClickListener {
 	/**
 	 * 安全认证
 	 */
-	private CPControl.GetResultListCallback listener_realname = new CPControl.GetResultListCallback() {
+	private BaseParser.ResultCallback listener_realname = new BaseParser.ResultCallback() {
 
 		@Override
-		public void onFinished(Object o) {
+		public void onSuccess(BaseResponseInfo o) {
 			Message msg = new Message();
 			msg.what = 0;
 			msg.obj = o;
@@ -158,7 +159,7 @@ public class RealNameActivity extends BaseActivity implements OnClickListener {
 		}
 
 		@Override
-		public void onErro(Object o) {
+		public void onError(BaseResponseInfo o) {
 			Message msg = new Message();
 			msg.what = 1;
 			msg.obj = o;

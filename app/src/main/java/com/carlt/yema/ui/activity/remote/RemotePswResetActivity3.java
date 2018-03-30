@@ -17,6 +17,7 @@ import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.fragment.RemoteMainFragment;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.PwdEditText;
@@ -207,30 +208,32 @@ public class RemotePswResetActivity3 extends BaseActivity implements OnClickList
     }
 
     // 设置密码
-    private CPControl.GetResultListCallback listener_set = new CPControl.GetResultListCallback() {
+    private BaseParser.ResultCallback listener_set = new BaseParser.ResultCallback() {
 
         @Override
-        public void onFinished(Object o) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 0;
-            msg.obj = o;
+            msg.obj = bInfo;
             mHandler.sendMessage(msg);
         }
 
         @Override
-        public void onErro(Object o) {
+        public void onError(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 1;
-            msg.obj = o;
+            msg.obj = bInfo;
             mHandler.sendMessage(msg);
         }
+
+
     };
 
     // 忘记密码
-    private CPControl.GetResultListCallback listener_forget = new CPControl.GetResultListCallback() {
+    private BaseParser.ResultCallback listener_forget = new BaseParser.ResultCallback() {
 
         @Override
-        public void onFinished(Object o) {
+        public void onSuccess(BaseResponseInfo o) {
             Message msg = new Message();
             msg.what = 2;
             msg.obj = o;
@@ -238,12 +241,13 @@ public class RemotePswResetActivity3 extends BaseActivity implements OnClickList
         }
 
         @Override
-        public void onErro(Object o) {
+        public void onError(BaseResponseInfo o) {
             Message msg = new Message();
             msg.what = 3;
             msg.obj = o;
             mHandler.sendMessage(msg);
         }
+
     };
 
     Handler mHandler = new Handler() {

@@ -37,15 +37,6 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="75c252bf0aa9108884674381ae6dfec7" />
-
-        <!-- <activity android:name=".ui.activity.home.TestActivity"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
         <activity android:name=".ui.activity.home.RemindActivity" />
         <activity android:name=".ui.activity.home.ReportActivity" />
         <activity android:name=".ui.activity.home.MonthActivity" />

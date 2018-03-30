@@ -1,15 +1,9 @@
 package com.carlt.yema.ui.activity.home;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -17,7 +11,6 @@ import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.control.CPControl;
-import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.MonthStatisticChartInfo;
 import com.carlt.yema.data.home.ReportMonthInfo;

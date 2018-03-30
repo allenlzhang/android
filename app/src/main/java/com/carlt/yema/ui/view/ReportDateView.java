@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.control.CPControl;
-import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.ReportCalendarMonthInfo;
 import com.carlt.yema.protocolparser.BaseParser;
