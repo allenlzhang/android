@@ -3,23 +3,13 @@ package com.carlt.yema.control;
 
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.data.BaseResponseInfo;
-import com.carlt.yema.data.ReportGpsInfo;
-import com.carlt.yema.data.home.InformationCategoryInfoList;
-import com.carlt.yema.data.home.InformationMessageInfoList;
-import com.carlt.yema.data.home.MonthStatisticChartInfo;
-import com.carlt.yema.data.home.ReportCalendarMonthInfo;
-import com.carlt.yema.data.home.ReportDayInfo;
-import com.carlt.yema.data.home.ReportDayLogInfo;
 import com.carlt.yema.data.login.UserRegisterParams;
 import com.carlt.yema.data.remote.AirMainInfo;
-import com.carlt.yema.data.remote.CarStateInfo;
 import com.carlt.yema.data.set.ModifyCarInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.protocolparser.DeviceUpdateInfoParser;
-import com.carlt.yema.protocolparser.car.CarModeInfoListV2Parser;
-import com.carlt.yema.protocolparser.car.CarModeInfoListV3Parser;
 import com.carlt.yema.protocolparser.home.CareerlParser;
 import com.carlt.yema.protocolparser.home.InformationCentreInfoListParser;
 import com.carlt.yema.protocolparser.home.InformationMessageListParser;
@@ -41,14 +31,13 @@ import com.carlt.yema.utils.CreateHashMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class CPControl {
-    public static void GetRemoteAir(GetResultListCallback mListener, String s, String s1) {
-    }
+	public static void GetRemoteAir(GetResultListCallback mListener, String s, String s1) {
+	}
 
-    public static void GetRemoteStart(GetResultListCallback mListener) {
-    }
+	public static void GetRemoteStart(GetResultListCallback mListener) {
+	}
 
 	public static void GetCancelRemoteStart(GetResultListCallback mListener) {
 	}
@@ -179,45 +168,6 @@ public class CPControl {
 		DefaultParser mParser = new DefaultParser(listener,ModifyCarInfo.class);
 		mParser.executePost(url, mMap);
 
-	}
-	/**
-	 * 获取野驴车型列表(针对获取车系级别列表-众泰专用) onFinished返还<CarModeInfo>
-	 */
-	public static void GetDealerModelListV1Result(final String id,
-												  final BaseParser.ResultCallback listener) {
-
-		if (listener == null)
-			return;
-
-		// 链接地址
-		String url = URLConfig.getM_OPTIONLIST_URL();
-		// Post参数
-		HashMap<String, String> map = new HashMap<>();
-		map.put("brandid","id");
-		CarModeInfoListV2Parser mParser = new CarModeInfoListV2Parser(listener);
-		mParser.executePost(url, map);
-	}
-	/**
-	 * 获取经销商车型列表(针对获取车款级别列表) onFinished返还<CarModeInfo>
-	 *
-	 * @param id        车型ID
-	 * @param is_before 1：前装 0：后装
-	 */
-	public static void GetDealerModelListV2Result(final String id,
-												  final String is_before, final BaseParser.ResultCallback listener) {
-
-		if (listener == null)
-			return;
-
-		// 链接地址
-		String url = URLConfig.getM_CARLIST_URL();
-		// Post参数
-		HashMap<String, String> mMap = new HashMap<String, String>();
-		mMap.put("optionid", id);
-		mMap.put("is_before", is_before);
-
-		CarModeInfoListV3Parser mParser = new CarModeInfoListV3Parser(listener);
-		mParser.executePost(url, mMap);
 	}
 
 	/**

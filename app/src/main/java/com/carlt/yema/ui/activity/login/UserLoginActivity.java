@@ -210,18 +210,21 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
 
         Gson gson = new Gson();
         mLoginInfo = gson.fromJson(content, LoginInfo.class);
-
-        if (response.isSuccessful() && mLoginInfo.getFlag() == 200) {
-            Message msg = new Message();
-            msg.what = 0;
-            msg.obj = mLoginInfo;
-            mHandler.sendMessage(msg);
+        if (mLoginInfo != null) {
+            if (response.isSuccessful() && mLoginInfo.getFlag() == 200) {
+                Message msg = new Message();
+                msg.what = 0;
+                msg.obj = mLoginInfo;
+                mHandler.sendMessage(msg);
+            } else {
+                mLoginInfo.setInfo(BaseParser.MSG_ERRO);
+                Message msg = new Message();
+                msg.what = 1;
+                msg.obj = mLoginInfo;
+                mHandler.sendMessage(msg);
+            }
         } else {
-            mLoginInfo.setInfo(BaseParser.MSG_ERRO + mLoginInfo.getFlag());
-            Message msg = new Message();
-            msg.what = 1;
-            msg.obj = mLoginInfo;
-            mHandler.sendMessage(msg);
+            UUToast.showUUToast(this,BaseResponseInfo.NET_ERROR);
         }
     }
 
@@ -365,7 +368,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         Intent carPage = new Intent(this, MainActivity.class);
         carPage.putExtra("page", "1");
         startActivity(carPage);
-//        accountBinding(this);
+        accountBinding(this);
     }
 
     /**

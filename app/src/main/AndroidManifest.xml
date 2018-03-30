@@ -91,6 +91,8 @@
         <activity android:name=".ui.activity.setting.ResetLoginPasswdActivity" />
         <activity android:name=".ui.activity.setting.VcodeResetPasswdActivity" />
         <activity android:name=".ui.activity.setting.TermsDeclareActivity" />
+        <activity android:name=".ui.activity.setting.CarModeListActivity" />
+        <activity android:name=".ui.activity.setting.CarTypeListActivity" />
         <activity android:name=".ui.activity.carstate.FindCarActivity" />
         <activity android:name=".ui.activity.carstate.LocationSynchronizeActivity"></activity>
     </application>

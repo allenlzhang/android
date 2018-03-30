@@ -28,35 +28,19 @@ public class CarModeInfoListParser extends BaseParser {
 
     @Override
     protected void parser() {
-            JsonArray mJSON_data = mJson.getAsJsonArray("data");
-            for (int i = 0; i < mJSON_data.size(); i++) {
+        JsonArray mJSON_data = mJson.getAsJsonArray("data");
+        for (int i = 0; i < mJSON_data.size(); i++) {
+            JsonObject modeItem=mJSON_data.get(i).getAsJsonObject();
+            JsonArray modelist=modeItem.getAsJsonArray("data");
+            for (int j = 0; j < modelist.size(); j++) {
                 CarModeInfo mCarModeInfo = new CarModeInfo();
-                JsonObject temp = (JsonObject)mJSON_data.get(i);
+                JsonObject temp = (JsonObject)modelist.get(j);
                 mCarModeInfo.setId(temp.get("id").getAsString());
-                mCarModeInfo.setPid(temp.get("pid").getAsString());
                 mCarModeInfo.setTitle(temp.get("title").getAsString());
-                mCarModeInfo.setTitle_py(temp.get("title_py").getAsString());
-                mCarModeInfo.setCarlogo(temp.get("carlogo").getAsString());
                 mCarModeInfo.setType(CarModeInfo.TYPE_FIRST);
                 mCarModeInfoList.add(mCarModeInfo);
             }
+        }
+        mBaseResponseInfo.setValue(mCarModeInfoList);
     }
-    //
-    // public BaseResponseInfo getBaseResponseInfo(String url, String post) {
-    // try {
-    // InputStream in = CPApplication.ApplicationContext.getAssets().open(
-    // "json_violation.txt");
-    // mJson = new JSONObject(FileUtil.ToString(in));
-    // Log.e("info", "Http响应--" + mJson);
-    // mBaseResponseInfo.setFlag(mJson.getString("code"));
-    // mBaseResponseInfo.setInfo(mJson.getString("msg"));
-    // } catch (Exception e) {
-    // Log.e("info", "BaseParser--e==" + e);
-    // }
-    // if (mBaseResponseInfo.getFlag() == BaseResponseInfo.SUCCESS) {
-    // parser();
-    // }
-    // return mBaseResponseInfo;
-    //
-    // }
 }

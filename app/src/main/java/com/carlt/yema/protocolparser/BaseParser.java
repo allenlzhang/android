@@ -4,13 +4,13 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.carlt.yema.YemaApplication;
+import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.http.HttpLinker;
 import com.carlt.yema.utils.FileUtil;
+import com.carlt.yema.utils.ILog;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.carlt.yema.data.BaseResponseInfo;
-import com.carlt.yema.http.HttpLinker;
-import com.carlt.yema.utils.ILog;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -86,6 +86,7 @@ public abstract class BaseParser<T> {
                 in = YemaApplication.getInstanse().getAssets().open(
                         testFileName);
                 String str = FileUtil.ToString(in);
+
                 JsonParser jp = new JsonParser();
                 JsonElement element = jp.parse(str);
                 mJson = element.getAsJsonObject();

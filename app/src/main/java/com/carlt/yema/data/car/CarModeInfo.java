@@ -18,6 +18,8 @@ public class CarModeInfo {
 
     private int type;// 列表类型
 
+    private String  factory_year;
+
     public final static int TYPE_FIRST = 1;
 
     public final static int TYPE_SECOND = 2;
@@ -88,4 +90,11 @@ public class CarModeInfo {
         this.type = type;
     }
 
+    public String getFactory_year() {
+        return factory_year;
+    }
+
+    public void setFactory_year(String factory_year) {
+        this.factory_year = factory_year;
+    }
 }
