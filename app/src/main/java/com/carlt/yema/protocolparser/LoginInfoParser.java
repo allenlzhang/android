@@ -3,6 +3,7 @@ package com.carlt.yema.protocolparser;
 import android.text.TextUtils;
 
 
+import com.carlt.yema.YemaApplication;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.TokenInfo;
@@ -14,12 +15,10 @@ import com.google.gson.JsonObject;
  * @author user 解析登录信息
  */
 public class LoginInfoParser extends BaseParser {
-	private final static String demoAccount = "13300001111";// 固定的演示账号13300001111(给杭州的包记得改成这个)
 
 	public LoginInfoParser(ResultCallback callback) {
 		super(callback);
 	}
-
 
 	@Override
 	protected void parser() {
@@ -38,6 +37,7 @@ public class LoginInfoParser extends BaseParser {
 				LoginInfo.setAccess_token((member.get("access_token").getAsString()));
 				TokenInfo.setToken(member.get("access_token").getAsString());
 
+				YemaApplication.TOKEN = member.get("access_token").getAsString();
 				JsonObject membercar = mJSON_data.getAsJsonObject("membercar");
 				LoginInfo.setDealerId(membercar.get("dealerid").getAsString());
 
