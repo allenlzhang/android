@@ -70,7 +70,10 @@
             android:layout_gravity="center_vertical"
             android:layout_height="25dp"
             android:tag="on"
-            android:background="@mipmap/passwd_off"
+            android:filterTouchesWhenObscured="true"
+            android:focusableInTouchMode="true"
+            android:checked="false"
+            android:checkMark="@drawable/passwd_show_bg"
             />
     </LinearLayout>
     <LinearLayout
@@ -98,8 +101,11 @@
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
             android:layout_height="25dp"
+            android:filterTouchesWhenObscured="true"
+            android:focusableInTouchMode="true"
             android:tag="on"
-            android:background="@mipmap/passwd_off"
+            android:checked="false"
+            android:checkMark="@drawable/passwd_show_bg"
            />
     </LinearLayout>
 

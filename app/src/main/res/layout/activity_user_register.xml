@@ -65,12 +65,16 @@
 
         <CheckedTextView
             android:id="@+id/register_passwd_toggle"
-            android:layout_width="25dp"
+            android:layout_width="40dp"
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
-            android:layout_height="25dp"
+            android:layout_height="40dp"
             android:tag="on"
-            android:background="@drawable/passwd_show_bg"
+            android:filterTouchesWhenObscured="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
+            android:checkMark="@drawable/passwd_show_bg"
+            android:selectAllOnFocus="true"
             android:checked="false"
              />
     </LinearLayout>
@@ -95,12 +99,16 @@
 
         <CheckedTextView
             android:id="@+id/register_passwd_again_toggle"
-            android:layout_width="25dp"
+            android:layout_width="40dp"
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
-            android:layout_height="25dp"
+            android:layout_height="40dp"
             android:tag="on"
-            android:background="@drawable/passwd_show_bg"
+            android:filterTouchesWhenObscured="true"
+            android:focusableInTouchMode="true"
+            android:selectAllOnFocus="true"
+            android:clickable="true"
+            android:checkMark="@drawable/passwd_show_bg"
             android:checked="false" />
     </LinearLayout>
     <RelativeLayout

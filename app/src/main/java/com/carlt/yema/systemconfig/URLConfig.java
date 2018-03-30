@@ -189,8 +189,14 @@ public class URLConfig {
     private static String M_CAR_MODE_LIST = "comm/getModelList";
     //获取车款
     private static String M_CAR_TYPE_LIST = "comm/getYemaCarList";
+    //添加车款
+    private static String M_CAR_ADD_CAR="car/addCar";
+    //绑定设备
+    private static String M_DEVICE_BIND_CAR="car/bindVinDevice";
     //远程操作日志
     private static String M_CAR_REMOTE_LOG_OPERATION = "carRelated/getRemoteOperationLog";
+    //密码找回
+    private static String M_PASSWORD_RETRIEVE="safe/retrievePassword";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -309,8 +315,20 @@ public class URLConfig {
     public static String getM_CAR_TYPE_LIST() {
         return getYemaURL(M_CAR_TYPE_LIST);
     }
+
+    public static String getM_CAR_ADD_CAR(){
+        return getYemaURL(M_CAR_ADD_CAR);
+    }
+
+    public static String getM_DEVICE_BIND_CAR(){
+        return getYemaURL(M_DEVICE_BIND_CAR);
+    }
+
     public static String getM_CAR_REMOTE_LOG_OPERATION() {
         return getYemaURL(M_CAR_REMOTE_LOG_OPERATION);
+    }
+    public static String getM_PASSWORD_RETRIEVE() {
+        return getYemaURL(M_PASSWORD_RETRIEVE);
     }
 
 }

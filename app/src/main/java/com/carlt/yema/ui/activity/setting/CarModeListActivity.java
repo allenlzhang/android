@@ -42,8 +42,11 @@ public class CarModeListActivity extends LoadingActivity {
         car_mode_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CarModeInfo mCarModeInfo= (CarModeInfo) adapterView.getItemAtPosition(i);
                 Intent intent=new Intent(CarModeListActivity.this,CarTypeListActivity.class);
+                intent.putExtra("optionid",mCarModeInfo.getId());
                 CarModeListActivity.this.startActivity(intent);
+                finish();
             }
         });
     }

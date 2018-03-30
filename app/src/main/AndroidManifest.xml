@@ -37,6 +37,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="75c252bf0aa9108884674381ae6dfec7" />
+
         <activity android:name=".ui.activity.home.RemindActivity" />
         <activity android:name=".ui.activity.home.ReportActivity" />
         <activity android:name=".ui.activity.home.MonthActivity" />
@@ -57,7 +58,9 @@
         <activity android:name=".ui.activity.carstate.CarLocationActivity" />
         <activity android:name=".ui.activity.carstate.CarSynchronizeLocationActivity" />
         <activity android:name=".ui.activity.remote.RemoteLogActivity" />
-        <activity android:name=".ui.activity.login.DeviceBindActivity" />
+        <activity
+            android:name=".ui.activity.login.DeviceBindActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".ui.activity.login.ResetPasswdActivity" />
         <activity android:name=".ui.activity.login.ActivateBindActivity" />
         <activity android:name=".ui.activity.login.UserRegisterActivity" />
