@@ -89,14 +89,14 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         //CARINDEX 以及支持的配置项
         BaseParser parser = new DefaultParser<CarIndexInfo>(new BaseParser.ResultCallback() {
             @Override
-            public void onSuccess(Object bInfo) {
+            public void onSuccess(BaseResponseInfo bInfo) {
                 carinfo = ((BaseResponseInfo<CarIndexInfo>) bInfo).getValue();
                 remoteConfig();
                 ILog.e(TAG, "onSuccess" + bInfo.toString());
             }
 
             @Override
-            public void onError(Object bInfo) {
+            public void onError(BaseResponseInfo bInfo) {
                 ILog.e(TAG, "onError" + bInfo.toString());
                 actLoadError((BaseResponseInfo) bInfo);
             }
@@ -109,14 +109,14 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         if (YemaApplication.getInstanse().getRemoteMainInfo() == null) {
             carOperationConfigParser = new CarOperationConfigParser<String>(new BaseParser.ResultCallback() {
                 @Override
-                public void onSuccess(Object bInfo) {
+                public void onSuccess(BaseResponseInfo bInfo) {
                     YemaApplication.getInstanse().setRemoteMainInfo(carOperationConfigParser.getReturn());
                     ILog.e(TAG, "onSuccess parser2 " + carOperationConfigParser.getReturn());
                     loadSuss();
                 }
 
                 @Override
-                public void onError(Object bInfo) {
+                public void onError(BaseResponseInfo bInfo) {
                     ILog.e(TAG, "onError" + bInfo.toString());
                     actLoadError((BaseResponseInfo) bInfo);
                 }

@@ -1,5 +1,5 @@
 
-package com.carlt.yema.data.car;
+package com.carlt.yema.data.remote;
 
 
 import com.carlt.yema.R;

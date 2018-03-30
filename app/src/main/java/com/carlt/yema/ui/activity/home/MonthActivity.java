@@ -204,7 +204,7 @@ public class MonthActivity extends LoadingActivity {
 	private BaseParser.ResultCallback listener_month = new BaseParser.ResultCallback() {
 
 		@Override
-		public void onSuccess(Object bInfo) {
+		public void onSuccess(BaseResponseInfo bInfo) {
 			Message msg = new Message();
 			msg.what = 2;
 			msg.obj = bInfo;
@@ -212,7 +212,7 @@ public class MonthActivity extends LoadingActivity {
 		}
 
 		@Override
-		public void onError(Object bInfo) {
+		public void onError(BaseResponseInfo bInfo) {
 			Message msg = new Message();
 			msg.what = 3;
 			msg.obj = bInfo;

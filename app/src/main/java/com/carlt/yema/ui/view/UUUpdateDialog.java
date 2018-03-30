@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.control.CPControl;
+import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.DeviceUpdateInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
@@ -106,7 +107,7 @@ public class UUUpdateDialog extends Dialog {
 	protected BaseParser.ResultCallback listener_polling = new BaseParser.ResultCallback() {
 
 		@Override
-		public void onSuccess(Object bInfo) {
+		public void onSuccess(BaseResponseInfo bInfo) {
 			Message msg = new Message();
 			msg.what = 0;
 			msg.obj = bInfo;
@@ -114,7 +115,7 @@ public class UUUpdateDialog extends Dialog {
 		}
 
 		@Override
-		public void onError(Object bInfo) {
+		public void onError(BaseResponseInfo bInfo) {
 			Message msg = new Message();
 			msg.what = 1;
 			msg.obj = bInfo;

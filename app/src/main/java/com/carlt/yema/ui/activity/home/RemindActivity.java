@@ -619,14 +619,14 @@ public class RemindActivity extends LoadingActivity {
     BaseParser.ResultCallback listener_tip = new BaseParser.ResultCallback() {
 
          @Override
-         public void onSuccess(Object bInfo) {
+         public void onSuccess(BaseResponseInfo bInfo) {
              Message msg = new Message();
              msg.what = 4;
              mHandler.sendMessage(msg);
          }
 
          @Override
-         public void onError(Object bInfo) {
+         public void onError(BaseResponseInfo bInfo) {
              Message msg = new Message();
              msg.what = 5;
              msg.obj = bInfo;

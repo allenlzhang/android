@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.carlt.yema.R;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.utils.ILog;
 
 
 /**
@@ -187,13 +188,13 @@ public class LoadingActivity extends BaseActivity {
 
     protected BaseParser.ResultCallback mCallback = new BaseParser.ResultCallback() {
         @Override
-        public void onSuccess(Object bInfo) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             loadSuccessUI((BaseResponseInfo) bInfo);
             loadDataSuccess(bInfo);
         }
 
         @Override
-        public void onError(Object bInfo) {
+        public void onError(BaseResponseInfo bInfo) {
             loadonErrorUI((BaseResponseInfo) bInfo);
             loadDataError(bInfo);
         }
@@ -203,6 +204,7 @@ public class LoadingActivity extends BaseActivity {
     }
 
     public void loadDataSuccess(Object bInfo) {
+
     }
 
 

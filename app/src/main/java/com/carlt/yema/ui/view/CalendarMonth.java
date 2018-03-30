@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.control.EControl;
+import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.ReportCalendarMonthInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 
@@ -186,13 +187,13 @@ public class CalendarMonth extends MenuCalendar implements OnClickListener {
         BaseParser.ResultCallback listener = new BaseParser.ResultCallback() {
 
             @Override
-            public void onSuccess(Object bInfo) {
-                mlist = (ArrayList<ReportCalendarMonthInfo>)bInfo;
+            public void onSuccess(BaseResponseInfo bInfo) {
+                mlist = (ArrayList<ReportCalendarMonthInfo>)bInfo.getValue();
                 mHandler.sendEmptyMessage(0);
             }
 
             @Override
-            public void onError(Object bInfo) {
+            public void onError(BaseResponseInfo bInfo) {
                 mHandler.sendEmptyMessage(1);
             }
 

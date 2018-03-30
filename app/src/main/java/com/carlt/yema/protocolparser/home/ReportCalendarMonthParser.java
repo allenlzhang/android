@@ -19,7 +19,7 @@ public class ReportCalendarMonthParser extends BaseParser<List<ReportCalendarMon
 
     List<ReportCalendarMonthInfo> list = new ArrayList<>();
 
-    public ReportCalendarMonthParser(ResultCallback<List<ReportCalendarMonthInfo>> callback) {
+    public ReportCalendarMonthParser(ResultCallback callback) {
         super(callback);
     }
 

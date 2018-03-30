@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.control.CPControl;
+import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarModeInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
@@ -194,15 +195,15 @@ public class SelectCarTypeView extends SelectView {
 	private BaseParser.ResultCallback listener2 = new BaseParser.ResultCallback() {
 
 		@Override
-		public void onSuccess(Object bInfo) {
-			mArrayList2 = (ArrayList<CarModeInfo>) bInfo;
+		public void onSuccess(BaseResponseInfo bInfo) {
+			mArrayList2 = (ArrayList<CarModeInfo>) bInfo.getValue();
 			Message msg = new Message();
 			msg.what = 2;
 			mHandler.sendMessage(msg);
 		}
 
 		@Override
-		public void onError(Object bInfo) {
+		public void onError(BaseResponseInfo bInfo) {
 			mHandler.sendEmptyMessage(3);
 		}
 
@@ -211,15 +212,15 @@ public class SelectCarTypeView extends SelectView {
 	private BaseParser.ResultCallback listener3 = new BaseParser.ResultCallback() {
 
 		@Override
-		public void onSuccess(Object bInfo) {
-			mArrayList3 = (ArrayList<CarModeInfo>)bInfo;
+		public void onSuccess(BaseResponseInfo bInfo) {
+			mArrayList3 = (ArrayList<CarModeInfo>)bInfo.getValue();
 			Message msg = new Message();
 			msg.what = 4;
 			mHandler.sendMessage(msg);
 		}
 
 		@Override
-		public void onError(Object bInfo) {
+		public void onError(BaseResponseInfo bInfo) {
 			mHandler.sendEmptyMessage(5);
 		}
 	};

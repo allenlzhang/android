@@ -91,7 +91,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
     BaseParser.ResultCallback callback = new BaseParser.ResultCallback() {
         @Override
-        public void onSuccess(Object bInfo) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message message = new Message();
             message.what = 0;
             message.obj = bInfo;
@@ -99,7 +99,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         }
 
         @Override
-        public void onError(Object bInfo) {
+        public void onError(BaseResponseInfo bInfo) {
             Message message = new Message();
             message.what = 1;
             message.obj = bInfo;
@@ -109,7 +109,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
     BaseParser.ResultCallback remoteCallback = new BaseParser.ResultCallback() {
         @Override
-        public void onSuccess(Object bInfo) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message message = new Message();
             message.what = 2;
             message.obj = bInfo;
@@ -117,7 +117,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         }
 
         @Override
-        public void onError(Object bInfo) {
+        public void onError(BaseResponseInfo bInfo) {
             Message message = new Message();
             message.what = 3;
             message.obj = bInfo;

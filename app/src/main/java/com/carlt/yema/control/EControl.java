@@ -38,7 +38,7 @@ public class EControl {
      * 获取信息中心列表
      * @param callback
      */
-    public static void GetInformationCentreInfoListResult(BaseParser.ResultCallback<InformationCategoryInfoList> callback){
+    public static void GetInformationCentreInfoListResult(BaseParser.ResultCallback callback){
         HashMap mHashMap = CreateHashMap.getNullData();
         InformationCentreInfoListParser parser = new InformationCentreInfoListParser(callback);
         parser.setTest(false);
@@ -62,7 +62,7 @@ public class EControl {
      * @param callback
      * @param date
      */
-    public static void GetDayReportResult(BaseParser.ResultCallback<ReportDayInfo> callback, String date){
+    public static void GetDayReportResult(BaseParser.ResultCallback callback, String date){
         HashMap mHashMap = CreateHashMap.getDayReportMap(date);
         ReportDayParser parser = new ReportDayParser(callback);
         parser.setTest(false);
@@ -74,7 +74,7 @@ public class EControl {
      * @param callback
      * @param date
      */
-    public static void GetDayReportLogResult(BaseParser.ResultCallback<List<ReportDayLogInfo>> callback, String date){
+    public static void GetDayReportLogResult(BaseParser.ResultCallback callback, String date){
         HashMap mHashMap = CreateHashMap.getDayReportMap(date);
         ReportDayLogParser parser = new ReportDayLogParser(callback);
         parser.setTest(false);
@@ -98,7 +98,7 @@ public class EControl {
      * @param callback
      * @param date
      */
-    public static void GetMonthReportLogResult(BaseParser.ResultCallback<MonthStatisticChartInfo> callback, String date){
+    public static void GetMonthReportLogResult(BaseParser.ResultCallback callback, String date){
         HashMap mHashMap = CreateHashMap.getDayReportMap(date);
         ReportMonthStatisticParser parser = new ReportMonthStatisticParser(callback);
         parser.setTest(false);
@@ -109,7 +109,7 @@ public class EControl {
      *车秘书提醒
      * @param callback
      */
-    public static void GetInformationMessageResult(BaseParser.ResultCallback<InformationMessageInfoList> callback, int class1){
+    public static void GetInformationMessageResult(BaseParser.ResultCallback callback, int class1){
         HashMap mHashMap = CreateHashMap.getMessageMap(class1);
         InformationMessageListParser parser = new InformationMessageListParser(callback);
         parser.setTest(false);
@@ -121,7 +121,7 @@ public class EControl {
      * @param callback
      * @param date
      */
-    public static void GetUserMonthPointResult(BaseParser.ResultCallback<List<ReportCalendarMonthInfo>> callback, String date){
+    public static void GetUserMonthPointResult(BaseParser.ResultCallback callback, String date){
         HashMap mHashMap = CreateHashMap.getDayReportMap(date);
         ReportCalendarMonthParser parser = new ReportCalendarMonthParser(callback);
         parser.setTest(false);
@@ -133,7 +133,7 @@ public class EControl {
      * @param callback
      * @param date
      */
-    public static void GetUserDayPointResult(BaseParser.ResultCallback<List<ReportCalendarMonthInfo>> callback, String date){
+    public static void GetUserDayPointResult(BaseParser.ResultCallback callback, String date){
         HashMap mHashMap = CreateHashMap.getDayReportMap(date);
         ReportCalendarDayParser parser = new ReportCalendarDayParser(callback);
         parser.setTest(false);
@@ -169,7 +169,7 @@ public class EControl {
      * @param gpsStopTime
      * @param runSn
      */
-    public static void GetReportGpsResult(BaseParser.ResultCallback<List<ReportGpsInfo>> callback,
+    public static void GetReportGpsResult(BaseParser.ResultCallback callback,
                                           String gpsStartTime,String gpsStopTime,String runSn){
         HashMap mHashMap = CreateHashMap.getReportGpsMap(gpsStartTime,gpsStopTime,runSn);
         ReportGpsParser parser = new ReportGpsParser(callback);

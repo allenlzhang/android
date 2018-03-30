@@ -24,7 +24,7 @@ import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
-import com.carlt.yema.data.car.CarStateInfo;
+import com.carlt.yema.data.remote.CarStateInfo;
 import com.carlt.yema.data.remote.AirMainInfo;
 import com.carlt.yema.data.remote.RemoteFunInfo;
 import com.carlt.yema.data.remote.RemoteMainInfo;
@@ -44,9 +44,7 @@ import com.carlt.yema.ui.view.UUDialogRemote;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.ILog;
 import com.carlt.yema.utils.MyParse;
-import com.carlt.yema.utils.PlayRadio;
 
-import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
@@ -140,14 +138,14 @@ public class RemoteMainFragment extends BaseFragment implements
         if (YemaApplication.getInstanse().getRemoteMainInfo() == null) {
             carOperationConfigParser = new CarOperationConfigParser<String>(new BaseParser.ResultCallback() {
                 @Override
-                public void onSuccess(Object bInfo) {
+                public void onSuccess(BaseResponseInfo bInfo) {
                     YemaApplication.getInstanse().setRemoteMainInfo(carOperationConfigParser.getReturn());
                     ILog.e(TAG, "onSuccess parser2 " + carOperationConfigParser.getReturn());
                     loadSuss();
                 }
 
                 @Override
-                public void onError(Object bInfo) {
+                public void onError(BaseResponseInfo bInfo) {
                     ILog.e(TAG, "onError" + bInfo.toString());
                     actLoadError((BaseResponseInfo) bInfo);
                 }
