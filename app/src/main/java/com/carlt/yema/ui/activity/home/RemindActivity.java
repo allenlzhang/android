@@ -86,7 +86,7 @@ public class RemindActivity extends LoadingActivity2 {
     protected void onStart() {
         count_onstart++;
         if (count_onstart > 1) {
-            loadSuccessUI(null);
+            loadSuccessUI();
             long l = 5000;
             new Handler().postDelayed(new Runnable() {
 
@@ -304,7 +304,7 @@ public class RemindActivity extends LoadingActivity2 {
             }
             CPControl.GetInformationMessageResult(mCallback, type);
         } else {
-            loadSuccessUI(null);
+            loadSuccessUI();
         }
 
     }
@@ -602,14 +602,14 @@ public class RemindActivity extends LoadingActivity2 {
     BaseParser.ResultCallback listener_tip = new BaseParser.ResultCallback() {
 
          @Override
-         public void onSuccess(Object bInfo) {
+         public void onSuccess(BaseResponseInfo bInfo) {
              Message msg = new Message();
              msg.what = 4;
              mHandler.sendMessage(msg);
          }
 
          @Override
-         public void onError(Object bInfo) {
+         public void onError(BaseResponseInfo bInfo) {
              Message msg = new Message();
              msg.what = 5;
              msg.obj = bInfo;

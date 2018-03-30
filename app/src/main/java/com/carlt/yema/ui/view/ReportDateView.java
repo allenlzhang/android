@@ -115,15 +115,15 @@ public class ReportDateView extends LinearLayout implements OnClickListener {
         BaseParser.ResultCallback listener = new BaseParser.ResultCallback() {
 
             @Override
-            public void onSuccess(Object bInfo) {
-                mList = (ArrayList<ReportCalendarMonthInfo>)((BaseResponseInfo)bInfo).getValue();
+            public void onSuccess(BaseResponseInfo bInfo) {
+                mList = (ArrayList<ReportCalendarMonthInfo>)bInfo.getValue();
                 Message msg = new Message();
                 msg.what = 0;
                 mHandler.sendMessage(msg);
             }
 
             @Override
-            public void onError(Object bInfo) {
+            public void onError(BaseResponseInfo bInfo) {
                 Message msg = new Message();
                 msg.what = 1;
                 msg.obj=bInfo;

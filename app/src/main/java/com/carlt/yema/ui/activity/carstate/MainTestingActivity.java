@@ -11,6 +11,12 @@ import android.widget.Toast;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.data.car.WaringLampInfo;
+import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.protocolparser.DefaultParser;
+import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.utils.ILog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,6 +48,35 @@ public class MainTestingActivity extends LoadingActivity{
         setContentView(R.layout.activity_main_tain);
         initTitle("车况检测报告");
         initView();
+        loadingDataUI();
+        initData();
+    }
+
+    private void initData() {
+        DefaultParser<WaringLampInfo> defaultParser = new DefaultParser<WaringLampInfo>(new BaseParser.ResultCallback() {
+            @Override
+            public void onSuccess(BaseResponseInfo bInfo) {
+                loadSuccessUI();
+                loadDataSuccess(bInfo);
+            }
+
+            @Override
+            public void onError(BaseResponseInfo bInfo) {
+                loadonErrorUI((BaseResponseInfo) bInfo);
+            }
+        }, WaringLampInfo.class);
+        defaultParser.executePost(URLConfig.getM_REMOTE_WARNINGLAMP(),new HashMap());
+    }
+
+    @Override
+    public void loadDataSuccess(Object bInfo) {
+        ILog.e(TAG,((BaseResponseInfo)bInfo).getValue().toString());
+    }
+
+    @Override
+    public void reTryLoadData() {
+        super.reTryLoadData();
+        initData();
     }
 
     private void initView() {

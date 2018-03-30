@@ -22,7 +22,7 @@ public class ReportMonthStatisticParser extends BaseParser<MonthStatisticChartIn
 	private int[] summiless = new int[12];
 	private int[] sumtimes = new int[12];
 
-	public ReportMonthStatisticParser(ResultCallback<MonthStatisticChartInfo> callback) {
+	public ReportMonthStatisticParser(ResultCallback callback) {
 		super(callback);
 	}
 

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.carlt.yema.R;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.utils.ILog;
 
 
 /**
@@ -126,9 +127,8 @@ public class LoadingActivity extends BaseActivity {
     /**
      * 数据加载成功
      *
-     * @param data
      */
-    public void loadSuccessUI(BaseResponseInfo data) {
+    public void loadSuccessUI() {
         mViewLoading.setBackgroundResource(R.drawable.transparent_bg);
         mViewLoading.setVisibility(View.GONE);
         mViewError.setVisibility(View.GONE);
@@ -187,14 +187,14 @@ public class LoadingActivity extends BaseActivity {
 
     protected BaseParser.ResultCallback mCallback = new BaseParser.ResultCallback() {
         @Override
-        public void onSuccess(Object bInfo) {
-            loadSuccessUI((BaseResponseInfo) bInfo);
+        public void onSuccess(BaseResponseInfo bInfo) {
+            loadSuccessUI();
             loadDataSuccess(bInfo);
         }
 
         @Override
-        public void onError(Object bInfo) {
-            loadonErrorUI((BaseResponseInfo) bInfo);
+        public void onError(BaseResponseInfo bInfo) {
+            loadonErrorUI(bInfo);
             loadDataError(bInfo);
         }
     };
@@ -203,6 +203,7 @@ public class LoadingActivity extends BaseActivity {
     }
 
     public void loadDataSuccess(Object bInfo) {
+
     }
 
 

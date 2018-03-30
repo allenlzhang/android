@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.control.EControl;
+import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 
 /**
@@ -43,14 +44,14 @@ public class TestActivity extends Activity {
 
     BaseParser.ResultCallback callback = new BaseParser.ResultCallback() {
         @Override
-        public void onSuccess(Object bInfo) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Log.e("KAE","登录成功");
             Intent intent = new Intent(TestActivity.this, MainActivity.class);
             startActivity(intent);
         }
 
         @Override
-        public void onError(Object bInfo) {
+        public void onError(BaseResponseInfo bInfo) {
 
         }
     };

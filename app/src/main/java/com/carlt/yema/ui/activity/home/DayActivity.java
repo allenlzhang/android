@@ -189,7 +189,7 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
     private BaseParser.ResultCallback dayReportCallback = new BaseParser.ResultCallback() {
 
         @Override
-        public void onSuccess(Object bInfo) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 1;
             msg.obj = bInfo;
@@ -197,7 +197,7 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
         }
 
         @Override
-        public void onError(Object bInfo) {
+        public void onError(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 0;
             msg.obj = bInfo;
@@ -209,7 +209,7 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
     private BaseParser.ResultCallback dayLogReportCallback = new BaseParser.ResultCallback() {
 
         @Override
-        public void onSuccess(Object bInfo) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 3;
             msg.obj = bInfo;
@@ -217,7 +217,7 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
         }
 
         @Override
-        public void onError(Object bInfo) {
+        public void onError(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 2;
             msg.obj = bInfo;

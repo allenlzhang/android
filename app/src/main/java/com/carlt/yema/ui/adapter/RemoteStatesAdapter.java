@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
-import com.carlt.yema.data.car.CarStateInfo;
+import com.carlt.yema.data.remote.CarStateInfo;
 
 import java.util.ArrayList;
 

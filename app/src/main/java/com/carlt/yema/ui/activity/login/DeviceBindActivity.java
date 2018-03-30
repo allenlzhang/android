@@ -228,14 +228,14 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
     private BaseParser.ResultCallback listener_car = new BaseParser.ResultCallback() {
 
         @Override
-        public void onSuccess(Object bInfo) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 0;
             mHandler.sendMessage(msg);
         }
 
         @Override
-        public void onError(Object bInfo) {
+        public void onError(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 1;
             msg.obj = bInfo;

@@ -33,17 +33,17 @@ public abstract class BaseParser<T> {
     protected String testFileName;// 本地模拟数据名称
     public Handler mHandler;
 
-    public BaseParser(ResultCallback<T> callback) {
+    public BaseParser(ResultCallback callback) {
         //TAG = this.getClass().getName();
-        mBaseResponseInfo = new BaseResponseInfo<T>();
+        mBaseResponseInfo = new BaseResponseInfo();
         this.mResultCallback = callback;
         if (this.mResultCallback != null) {
             initHandler();
         }
     }
-    public BaseParser(ResultCallback<T> callback,Class<T> clazz) {
+    public BaseParser(ResultCallback callback,Class<T> clazz) {
         this.clazz = clazz;
-        mBaseResponseInfo = new BaseResponseInfo<T>();
+        mBaseResponseInfo = new BaseResponseInfo();
         this.mResultCallback = callback;
         if (this.mResultCallback != null) {
             initHandler();
@@ -235,10 +235,10 @@ public abstract class BaseParser<T> {
     // 解析
     protected abstract void parser() throws Exception;
 
-    public interface ResultCallback<T> {
-        void onSuccess(T bInfo);
+    public interface ResultCallback {
+        void onSuccess(BaseResponseInfo bInfo);
 
-        void onError(Object bInfo);
+        void onError(BaseResponseInfo bInfo);
     }
 
 }

@@ -240,7 +240,7 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
 
     private BaseParser.ResultCallback validateCodeListener = new BaseParser.ResultCallback() {
         @Override
-        public void onSuccess(Object bInfo) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message msg = Message.obtain();
             msg.what = 0;
             msg.obj = UserRegisterActivity.this.getResources().getString(R.string.vcode_send_success);
@@ -248,7 +248,7 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
         }
 
         @Override
-        public void onError(Object bInfo) {
+        public void onError(BaseResponseInfo bInfo) {
             Message msg = Message.obtain();
             msg.what = 1;
             msg.obj = bInfo;
@@ -258,7 +258,7 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
 
     private BaseParser.ResultCallback listener_register = new BaseParser.ResultCallback() {
         @Override
-        public void onSuccess(Object bInfo) {
+        public void onSuccess(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 2;
             msg.obj = bInfo;
@@ -266,7 +266,7 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
         }
 
         @Override
-        public void onError(Object bInfo) {
+        public void onError(BaseResponseInfo bInfo) {
             Message msg = new Message();
             msg.what = 3;
             msg.obj = bInfo;

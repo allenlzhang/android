@@ -188,13 +188,13 @@ public class CalendarMonth extends MenuCalendar implements OnClickListener {
         BaseParser.ResultCallback listener = new BaseParser.ResultCallback() {
 
             @Override
-            public void onSuccess(Object bInfo) {
-                mlist = (ArrayList<ReportCalendarMonthInfo>)((BaseResponseInfo)bInfo).getValue();
+            public void onSuccess(BaseResponseInfo bInfo) {
+                mlist = (ArrayList<ReportCalendarMonthInfo>)bInfo.getValue();
                 mHandler.sendEmptyMessage(0);
             }
 
             @Override
-            public void onError(Object bInfo) {
+            public void onError(BaseResponseInfo bInfo) {
                 mHandler.sendEmptyMessage(1);
             }
 

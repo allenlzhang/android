@@ -20,7 +20,7 @@ public class CarOperationConfigParser<T> extends BaseParser<T>  {
 
     private int supportCount=0;
 
-    public CarOperationConfigParser(ResultCallback<T> callback) {
+    public CarOperationConfigParser(ResultCallback callback) {
         super(callback);
     }
 

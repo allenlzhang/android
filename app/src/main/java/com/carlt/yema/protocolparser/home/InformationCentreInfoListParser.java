@@ -15,7 +15,7 @@ public class InformationCentreInfoListParser extends BaseParser<InformationCateg
 
 	private InformationCategoryInfoList mSecretaryCategoryInfoList = new InformationCategoryInfoList();
 
-	public InformationCentreInfoListParser(ResultCallback<InformationCategoryInfoList> callback) {
+	public InformationCentreInfoListParser(ResultCallback callback) {
 		super(callback);
 	}
 
@@ -80,22 +80,4 @@ public class InformationCentreInfoListParser extends BaseParser<InformationCateg
 		}
 
 	}
-	//
-	// public BaseResponseInfo getBaseResponseInfo(String url, String post) {
-	// try {
-	// InputStream in = CPApplication.ApplicationContext.getAssets().open(
-	// "json_order2.txt");
-	// mJson = new JSONObject(FileUtil.ToString(in));
-	// Log.e("info", "Http响应--" + mJson);
-	// mBaseResponseInfo.setFlag(mJson.getString("code"));
-	// mBaseResponseInfo.setInfo(mJson.getString("msg"));
-	// } catch (Exception e) {
-	// Log.e("info", "BaseParser--e==" + e);
-	// }
-	// if (mBaseResponseInfo.getFlag() == BaseResponseInfo.SUCCESS) {
-	// parser();
-	// }
-	// return mBaseResponseInfo;
-	//
-	// }
 }
