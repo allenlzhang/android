@@ -168,15 +168,15 @@ public class CreatPostString {
 	public static HashMap<String,String> getDealerModel(int index, String id) {
 		HashMap<String, String> mMap = new HashMap<String, String>();
 		switch (index) {
-		case 1:
+			case 1:
 
-			break;
-		case 2:
-			mMap.put("pid", id);
-			break;
-		case 3:
-			mMap.put("optionid", id);
-			break;
+				break;
+			case 2:
+				mMap.put("pid", id);
+				break;
+			case 3:
+				mMap.put("optionid", id);
+				break;
 		}
 		return mMap;
 	}

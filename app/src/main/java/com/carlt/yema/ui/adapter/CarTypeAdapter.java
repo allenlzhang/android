@@ -2,16 +2,15 @@
 package com.carlt.yema.ui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.data.car.CarModeInfo;
-import com.carlt.yema.http.AsyncImageLoader;
 
 import java.util.ArrayList;
 
@@ -22,19 +21,21 @@ import java.util.ArrayList;
  */
 public class CarTypeAdapter extends BaseAdapter {
 
-    private ArrayList<CarModeInfo> mDataList;
-
     private LayoutInflater mInflater;
 
-    private AsyncImageLoader mAsyncImageLoader = AsyncImageLoader.getInstance();
+    private static final int FATORY_YEAR=0;
 
-    public void setmDataList(ArrayList<CarModeInfo> mDataList) {
-        this.mDataList = mDataList;
+    private static final int FATORY_DETAIL=1;
+
+    private ArrayList<CarModeInfo> mDataList;
+
+    public CarTypeAdapter(Context context,ArrayList<CarModeInfo> listInfo) {
+        mInflater = LayoutInflater.from(context);
+        this.mDataList = listInfo;
     }
 
-    public CarTypeAdapter(Context context, ArrayList<CarModeInfo> dataList) {
-        mDataList = dataList;
-        mInflater = LayoutInflater.from(context);
+    public void setmList(ArrayList<CarModeInfo> mList) {
+        this.mDataList = mList;
     }
 
     @Override
@@ -46,114 +47,77 @@ public class CarTypeAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int arg0) {
-        // TODO Auto-generated method stub
-        return null;
+    public CarModeInfo getItem(int position) {
+        return mDataList.get(position);
     }
 
     @Override
-    public long getItemId(int arg0) {
-        // TODO Auto-generated method stub
-        return 0;
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        CarModeInfo modeInfo=getItem(position);
+        if (!TextUtils.isEmpty(modeInfo.getFactory_year())){
+            return FATORY_YEAR;
+        }else {
+            return FATORY_DETAIL;
+        }
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup arg2) {
-        Holder mHolder;
-        if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.list_item_index_car_type, null);
-            mHolder = new Holder();
-
-            mHolder.mViewNormal = convertView.findViewById(R.id.list_item_index_car_type_layout);
-
-            mHolder.mTextView1 = (TextView)convertView
-                    .findViewById(R.id.list_item_index_car_type_txt1);
-            mHolder.mTextView2 = (TextView)convertView
-                    .findViewById(R.id.list_item_index_car_type_txt2);
-            mHolder.mTextViewSub = (TextView)convertView
-                    .findViewById(R.id.list_item_index_car_type_subtitle);
-            mHolder.mImageView = (ImageView)convertView
-                    .findViewById(R.id.list_item_index_car_type_img);
-
-            convertView.setTag(mHolder);
+        CarModeInfo mCarModeInfo=getItem(position);
+        ViewHolder mViewHolder=null;
+        ViewHolderYear mViewHolderYear=null;
+        int type=getItemViewType(position);
+        if (null == convertView) {
+            switch (type) {
+                case FATORY_YEAR:
+                    convertView=mInflater.inflate(R.layout.list_item_car_factory_year,null);
+                    mViewHolderYear=new ViewHolderYear();
+                    mViewHolderYear.car_factory_year= (TextView) convertView.findViewById(R.id.car_factory_year);
+                    convertView.setTag(mViewHolderYear);
+                    break;
+                case FATORY_DETAIL:
+                    convertView=mInflater.inflate(R.layout.list_item_car_type,null);
+                    mViewHolder=new ViewHolder();
+                    mViewHolder.car_type_name= (TextView) convertView.findViewById(R.id.car_type_name);
+                    convertView.setTag(mViewHolder);
+                    break;
+            }
         } else {
-            mHolder = (Holder)convertView.getTag();
+            switch (type) {
+                case FATORY_YEAR:
+                    mViewHolderYear= (ViewHolderYear) convertView.getTag();
+                    break;
+                case FATORY_DETAIL:
+                    mViewHolder= (ViewHolder) convertView.getTag();
+                    break;
+            }
         }
-
-        CarModeInfo mInfo = mDataList.get(position);
-        int type = mInfo.getType();
         switch (type) {
-            case CarModeInfo.TYPE_FIRST:
-                // 车型列表-一级
-                mHolder.mTextViewSub.setVisibility(View.GONE);
-                mHolder.mViewNormal.setVisibility(View.VISIBLE);
-
-                mHolder.mTextView2.setText(mInfo.getTitle());
-                String urlImg = mInfo.getCarlogo();
-                mHolder.mImageView.setVisibility(View.VISIBLE);
-                if (urlImg != null && urlImg.length() > 0) {
-                    if (mAsyncImageLoader.getBitmapByUrl(urlImg) != null) {
-                        mHolder.mImageView.setImageBitmap(mAsyncImageLoader.getBitmapByUrl(urlImg));
-                    } else {
-                        mHolder.mImageView.setImageResource(R.mipmap.default_car_small);
-                    }
-                } else {
-                    mHolder.mImageView.setImageResource(R.mipmap.default_car_small);
-                }
+            case FATORY_YEAR:
+                mViewHolderYear.car_factory_year.setText(mCarModeInfo.getFactory_year());
                 break;
-
-            case CarModeInfo.TYPE_SECOND:
-                // 车型列表-二级
-                if (mInfo.isTitleSub()) {
-                    mHolder.mTextViewSub.setVisibility(View.VISIBLE);
-                    mHolder.mViewNormal.setVisibility(View.GONE);
-
-                    String sub = mInfo.getTitle();
-                    if (sub != null && sub.length() > 0) {
-                        mHolder.mTextViewSub.setText(sub);
-                    }
-                } else {
-                    mHolder.mTextViewSub.setVisibility(View.GONE);
-                    mHolder.mViewNormal.setVisibility(View.VISIBLE);
-                    
-                    mHolder.mTextView2.setText(mInfo.getTitle());
-                }
-                mHolder.mImageView.setVisibility(View.GONE);
-                break;
-            case CarModeInfo.TYPE_THIRD:
-                // 车型列表-三级
-                if (mInfo.isTitleSub()) {
-                    mHolder.mTextViewSub.setVisibility(View.VISIBLE);
-                    mHolder.mViewNormal.setVisibility(View.GONE);
-
-                    String sub = mInfo.getTitle();
-                    if (sub != null && sub.length() > 0) {
-                        mHolder.mTextViewSub.setText(sub+"款");
-                    }
-                } else {
-                    mHolder.mTextViewSub.setVisibility(View.GONE);
-                    mHolder.mViewNormal.setVisibility(View.VISIBLE);
-                    
-                    mHolder.mTextView2.setText(mInfo.getTitle());
-                }
-                mHolder.mImageView.setVisibility(View.GONE);
+            case FATORY_DETAIL:
+                mViewHolder.car_type_name.setText(mCarModeInfo.getTitle());
                 break;
         }
-
-        mHolder.mTextView2.setTag(mInfo);
-
         return convertView;
     }
 
-    class Holder {
-        private TextView mTextView1;// 车型的title
-
-        private TextView mTextView2;// 车型的名称
-
-        private ImageView mImageView;// 车型图标
-
-        private View mViewNormal;// 正常item
-
-        private TextView mTextViewSub;// 副标题文字
+    static  class ViewHolder {
+        TextView car_type_name;// 车款名称
+    }
+    static  class ViewHolderYear {
+        TextView car_factory_year;//出厂时间
     }
 }
