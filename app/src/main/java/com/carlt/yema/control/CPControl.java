@@ -301,7 +301,7 @@ public class CPControl {
 		HashMap mHashMap = CreateHashMap.getMessageMap(class1);
 		InformationMessageListParser parser = new InformationMessageListParser(callback);
 		parser.setTest(false);
-		parser.executePost(URLConfig.getM_SECRETARY_MESSAGE_URL(),mHashMap);
+		parser.executePost(URLConfig.getM_SAFETY_MESSAGE_URL(),mHashMap);
 	}
 
 	/**

@@ -290,7 +290,7 @@ public class URLConfig {
 	// 获取车秘书消息详情
 	private static String M_SECRETARY_GETBIID_URL = "life/getByIdMessage";
 
-	// 安防消息消息
+	// 车秘书提醒
 	private static String M_SAFETY_MESSAGE_URL = "life/message";
 
 	// 获取违章信息列表
