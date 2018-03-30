@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 
 import com.carlt.yema.R;
+import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.ReportCalendarMonthInfo;
@@ -115,7 +116,7 @@ public class ReportDateView extends LinearLayout implements OnClickListener {
 
             @Override
             public void onSuccess(Object bInfo) {
-                mList = (ArrayList<ReportCalendarMonthInfo>)bInfo;
+                mList = (ArrayList<ReportCalendarMonthInfo>)((BaseResponseInfo)bInfo).getValue();
                 Message msg = new Message();
                 msg.what = 0;
                 mHandler.sendMessage(msg);
@@ -130,7 +131,7 @@ public class ReportDateView extends LinearLayout implements OnClickListener {
             }
 
         };
-        EControl.GetUserDayPointResult(listener, year + "-" + month + "-02");
+        CPControl.GetUserDayPointResult(listener, year + "-" + month + "-02");
     }
 
     private Handler mHandler = new Handler() {

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.MonthStatisticChartInfo;
@@ -101,7 +102,7 @@ public class MonthActivity extends LoadingActivity {
 			initTitle(titleBuffer.toString());
 		}
 
-		EControl.GetMonthReportResult(listener_month,monthInitialValue);
+		CPControl.GetMonthReportResult(listener_month,monthInitialValue);
 	}
 
 	private void initView() {
@@ -228,12 +229,12 @@ public class MonthActivity extends LoadingActivity {
 			switch (msg.what) {
 			case 2:
 				//拉取月报数据成功
-				mReportMonthInfo=(ReportMonthInfo) msg.obj;
-				EControl.GetMonthReportLogResult(mCallback,monthInitialValue);
+				mReportMonthInfo= (ReportMonthInfo) ((BaseResponseInfo) msg.obj).getValue();
+				CPControl.GetMonthReportLogResult(mCallback,monthInitialValue);
 				break;
 			case 3:
 				//拉取月报数据失败
-				loadonErrorUI((BaseResponseInfo)msg.obj);
+				loadonErrorUI((ReportMonthInfo) ((BaseResponseInfo) msg.obj).getValue());
 				break;
 			}
 		}

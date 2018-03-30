@@ -203,6 +203,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
             JSONObject mJSON_data2 = mJSON_data.getJSONObject("member");
             String access_token = mJSON_data2.getString("access_token");
             LoginInfo.setAccess_token(access_token);
+            YemaApplication.TOKEN = access_token;
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -364,7 +365,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         Intent carPage = new Intent(this, MainActivity.class);
         carPage.putExtra("page", "1");
         startActivity(carPage);
-        accountBinding(this);
+//        accountBinding(this);
     }
 
     /**

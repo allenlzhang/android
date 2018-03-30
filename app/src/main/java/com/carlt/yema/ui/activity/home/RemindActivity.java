@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.InformationMessageInfo;
@@ -319,7 +320,7 @@ public class RemindActivity extends LoadingActivity {
             }else{
 //                CPControl.GetSecretaryMessageResult(LIMIT, 0, type, listener);
             }
-            EControl.GetInformationMessageResult(mCallback, type);
+            CPControl.GetInformationMessageResult(mCallback, type);
         } else {
             loadSuccessUI(null);
         }
@@ -337,7 +338,7 @@ public class RemindActivity extends LoadingActivity {
      */
     private void PullDown() {
         if (type > 0) {
-            EControl.GetInformationMessageResult(mCallback,type);
+            CPControl.GetInformationMessageResult(mCallback,type);
         }
     }
 
@@ -347,7 +348,7 @@ public class RemindActivity extends LoadingActivity {
     private void PullUp() {
         if (type > 0) {
             int offset = mInfoLists.getOffset();
-            EControl.GetInformationMessageResult(mCallback,type);
+            CPControl.GetInformationMessageResult(mCallback,type);
         }
 
     }
@@ -385,7 +386,7 @@ public class RemindActivity extends LoadingActivity {
                     String id = info.getId();
                     if (class1 > 0 && id != null && id.length() > 0) {
                         mDialog.show();
-                        EControl.GetRemindDeleteResult(listener_tip,class1, Integer.parseInt(id));
+                        CPControl.GetRemindDeleteResult(listener_tip,class1, Integer.parseInt(id));
                         dele_position = position;
                     }
                 }
