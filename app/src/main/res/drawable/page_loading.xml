@@ -3,7 +3,7 @@
 
     <item>
         <rotate
-            android:drawable="@drawable/icon_loading"
+            android:drawable="@mipmap/progress_dialog_inner"
             android:fromDegrees="0"
             android:pivotX="50%"
             android:pivotY="50%"
