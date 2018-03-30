@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseFragment;
+import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.CareerInfo;
@@ -68,8 +69,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void loadData() {
         super.loadData();
-        EControl.GetCareerResult(callback);
-        EControl.GetMilesInfoResult(remoteCallback);
+        CPControl.GetCareerResult(callback);
+        CPControl.GetMilesInfoResult(remoteCallback);
 
     }
 
@@ -130,16 +131,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case 0:
-                    actLoadSuccess((BaseResponseInfo) msg.obj);
+                    actLoadSuccess((CareerInfo)((BaseResponseInfo) msg.obj).getValue());
                     break;
                 case 1:
-                    actLoadError((BaseResponseInfo) msg.obj);
+                    actLoadError((CareerInfo)((BaseResponseInfo) msg.obj).getValue());
                     break;
                 case 2:
-                    loadRemoteSuccess((BaseResponseInfo) msg.obj);
+                    loadRemoteSuccess((MilesInfo)((BaseResponseInfo) msg.obj).getValue());
                     break;
                 case 3:
-                    loadRemoteError((BaseResponseInfo) msg.obj);
+                    loadRemoteError((MilesInfo)((BaseResponseInfo) msg.obj).getValue());
                     break;
             }
         }

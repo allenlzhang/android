@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.ReportDayInfo;
@@ -34,6 +35,7 @@ import com.carlt.yema.utils.MyTimeUtils;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class DayActivity extends LoadingActivity implements OnClickListener {
@@ -180,8 +182,8 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
             initTitle(dayInitialValue+ "日行车日报");
         }
         loadingDataUI();
-        EControl.GetDayReportResult(dayReportCallback,dayInitialValue);
-        EControl.GetDayReportLogResult(dayLogReportCallback,dayInitialValue);
+        CPControl.GetDayReportResult(dayReportCallback,dayInitialValue);
+        CPControl.GetDayReportLogResult(dayLogReportCallback,dayInitialValue);
     }
 
     private BaseParser.ResultCallback dayReportCallback = new BaseParser.ResultCallback() {
@@ -255,7 +257,7 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
                     break;
                 case 3:
                     isSuccessLog = true;
-                    mDayLogInfos = (ArrayList<ReportDayLogInfo>)msg.obj;
+                    mDayLogInfos = (ArrayList<ReportDayLogInfo>)((BaseResponseInfo)msg.obj).getValue();
                     if (isSuccessDay && isSuccessLog) {
                         loadDataSuccess(null);
                     }

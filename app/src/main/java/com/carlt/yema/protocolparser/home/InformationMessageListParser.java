@@ -1,9 +1,11 @@
 package com.carlt.yema.protocolparser.home;
 
 
+import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.InformationMessageInfo;
 import com.carlt.yema.data.home.InformationMessageInfoList;
 import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.utils.ILog;
 import com.carlt.yema.utils.MyParse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -84,8 +86,9 @@ public class InformationMessageListParser extends BaseParser<InformationMessageI
 			}
 			mBaseResponseInfo.setValue(mSecretaryMessageInfoList);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ILog.e(TAG, "--e==" + e);
+			mBaseResponseInfo.setFlag(BaseResponseInfo.ERRO);
+			mBaseResponseInfo.setInfo(MSG_ERRO);
 		}
 
 	}

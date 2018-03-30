@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.InformationCategoryInfo;
@@ -43,7 +44,7 @@ public class InformationCentreActivity extends LoadingActivity {
 
     private void initData() {
         loadingDataUI();
-        EControl.GetInformationCentreInfoListResult(mCallback);
+        CPControl.GetInformationCentreInfoListResult(mCallback);
     }
 
 

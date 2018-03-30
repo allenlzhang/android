@@ -32,6 +32,7 @@ import com.amap.api.maps.model.PolylineOptions;
 import com.amap.api.maps.model.TextOptions;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.ReportGpsInfo;
@@ -154,7 +155,7 @@ public class GpsTrailActivity extends LoadingActivity implements
 						return;
 					}
 				}
-				EControl.GetReportGpsResult(mCallback,gpsStartTime, gpsStopTime, runSn);
+				CPControl.GetReportGpsResult(mCallback,gpsStartTime, gpsStopTime, runSn);
 			}
 		}else{
 			//
@@ -486,7 +487,7 @@ public class GpsTrailActivity extends LoadingActivity implements
 				}
 			}
 
-			EControl.GetReportGpsResult(mCallback,gpsStartTime, gpsStopTime, runSn);
+			CPControl.GetReportGpsResult(mCallback,gpsStartTime, gpsStopTime, runSn);
 		}
 		isMapLoaded = true;
 	}
