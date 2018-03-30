@@ -196,6 +196,10 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onResponse(Call call, Response response) throws IOException {
         Log.d(TAG, "__onResponse__" + response.toString());
+        if (null==response) {
+            UUToast.showUUToast(this,BaseResponseInfo.NET_ERROR);
+            return;
+        }
         String content = response.body().string();
         try {
             JSONObject mJson = new JSONObject(content);
