@@ -93,7 +93,7 @@ public class RemindActivity extends LoadingActivity {
     protected void onStart() {
         count_onstart++;
         if (count_onstart > 1) {
-            loadSuccessUI(null);
+            loadSuccessUI();
             long l = 5000;
             new Handler().postDelayed(new Runnable() {
 
@@ -322,7 +322,7 @@ public class RemindActivity extends LoadingActivity {
             }
             CPControl.GetInformationMessageResult(mCallback, type);
         } else {
-            loadSuccessUI(null);
+            loadSuccessUI();
         }
 
     }

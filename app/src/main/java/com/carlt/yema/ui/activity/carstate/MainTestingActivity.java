@@ -56,7 +56,7 @@ public class MainTestingActivity extends LoadingActivity{
         DefaultParser<WaringLampInfo> defaultParser = new DefaultParser<WaringLampInfo>(new BaseParser.ResultCallback() {
             @Override
             public void onSuccess(BaseResponseInfo bInfo) {
-                loadSuccessUI((BaseResponseInfo) bInfo);
+                loadSuccessUI();
                 loadDataSuccess(bInfo);
             }
 

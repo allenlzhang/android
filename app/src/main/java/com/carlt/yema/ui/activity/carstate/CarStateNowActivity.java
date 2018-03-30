@@ -38,9 +38,8 @@ public class CarStateNowActivity extends LoadingActivity {
         DefaultParser<CarNowStatusInfo> parser = new DefaultParser<CarNowStatusInfo>(new BaseParser.ResultCallback() {
             @Override
             public void onSuccess(BaseResponseInfo bInfo) {
-                loadSuccessUI(bInfo);
+                loadSuccessUI();
                 ILog.e(TAG,bInfo.getValue().toString());
-                loadSuccessUI(bInfo);
             }
 
             @Override

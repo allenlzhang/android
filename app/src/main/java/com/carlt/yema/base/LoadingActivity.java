@@ -127,9 +127,8 @@ public class LoadingActivity extends BaseActivity {
     /**
      * 数据加载成功
      *
-     * @param data
      */
-    public void loadSuccessUI(BaseResponseInfo data) {
+    public void loadSuccessUI() {
         mViewLoading.setBackgroundResource(R.drawable.transparent_bg);
         mViewLoading.setVisibility(View.GONE);
         mViewError.setVisibility(View.GONE);
@@ -189,13 +188,13 @@ public class LoadingActivity extends BaseActivity {
     protected BaseParser.ResultCallback mCallback = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            loadSuccessUI((BaseResponseInfo) bInfo);
+            loadSuccessUI();
             loadDataSuccess(bInfo);
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            loadonErrorUI((BaseResponseInfo) bInfo);
+            loadonErrorUI(bInfo);
             loadDataError(bInfo);
         }
     };
