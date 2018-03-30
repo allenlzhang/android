@@ -577,14 +577,14 @@
     </style>
 
     <!-- 我的车秘书 -->
-    <style name="secretary_tips_linear_time">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/secretary_time_linear_bg_selected_no</item>
-        <item name="android:padding">12dip</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:layout_gravity">bottom</item>
-    </style>
+    <!--<style name="secretary_tips_linear_time">-->
+        <!--<item name="android:layout_width">fill_parent</item>-->
+        <!--<item name="android:layout_height">wrap_content</item>-->
+        <!--<item name="android:background">@color/secretary_time_linear_bg_selected_no</item>-->
+        <!--<item name="android:padding">12dip</item>-->
+        <!--<item name="android:orientation">horizontal</item>-->
+        <!--<item name="android:layout_gravity">bottom</item>-->
+    <!--</style>-->
 
     <style name="secretary_tips_txt2">
         <item name="android:layout_width">fill_parent</item>

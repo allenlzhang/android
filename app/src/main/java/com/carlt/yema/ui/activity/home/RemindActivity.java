@@ -11,9 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
-import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.base.LoadingActivity2;
 import com.carlt.yema.control.CPControl;
-import com.carlt.yema.control.EControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.InformationMessageInfo;
 import com.carlt.yema.data.home.InformationMessageInfoList;
@@ -34,13 +33,7 @@ import java.util.Date;
  * Created by Marlon on 2018/3/16.
  */
 
-public class RemindActivity extends LoadingActivity {
-
-    private ImageView back;// 头部返回键
-
-    private TextView title;// 标题文字
-
-    private ImageView titleRight;// 右侧图标
+public class RemindActivity extends LoadingActivity2 {
 
     private TextView mTextViewSecretary;// 车秘书文字
 
@@ -107,18 +100,7 @@ public class RemindActivity extends LoadingActivity {
     }
 
     private void initTitle() {
-        back = (ImageView)findViewById(R.id.head_back_img1);
-        title = (TextView)findViewById(R.id.head_back_txt1);
-        titleRight = (ImageView) findViewById(R.id.head_back_iv);
-        back.setImageResource(R.drawable.arrow_back);
-        title.setText(title_s);
-        titleRight.setVisibility(View.VISIBLE);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        initTitle(title_s);
 
     }
 

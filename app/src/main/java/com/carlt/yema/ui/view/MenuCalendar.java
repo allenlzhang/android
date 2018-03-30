@@ -41,7 +41,6 @@ public abstract class MenuCalendar {
 
 	private ImageView mBack;
 	private TextView mTitle;
-	private ImageView mShare;
 
 	// private View loading;
 	//
@@ -66,11 +65,9 @@ public abstract class MenuCalendar {
 		int mHeight = outP.y;
 		menuPop = new UUPopupWindow(menuView_main, LayoutParams.MATCH_PARENT,
 			mHeight - getTopHeight(mContext));
-		mTitle = (TextView) menuView_main.findViewById(R.id.head_back_txt1);
-		mShare = (ImageView) menuView_main.findViewById(R.id.head_back_iv);
-		mBack = (ImageView) menuView_main.findViewById(R.id.head_back_img1);
+		mTitle = (TextView) menuView_main.findViewById(R.id.title);
+		mBack = (ImageView) menuView_main.findViewById(R.id.back);
 		mBack.setImageResource(R.drawable.arrow_back);
-		mShare.setVisibility(View.INVISIBLE);
 		mBack.setOnClickListener(new OnClickListener() {
 
 			@Override

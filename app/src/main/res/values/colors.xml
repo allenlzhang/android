@@ -52,7 +52,6 @@
 
     <!-- 我的车秘书 时间linear背景色 -->
     <color name="secretary_time_linear_bg_selected">#C6C6C6</color>
-    <color name="secretary_time_linear_bg_selected_no">#F6F6F6</color>
     <!-- 我的车秘书 表格边框 -->
     <color name="secretary_table_border">#DFDFDF</color>
     <!-- 远程维修顾问边框 -->
