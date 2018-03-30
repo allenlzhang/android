@@ -22,6 +22,8 @@ import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.activity.carstate.CarSaftyListActivity;
 import com.carlt.yema.ui.activity.carstate.CarStateNowActivity;
 import com.carlt.yema.ui.activity.carstate.CarTiresStateActivity;
+import com.carlt.yema.ui.activity.carstate.FindCarActivity;
+import com.carlt.yema.ui.activity.carstate.LocationSynchronizeActivity;
 import com.carlt.yema.ui.activity.carstate.MainTestingActivity;
 import com.carlt.yema.utils.ILog;
 
@@ -153,10 +155,12 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
                 startActivity(mIntent);
                 break;
             case R.id.car_main_txt_findcar://定位寻车
-
+                Intent mIntent1 = new Intent(getActivity(), FindCarActivity.class);
+                startActivity(mIntent1);
                 break;
             case R.id.car_main_txt_carlocation://导航同步
-
+                Intent mIntent2 = new Intent(getActivity(), LocationSynchronizeActivity.class);
+                startActivity(mIntent2);
                 break;
             case R.id.car_main_lay_safety://安防提醒
                 Intent mIntent3 = new Intent(getActivity(), CarSaftyListActivity.class);

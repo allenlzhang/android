@@ -36,9 +36,9 @@
             android:layout_marginTop="-30dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/activity_car_tire_pressure_lay1"
+                android:id="@+id/activity_car_tire_pressure_lay0"
                 style="@style/car_tire_prssure_lay"
-                android:background="@drawable/tire_nol"
+                android:background="@drawable/tire_fail"
                 />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -53,7 +53,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
                     android:textColor="@color/white"
-                    android:text="1111Kpa"
                     />
                 <TextView
                     android:id="@+id/l_t_temp_tv"
@@ -61,7 +60,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
                     android:textColor="@color/text_color_gray1"
-                    android:text="2222"
                     />
             </LinearLayout>
         </RelativeLayout>
@@ -74,9 +72,9 @@
     android:layout_marginTop="-30dp"
     android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/activity_car_tire_pressure_lay2"
+            android:id="@+id/activity_car_tire_pressure_lay1"
             style="@style/car_tire_prssure_lay"
-            android:background="@drawable/tire_nol"
+            android:background="@drawable/tire_fail"
             />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -91,7 +89,6 @@
             android:layout_height="wrap_content"
             android:textSize="14dp"
             android:textColor="@color/white"
-            android:text="1111Kpa"
             />
         <TextView
             android:id="@+id/r_t_temp_tv"
@@ -99,7 +96,6 @@
             android:layout_height="wrap_content"
             android:textSize="14dp"
             android:textColor="@color/text_color_gray1"
-            android:text="2222"
             />
     </LinearLayout>
 </RelativeLayout>
@@ -111,9 +107,9 @@
             android:layout_marginBottom="-30dp"
             android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/activity_car_tire_pressure_lay3"
+            android:id="@+id/activity_car_tire_pressure_lay2"
             style="@style/car_tire_prssure_lay"
-            android:background="@drawable/tire_nol"
+            android:background="@drawable/tire_fail"
             />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -128,7 +124,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
                     android:textColor="@color/white"
-                    android:text="1111Kpa"
                     />
                 <TextView
                     android:id="@+id/l_b_temp_tv"
@@ -136,7 +131,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
                     android:textColor="@color/text_color_gray1"
-                    android:text="2222"
                     />
             </LinearLayout>
         </RelativeLayout>
@@ -148,9 +142,9 @@
             android:layout_marginBottom="-30dp"
             android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/activity_car_tire_pressure_lay4"
+            android:id="@+id/activity_car_tire_pressure_lay3"
             style="@style/car_tire_prssure_lay"
-            android:background="@drawable/tire_nol"
+            android:background="@drawable/tire_fail"
             />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -165,7 +159,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
                     android:textColor="@color/white"
-                    android:text="1111Kpa"
                     />
                 <TextView
                     android:id="@+id/r_b_temp_tv"
@@ -173,7 +166,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
                     android:textColor="@color/text_color_gray1"
-                    android:text="2222"
                     />
             </LinearLayout>
         </RelativeLayout>
