@@ -189,6 +189,8 @@ public class URLConfig {
     private static String M_CAR_MODE_LIST = "comm/getModelList";
     //获取车款
     private static String M_CAR_TYPE_LIST = "comm/getYemaCarList";
+    //远程操作日志
+    private static String M_CAR_REMOTE_LOG_OPERATION = "carRelated/getRemoteOperationLog";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -306,6 +308,9 @@ public class URLConfig {
 
     public static String getM_CAR_TYPE_LIST() {
         return getYemaURL(M_CAR_TYPE_LIST);
+    }
+    public static String getM_CAR_REMOTE_LOG_OPERATION() {
+        return getYemaURL(M_CAR_REMOTE_LOG_OPERATION);
     }
 
 }
