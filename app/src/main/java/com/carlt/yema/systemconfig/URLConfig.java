@@ -231,6 +231,8 @@ public class URLConfig {
     private static String M_FORGET_REMOTE_PWD = "safe/forgetRemotePwd";
     //消息中心开关
     private static String M_USER_REMOTE_SWITCH = "safe/userSwitch";
+    //消息中心开关
+    private static String M_CAR_MODIFY = "car/modifyCar";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -431,5 +433,8 @@ public class URLConfig {
     }
     public static String getM_USER_REMOTE_SWITCH() {
         return getYemaURL(M_USER_REMOTE_SWITCH);
+    }
+    public static String getM_CAR_MODIFY() {
+        return getYemaURL(M_CAR_MODIFY);
     }
 }

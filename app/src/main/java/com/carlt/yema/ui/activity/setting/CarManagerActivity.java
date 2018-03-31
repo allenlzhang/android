@@ -9,6 +9,12 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.protocolparser.DefaultStringParser;
+import com.carlt.yema.systemconfig.URLConfig;
+
+import java.util.HashMap;
 
 public class CarManagerActivity extends BaseActivity implements View.OnClickListener{
 
@@ -28,6 +34,12 @@ public class CarManagerActivity extends BaseActivity implements View.OnClickList
     private TextView maintenance_time_txt;//显示
     private TextView insured_time_txt;//显示
     private TextView nspection_time_txt;//显示
+
+    private String buydate="";
+    private String mainten_miles="";
+    private String mainten_date="";
+    private String insurance_date="";
+    private String register_date="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +82,10 @@ public class CarManagerActivity extends BaseActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.edit_car_type:
+                Intent switchIntent=new Intent(this,CarModeListActivity.class);
+                switchIntent.putExtra("switch",true);//标记从车辆管理界面跳转
+                startActivity(switchIntent);
+                finish();
                 break;
             case R.id.edit_purchase_time:
                 break;
@@ -85,6 +101,29 @@ public class CarManagerActivity extends BaseActivity implements View.OnClickList
                 break;
         }
     }
+
+    private void modifyCarInfoRequest(){
+        DefaultStringParser parser=new DefaultStringParser(modifyCallback);
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("buydate", buydate);
+        params.put("mainten_miles", mainten_miles);
+        params.put("mainten_date", mainten_date);
+        params.put("insurance_date", insurance_date);
+        params.put("register_date",register_date);
+        parser.executePost(URLConfig.getM_CAR_MODIFY(),params);
+    }
+
+    private BaseParser.ResultCallback modifyCallback=new BaseParser.ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+
+        }
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

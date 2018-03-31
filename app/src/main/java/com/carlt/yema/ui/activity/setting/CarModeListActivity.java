@@ -22,7 +22,7 @@ public class CarModeListActivity extends LoadingActivity {
 
     private ListView car_mode_list;//车型列表
     private CarModeAdapter adapter;//车型列表适配器
-
+    private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +30,7 @@ public class CarModeListActivity extends LoadingActivity {
         loadingDataUI();;
         initComponent();
         initData();
+        intent=getIntent();
     }
 
     /**
@@ -43,9 +44,12 @@ public class CarModeListActivity extends LoadingActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 CarModeInfo mCarModeInfo= (CarModeInfo) adapterView.getItemAtPosition(i);
-                Intent intent=new Intent(CarModeListActivity.this,CarTypeListActivity.class);
-                intent.putExtra("optionid",mCarModeInfo.getId());
-                CarModeListActivity.this.startActivity(intent);
+                Intent intentType=new Intent(CarModeListActivity.this,CarTypeListActivity.class);
+                intentType.putExtra("optionid",mCarModeInfo.getId());
+                if (intent!=null) {
+                    intentType.putExtra("switch",intent.getBooleanExtra("switch",false));//标记从车辆管理界面跳转
+                }
+                CarModeListActivity.this.startActivity(intentType);
                 finish();
             }
         });

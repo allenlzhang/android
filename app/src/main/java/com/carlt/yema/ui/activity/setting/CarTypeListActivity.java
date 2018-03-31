@@ -106,11 +106,20 @@ public class CarTypeListActivity extends LoadingActivity {
     BaseParser.ResultCallback addResult=new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            Intent intent =new Intent (CarTypeListActivity.this, DeviceBindActivity.class);
-            intent.putExtra("cat_title",carTitle);
-            CarTypeListActivity.this.startActivity(intent);
-            UUToast.showUUToast(CarTypeListActivity.this," 车辆绑定成功");
-            finish();
+            if (CarTypeListActivity.this.getIntent() != null && CarTypeListActivity.this.getIntent().getBooleanExtra("switch", false)) {
+                Intent intent =new Intent (CarTypeListActivity.this, CarManagerActivity.class);
+                intent.putExtra("cat_title",carTitle);
+                CarTypeListActivity.this.startActivity(intent);
+                UUToast.showUUToast(CarTypeListActivity.this," 车辆绑定成功");
+                finish();
+            } else {
+                Intent intent =new Intent (CarTypeListActivity.this, DeviceBindActivity.class);
+                intent.putExtra("cat_title",carTitle);
+                CarTypeListActivity.this.startActivity(intent);
+                UUToast.showUUToast(CarTypeListActivity.this," 车辆绑定成功");
+                finish();
+            }
+
         }
 
         @Override
