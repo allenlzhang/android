@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.base.LoadingActivity;
 
 /**
  * 导航同步到车
