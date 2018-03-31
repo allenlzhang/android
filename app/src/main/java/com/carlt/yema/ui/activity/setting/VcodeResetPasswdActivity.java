@@ -44,6 +44,7 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
     private TextView commit;
 
     private String mobile;
+    private String vCode;
     private String resetPasswd;
     private String confirmPasswd;
     private Dialog mDialog;
@@ -123,9 +124,10 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
                 break;
             case R.id.verification_reset_passwd_commit:
                 mobile=phoneNumber.getText().toString();
+                vCode=vCodeSend.getText().toString();
                 resetPasswd=passwd.getText().toString();
                 confirmPasswd=passwd2St.getText().toString();
-                if (isCommitInvalid(mobile,resetPasswd,confirmPasswd)) {
+                if (isCommitInvalid(mobile,vCode,resetPasswd,confirmPasswd)) {
                     editPasswdCommitRequest();
                 }
                 break;
@@ -177,6 +179,11 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
 
     private void editPasswdCommitRequest(){
         DefaultStringParser parser=new DefaultStringParser(commitCallback);
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("mobile", mobile);
+        params.put("validate",vCode);
+        params.put("newpassword", confirmPasswd);
+        parser.executePost(URLConfig.getM_PASSWORD_RETRIEVE(),params);
     }
 
     private BaseParser.ResultCallback commitCallback = new BaseParser.ResultCallback() {
@@ -221,9 +228,12 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
     /**
      * 判断原始密码、新密码、再次输入新密码是否合法
      * */
-    private boolean isCommitInvalid(String phone, String passwd, String passwdAgain) {
+    private boolean isCommitInvalid(String phone, String vcode, String passwd, String passwdAgain) {
         if (TextUtils.isEmpty(phone) || !StringUtils.checkCellphone(phone)) {
             UUToast.showUUToast(this, getResources().getString(R.string.cell_phone_error));
+            return false;
+        } else if (TextUtils.isEmpty(vcode)) {
+            UUToast.showUUToast(this, "验证码不能为空");
             return false;
         } else if (TextUtils.isEmpty(passwd) || passwd.length() < 6) {
             UUToast.showUUToast(this, "密码至少为6位");

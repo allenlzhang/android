@@ -40,7 +40,6 @@ public class RemotePasswdManageActivity extends BaseActivity implements View.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
-                finish();
                 break;
             case R.id.remote_passwd_remember:
                 Intent resetLoginPasswd=new Intent(this,ResetRemotePasswdActivity.class);
@@ -51,5 +50,6 @@ public class RemotePasswdManageActivity extends BaseActivity implements View.OnC
                 startActivity(resetLoginPasswdByPhone);
                 break;
         }
+        finish();
     }
 }

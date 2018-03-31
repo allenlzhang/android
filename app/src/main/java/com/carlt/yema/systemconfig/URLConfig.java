@@ -217,8 +217,10 @@ public class URLConfig {
     private static String M_DEVICE_REMOTE_TRUNK = "remote/trunk";
     //验证登录密码
     private static String M_USERCENTER_CHECK_PWD = "safe/checkPassword";
-    //验证登录密码
+    //修改登录密码
     private static String M_USERCENTER_EDIT_PWD = "safe/editPassword";
+    //修改远程密码
+    private static String M_RESET_REMOTE_PWD = "safe/resetRemotePwd";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -398,5 +400,8 @@ public class URLConfig {
 
     public static String getM_USERCENTER_EDIT_PWD() {
         return getYemaURL(M_USERCENTER_EDIT_PWD);
+    }
+    public static String getM_RESET_REMOTE_PWD() {
+        return getYemaURL(M_RESET_REMOTE_PWD);
     }
 }
