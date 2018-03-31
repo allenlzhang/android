@@ -213,12 +213,18 @@ public class URLConfig {
     private static String M_DEVICE_REMOTE_CARLOCATING = "remote/carLocating";
     //远程开关窗
     private static String M_DEVICE_REMOTE_WINDOW = "remote/window";
+    //远程开闭锁
+    private static String M_DEVICE_REMOTE_LOCK = "remote/lock";
     //开启关闭后备箱
     private static String M_DEVICE_REMOTE_TRUNK = "remote/trunk";
+    //远程天窗
+    private static String M_DEVICE_REMOTE_SKYLIGHT = "remote/skyLight";
     //验证登录密码
     private static String M_USERCENTER_CHECK_PWD = "safe/checkPassword";
     //验证登录密码
     private static String M_USERCENTER_EDIT_PWD = "safe/editPassword";
+    //校验远程密码
+    private static String M_REMOTEPWDVERIFY = "safe/remotePwdVerify";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -388,6 +394,14 @@ public class URLConfig {
         return getUrlRemote(M_DEVICE_REMOTE_TRUNK);
     }
 
+    public static String getM_DEVICE_REMOTE_SKYLIGHT() {
+        return getUrlRemote(M_DEVICE_REMOTE_SKYLIGHT);
+    }
+
+    public static String getM_DEVICE_REMOTE_LOCK() {
+        return getUrlRemote(M_DEVICE_REMOTE_LOCK);
+    }
+
     public static String getM_EDIT_MOBILE() {
         return getYemaURL(M_EDIT_MOBILE);
     }
@@ -398,5 +412,9 @@ public class URLConfig {
 
     public static String getM_USERCENTER_EDIT_PWD() {
         return getYemaURL(M_USERCENTER_EDIT_PWD);
+    }
+
+    public static String getM_REMOTEPWDVERIFY() {
+        return getYemaURL(M_REMOTEPWDVERIFY);
     }
 }

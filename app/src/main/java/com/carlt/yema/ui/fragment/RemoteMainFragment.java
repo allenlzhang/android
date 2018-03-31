@@ -52,9 +52,8 @@ import java.util.TimerTask;
 
 /**
  * Created by liu on 2018/3/16.
- *
+ * <p>
  * 远程页面
- *
  */
 
 public class RemoteMainFragment extends BaseFragment implements
@@ -66,7 +65,7 @@ public class RemoteMainFragment extends BaseFragment implements
     public final static String ACTION_REMOTE_FORGETPSW = "com.carlt.yema.action_remote_forgetpsw ";
 
 
-    private static  String TAG = "RemoteMainFragment";
+    private static String TAG = "RemoteMainFragment";
     private View view;
     //效果声音播放组件
 //    private PlayRadio mPlayRadio;
@@ -126,11 +125,12 @@ public class RemoteMainFragment extends BaseFragment implements
 
     @Override
     protected View inflateView(LayoutInflater inflater) {
-        view = inflater.inflate(R.layout.activity_remote_main,null,false);
+        view = inflater.inflate(R.layout.activity_remote_main, null, false);
         return view;
     }
 
     CarOperationConfigParser carOperationConfigParser;
+
     @Override
     public void onResume() {
         super.onResume();
@@ -151,18 +151,19 @@ public class RemoteMainFragment extends BaseFragment implements
             });
             HashMap params2 = new HashMap();
             carOperationConfigParser.executePost(URLConfig.getM_CAR_CURCARCONFIG_URL(), params2);
-        }else{
+        } else {
             loadSuss();
         }
     }
+
     private ArrayList<RemoteFunInfo> mRemoteFunInfos;
 
     private AirMainInfo mAirMainInfo1;
 
     private void loadSuss() {
-        RemoteMainInfo mRemoteMainInfo =   YemaApplication.getInstanse().getRemoteMainInfo();
+        RemoteMainInfo mRemoteMainInfo = YemaApplication.getInstanse().getRemoteMainInfo();
         if (mRemoteMainInfo != null) {
-            mAirMainInfo1=mRemoteMainInfo.getmAirMainInfo();
+            mAirMainInfo1 = mRemoteMainInfo.getmAirMainInfo();
             LoginInfo.setChangedCar(false);
             mRemoteFunInfos = mRemoteMainInfo.getmRemoteFunInfos();
             String stateStart = mRemoteMainInfo.getmFunInfoStart().getState();
@@ -192,33 +193,33 @@ public class RemoteMainFragment extends BaseFragment implements
     @Override
     public void init(View view) {
         super.init(view);
-            mTxtState = $ViewByID(R.id.state_car_iv);
-            mTxtRecorder =  $ViewByID(R.id.remote_history_iv);
-            mTxtUnspport = (TextView) $ViewByID(R.id.remote_main_txt_unspport);
-            mViewNormal = $ViewByID(R.id.remote_main_lay_normal);
-            mViewState = $ViewByID(R.id.remote_main_lay_state);
-            mViewUnsupport = $ViewByID(R.id.remote_main_lay_unspport);
-            mGridViewState = (MyGridView) $ViewByID(R.id.remote_main_gridView_state);
-            mImgArrow = (ImageView) $ViewByID(R.id.remote_main_img_arrow);
-            mImgStart = (ImageView) $ViewByID(R.id.remote_main_img_start);
-            mImgStop = (ImageView) $ViewByID(R.id.remote_main_img_stop);
-            mViewStopmask = $ViewByID(R.id.remote_main_view_stop_mask);
-            mRContainer = (LinearLayout) $ViewByID(R.id.remote_main_line_function);
+        mTxtState = $ViewByID(R.id.state_car_iv);
+        mTxtRecorder = $ViewByID(R.id.remote_history_iv);
+        mTxtUnspport = (TextView) $ViewByID(R.id.remote_main_txt_unspport);
+        mViewNormal = $ViewByID(R.id.remote_main_lay_normal);
+        mViewState = $ViewByID(R.id.remote_main_lay_state);
+        mViewUnsupport = $ViewByID(R.id.remote_main_lay_unspport);
+        mGridViewState = (MyGridView) $ViewByID(R.id.remote_main_gridView_state);
+        mImgArrow = (ImageView) $ViewByID(R.id.remote_main_img_arrow);
+        mImgStart = (ImageView) $ViewByID(R.id.remote_main_img_start);
+        mImgStop = (ImageView) $ViewByID(R.id.remote_main_img_stop);
+        mViewStopmask = $ViewByID(R.id.remote_main_view_stop_mask);
+        mRContainer = (LinearLayout) $ViewByID(R.id.remote_main_line_function);
 
-            mTxtState.setOnClickListener(this);
-            mTxtRecorder.setOnClickListener(this);
-            mImgStart.setOnClickListener(this);
-            mImgStop.setOnClickListener(this);
-            mViewStopmask.setOnClickListener(this);
-            mViewNormal.setOnClickListener(this);
+        mTxtState.setOnClickListener(this);
+        mTxtRecorder.setOnClickListener(this);
+        mImgStart.setOnClickListener(this);
+        mImgStop.setOnClickListener(this);
+        mViewStopmask.setOnClickListener(this);
+        mViewNormal.setOnClickListener(this);
 
-            mViewNormal.setOnTouchListener(this);
+        mViewNormal.setOnTouchListener(this);
 
-            mImgArrow.setOnClickListener(this);
+        mImgArrow.setOnClickListener(this);
 
-            mViewUnsupport.setMinimumWidth(YemaApplication.ScreenWith);
-            mViewUnsupport.setMinimumHeight(YemaApplication.ScreenHeight
-                    - YemaApplication.dpToPx(44) - YemaApplication.dpToPx(56));
+        mViewUnsupport.setMinimumWidth(YemaApplication.ScreenWith);
+        mViewUnsupport.setMinimumHeight(YemaApplication.ScreenHeight
+                - YemaApplication.dpToPx(44) - YemaApplication.dpToPx(56));
     }
 
     RemoteFunInfo skyWindowsInfo = null;
@@ -229,6 +230,7 @@ public class RemoteMainFragment extends BaseFragment implements
         public void onSuccess(BaseResponseInfo bInfo) {
             mHandler.sendEmptyMessage(0);
         }
+
         @Override
         public void onError(BaseResponseInfo o) {
             Message msg = new Message();
@@ -237,87 +239,88 @@ public class RemoteMainFragment extends BaseFragment implements
             mHandler.sendMessage(msg);
         }
     };
+
     /**
      * 调用远程接口
      */
     private void GetResult() {
         if (selectedPos == 10) {
-                showWaitingDialog("正在获取空调状态...");
+            showWaitingDialog("正在获取空调状态...");
         } else {
             showWaitingDialog(null);
         }
         switch (selectedPos) {
             case -2:
-                    lastOpt = 0;
-                    CPControl.GetRemoteStart(mListener);
+                lastOpt = 0;
+                CPControl.GetRemoteStart(mListener);
                 break;
             case -1:
                 // 远程熄火
-                    lastOpt = 1;
-                    CPControl.GetCancelRemoteStart(mListener);
+                lastOpt = 1;
+                CPControl.GetCancelRemoteStart(mListener);
                 break;
             case 11:
                 // 闪灯鸣笛
-                    lastOpt = 2;
-                    CPControl.GetCarLocating(mListener);
+                lastOpt = 2;
+                CPControl.GetCarLocating(mListener);
                 break;
             case 12:
                 // 远程开启后备箱
-                    lastOpt = 5;
-                    CPControl.GetRemoteTrunk(mListener);
+                lastOpt = 5;
+                CPControl.GetRemoteTrunk(mListener);
                 break;
             case 10:
                 // 远程开启空调
-                    lastOpt = 3;
-                    mHandler.sendEmptyMessage(6);
+                lastOpt = 3;
+                mHandler.sendEmptyMessage(6);
                 break;
             case 1:
                 // 远程解锁
-                    lastOpt = 6;
-                    CPControl.GetRemoteLock("1", mListener);
+                lastOpt = 6;
+                CPControl.GetRemoteLock("1", mListener);
                 break;
             case 2:
                 // 远程落锁
-                    lastOpt = 7;
-                    CPControl.GetRemoteLock("2", mListener);
+                lastOpt = 7;
+                CPControl.GetRemoteLock("2", mListener);
                 break;
 
             case 4://升起车窗，关窗
                 //
-                    lastOpt = 8;
-                    CPControl.GetRemoteClosewin(mListener);
+                lastOpt = 8;
+                CPControl.GetRemoteClosewin(mListener);
                 break;
             case 3:
                 // 降下车窗,开窗
-                    lastOpt = 9;
-                    CPControl.GetRemoteOpenwin(mListener);
+                lastOpt = 9;
+                CPControl.GetRemoteOpenwin(mListener);
                 break;
             case 5:
                 // 天窗
-                    lastOpt = 13;
-                    dissmissWaitingDialog();
-                    if(skyWindowsInfo != null){
-                        uuDialogRemote = new UUDialogRemote(getActivity());
-                        uuDialogRemote.setTitleMsg("天窗");
-                        uuDialogRemote.setItemClick(mItemClick2);
-                        uuDialogRemote.show();
-                        uuDialogRemote.LoadSuccess(skyWindowsInfo.getApiFieldLists());
-                    }
+                lastOpt = 13;
+                dissmissWaitingDialog();
+                if (skyWindowsInfo != null) {
+                    uuDialogRemote = new UUDialogRemote(getActivity());
+                    uuDialogRemote.setTitleMsg("天窗");
+                    uuDialogRemote.setItemClick(mItemClick2);
+                    uuDialogRemote.show();
+                    uuDialogRemote.LoadSuccess(skyWindowsInfo.getApiFieldLists());
+                }
                 break;
             case 6:
                 // 远程开启天窗
-                    lastOpt = 10;
-                    CPControl.GetRemoteSkylight("1", mListener);
+                lastOpt = 10;
+                CPControl.GetRemoteSkylight("1", mListener);
                 break;
             case 7:
                 // 远程关闭天窗
-                    lastOpt = 11;
-                    CPControl.GetRemoteSkylight("2", mListener);
+                lastOpt = 11;
+                CPControl.GetRemoteSkylight("2", mListener);
                 break;
             case 8:
                 // 远程天窗开撬
-                    lastOpt = 12;
-                    CPControl.GetRemoteSkylight("3", mListener);
+                lastOpt = 12;
+                CPControl.GetRemoteSkylight("3", mListener);
                 break;
         }
     }
@@ -410,7 +413,7 @@ public class RemoteMainFragment extends BaseFragment implements
                         airDialog.dismiss();
                     }
 
-                    if(uuDialogRemote != null && uuDialogRemote.isShowing()){
+                    if (uuDialogRemote != null && uuDialogRemote.isShowing()) {
                         uuDialogRemote.dismiss();
                     }
                     UUToast.showUUToast(getActivity(), "操作成功");
@@ -434,7 +437,7 @@ public class RemoteMainFragment extends BaseFragment implements
 
                 case 2:
                     // 获取车辆状态成功
-                    ArrayList<CarStateInfo> mDataList = (ArrayList<CarStateInfo>) ((BaseResponseInfo)msg.obj).getValue();
+                    ArrayList<CarStateInfo> mDataList = (ArrayList<CarStateInfo>) ((BaseResponseInfo) msg.obj).getValue();
                     if (mDataList != null && mDataList.size() > 0) {
                         mGridViewState.setNumColumns(3);
                         if (mAdapterStates == null) {
@@ -492,18 +495,18 @@ public class RemoteMainFragment extends BaseFragment implements
                     // 获取远程空调功能成功//x7的
                     AirMainInfo mAirMainInfo2 = (AirMainInfo) msg.obj;
                     if (!isReCall) {
-                            if (airDialog == null || !airDialog.isShowing()) {
-                                if (TextUtils.isEmpty(mAirMainInfo2.getState())
-                                        || "0".equals(mAirMainInfo2.getState())) {
-                                    // UUToast.showUUToast(getActivity(),
-                                    // "获取空调状态超时");
-                                }
-                                airDialog = new UUAirConditionDialog(
-                                        getActivity(), mAirMainInfo2);
-                                airDialog.mListener = mListener;
-                                airDialog.mHandler = mHandler;
-                                airDialog.show();
+                        if (airDialog == null || !airDialog.isShowing()) {
+                            if (TextUtils.isEmpty(mAirMainInfo2.getState())
+                                    || "0".equals(mAirMainInfo2.getState())) {
+                                // UUToast.showUUToast(getActivity(),
+                                // "获取空调状态超时");
                             }
+                            airDialog = new UUAirConditionDialog(
+                                    getActivity(), mAirMainInfo2);
+                            airDialog.mListener = mListener;
+                            airDialog.mHandler = mHandler;
+                            airDialog.show();
+                        }
                     } else {
                         airDialog.reCall();
                     }
@@ -513,18 +516,18 @@ public class RemoteMainFragment extends BaseFragment implements
                     dissmissWaitingDialog();
                     AirMainInfo mAirMainInfo3 = (AirMainInfo) msg.obj;
                     if (!isReCall) {
-                            if (airDialog == null || !airDialog.isShowing()) {
-                                if (TextUtils.isEmpty(mAirMainInfo3.getState())
-                                        || "0".equals(mAirMainInfo3.getState())) {
-                                    // UUToast.showUUToast(getActivity(),
-                                    // "获取空调状态超时");
-                                }
-                                airDialog = new UUAirConditionDialog(
-                                        getActivity(), mAirMainInfo3);
-                                airDialog.mListener = mListener;
-                                airDialog.mHandler = mHandler;
-                                airDialog.show();
+                        if (airDialog == null || !airDialog.isShowing()) {
+                            if (TextUtils.isEmpty(mAirMainInfo3.getState())
+                                    || "0".equals(mAirMainInfo3.getState())) {
+                                // UUToast.showUUToast(getActivity(),
+                                // "获取空调状态超时");
                             }
+                            airDialog = new UUAirConditionDialog(
+                                    getActivity(), mAirMainInfo3);
+                            airDialog.mListener = mListener;
+                            airDialog.mHandler = mHandler;
+                            airDialog.show();
+                        }
                     } else {
                         airDialog.reCall();
                     }
@@ -669,6 +672,7 @@ public class RemoteMainFragment extends BaseFragment implements
             }
         }
     }
+
     private boolean getTimeOutStatus() {
         boolean isTimeOut = false;
 
@@ -699,10 +703,10 @@ public class RemoteMainFragment extends BaseFragment implements
                 .findViewById(R.id.dialog_withedit_new_btn2);
 
 
-            // 正常模式
-            editPassword.setEnabled(true);
-            editPassword.setFocusableInTouchMode(true);
-            editPassword.requestFocus();
+        // 正常模式
+        editPassword.setEnabled(true);
+        editPassword.setFocusableInTouchMode(true);
+        editPassword.requestFocus();
 
 
         Timer timer = new Timer();

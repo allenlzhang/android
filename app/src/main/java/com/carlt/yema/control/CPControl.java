@@ -28,6 +28,7 @@ import com.carlt.yema.protocolparser.remote.CarStateInfoParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.utils.CreatPostString;
 import com.carlt.yema.utils.CreateHashMap;
+import com.carlt.yema.utils.FileUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,18 +71,38 @@ public class CPControl {
 		HashMap param = new HashMap();
 		param.put("move_device_name",YemaApplication.MODEL_NAME);
 		param.put("lock",s);
+		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_LOCK(),param);
+	}
+
+	//关窗
+	public static void GetRemoteClosewin(BaseParser.ResultCallback mListener) {
+		DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
+		HashMap param = new HashMap();
+		param.put("move_device_name",YemaApplication.MODEL_NAME);
+		param.put("rwoc","2");
 		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_WINDOW(),param);
 	}
 
-	public static void GetRemoteClosewin(BaseParser.ResultCallback mListener) {
-	}
-
+	//开窗
 	public static void GetRemoteOpenwin(BaseParser.ResultCallback mListener) {
+		DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
+		HashMap param = new HashMap();
+		param.put("move_device_name",YemaApplication.MODEL_NAME);
+		param.put("rwoc","1");
+		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_WINDOW(),param);
 	}
 
 	public static void GetRemoteSkylight(String s, BaseParser.ResultCallback mListener) {
+		DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
+		HashMap param = new HashMap();
+		param.put("move_device_name",YemaApplication.MODEL_NAME);
+		param.put("rwoc",s);
+		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_SKYLIGHT(),param);
 	}
 
+	/**
+	 * 远程-车辆实时温度 成功返回 AirMainInfo
+	 */
 	public static void GetRemoteCarTemp(BaseParser.ResultCallback mListener_temp, AirMainInfo mAirMainInfo1) {
 	}
 
@@ -92,6 +113,10 @@ public class CPControl {
 	}
 
 	public static void GetRemotePswVerify(String password, BaseParser.ResultCallback mListener_verify) {
+		DefaultStringParser paser = new DefaultStringParser(mListener_verify);
+		HashMap mapParam = new HashMap();
+		mapParam.put("remote_pwd",FileUtil.stringToMD5(password));
+		paser.executePost(URLConfig.getM_REMOTEPWDVERIFY(),mapParam);
 	}
 
 	public static void GetRealNameResult(String authen_name, String authen_card, BaseParser.ResultCallback listener_realname) {
