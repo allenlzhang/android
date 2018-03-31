@@ -1,6 +1,7 @@
 package com.carlt.yema.ui.activity.setting;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -8,6 +9,15 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.LoginControl;
+import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.protocolparser.DefaultStringParser;
+import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.ui.view.UUToast;
+
+import java.util.HashMap;
 
 
 public class ResetLoginPasswdActivity extends BaseActivity implements View.OnClickListener{
@@ -20,6 +30,10 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
     private EditText new_passwd_again_input;//新密码再次输入框
 
     private TextView reset_passwd_commit;
+
+    String passwd;
+    String newPasswd;
+    String confirmPasswd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +64,55 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
                 finish();
                 break;
             case R.id.reset_passwd_commit:
-                isValid();
+                 passwd=old_passwd_input.getText().toString();
+                 newPasswd=new_passwd_input.getText().toString();
+                 confirmPasswd=new_passwd_again_input.getText().toString();
+                if (isCommitInvalid(passwd,newPasswd,confirmPasswd)) {
+                    editPasswdRequest();
+                }
                 break;
 
         }
     }
 
+    private void editPasswdRequest(){
+        DefaultStringParser parser=new DefaultStringParser(editCallback);
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("dealerId", LoginInfo.getDealerId());
+        params.put("oldpassword", passwd);
+        params.put("newspassword", confirmPasswd);
+        parser.executePost(URLConfig.getM_USERCENTER_EDIT_PWD(),params);
+    }
+
+    private BaseParser.ResultCallback editCallback=new BaseParser.ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(ResetLoginPasswdActivity.this,"密码修改成功");
+            LoginControl.logic(ResetLoginPasswdActivity.this);
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(ResetLoginPasswdActivity.this,"密码修改失败");
+        }
+    };
+
     /**
      * 判断原始密码、新密码、再次输入新密码是否合法
      * */
-    public void isValid(){
+    private boolean isCommitInvalid( String passwd, String newPasswd, String confirmPasswd) {
+        if (TextUtils.isEmpty(passwd)) {
+            UUToast.showUUToast(this, "原始密码不能为空");
+            return false;
+        } else if (TextUtils.isEmpty(newPasswd) || newPasswd.length() < 6) {
+            UUToast.showUUToast(this, "新密码长度至少为6位");
+            return false;
+        } else if (TextUtils.isEmpty(confirmPasswd) || !newPasswd.equals(confirmPasswd)) {
+            UUToast.showUUToast(this, "两次输入密码不一致");
+            return false;
+        } else {
+            return true;
+        }
 
     }
 }
