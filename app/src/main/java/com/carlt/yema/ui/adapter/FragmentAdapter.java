@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.carlt.yema.ui.fragment.SettingMainFragment;
-import com.carlt.yema.ui.fragment.TestFragment;
 import com.carlt.yema.ui.fragment.CarMainFragment;
 import com.carlt.yema.ui.fragment.HomeFragment;
 import com.carlt.yema.ui.fragment.RemoteMainFragment;
@@ -29,7 +28,6 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
                 HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
             case 1:
-                TestFragment twoFragment = new TestFragment();
                 CarMainFragment carMainFragment = new CarMainFragment();
                 return carMainFragment;
             case 2:
