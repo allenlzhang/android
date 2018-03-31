@@ -16,7 +16,7 @@
         android:layout_marginBottom="0dp"
         android:hint="@string/old_passwd_txt"
         android:inputType="number|textPhonetic"
-        android:maxLength="11"/>
+        android:maxLength="32"/>
     <LinearLayout
         style="@style/login_input_bg"
         android:layout_marginTop="10dip">
@@ -33,7 +33,7 @@
             android:gravity="center_vertical"
             android:hint="@string/usercenter_hint_phone2"
             android:inputType="textPassword"
-            android:maxLength="11" />
+            android:maxLength="32" />
 
         <ImageView
             android:id="@+id/new_passwd_input_toggle"
@@ -61,7 +61,7 @@
             android:gravity="center_vertical"
             android:hint="@string/usercenter_hint_password_reset"
             android:inputType="textPassword"
-            android:maxLength="11" />
+            android:maxLength="32" />
 
         <ImageView
             android:id="@+id/new_passwd_input_again_toggle"

@@ -215,6 +215,10 @@ public class URLConfig {
     private static String M_DEVICE_REMOTE_WINDOW = "remote/window";
     //开启关闭后备箱
     private static String M_DEVICE_REMOTE_TRUNK = "remote/trunk";
+    //验证登录密码
+    private static String M_USERCENTER_CHECK_PWD = "safe/checkPassword";
+    //验证登录密码
+    private static String M_USERCENTER_EDIT_PWD = "safe/editPassword";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -357,13 +361,12 @@ public class URLConfig {
     }
 
     public static String getM_AUTH_MOBILE() {
-        return getUrlRemote(M_AUTH_MOBILE);
+        return getYemaURL(M_AUTH_MOBILE);
     }
 
     public static String getM_AUTH_SET_VALIDATE() {
-        return getUrlRemote(M_AUTH_SET_VALIDATE);
+        return getYemaURL(M_AUTH_SET_VALIDATE);
     }
-
     public static String getM_DEVICE_REMOTE_START() {
         return getUrlRemote(M_DEVICE_REMOTE_START);
     }
@@ -378,5 +381,14 @@ public class URLConfig {
     }
     public static String getM_DEVICE_REMOTE_TRUNK() {
         return getUrlRemote(M_DEVICE_REMOTE_TRUNK);
+    }
+    public static String getM_EDIT_MOBILE() {
+        return getYemaURL(M_EDIT_MOBILE);
+    }
+    public static String getM_USERCENTER_CHECK_PWD() {
+        return getYemaURL(M_USERCENTER_CHECK_PWD);
+    }
+    public static String getM_USERCENTER_EDIT_PWD() {
+        return getYemaURL(M_USERCENTER_EDIT_PWD);
     }
 }
