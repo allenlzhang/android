@@ -1,6 +1,7 @@
 package com.carlt.yema.ui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,11 @@ public class CarSaftyAdapter extends BaseAdapter {
         SaftyMsgInfo info = mList.get(i);
         if (!StringUtils.isEmail(info.getTitle())){
             viewHolder.mTxtTitle.setText(info.getTitle());
-        }else {}
+        }else {
+            viewHolder.mTxtTitle.setText("");
+        }
+
+//        TextUtils.equals()
         if (info.getTitle().equals("防盗警报")){
             viewHolder.mImg.setImageResource(R.drawable.icon_security_warning);
         }else if (info.getTitle().equals("启动警报")){
@@ -74,14 +79,20 @@ public class CarSaftyAdapter extends BaseAdapter {
             viewHolder.mImg.setImageResource(R.drawable.icon_flameout);
         }else if (info.getTitle().equals("震动")){
             viewHolder.mImg.setImageResource(R.drawable.icon_shake);
-        }else {}
+        }else {
+
+        }
         if (!StringUtils.isEmail(info.getContent())){
             viewHolder.mTxtMsg.setText(info.getContent());
-        }else {}
+        }else {
+            viewHolder.mTxtMsg.setText("");
+        }
         if (!StringUtils.isEmail(info.getCreatedate())){
             viewHolder.mTxtDate.setText(info.getCreatedate());
-        }else {}
-        return null;
+        }else {
+            viewHolder.mTxtDate.setText("");
+        }
+        return view;
     }
 
     class ViewHolder{

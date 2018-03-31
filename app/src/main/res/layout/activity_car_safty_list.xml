@@ -27,6 +27,4 @@
         android:dividerHeight="9dip"
         android:layout_below="@id/activity_car_safty_sub"
         />
-
-
 </RelativeLayout>

@@ -35,12 +35,13 @@ public class CarSaftyListActivity extends LoadingActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_safty_list);
         initTitle("安防提醒");
+        initView();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initView();
+
         loadingDataUI();
         initData();
     }
