@@ -269,7 +269,6 @@ public class RemoteMainFragment extends BaseFragment implements
             case 10:
                 // 远程开启空调
                     lastOpt = 3;
-                    //CPControl.GetRemoteAirResult(mListener_air);
                     mHandler.sendEmptyMessage(6);
                 break;
             case 1:

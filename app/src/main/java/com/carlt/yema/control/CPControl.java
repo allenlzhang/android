@@ -44,15 +44,33 @@ public class CPControl {
 	}
 
 	public static void GetCancelRemoteStart(BaseParser.ResultCallback mListener) {
+		DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
+		HashMap param = new HashMap();
+		param.put("move_device_name",YemaApplication.MODEL_NAME);
+		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_STALL(),param);
 	}
 
 	public static void GetCarLocating(BaseParser.ResultCallback mListener) {
+		DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
+		HashMap param = new HashMap();
+		param.put("move_device_name",YemaApplication.MODEL_NAME);
+		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_CARLOCATING(),param);
 	}
 
 	public static void GetRemoteTrunk(BaseParser.ResultCallback mListener) {
+		DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
+		HashMap param = new HashMap();
+		param.put("move_device_name",YemaApplication.MODEL_NAME);
+		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_TRUNK(),param);
 	}
 
+	// 1:解锁，2上锁
 	public static void GetRemoteLock(String s, BaseParser.ResultCallback mListener) {
+		DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
+		HashMap param = new HashMap();
+		param.put("move_device_name",YemaApplication.MODEL_NAME);
+		param.put("lock",s);
+		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_WINDOW(),param);
 	}
 
 	public static void GetRemoteClosewin(BaseParser.ResultCallback mListener) {

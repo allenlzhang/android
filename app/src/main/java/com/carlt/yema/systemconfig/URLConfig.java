@@ -367,27 +367,35 @@ public class URLConfig {
     public static String getM_AUTH_SET_VALIDATE() {
         return getYemaURL(M_AUTH_SET_VALIDATE);
     }
+
     public static String getM_DEVICE_REMOTE_START() {
         return getUrlRemote(M_DEVICE_REMOTE_START);
     }
+
     public static String getM_DEVICE_REMOTE_STALL() {
         return getUrlRemote(M_DEVICE_REMOTE_STALL);
     }
+
     public static String getM_DEVICE_REMOTE_CARLOCATING() {
         return getUrlRemote(M_DEVICE_REMOTE_CARLOCATING);
     }
+
     public static String getM_DEVICE_REMOTE_WINDOW() {
         return getUrlRemote(M_DEVICE_REMOTE_WINDOW);
     }
+
     public static String getM_DEVICE_REMOTE_TRUNK() {
         return getUrlRemote(M_DEVICE_REMOTE_TRUNK);
     }
+
     public static String getM_EDIT_MOBILE() {
         return getYemaURL(M_EDIT_MOBILE);
     }
+
     public static String getM_USERCENTER_CHECK_PWD() {
         return getYemaURL(M_USERCENTER_CHECK_PWD);
     }
+
     public static String getM_USERCENTER_EDIT_PWD() {
         return getYemaURL(M_USERCENTER_EDIT_PWD);
     }
