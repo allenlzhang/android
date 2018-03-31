@@ -221,10 +221,12 @@ public class URLConfig {
     private static String M_DEVICE_REMOTE_SKYLIGHT = "remote/skyLight";
     //验证登录密码
     private static String M_USERCENTER_CHECK_PWD = "safe/checkPassword";
-    //验证登录密码
+    //修改登录密码
     private static String M_USERCENTER_EDIT_PWD = "safe/editPassword";
     //校验远程密码
     private static String M_REMOTEPWDVERIFY = "safe/remotePwdVerify";
+    //修改远程密码
+    private static String M_RESET_REMOTE_PWD = "safe/resetRemotePwd";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -416,5 +418,8 @@ public class URLConfig {
 
     public static String getM_REMOTEPWDVERIFY() {
         return getYemaURL(M_REMOTEPWDVERIFY);
+    }
+    public static String getM_RESET_REMOTE_PWD() {
+        return getYemaURL(M_RESET_REMOTE_PWD);
     }
 }
