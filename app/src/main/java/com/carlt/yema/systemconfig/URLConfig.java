@@ -227,6 +227,8 @@ public class URLConfig {
     private static String M_REMOTEPWDVERIFY = "safe/remotePwdVerify";
     //修改远程密码
     private static String M_RESET_REMOTE_PWD = "safe/resetRemotePwd";
+    //重置远程密码
+    private static String M_FORGET_REMOTE_PWD = "safe/forgetRemotePwd";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -421,5 +423,8 @@ public class URLConfig {
     }
     public static String getM_RESET_REMOTE_PWD() {
         return getYemaURL(M_RESET_REMOTE_PWD);
+    }
+    public static String getM_FORGET_REMOTE_PWD() {
+        return getYemaURL(M_FORGET_REMOTE_PWD);
     }
 }

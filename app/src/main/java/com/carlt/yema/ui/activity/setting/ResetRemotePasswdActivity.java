@@ -15,6 +15,7 @@ import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.PasswordView;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.CipherUtils;
 
 import java.util.HashMap;
 
@@ -75,8 +76,8 @@ public class ResetRemotePasswdActivity extends BaseActivity implements View.OnCl
     private void editPasswdRequest() {
         DefaultStringParser parser = new DefaultStringParser(editCallback);
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("old_remote_pwd", passwd);
-        params.put("new_remote_pwd", confirmPasswd);
+        params.put("old_remote_pwd", CipherUtils.md5(passwd));
+        params.put("new_remote_pwd", CipherUtils.md5(confirmPasswd));
         parser.executePost(URLConfig.getM_RESET_REMOTE_PWD(), params);
     }
 
