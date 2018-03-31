@@ -32,7 +32,7 @@
             android:layout_marginLeft="0dip"
             android:layout_marginRight="0dip"
             android:hint="@string/usercenter_hint_validate"
-            android:inputType="number|textPhonetic"
+            android:inputType="number"
             android:maxLength="6"/>
         <TextView
             android:id="@+id/certified_verification_send"

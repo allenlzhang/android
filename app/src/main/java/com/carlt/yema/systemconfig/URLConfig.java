@@ -197,6 +197,12 @@ public class URLConfig {
     private static String M_CAR_REMOTE_LOG_OPERATION = "carRelated/getRemoteOperationLog";
     //密码找回
     private static String M_PASSWORD_RETRIEVE="safe/retrievePassword";
+    //绑定手机老手机提交
+    private static String M_AUTH_MOBILE="safe/authMobile";
+    //绑定手机新手机提交
+    private static String M_EDIT_MOBILE="safe/editmobile";
+    //密码找回
+    private static String M_AUTH_SET_VALIDATE="user/setValidate";
     //设备激活
     private static String M_DEVICE_ACTIVATE="remote/deviceActive";
 
@@ -331,8 +337,17 @@ public class URLConfig {
     }
     public static String getM_PASSWORD_RETRIEVE() {
         return getYemaURL(M_PASSWORD_RETRIEVE);
-    }public static String getM_DEVICE_ACTIVATE() {
+    }
+    public static String getM_DEVICE_ACTIVATE() {
         return getUrlRemote(M_DEVICE_ACTIVATE);
     }
-
+    public static String getM_AUTH_MOBILE() {
+        return getUrlRemote(M_AUTH_MOBILE);
+    }
+    public static String getM_AUTH_SET_VALIDATE() {
+        return getUrlRemote(M_AUTH_SET_VALIDATE);
+    }
+    public static String getM_EDIT_MOBILE() {
+        return getUrlRemote(M_EDIT_MOBILE);
+    }
 }

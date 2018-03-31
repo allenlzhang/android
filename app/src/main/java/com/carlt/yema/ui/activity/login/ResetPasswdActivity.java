@@ -279,7 +279,10 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
         } else if (TextUtils.isEmpty(vcode)) {
             UUToast.showUUToast(this, "验证码不能为空");
             return false;
-        } else if (TextUtils.isEmpty(passwd) || passwd.length() < 6) {
+        } else if (vcode.length()<6) {
+            UUToast.showUUToast(this, "验证码错误");
+            return false;
+        }else if (TextUtils.isEmpty(passwd) || passwd.length() < 6) {
             UUToast.showUUToast(this, "密码至少为6位");
             return false;
         } else if (TextUtils.isEmpty(passwdAgain) || !passwd.equals(passwdAgain)) {
