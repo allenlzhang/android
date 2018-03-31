@@ -29,6 +29,9 @@ public class WaringLampInfo extends BaseResponseInfo {
     private int SVS ;
     private int EOBD ;
 
+    public static final int LIGHT = 1;
+    public static final int NOT_BRIGHT =0;
+
     public int getABS() {
         return ABS;
     }

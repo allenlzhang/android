@@ -66,18 +66,17 @@ public class CarSaftyAdapter extends BaseAdapter {
             viewHolder.mTxtTitle.setText("");
         }
 
-//        TextUtils.equals()
-        if (info.getTitle().equals("防盗警报")){
+        if (TextUtils.equals(info.getTitle(),"防盗警报")){
             viewHolder.mImg.setImageResource(R.drawable.icon_security_warning);
-        }else if (info.getTitle().equals("启动警报")){
+        }else if (TextUtils.equals(info.getTitle(),"启动警报")){
             viewHolder.mImg.setImageResource(R.drawable.icon_start_the_alarm);
-        }else if (info.getTitle().equals("碰撞警报")){
+        }else if (TextUtils.equals(info.getTitle(),"碰撞警报")){
             viewHolder.mImg.setImageResource(R.drawable.icon_collision_alarm);
-        }else if (info.getTitle().equals("胎压")){
+        }else if (TextUtils.equals(info.getTitle(),"胎压")){
             viewHolder.mImg.setImageResource(R.drawable.icon_tire_pressure);
-        }else if (info.getTitle().equals("熄火")){
+        }else if (TextUtils.equals(info.getTitle(),"熄火")){
             viewHolder.mImg.setImageResource(R.drawable.icon_flameout);
-        }else if (info.getTitle().equals("震动")){
+        }else if (TextUtils.equals(info.getTitle(),"震动")){
             viewHolder.mImg.setImageResource(R.drawable.icon_shake);
         }else {
 
