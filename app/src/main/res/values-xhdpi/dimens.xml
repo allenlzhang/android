@@ -59,7 +59,7 @@
     <!-- 设置-主页 -->
     <dimen name="setting_padding_h">14dip</dimen>
     <!-- 安全中心个页面 -->
-    <dimen name="safe_margin_h">14dip</dimen>
+    <dimen name="safe_margin_h">13dip</dimen>
     <dimen name="mypie_item_height">69dip</dimen>
     <!-- 剪裁界面底部控件margin -->
     <dimen name="thumbnail_seekbar_margin_bottom">46.5dip</dimen>
