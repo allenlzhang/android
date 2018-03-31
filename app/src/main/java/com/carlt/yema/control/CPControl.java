@@ -37,6 +37,10 @@ public class CPControl {
 	}
 
 	public static void GetRemoteStart(BaseParser.ResultCallback mListener) {
+		DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
+		HashMap param = new HashMap();
+		param.put("move_device_name",YemaApplication.MODEL_NAME);
+		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_START(),param);
 	}
 
 	public static void GetCancelRemoteStart(BaseParser.ResultCallback mListener) {

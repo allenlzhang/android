@@ -179,7 +179,7 @@ public class URLConfig {
     //实时车况
     private static String M_REMOTE_STATUS = "remote/status";
     //车辆状态
-    private static String M_REMOTE_STATE= "remote/state";
+    private static String M_REMOTE_STATE = "remote/state";
     //胎压监测
     private static String M_REMOTE_DRIECTRRESSURE = "remote/directPressure";
 
@@ -190,21 +190,31 @@ public class URLConfig {
     //获取车款
     private static String M_CAR_TYPE_LIST = "comm/getYemaCarList";
     //添加车款
-    private static String M_CAR_ADD_CAR="car/addCar";
+    private static String M_CAR_ADD_CAR = "car/addCar";
     //绑定设备
-    private static String M_DEVICE_BIND_CAR="car/bindVinDevice";
+    private static String M_DEVICE_BIND_CAR = "car/bindVinDevice";
     //远程操作日志
     private static String M_CAR_REMOTE_LOG_OPERATION = "carRelated/getRemoteOperationLog";
     //密码找回
-    private static String M_PASSWORD_RETRIEVE="safe/retrievePassword";
+    private static String M_PASSWORD_RETRIEVE = "safe/retrievePassword";
     //绑定手机老手机提交
-    private static String M_AUTH_MOBILE="safe/authMobile";
+    private static String M_AUTH_MOBILE = "safe/authMobile";
     //绑定手机新手机提交
-    private static String M_EDIT_MOBILE="safe/editmobile";
+    private static String M_EDIT_MOBILE = "safe/editmobile";
     //密码找回
-    private static String M_AUTH_SET_VALIDATE="user/setValidate";
+    private static String M_AUTH_SET_VALIDATE = "user/setValidate";
     //设备激活
-    private static String M_DEVICE_ACTIVATE="remote/deviceActive";
+    private static String M_DEVICE_ACTIVATE = "remote/deviceActive";
+    //远程启动
+    private static String M_DEVICE_REMOTE_START = "remote/start";
+    //远程熄火
+    private static String M_DEVICE_REMOTE_STALL = "remote/stall";
+    //声光寻车
+    private static String M_DEVICE_REMOTE_CARLOCATING = "remote/carLocating";
+    //远程开关窗
+    private static String M_DEVICE_REMOTE_WINDOW = "remote/window";
+    //开启关闭后备箱
+    private static String M_DEVICE_REMOTE_TRUNK = "remote/trunk";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -309,9 +319,11 @@ public class URLConfig {
     public static String getM_REMOTE_STATUS() {
         return getUrlRemote(M_REMOTE_STATUS);
     }
+
     public static String getM_REMOTE_STATE() {
         return getUrlRemote(M_REMOTE_STATE);
     }
+
     public static String getM_REMOTE_DRIECTRRESSURE() {
         return getUrlRemote(M_REMOTE_DRIECTRRESSURE);
     }
@@ -324,30 +336,47 @@ public class URLConfig {
         return getYemaURL(M_CAR_TYPE_LIST);
     }
 
-    public static String getM_CAR_ADD_CAR(){
+    public static String getM_CAR_ADD_CAR() {
         return getYemaURL(M_CAR_ADD_CAR);
     }
 
-    public static String getM_DEVICE_BIND_CAR(){
+    public static String getM_DEVICE_BIND_CAR() {
         return getYemaURL(M_DEVICE_BIND_CAR);
     }
 
     public static String getM_CAR_REMOTE_LOG_OPERATION() {
         return getYemaURL(M_CAR_REMOTE_LOG_OPERATION);
     }
+
     public static String getM_PASSWORD_RETRIEVE() {
         return getYemaURL(M_PASSWORD_RETRIEVE);
     }
+
     public static String getM_DEVICE_ACTIVATE() {
         return getUrlRemote(M_DEVICE_ACTIVATE);
     }
+
     public static String getM_AUTH_MOBILE() {
         return getUrlRemote(M_AUTH_MOBILE);
     }
+
     public static String getM_AUTH_SET_VALIDATE() {
         return getUrlRemote(M_AUTH_SET_VALIDATE);
     }
-    public static String getM_EDIT_MOBILE() {
-        return getUrlRemote(M_EDIT_MOBILE);
+
+    public static String getM_DEVICE_REMOTE_START() {
+        return getUrlRemote(M_DEVICE_REMOTE_START);
+    }
+    public static String getM_DEVICE_REMOTE_STALL() {
+        return getUrlRemote(M_DEVICE_REMOTE_STALL);
+    }
+    public static String getM_DEVICE_REMOTE_CARLOCATING() {
+        return getUrlRemote(M_DEVICE_REMOTE_CARLOCATING);
+    }
+    public static String getM_DEVICE_REMOTE_WINDOW() {
+        return getUrlRemote(M_DEVICE_REMOTE_WINDOW);
+    }
+    public static String getM_DEVICE_REMOTE_TRUNK() {
+        return getUrlRemote(M_DEVICE_REMOTE_TRUNK);
     }
 }

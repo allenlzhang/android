@@ -241,7 +241,6 @@ public class RemoteMainFragment extends BaseFragment implements
      * 调用远程接口
      */
     private void GetResult() {
-        int opt = -1;
         if (selectedPos == 10) {
                 showWaitingDialog("正在获取空调状态...");
         } else {
