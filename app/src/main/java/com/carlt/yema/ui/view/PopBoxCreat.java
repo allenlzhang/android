@@ -534,14 +534,14 @@ public class PopBoxCreat {
         }
         return mUUDialog;
     }
-//
-//    public static UUTimerDialog createUUTimerDialog(final Context context, String title_msg) {
-//        UUTimerDialog mUUDialog = new UUTimerDialog(context);
-//        if (title_msg != null && !title_msg.equals("")) {
-//            mUUDialog.setContentText(title_msg);
-//        }
-//        return mUUDialog;
-//    }
+
+    public static UUTimerDialog createUUTimerDialog(final Context context, String title_msg) {
+        UUTimerDialog mUUDialog = new UUTimerDialog(context);
+        if (title_msg != null && !title_msg.equals("")) {
+            mUUDialog.setContentText(title_msg);
+        }
+        return mUUDialog;
+    }
 //
 //    public static UUTwoCodeDialog showTwoCodeDialog(Context context, Bitmap bit, OnClickListener mClick) {
 //		UUTwoCodeDialog mDialog = new UUTwoCodeDialog(context, mClick);

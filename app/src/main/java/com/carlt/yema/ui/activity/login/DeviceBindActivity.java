@@ -113,6 +113,8 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
         public void onSuccess(BaseResponseInfo bInfo) {
             LoginInfo.setDeviceActivate(true);
             LoginInfo.setDeviceidstring(bInfo.getValue().toString());
+            Intent activateIntent=new Intent(DeviceBindActivity.this,ActivateBindActivity.class);
+            startActivity(activateIntent);
         }
 
         @Override

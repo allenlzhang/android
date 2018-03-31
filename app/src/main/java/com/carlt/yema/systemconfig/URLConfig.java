@@ -197,6 +197,8 @@ public class URLConfig {
     private static String M_CAR_REMOTE_LOG_OPERATION = "carRelated/getRemoteOperationLog";
     //密码找回
     private static String M_PASSWORD_RETRIEVE="safe/retrievePassword";
+    //设备激活
+    private static String M_DEVICE_ACTIVATE="remote/deviceActive";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -329,6 +331,8 @@ public class URLConfig {
     }
     public static String getM_PASSWORD_RETRIEVE() {
         return getYemaURL(M_PASSWORD_RETRIEVE);
+    }public static String getM_DEVICE_ACTIVATE() {
+        return getUrlRemote(M_DEVICE_ACTIVATE);
     }
 
 }

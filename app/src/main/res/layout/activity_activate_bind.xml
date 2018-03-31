@@ -7,6 +7,13 @@
     android:background="@mipmap/login_bg"
     tools:context=".ui.activity.login.ActivateBindActivity">
     <include layout="@layout/layout_title" />
+
+    <include
+        android:id="@+id/activate_sub_head"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        layout="@layout/head_sub_normal" />
     <ImageView
         android:id="@+id/activate_bind_logo"
         android:layout_width="match_parent"
