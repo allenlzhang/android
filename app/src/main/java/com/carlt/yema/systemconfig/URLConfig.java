@@ -425,16 +425,53 @@ public class URLConfig {
     public static String getM_REMOTEPWDVERIFY() {
         return getYemaURL(M_REMOTEPWDVERIFY);
     }
+
     public static String getM_RESET_REMOTE_PWD() {
         return getYemaURL(M_RESET_REMOTE_PWD);
     }
+
     public static String getM_FORGET_REMOTE_PWD() {
         return getYemaURL(M_FORGET_REMOTE_PWD);
     }
+
     public static String getM_USER_REMOTE_SWITCH() {
         return getYemaURL(M_USER_REMOTE_SWITCH);
     }
+
     public static String getM_CAR_MODIFY() {
         return getYemaURL(M_CAR_MODIFY);
+    }
+
+
+    /***********************旅行相册（其他接口在上面添加）***********************/
+    //测试服
+    private static final String ALBUM_TEST_URL = "http://imgcloud.linewin.cc";
+    //预发服
+    private static final String ALBUM_PRE_URL = "https://pre-imagecloud.geni4s.com";
+    //正式服
+    private static final String ALBUM_FORMAL_URL = "http://imgcloud.linewin.cc";
+    //相册列表查询
+    public static final String ALBUM_QUERY="query";
+    //相册列表查询
+    public static final String ALBUM_DELETE="delete";
+
+    public static String getAlbumUrl(String path) {
+        String version = YemaApplication.Version_API + "/";
+        String url = "";
+        switch (flag) {
+            case VERSION_FORMAL:
+                // 正式服
+                url = ALBUM_FORMAL_URL + version + path;
+                break;
+            case VERSION_PREPARE:
+                // 预发布服
+                url = ALBUM_PRE_URL + version + path;
+                break;
+            case VERSION_TEST:
+                // 测试服
+                url = ALBUM_PRE_URL + version + path;
+                break;
+        }
+        return url;
     }
 }

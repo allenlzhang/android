@@ -6,38 +6,6 @@
     android:orientation="vertical"
     tools:context="com.carlt.yema.ui.activity.setting.TravelAlbumActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:background="#161922"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/album_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dip"
-            android:src="@drawable/back_bg" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:text="@string/travel_phone_album" />
-        <TextView
-            android:id="@+id/album_opt"
-            android:layout_width="70dp"
-            android:layout_height="28dp"
-            android:gravity="center"
-            android:layout_centerInParent="true"
-            android:background="@drawable/verification_send_bg"
-            android:textSize="14sp"
-            android:tag="@string/travel_album_edit"
-            android:layout_marginRight="12dp"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/white"
-            android:text="@string/travel_album_edit" />
-    </RelativeLayout>
     <GridView
         android:id="@+id/album_list"
         android:layout_width="match_parent"

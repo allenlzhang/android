@@ -1,5 +1,6 @@
 package com.carlt.yema.ui.activity.setting;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +15,9 @@ public class AboutYemaActivity extends BaseActivity implements OnClickListener{
     private ImageView back;
     private TextView title;
     private TextView about_yema_ver;
+    private TextView about_yema_terms;
+
+    private final static String URL_PROVISION = "http://m.cheler.com/domy.html";// 服务条款URL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +35,23 @@ public class AboutYemaActivity extends BaseActivity implements OnClickListener{
 
         about_yema_ver=findViewById(R.id.about_yema_ver);
         about_yema_ver.setText(String.format(getResources().getString(R.string.version),"1.1.0"));
+
+        about_yema_terms=findViewById(R.id.about_yema_terms);
+        about_yema_terms.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        finish();
+        switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
+            case R.id.about_yema_terms:
+                Intent termsDeclare = new Intent(this, TermsDeclareActivity.class);
+                termsDeclare.putExtra(TermsDeclareActivity.URL_INFO, URL_PROVISION);
+                startActivity(termsDeclare);
+                break;
+        }
+
     }
 }

@@ -2,12 +2,10 @@
 package com.carlt.yema.base;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
@@ -16,7 +14,6 @@ import android.widget.TextView;
 import com.carlt.yema.R;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.protocolparser.BaseParser;
-import com.carlt.yema.utils.ILog;
 
 
 /**
@@ -40,6 +37,7 @@ public class LoadingActivity extends BaseActivity {
 
     protected View backTV = null;
     protected TextView titleTV = null;
+    protected TextView btnOpt=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +75,7 @@ public class LoadingActivity extends BaseActivity {
         try{
             backTV = $ViewByID(R.id.back);
             titleTV = $ViewByID(R.id.title);
+            btnOpt = $ViewByID(R.id.btnOpt);
         }catch (Exception e){
             //是设置标题出错
             return;
@@ -94,6 +93,21 @@ public class LoadingActivity extends BaseActivity {
         }
     }
 
+    protected void setBtnOptVisible(boolean visible){
+        if (visible) {
+            btnOpt.setVisibility(View.VISIBLE);
+        } else {
+            btnOpt.setVisibility(View.GONE);
+        }
+    }
+
+    protected void setBtnOptText(String text){
+        btnOpt.setText(text);
+    }
+
+    protected void setOnBtnOptClickListener(OnClickListener listener){
+        btnOpt.setOnClickListener(listener);
+    }
 
     private OnClickListener mClickListener = new OnClickListener() {
 
