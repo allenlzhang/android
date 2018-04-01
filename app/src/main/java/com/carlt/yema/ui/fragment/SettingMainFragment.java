@@ -3,6 +3,7 @@ package com.carlt.yema.ui.fragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
+import com.carlt.yema.YemaApplication;
 import com.carlt.yema.ui.activity.setting.AboutYemaActivity;
 import com.carlt.yema.ui.activity.setting.AccountSecurityActivity;
 import com.carlt.yema.ui.activity.setting.CarManagerActivity;
@@ -22,6 +24,7 @@ import com.carlt.yema.ui.activity.setting.GeneralManageActivity;
 import com.carlt.yema.ui.activity.setting.MsgManageActivity;
 import com.carlt.yema.ui.activity.setting.PersonInfoActivity;
 import com.carlt.yema.ui.activity.setting.TravelAlbumActivity;
+import com.carlt.yema.utils.CacheUtils;
 import com.carlt.yema.utils.DensityUtil;
 
 
@@ -135,14 +138,11 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
             case R.id.btn_sign_out:
 
                 break;
-            case R.id.clean_cache_cancel:
 
-                break;
-            case R.id.clean_cache_confirm:
-
-                break;
         }
     }
+
+
 
     private void showCleanCacheDialog() {
         final Dialog dialog = new Dialog(getActivity(), R.style.CleanCacheDialog);
@@ -181,10 +181,18 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
                   }
               }
           });
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
     }
 
     private void cleanCache() {
+        CacheUtils.clearAllCache(YemaApplication.getInstanse().getApplicationContext());
     }
+
+    private void goToDial(String phoneNumber){
+        Intent dialIntent =  new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+        startActivity(dialIntent);
+    }
+
 }
