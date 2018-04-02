@@ -2,7 +2,6 @@ package com.carlt.yema.control;
 
 
 import com.carlt.yema.YemaApplication;
-import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.login.UserRegisterParams;
 import com.carlt.yema.data.remote.AirMainInfo;
 import com.carlt.yema.data.set.ModifyCarInfo;
@@ -26,11 +25,9 @@ import com.carlt.yema.protocolparser.home.ReportMonthStatisticParser;
 import com.carlt.yema.protocolparser.login.UserRegisterParser;
 import com.carlt.yema.protocolparser.remote.CarStateInfoParser;
 import com.carlt.yema.systemconfig.URLConfig;
-import com.carlt.yema.utils.CreatPostString;
 import com.carlt.yema.utils.CreateHashMap;
 import com.carlt.yema.utils.FileUtil;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CPControl {
@@ -170,8 +167,6 @@ public class CPControl {
 		// String url = URLConfig.getM_VALIDATE_URL();
 		String url = URLConfig.getM_VALIDATE_NEW_URL();
 		// Post参数
-		String post = CreatPostString.getValidate(type, phoneNum,
-				voiceVerify);
 		HashMap<String, String> params = new HashMap<>();
 		params.put("mobile", phoneNum);
 		params.put("type", "1");
@@ -219,8 +214,6 @@ public class CPControl {
 		// 链接地址
 		String url = URLConfig.getM_DEVICEUPDATE_URL();
 		// Post参数
-		String post = CreatPostString.getDeviceUpdate(deviceid);
-
 		DeviceUpdateInfoParser mParser = new DeviceUpdateInfoParser(listener);
 		HashMap<String, String> mMap = new HashMap<String, String>();
 		mMap.put("deviceid", deviceid);

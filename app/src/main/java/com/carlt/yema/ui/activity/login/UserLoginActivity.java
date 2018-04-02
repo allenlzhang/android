@@ -30,7 +30,6 @@ import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUAuthorDialog;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.CipherUtils;
-import com.carlt.yema.utils.CreatPostString;
 import com.carlt.yema.utils.StringUtils;
 import com.google.gson.Gson;
 
@@ -284,45 +283,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         HttpLinker.post(url, mMap, this);
     }
 
-    /**
-     * 获取Token
-     */
-    private void getToken() {
-        String url = URLConfig.getM_USER_ACCESSTOKEN();
-        UseInfo mUseInfo = UseInfoLocal.getUseInfo();
-        String account = mUseInfo.getAccount() + "";
-        String password = mUseInfo.getPassword();
-        // Post参数
-        String md5 = CipherUtils.md5(password + "");
-        Log.i("DEBUG", md5);
-        HashMap<String, String> params = CreatPostString.getToken(account, md5);
-        HttpLinker.post(url, params, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                mLoginInfo.setInfo(BaseParser.MSG_ERRO);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String content = response.body().string();
-
-                Gson gson = new Gson();
-                mLoginInfo = gson.fromJson(content, LoginInfo.class);
-                if (mLoginInfo.getFlag() == 200) {
-                    Message msg = Message.obtain();
-                    msg.what = 0;
-                    msg.obj = mLoginInfo;
-                    mHandler.sendMessage(msg);
-                } else {
-                    mLoginInfo.setInfo(BaseParser.MSG_ERRO + mLoginInfo.getFlag());
-                    Message msg = Message.obtain();
-                    msg.what = 1;
-                    msg.obj = mLoginInfo;
-                    mHandler.sendMessage(msg);
-                }
-            }
-        });
-    }
 
     /**
      * 加载成功
