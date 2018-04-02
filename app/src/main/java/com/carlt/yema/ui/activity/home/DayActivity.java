@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.control.CPControl;

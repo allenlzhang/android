@@ -136,10 +136,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     actLoadError((CareerInfo)((BaseResponseInfo) msg.obj).getValue());
                     break;
                 case 2:
-                    loadRemoteSuccess((MilesInfo)((BaseResponseInfo) msg.obj).getValue());
+                    loadRemoteSuccess((BaseResponseInfo) msg.obj);
                     break;
                 case 3:
-                    loadRemoteError((MilesInfo)((BaseResponseInfo) msg.obj).getValue());
+                    loadRemoteError((BaseResponseInfo) msg.obj);
                     break;
             }
         }
@@ -147,10 +147,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
     private void loadRemoteError(BaseResponseInfo bInfo) {
         UUToast.showUUToast(getContext(),bInfo.getInfo());
+        mTxtObd.setText("--");
+        mTxtEnduranceMile.setText("--");
+        mTxtAvgSpeed.setText("--");
+        mTxtAvgFuel.setText("--");
     }
 
     protected void loadRemoteSuccess(BaseResponseInfo bInfo){
-        milesInfo = (MilesInfo) bInfo;
+        milesInfo = (MilesInfo) (bInfo.getValue());
         if (milesInfo!=null){
             mTxtObd.setText(milesInfo.getObd()+"");
             mTxtEnduranceMile.setText(milesInfo.getEnduranceMile()+"");

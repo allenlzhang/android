@@ -7,7 +7,7 @@ import com.carlt.yema.data.BaseResponseInfo;
  * Created by Marlon on 2018/3/27.
  */
 
-public class MilesInfo extends BaseResponseInfo {
+public class MilesInfo{
     /**
      * "obd":1960.5,
      "enduranceMile":19.5,

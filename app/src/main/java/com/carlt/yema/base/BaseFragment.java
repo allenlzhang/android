@@ -30,6 +30,7 @@ public abstract class BaseFragment extends Fragment {
             mCtx = getActivity();
             mView = inflateView(inflater);
             init(mView);
+            loadData();
         }
         return mView;
     }

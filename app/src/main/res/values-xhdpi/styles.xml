@@ -208,21 +208,8 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="layout_report_grid_txt1">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/text_color_gray1</item>
-        <item name="android:textSize">@dimen/text_size_small_s2</item>
-        <item name="android:gravity">center_horizontal</item>
-    </style>
 
-    <style name="layout_report_grid_txt2">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/text_color_gray3</item>
-        <item name="android:textSize">@dimen/text_size_middle1</item>
-        <item name="android:gravity">center_horizontal</item>
-    </style>
+
 
     <!-- 生涯-挑战 -->
     <style name="challenge_doing_txt">

@@ -10,7 +10,7 @@ import com.carlt.yema.utils.ILog;
 import com.google.gson.JsonObject;
 
 
-public class CareerlParser extends BaseParser {
+public class CareerlParser extends BaseParser<CareerInfo> {
 
     CareerInfo mCareerInfo = new CareerInfo();
 

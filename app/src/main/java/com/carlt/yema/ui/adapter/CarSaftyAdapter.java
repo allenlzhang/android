@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.data.car.SaftyMsgInfo;
+import com.carlt.yema.data.home.InformationMessageInfo;
 import com.carlt.yema.utils.StringUtils;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class CarSaftyAdapter extends BaseAdapter {
 
     private List<SaftyMsgInfo> mList;
 
-    public CarSaftyAdapter(Context mContext,List<SaftyMsgInfo> mList) {
+    public CarSaftyAdapter(Context mContext, List<SaftyMsgInfo> mList) {
         this.mList = mList;
         inflater = LayoutInflater.from(mContext);
     }
@@ -48,53 +49,69 @@ public class CarSaftyAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
-        if (view == null){
+        if (view == null) {
             viewHolder = new ViewHolder();
-            view = inflater.inflate(R.layout.item_car_safty_list,null);
+            view = inflater.inflate(R.layout.item_car_safty_list, null);
             viewHolder.mImg = view.findViewById(R.id.item_car_safty_img);
             viewHolder.mTxtTitle = view.findViewById(R.id.item_car_safty_txt_title);
             viewHolder.mTxtMsg = view.findViewById(R.id.item_car_safty_txt_msg);
             viewHolder.mTxtDate = view.findViewById(R.id.item_car_safty_txt_date);
             view.setTag(viewHolder);
-        }else {
+        } else {
             viewHolder = (ViewHolder) view.getTag();
         }
         SaftyMsgInfo info = mList.get(i);
-        if (!StringUtils.isEmail(info.getTitle())){
+        if (!StringUtils.isEmail(info.getTitle())) {
             viewHolder.mTxtTitle.setText(info.getTitle());
-        }else {
+        } else {
             viewHolder.mTxtTitle.setText("");
         }
-
-        if (TextUtils.equals(info.getTitle(),"防盗警报")){
-            viewHolder.mImg.setImageResource(R.drawable.icon_security_warning);
-        }else if (TextUtils.equals(info.getTitle(),"启动警报")){
-            viewHolder.mImg.setImageResource(R.drawable.icon_start_the_alarm);
-        }else if (TextUtils.equals(info.getTitle(),"碰撞警报")){
-            viewHolder.mImg.setImageResource(R.drawable.icon_collision_alarm);
-        }else if (TextUtils.equals(info.getTitle(),"胎压")){
-            viewHolder.mImg.setImageResource(R.drawable.icon_tire_pressure);
-        }else if (TextUtils.equals(info.getTitle(),"熄火")){
-            viewHolder.mImg.setImageResource(R.drawable.icon_flameout);
-        }else if (TextUtils.equals(info.getTitle(),"震动")){
-            viewHolder.mImg.setImageResource(R.drawable.icon_shake);
-        }else {
-
+        if (!StringUtils.isEmpty(info.getClass2())) {
+            switch (Integer.parseInt(info.getClass2())) {
+                case InformationMessageInfo.C1_T2_T1:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_shake);
+                    break;
+                case InformationMessageInfo.C1_T2_T2:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_collision_alarm);
+                    break;
+                case InformationMessageInfo.C1_T2_T3:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_tire_pressure);
+                    break;
+                case InformationMessageInfo.C1_T2_T4:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_power_shortage);
+                    break;
+                case InformationMessageInfo.C1_T2_T5:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_start_the_alarm);
+                    break;
+                case InformationMessageInfo.C1_T2_T6:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_door_and_window);
+                    break;
+                case InformationMessageInfo.C1_T2_T7:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_trailer);
+                    break;
+                case InformationMessageInfo.C1_T2_T8:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_security_warning);
+                    break;
+                case InformationMessageInfo.C1_T2_T9:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_flameout);
+                    break;
+            }
         }
-        if (!StringUtils.isEmail(info.getContent())){
+
+        if (!StringUtils.isEmail(info.getContent())) {
             viewHolder.mTxtMsg.setText(info.getContent());
-        }else {
+        } else {
             viewHolder.mTxtMsg.setText("");
         }
-        if (!StringUtils.isEmail(info.getCreatedate())){
+        if (!StringUtils.isEmail(info.getCreatedate())) {
             viewHolder.mTxtDate.setText(info.getCreatedate());
-        }else {
+        } else {
             viewHolder.mTxtDate.setText("");
         }
         return view;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         ImageView mImg;
         TextView mTxtTitle;
         TextView mTxtMsg;

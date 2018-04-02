@@ -10,9 +10,9 @@ import com.google.gson.JsonObject;
  * Created by Marlon on 2018/3/27.
  */
 
-public class MilesInfoParser extends BaseParser {
+public class MilesInfoParser extends BaseParser<MilesInfo> {
 
-    MilesInfo info = new MilesInfo();
+
 
     public MilesInfoParser(ResultCallback callback) {
         super(callback);
@@ -22,6 +22,7 @@ public class MilesInfoParser extends BaseParser {
     protected void parser(){
         try{
             JsonObject mJSON_data = mJson.getAsJsonObject("data");
+            MilesInfo info = new MilesInfo();
             info.setObd(mJSON_data.get("obd").getAsDouble());
             info.setEnduranceMile(mJSON_data.get("enduranceMile").getAsDouble());
             info.setAvgSpeed(mJSON_data.get("avgSpeed").getAsDouble());
