@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.DealerInfo;
 import com.carlt.yema.protocolparser.BaseParser;
@@ -157,7 +158,7 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
                 startActivity(aboutYema);
                 break;
             case R.id.btn_sign_out:
-
+                ActivityControl.logout(this.getActivity());
                 break;
 
         }

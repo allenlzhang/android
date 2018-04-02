@@ -1,18 +1,42 @@
 package com.carlt.yema.ui.activity.setting;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.utils.LocalConfig;
+
+import java.io.File;
 
 public class PersonAvatarActivity extends LoadingActivity implements OnClickListener{
 
     private ImageView image_display;
+    private TextView avatar_photograph;
+    private TextView avatar_album;
+    private TextView avatar_cancel;
     private View view;
+    /** 以下部分是用于头像拍照上传 **/
 
+    public static final int NONE = 0;
+
+    public static final int PHOTOHRAPH = 1;// 拍照
+
+    public static final int PHOTOZOOM = 2; // 缩放
+
+    public static final int PHOTORESOULT = 3;// 结果
+
+    public static final int QRCode = 4;
+
+    public static final String IMAGE_UNSPECIFIED = "image/*";
+
+    private String ImageName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +51,52 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
     private void initComponent() {
         image_display=$ViewByID(R.id.image_display);
         view=$ViewByID(R.id.avatar_image_opt);
+        avatar_photograph=$ViewByID(R.id.avatar_photograph);
+        avatar_album=$ViewByID(R.id.avatar_album);
+        avatar_cancel=$ViewByID(R.id.avatar_cancel);
 //        Glide.with(this).load(getIntent().getStringExtra("imagePath")).into(image_display);
     }
 
 
     @Override
     public void onClick(View view) {
-        if (this.view.getVisibility() == View.GONE) {
-            this.view.setVisibility(View.VISIBLE);
-        } else {
-            this.view.setVisibility(View.GONE);
+        switch (view.getId()) {
+            case R.id.btnOpt:
+                if (this.view.getVisibility() == View.GONE) {
+                    this.view.setVisibility(View.VISIBLE);
+                } else {
+                    this.view.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.avatar_photograph:
+                useCamera();
+                break;
+            case R.id.avatar_album:
+                usePhoto();
+                break;
+            case R.id.avatar_cancel:
+                this.view.setVisibility(View.GONE);
+                break;
         }
+    }
 
+
+    // 调用系统的相册
+    public void usePhoto() {
+
+        Intent intent = new Intent(Intent.ACTION_PICK, null);
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_UNSPECIFIED);
+        // 调用剪切功能
+        startActivityForResult(intent, PHOTOZOOM);
+    }
+
+    public void useCamera() {
+        ImageName = System.currentTimeMillis() + ".jpg";
+        // 调用系统的拍照功能
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                Uri.fromFile(new File(LocalConfig.mImageCacheSavePath_SD, ImageName)));
+        startActivityForResult(intent, PHOTOHRAPH);
     }
 
 }

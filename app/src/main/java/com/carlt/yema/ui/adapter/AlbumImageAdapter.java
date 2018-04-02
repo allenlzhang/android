@@ -26,7 +26,7 @@ import java.util.HashMap;
 
 public class AlbumImageAdapter extends BaseAdapter {
 
-    private static final String TAG=AlbumImageAdapter.class.getName();
+    private static final String TAG = AlbumImageAdapter.class.getName();
 
     private LayoutInflater inflater;
 
@@ -34,22 +34,25 @@ public class AlbumImageAdapter extends BaseAdapter {
 
     private ArrayList<AlbumImageInfo> albumImageInfos;
 
-    private static HashMap<Integer,Boolean> isSelected;
+    private static HashMap<Integer, Boolean> isSelected;
+
+    private boolean isHide = true;
+
 
     public AlbumImageAdapter(Context context, ArrayList<AlbumImageInfo> albumImageInfos) {
         this.context = context;
         this.albumImageInfos = albumImageInfos;
-        isSelected=new HashMap<>();
-        inflater=LayoutInflater.from(context);
+        isSelected = new HashMap<>();
+        inflater = LayoutInflater.from(context);
         //按时间排序
         Collections.sort(this.albumImageInfos, new Comparator<AlbumImageInfo>() {
             @Override
             public int compare(AlbumImageInfo albumImageInfo, AlbumImageInfo albumImageInfo1) {
-                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Date date1=null,date2=null;
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date1 = null, date2 = null;
                 try {
-                    date1=simpleDateFormat.parse(albumImageInfo.getUploadTime());
-                    date2=simpleDateFormat.parse(albumImageInfo1.getUploadTime());
+                    date1 = simpleDateFormat.parse(albumImageInfo.getUploadTime());
+                    date2 = simpleDateFormat.parse(albumImageInfo1.getUploadTime());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -59,15 +62,26 @@ public class AlbumImageAdapter extends BaseAdapter {
         checkedInit();
     }
 
-    private void checkedInit(){
-        for(int i=0; i<albumImageInfos.size();i++) {
-            getIsSelected().put(i,false);
+    private void checkedInit() {
+        for (int i = 0; i < albumImageInfos.size(); i++) {
+            getIsSelected().put(i, false);
         }
+    }
+
+    public boolean isIsHide() {
+        return isHide;
+    }
+
+    /**
+     * 设置CheckBox是否全部隐藏
+     */
+    public void setIsHide(boolean isHide) {
+        this.isHide = isHide;
     }
 
     @Override
     public int getCount() {
-        return albumImageInfos==null?0:albumImageInfos.size();
+        return albumImageInfos == null ? 0 : albumImageInfos.size();
     }
 
     @Override
@@ -82,8 +96,8 @@ public class AlbumImageAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder viewHolder=null;
-        AlbumImageInfo mAlbumImageInfo=getItem(i);
+        ViewHolder viewHolder = null;
+        AlbumImageInfo mAlbumImageInfo = getItem(i);
         if (view == null) {
             viewHolder = new ViewHolder();
             view = inflater.inflate(R.layout.album_image_list_item, null);
@@ -91,16 +105,21 @@ public class AlbumImageAdapter extends BaseAdapter {
             viewHolder.image = view.findViewById(R.id.album_image);
             view.setTag(viewHolder);
         } else {
-            viewHolder= (ViewHolder) view.getTag();
+            viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.status.setChecked(getIsSelected().get(i));
+        if (isHide) {
+            viewHolder.status.setVisibility(View.GONE);
+        } else {
+            viewHolder.status.setVisibility(View.VISIBLE);
+        }
         Glide.with(context).load(mAlbumImageInfo.getThumbnailPath()).into(viewHolder.image);
         return view;
     }
 
-    private static class ViewHolder{
-        CheckBox status;
-        ImageView image;
+    public static class ViewHolder {
+        public  CheckBox status;
+        public  ImageView image;
     }
 
     public static HashMap<Integer, Boolean> getIsSelected() {
@@ -110,4 +129,5 @@ public class AlbumImageAdapter extends BaseAdapter {
     public static void setIsSelected(HashMap<Integer, Boolean> isSelected) {
         AlbumImageAdapter.isSelected = isSelected;
     }
+
 }

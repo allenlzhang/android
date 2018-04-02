@@ -11,6 +11,8 @@ import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.preference.TokenInfo;
 import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.ui.activity.login.UserLoginActivity;
+import com.carlt.yema.ui.view.PopBoxCreat;
+import com.carlt.yema.ui.view.PopBoxCreat.DialogWithTitleClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,8 +128,25 @@ public class ActivityControl {
 	}
 
 	public static void logout(final Context context) {
+		DialogWithTitleClick click = new DialogWithTitleClick() {
+
+			@Override
+			public void onRightClick() {
+				// 取消
+
+			}
+
+			@Override
+			public void onLeftClick() {
+				// 注销
+				onLogout(context);
+			}
+		};
+		PopBoxCreat.createDialogWithTitle(context, "提示", "是否要注销?", "", "确定",
+				"取消", click);
 
 	}
+
 
 	// 注销操作
 	public static void onLogout(Context context) {
