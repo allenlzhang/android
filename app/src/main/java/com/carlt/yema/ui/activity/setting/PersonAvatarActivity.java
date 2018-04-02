@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.utils.LocalConfig;
@@ -37,23 +39,36 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
     public static final String IMAGE_UNSPECIFIED = "image/*";
 
     private String ImageName;
+
+    private Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avatar_display);
+        intent=getIntent();
         initTitle("");
         initComponent();
         setBtnOptText("修改");
         setBtnOptVisible(true);
         setOnBtnOptClickListener(this);
+        loadSuccessUI();
     }
 
     private void initComponent() {
-        image_display=$ViewByID(R.id.image_display);
+        image_display=$ViewByID(R.id.avatar_display);
         view=$ViewByID(R.id.avatar_image_opt);
         avatar_photograph=$ViewByID(R.id.avatar_photograph);
+        avatar_photograph.setOnClickListener(this);
         avatar_album=$ViewByID(R.id.avatar_album);
+        avatar_album.setOnClickListener(this);
         avatar_cancel=$ViewByID(R.id.avatar_cancel);
+        avatar_cancel.setOnClickListener(this);
+        if (intent != null && !TextUtils.isEmpty(intent.getStringExtra("avatarPath"))) {
+            Glide.with(this).load(getIntent().getStringExtra("avatarPath")).into(image_display);
+        } else {
+            image_display.setImageResource(R.mipmap.default_avater);
+        }
 //        Glide.with(this).load(getIntent().getStringExtra("imagePath")).into(image_display);
     }
 
