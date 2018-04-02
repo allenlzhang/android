@@ -1,7 +1,6 @@
 package com.carlt.yema.ui.activity.login;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +18,7 @@ import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.http.HttpLinker;
@@ -284,39 +284,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         HttpLinker.post(url, mMap, this);
     }
 
-
-    /**
-     * 跳转绑定
-     */
-    public void accountBinding(Context mCtx) {
-        String className = mContext.getClass().getName();
-        // 判断是否绑定设备
-        String deviceInfo = LoginInfo.getDeviceidstring();
-        if (deviceInfo != null && deviceInfo.length() > 0 && !deviceInfo.equals("null")) {
-            // 已绑定设备,判断是否激活设备
-            boolean isDeviceActivate = LoginInfo.isDeviceActivate();
-            Log.e("info", "isDeviceActivate==" + isDeviceActivate);
-            if (isDeviceActivate) {
-                // 已激活设备，
-                Intent carPage = new Intent(mCtx, MainActivity.class);
-                carPage.putExtra("page", "1");
-                startActivity(carPage);
-            } else {
-                // 未激活设备
-                Intent bindDevice = new Intent(mContext,
-                        DeviceBindActivity.class);
-                bindDevice.putExtra("vin", user_phone.getText().toString());
-                mContext.startActivity(bindDevice);
-            }
-        } else {
-            Intent bindDevice = new Intent(mContext,
-                    DeviceBindActivity.class);
-            bindDevice.putExtra("vin", user_phone.getText().toString());
-            mContext.startActivity(bindDevice);
-
-        }
-    }
-
     /**
      * 获取Token
      */
@@ -372,7 +339,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         Intent carPage = new Intent(this, MainActivity.class);
         carPage.putExtra("page", "1");
         startActivity(carPage);
-        accountBinding(this);
+        LoginControl.logic(this);
     }
 
     /**
