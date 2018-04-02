@@ -111,8 +111,8 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
     BaseParser.ResultCallback callback=new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            LoginInfo.setDeviceActivate(true);
             LoginInfo.setDeviceidstring(bInfo.getValue().toString());
+            LoginInfo.setVin(LoginInfo.getMobile(),deviceId);
             Intent activateIntent=new Intent(DeviceBindActivity.this,ActivateBindActivity.class);
             startActivity(activateIntent);
         }

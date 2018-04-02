@@ -211,6 +211,7 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
                 @Override
                 public void onSuccess(BaseResponseInfo bInfo) {
                     UUToast.showUUToast(ActivateBindActivity.this, "野马设备已成功激活");
+                    LoginInfo.setDeviceActivate(true);
                     LoginControl.logic(ActivateBindActivity.this);
                     finish();
                 }

@@ -7,7 +7,8 @@ import android.util.Log;
 import com.carlt.yema.MainActivity;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.model.LoginInfo;
-import com.carlt.yema.ui.activity.login.UserLoginActivity;
+import com.carlt.yema.ui.activity.login.ActivateBindActivity;
+import com.carlt.yema.ui.activity.login.DeviceBindActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUUpdateDialog;
 
@@ -38,18 +39,19 @@ public class LoginControl {
             if (isDeviceActivate) {
 
                 // 野马绑定和激活合并，如果激活直接进入主页
-                Intent mIntent4 = new Intent(mContext,
+                Intent mainIntent = new Intent(mContext,
                         MainActivity.class);
-                mContext.startActivity(mIntent4);
+                mainIntent.putExtra("page", "1");
+                mContext.startActivity(mainIntent);
 
             } else {
                 // 未激活设备
                 String vin = LoginInfo.getVin(LoginInfo.getMobile());
                 if (vin == null || vin.equals("")) {
-                    Intent mIntent2 = new Intent(mContext,
-                            UserLoginActivity.class);
-                    mIntent2.putExtra("account", LoginInfo.getMobile());
-                    mContext.startActivity(mIntent2);
+                    Intent loginIntent = new Intent(mContext,
+                            DeviceBindActivity.class);
+                    loginIntent.putExtra("account", LoginInfo.getVin(LoginInfo.getMobile()));
+                    mContext.startActivity(loginIntent);
                 } else {
                     boolean isUpdating = LoginInfo.isUpgradeing();
                     // 是否需要升级
@@ -76,19 +78,19 @@ public class LoginControl {
                                 });
                     } else {
                         // 设备不需要升级，跳转至激活盒子
-                        Intent mIntent3 = new Intent(mContext,
-                                UserLoginActivity.class);
-                        mIntent3.putExtra("account", LoginInfo.getMobile());
-                        mContext.startActivity(mIntent3);
+                        Intent loginIntent = new Intent(mContext,
+                                ActivateBindActivity.class);
+                        loginIntent.putExtra("account", LoginInfo.getMobile());
+                        mContext.startActivity(loginIntent);
                     }
                 }
 
             }
         } else {
-            Intent mIntent2 = new Intent(mContext,
-                    UserLoginActivity.class);
-            mIntent2.putExtra("account", LoginInfo.getMobile());
-            mContext.startActivity(mIntent2);
+            Intent loginIntent = new Intent(mContext,
+                    DeviceBindActivity.class);
+            loginIntent.putExtra("account", LoginInfo.getMobile());
+            mContext.startActivity(loginIntent);
         }
     }
 }

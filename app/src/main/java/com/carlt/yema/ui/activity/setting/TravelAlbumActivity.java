@@ -2,14 +2,15 @@ package com.carlt.yema.ui.activity.setting;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
@@ -26,19 +27,23 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-import static com.carlt.yema.R.layout.album_edit_dialog;
+public class TravelAlbumActivity extends LoadingActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-public class TravelAlbumActivity extends LoadingActivity implements View.OnClickListener {
-
-    private boolean idEditing = true;
+    private boolean idEditing = true;//是否为可编辑状态
 
     private ArrayList<AlbumImageInfo> albumImageInfos;
 
-    private AlbumImageAdapter adapter;
+    private AlbumImageAdapter adapter;//相册适配器
 
-    private StringBuilder builder;
+    private StringBuilder builder;//拼接请求参数
 
-    private GridView album_list;
+    private GridView album_list;//相册列表
+
+    private View album_image_item_opt;//底部操作
+
+    private TextView album_select_all;//全选按钮
+
+    private TextView album_delete;//删除按钮
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +53,25 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         setBtnOptVisible(true);
         setBtnOptText("编辑");
         setOnBtnOptClickListener(this);
-        album_list=$ViewByID(R.id.album_list);
+        initComponent();
         initData();
+    }
+
+    private void initComponent() {
+        album_list = $ViewByID(R.id.album_list);
+        album_list.setOnItemClickListener(this);
+        album_image_item_opt = $ViewByID(R.id.album_image_item_opt);
+        album_select_all = $ViewByID(R.id.album_select_all);
+        album_select_all.setOnClickListener(this);
+        album_delete = $ViewByID(R.id.album_delete);
+        album_delete.setOnClickListener(this);
     }
 
     private void initData() {
         loadingDataUI();
-        AlbumImageParser parser=new AlbumImageParser(callback);
-        HashMap<String,String> params=new HashMap<>();
-        parser.executePost(URLConfig.getAlbumUrl(URLConfig.ALBUM_QUERY),params);
+        AlbumImageParser parser = new AlbumImageParser(callback);
+        HashMap<String, String> params = new HashMap<>();
+        parser.executePost(URLConfig.getAlbumUrl(URLConfig.ALBUM_QUERY), params);
     }
 
     @Override
@@ -66,17 +81,15 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
     }
 
     /**
-     *
      * 查询相册回调
-     *
      */
-    private BaseParser.ResultCallback callback=new BaseParser.ResultCallback() {
+    private BaseParser.ResultCallback callback = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             loadSuccessUI();
-            builder=new StringBuilder();
-            albumImageInfos= (ArrayList<AlbumImageInfo>) bInfo.getValue();
-            adapter=new AlbumImageAdapter(TravelAlbumActivity.this,albumImageInfos);
+            builder = new StringBuilder();
+            albumImageInfos = (ArrayList<AlbumImageInfo>) bInfo.getValue();
+            adapter = new AlbumImageAdapter(TravelAlbumActivity.this, albumImageInfos);
             album_list.setAdapter(adapter);
         }
 
@@ -93,7 +106,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                 changeAlbumStatus();
                 break;
             case R.id.album_select_all:
-               selectAll();
+                selectAll();
                 break;
             case R.id.album_delete:
                 UUToast.showUUToast(this, "点击了删除");
@@ -102,51 +115,56 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         }
     }
 
-    private void deleteImages(){
-        AlbumImageParser parser=new AlbumImageParser(deleteCallback);
-        HashMap<String,String> params=new HashMap<>();
-        Set<Integer> idx=AlbumImageAdapter.getIsSelected().keySet();
-        Iterator<Integer> iterator=idx.iterator();
-        if (builder!=null) {
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    private void deleteImages() {
+        AlbumImageParser parser = new AlbumImageParser(deleteCallback);
+        HashMap<String, String> params = new HashMap<>();
+        Set<Integer> idx = AlbumImageAdapter.getIsSelected().keySet();
+        Iterator<Integer> iterator = idx.iterator();
+        if (builder != null) {
             while (iterator.hasNext()) {
                 if (AlbumImageAdapter.getIsSelected().get(iterator.next())) {
                     builder.append(iterator.next()).append(",");
                 }
             }
         }
-        String paramIdx=builder.substring(0,builder.length()-1);
-        params.put("id",paramIdx);
-        parser.executePost(URLConfig.getAlbumUrl(URLConfig.ALBUM_DELETE),params);
+        String paramIdx = builder.substring(0, builder.length() - 1);
+        params.put("id", paramIdx);
+        parser.executePost(URLConfig.getAlbumUrl(URLConfig.ALBUM_DELETE), params);
     }
 
     /**
-     *
      * 删除接口回调
-     *
      */
-    private BaseParser.ResultCallback deleteCallback=new BaseParser.ResultCallback() {
+    private BaseParser.ResultCallback deleteCallback = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(TravelAlbumActivity.this,"相册删除成功");
+            UUToast.showUUToast(TravelAlbumActivity.this, "相册删除成功");
             deleteSelectedImage();
 
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(TravelAlbumActivity.this,"相册删除失败");
+            UUToast.showUUToast(TravelAlbumActivity.this, "相册删除失败");
         }
     };
 
     private void changeAlbumStatus() {
         if (idEditing) {
-            showDialog();
+//            showDialog();
             setBtnOptText(getResources().getString(R.string.travel_album_cancel));
+            album_image_item_opt.setVisibility(View.VISIBLE);
             idEditing = false;
         } else {
-            showDialog();
+//            showDialog();
             setBtnOptText(getResources().getString(R.string.travel_album_edit));
             idEditing = true;
+            album_image_item_opt.setVisibility(View.GONE);
         }
     }
 
@@ -164,10 +182,11 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         }
 
     }
+
     /**
      * 删除选中项
      */
-    private void deleteSelectedImage(){
+    private void deleteSelectedImage() {
         if (adapter != null) {
             if (null != albumImageInfos && albumImageInfos.size() > 0) {
                 for (int i = 0; i < albumImageInfos.size(); i++) {
@@ -185,7 +204,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         Window dialogWindow = null;
         if (idEditing) {
             mAlbumDialog = new Dialog(this, R.style.BottomDialog);
-            RelativeLayout root = (RelativeLayout) LayoutInflater.from(this).inflate(
+            RelativeLayout root = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.
                     album_edit_dialog, null);
             //初始化视图
             root.findViewById(R.id.album_select_all).setOnClickListener(this);
@@ -216,15 +235,4 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
 
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        Log.d("marller", "hasFocus---------------------->" + hasFocus);
-        if (hasFocus) {
-            if (idEditing) {
-                setBtnOptText(getResources().getString(R.string.travel_album_edit));
-            }
-        }
-
-    }
 }
