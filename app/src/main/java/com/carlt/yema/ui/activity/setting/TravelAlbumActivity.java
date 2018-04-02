@@ -1,6 +1,7 @@
 package com.carlt.yema.ui.activity.setting;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -117,9 +118,16 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        AlbumImageInfo info= (AlbumImageInfo) adapterView.getItemAtPosition(i);
+        Intent imageIntent=new Intent(this,PhotoDisplayActivity.class);
+        imageIntent.putExtra("imagePath",info.getImagePath());
+        imageIntent.putExtra("imageId",info.getId());
+        startActivity(imageIntent);
     }
 
+    /*
+    * 删除照片
+    * */
     private void deleteImages() {
         AlbumImageParser parser = new AlbumImageParser(deleteCallback);
         HashMap<String, String> params = new HashMap<>();
@@ -156,12 +164,10 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
 
     private void changeAlbumStatus() {
         if (idEditing) {
-//            showDialog();
             setBtnOptText(getResources().getString(R.string.travel_album_cancel));
             album_image_item_opt.setVisibility(View.VISIBLE);
             idEditing = false;
         } else {
-//            showDialog();
             setBtnOptText(getResources().getString(R.string.travel_album_edit));
             idEditing = true;
             album_image_item_opt.setVisibility(View.GONE);

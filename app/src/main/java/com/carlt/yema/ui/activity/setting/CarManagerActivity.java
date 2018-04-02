@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
@@ -22,10 +21,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class CarManagerActivity extends LoadingActivity implements View.OnClickListener {
-
-    private ImageView back;
-    private TextView title;
-    ;
 
     private View edit_car_type;//车型
     private View edit_purchase_time;//购车时间
@@ -48,6 +43,8 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
     private String insurance_date = "";
     private String register_date = "";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +54,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
     }
 
     private void initComponent() {
-        back = findViewById(R.id.back);
-        back.setOnClickListener(this);
-        title = findViewById(R.id.title);
-        title.setText(getResources().getString(R.string.car_manager_txt));
+        setTitle("车辆管理");
         edit_car_type = findViewById(R.id.edit_car_type);
         edit_car_type.setOnClickListener(this);
         edit_purchase_time = findViewById(R.id.edit_purchase_time);
@@ -136,7 +130,6 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
 
         }
     };
-
 
     private void initCustomTimePicker() {
 

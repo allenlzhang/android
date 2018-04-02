@@ -10,6 +10,8 @@
         android:layout_marginRight="15dp"
         android:button="@drawable/album_image_checked_bg"
         android:background="@null"
+        android:checked="false"
+        android:visibility="gone"
         android:layout_height="wrap_content" />
     <ImageView
         android:id="@+id/album_image"

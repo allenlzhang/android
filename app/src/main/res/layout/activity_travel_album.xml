@@ -6,15 +6,35 @@
     android:orientation="vertical"
     tools:context="com.carlt.yema.ui.activity.setting.TravelAlbumActivity">
 
-    <include
+    <RelativeLayout
         android:id="@+id/album_image_item_opt"
-        layout="@layout/album_edit_dialog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-
-        android:layout_gravity="bottom"/>
-
+        android:background="#95161922"
+        android:visibility="gone"
+        android:layout_gravity="bottom"
+        android:layout_height="49dp">
+        <TextView
+            android:id="@+id/album_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:layout_marginLeft="12dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:text="@string/travel_album_select_all"/>
+        <TextView
+            android:id="@+id/album_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_alignParentRight="true"
+            android:padding="8dp"
+            android:layout_marginRight="12dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:text="@string/travel_album_delete"/>
+    </RelativeLayout>
     <GridView
         android:id="@+id/album_list"
         android:layout_width="match_parent"

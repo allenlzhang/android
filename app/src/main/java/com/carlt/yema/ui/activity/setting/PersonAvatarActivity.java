@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 
-public class PhotoDisplayActivity extends LoadingActivity {
+public class PersonAvatarActivity extends LoadingActivity {
 
     private ImageView image_display;
 

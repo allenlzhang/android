@@ -8,40 +8,40 @@ import com.carlt.yema.data.BaseResponseInfo;
 
 public class AlbumImageInfo extends BaseResponseInfo {
 
-    private int id;
-    private String imagePath;
-    private String thumbnailPath;
-    private String uploadTime;
+    private int Id;
+    private String ImagePath;
+    private String ThumbnailPath;
+    private String UploadTime;
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getImagePath() {
-        return imagePath;
+        return ImagePath;
     }
 
     public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+        this.ImagePath = imagePath;
     }
 
     public String getThumbnailPath() {
-        return thumbnailPath;
+        return ThumbnailPath;
     }
 
     public void setThumbnailPath(String thumbnailPath) {
-        this.thumbnailPath = thumbnailPath;
+        this.ThumbnailPath = thumbnailPath;
     }
 
     public String getUploadTime() {
-        return uploadTime;
+        return UploadTime;
     }
 
     public void setUploadTime(String uploadTime) {
-        this.uploadTime = uploadTime;
+        this.UploadTime = uploadTime;
     }
 }

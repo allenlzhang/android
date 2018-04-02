@@ -2,6 +2,7 @@ package com.carlt.yema.protocolparser;
 
 import com.carlt.yema.data.set.AlbumImageInfo;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -23,7 +24,8 @@ public class AlbumImageParser extends BaseParser {
     protected void parser() throws Exception {
         Gson gson=new Gson();
         Type type=new TypeToken<ArrayList<AlbumImageInfo>>(){}.getType();
-        albumImageInfos=gson.fromJson(mJson.get("data").getAsString(),type);
+        JsonArray albumImages=mJson.getAsJsonArray("data");
+        albumImageInfos=gson.fromJson(albumImages,type);
         mBaseResponseInfo.setValue(albumImageInfos);
     }
 }

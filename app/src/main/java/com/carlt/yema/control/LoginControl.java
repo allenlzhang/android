@@ -89,7 +89,8 @@ public class LoginControl {
         } else {
             Intent loginIntent = new Intent(mContext,
                     DeviceBindActivity.class);
-            loginIntent.putExtra("account", LoginInfo.getMobile());
+            loginIntent.putExtra("account", LoginInfo.getVin(LoginInfo.getMobile()));
+            loginIntent.putExtra("carType", LoginInfo.getCarname());
             mContext.startActivity(loginIntent);
         }
     }

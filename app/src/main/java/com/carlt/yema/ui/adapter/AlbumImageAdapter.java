@@ -26,6 +26,8 @@ import java.util.HashMap;
 
 public class AlbumImageAdapter extends BaseAdapter {
 
+    private static final String TAG=AlbumImageAdapter.class.getName();
+
     private LayoutInflater inflater;
 
     private Context context;
@@ -37,6 +39,7 @@ public class AlbumImageAdapter extends BaseAdapter {
     public AlbumImageAdapter(Context context, ArrayList<AlbumImageInfo> albumImageInfos) {
         this.context = context;
         this.albumImageInfos = albumImageInfos;
+        isSelected=new HashMap<>();
         inflater=LayoutInflater.from(context);
         //按时间排序
         Collections.sort(this.albumImageInfos, new Comparator<AlbumImageInfo>() {
@@ -53,6 +56,13 @@ public class AlbumImageAdapter extends BaseAdapter {
                 return date2.compareTo(date1);
             }
         });
+        checkedInit();
+    }
+
+    private void checkedInit(){
+        for(int i=0; i<albumImageInfos.size();i++) {
+            getIsSelected().put(i,false);
+        }
     }
 
     @Override
@@ -84,7 +94,7 @@ public class AlbumImageAdapter extends BaseAdapter {
             viewHolder= (ViewHolder) view.getTag();
         }
         viewHolder.status.setChecked(getIsSelected().get(i));
-        Glide.with(context).load(mAlbumImageInfo.getImagePath()).into(viewHolder.image);
+        Glide.with(context).load(mAlbumImageInfo.getThumbnailPath()).into(viewHolder.image);
         return view;
     }
 

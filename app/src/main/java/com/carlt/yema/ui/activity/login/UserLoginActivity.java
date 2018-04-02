@@ -18,7 +18,6 @@ import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
-import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.http.HttpLinker;
@@ -299,7 +298,9 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         Intent carPage = new Intent(this, MainActivity.class);
         carPage.putExtra("page", "1");
         startActivity(carPage);
-        LoginControl.logic(this);
+
+        //业务代码，为了测试暂时注释掉
+//        LoginControl.logic(this);
     }
 
     /**

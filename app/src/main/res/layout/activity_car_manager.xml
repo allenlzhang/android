@@ -7,8 +7,6 @@
     android:background="@color/main_color"
     tools:context="com.carlt.yema.ui.activity.setting.CarManagerActivity">
 
-    <include layout="@layout/layout_title" />
-
     <LinearLayout
         android:id="@+id/edit_car_type"
         style="@style/setting_page_item_style"
