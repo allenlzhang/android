@@ -5,32 +5,46 @@
     android:layout_height="match_parent"
     tools:context="com.carlt.yema.ui.activity.setting.PhotoDisplayActivity">
     <ImageView
-        android:id="@+id/image_display"
+        android:id="@+id/avatar_display"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"/>
-    <RelativeLayout
-        android:id="@+id/album_image_item_opt"
+    <LinearLayout
+        android:id="@+id/avatar_image_opt"
         android:layout_width="match_parent"
         android:background="#95161922"
-        android:visibility="gone"
+        android:gravity="center_vertical"
         android:layout_gravity="bottom"
         android:layout_height="49dp">
         <TextView
-            android:id="@+id/album_select_all"
-            android:layout_width="wrap_content"
+            android:id="@+id/avatar_photograph"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:padding="8dp"
             android:layout_marginLeft="12dp"
+            android:textColor="@color/white"
+            android:text="拍照"/>
+        <TextView
+            android:id="@+id/avatar_album"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_alignParentRight="true"
+            android:padding="8dp"
+            android:gravity="center"
             android:layout_centerVertical="true"
             android:textColor="@color/white"
-            android:text="@string/travel_album_select_all"/>
+            android:text="从本地相册选择"/>
         <TextView
-            android:id="@+id/album_delete"
-            android:layout_width="wrap_content"
+            android:id="@+id/avatar_cancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="right"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:layout_alignParentRight="true"
@@ -39,5 +53,5 @@
             android:layout_centerVertical="true"
             android:textColor="@color/white"
             android:text="@string/travel_album_delete"/>
-    </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>

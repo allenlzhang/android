@@ -84,6 +84,9 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.edit_person_avatar:
+                Intent avatarIntent=new Intent(this,PersonAvatarActivity.class);
+                //avatarIntent.putExtra("avatar",avatarPath);
+                startActivity(avatarIntent);
                 break;
             case R.id.edit_person_nickname:
                 Intent nicknameEdit = new Intent(this, NicknameEditActivity.class);
