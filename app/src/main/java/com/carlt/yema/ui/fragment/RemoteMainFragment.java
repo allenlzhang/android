@@ -205,18 +205,16 @@ public class RemoteMainFragment extends BaseFragment implements
         mImgStop = (ImageView) $ViewByID(R.id.remote_main_img_stop);
         mViewStopmask = $ViewByID(R.id.remote_main_view_stop_mask);
         mRContainer = (LinearLayout) $ViewByID(R.id.remote_main_line_function);
-
+        mRControl = new RemoteGridControl(getActivity());
+        mRControl.setOnItemClick(mItemClick1);
         mTxtState.setOnClickListener(this);
         mTxtRecorder.setOnClickListener(this);
         mImgStart.setOnClickListener(this);
         mImgStop.setOnClickListener(this);
         mViewStopmask.setOnClickListener(this);
         mViewNormal.setOnClickListener(this);
-
         mViewNormal.setOnTouchListener(this);
-
         mImgArrow.setOnClickListener(this);
-
         mViewUnsupport.setMinimumWidth(YemaApplication.ScreenWith);
         mViewUnsupport.setMinimumHeight(YemaApplication.ScreenHeight
                 - YemaApplication.dpToPx(44) - YemaApplication.dpToPx(56));
@@ -237,6 +235,25 @@ public class RemoteMainFragment extends BaseFragment implements
             msg.what = 1;
             msg.obj = o;
             mHandler.sendMessage(msg);
+        }
+    };
+
+    /**
+     * 主页上条目点击事件
+     */
+    View.OnClickListener mItemClick1 = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            RemoteFunInfo mInfo = (RemoteFunInfo) v.getTag();
+            selectedPos = MyParse.parseInt(mInfo.getId());
+            if(selectedPos == 5){
+                //天窗
+                skyWindowsInfo = mInfo;
+            }else{
+                skyWindowsInfo = null;
+            }
+            clickLogic();
         }
     };
 
@@ -617,7 +634,9 @@ public class RemoteMainFragment extends BaseFragment implements
             mViewState.setVisibility(View.GONE);
         }
     }
-
+    /**
+     * 点击逻辑
+     */
     private void clickLogic() {
         boolean hasRemotePswMd5 = LoginInfo.isSetRemotePwd();
         if (mViewState.getVisibility() == View.VISIBLE) {

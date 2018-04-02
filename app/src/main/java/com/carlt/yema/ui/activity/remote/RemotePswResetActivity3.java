@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
@@ -29,11 +30,7 @@ import com.carlt.yema.ui.view.UUToast;
  * 
  * @author Administrator
  */
-public class RemotePswResetActivity3 extends BaseActivity implements OnClickListener {
-
-    private ImageView back;// 头部返回键
-
-    private TextView title;// 标题文字
+public class RemotePswResetActivity3 extends LoadingActivity implements OnClickListener {
 
     private TextView mTxtTitle1;// 小标题-新密码
 
@@ -85,40 +82,30 @@ public class RemotePswResetActivity3 extends BaseActivity implements OnClickList
             Log.e("info", getClass().getName() + ":" + e);
         }
 
-        initTitle();
+        initMyTitle();
         init();
     }
 
-    private void initTitle() {
-        back = (ImageView)findViewById(R.id.head_back_img1);
-        title = (TextView)findViewById(R.id.head_back_txt1);
+    private void initMyTitle() {
 
         switch (type) {
             case TYPE_REALNAME:
-                title.setText("设置远程控制密码");
+                initTitle("设置远程控制密码");
                 break;
             case TYPE_FORGET:
-                title.setText("重置远程控制密码");
+                initTitle("重置远程控制密码");
                 break;
             case TYPE_REMOTE:
-                title.setText("设置远程控制密码");
+                initTitle("设置远程控制密码");
                 break;
             case TYPE_SAFETY:
-                title.setText("设置远程控制密码");
+                initTitle("设置远程控制密码");
                 break;
             default:
-                title.setText("重置解锁密码");
+                initTitle("重置解锁密码");
                 break;
         }
 
-        back.setImageResource(R.drawable.arrow_back);
-        back.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private void init() {

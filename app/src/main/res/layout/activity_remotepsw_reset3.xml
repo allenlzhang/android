@@ -5,8 +5,6 @@
     android:background="@color/layout_background"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_title_right_btn" />
-
     <TextView
         android:id="@+id/remotepsw_reset3_txt_title1"
         android:layout_width="wrap_content"
@@ -39,7 +37,7 @@
     
     <TextView
         android:id="@+id/remotepsw_reset3_txt_edit"
-        style="@style/public_bottom_btn_blue"
+        style="@style/public_bottom_btn"
         android:layout_marginBottom="5dip"
         android:layout_marginLeft="@dimen/usercenter_margin"
         android:layout_marginRight="@dimen/usercenter_margin"

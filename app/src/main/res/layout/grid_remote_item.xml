@@ -7,15 +7,15 @@
 
     <ImageView
         android:id="@+id/remote_item_img_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:layout_width="47dp"
+        android:layout_height="47dp" />
 
     <TextView
         android:id="@+id/remote_item_txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dip"
-        android:textColor="#333333"
-        android:textSize="16sp" />
+        android:textColor="#fff"
+        android:textSize="14sp" />
 
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
@@ -26,11 +27,7 @@ import com.carlt.yema.ui.view.ValidateEditText;
  * 
  * @author Administrator
  */
-public class RealNameActivity extends BaseActivity implements OnClickListener {
-	private ImageView back;// 头部返回键
-
-	private TextView title;// 标题文字
-
+public class RealNameActivity extends LoadingActivity implements OnClickListener {
 	private ValidateEditText mEdtName;// 姓名
 
 	private ValidateEditText mEdtIDCard;// 身份证号
@@ -70,24 +67,8 @@ public class RealNameActivity extends BaseActivity implements OnClickListener {
 
 		}
 
-		initTitle();
+		initTitle("安全认证");
 		init();
-	}
-
-	private void initTitle() {
-		back = (ImageView) findViewById(R.id.head_back_img1);
-		title = (TextView) findViewById(R.id.head_back_txt1);
-
-		title.setText("安全认证");
-
-		back.setImageResource(R.drawable.arrow_back);
-		back.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
 	}
 
 	private void init() {

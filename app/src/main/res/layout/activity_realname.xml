@@ -5,7 +5,6 @@
     android:background="@color/layout_background"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_title_right_btn" />
 
     <LinearLayout
         android:id="@+id/realname_lay_authertodo"
@@ -23,7 +22,7 @@
             android:layout_marginRight="15dip"
             android:layout_marginTop="9dip"
             android:text="为了保证远程操作的安全性，请先进行安全认证"
-            android:textColor="@color/text_color_gray3"
+            android:textColor="@color/app_white"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -62,7 +61,7 @@
 
         <TextView
             android:id="@+id/realname_txt_option"
-            style="@style/public_bottom_btn_blue"
+            style="@style/public_bottom_btn"
             android:layout_marginBottom="5dip"
             android:layout_marginLeft="@dimen/usercenter_margin"
             android:layout_marginRight="@dimen/usercenter_margin"

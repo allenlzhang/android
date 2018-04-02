@@ -22,6 +22,10 @@ public class CarOperationConfigParser<T> extends BaseParser<T>  {
 
     public CarOperationConfigParser(ResultCallback callback) {
         super(callback);
+        //TODO TEST DATA
+        setTestFileName("json_CarOperationConfigParser.txt") ;
+
+        setTest(true);
     }
 
     public RemoteMainInfo getReturn() {

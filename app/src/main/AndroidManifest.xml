@@ -44,24 +44,22 @@
         <activity android:name=".ui.activity.home.DayActivity" />
         <activity android:name=".ui.activity.home.InformationCentreActivity" />
         <activity android:name=".ui.activity.home.GpsTrailActivity" />
-        <!--<activity android:name=".ui.activity.login.UserLoginActivity">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".ui.activity.login.UserLoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-        <activity android:name=".MainActivity" > <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".ui.activity.carstate.CarSaftyListActivity" />
         <activity android:name=".ui.activity.carstate.MainTestingActivity" />
         <activity android:name=".ui.activity.carstate.CarStateNowActivity" />
         <activity android:name=".ui.activity.carstate.CarLocationActivity" />
         <activity android:name=".ui.activity.carstate.CarSynchronizeLocationActivity" />
         <activity android:name=".ui.activity.remote.RemoteLogActivity" />
+        <activity android:name=".ui.activity.remote.RealNameActivity" />
+        <activity android:name=".ui.activity.remote.RemotePswResetActivity3" />
         <activity
             android:name=".ui.activity.login.DeviceBindActivity"
             android:launchMode="singleTask" />

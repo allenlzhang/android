@@ -24,7 +24,7 @@
             android:layout_marginTop="15dip"
             android:text="内容1"
             android:textColor="#333333"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_marginLeft="20dip"
             android:gravity="center_horizontal"
             android:text="内容2"
-            android:textColor="#333333"
+            android:textColor="#666666"
             android:textSize="14sp" />
     </RelativeLayout>
 
@@ -68,8 +68,8 @@
             android:layout_toLeftOf="@id/line_v"
             android:gravity="center"
             android:text="左侧按钮"
-            android:textColor="#333333"
-            android:textSize="18sp"
+            android:textColor="#2c77c0"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
@@ -80,8 +80,8 @@
             android:layout_toRightOf="@id/line_v"
             android:gravity="center"
             android:text="右侧按钮"
-            android:textColor="#333333"
-            android:textSize="18sp"
+            android:textColor="#2c77c0"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
