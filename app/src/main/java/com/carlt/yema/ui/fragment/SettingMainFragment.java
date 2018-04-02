@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -236,13 +237,16 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
         contact_us_dial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (null!=mDealerInfo&&!TextUtils.isEmpty(mDealerInfo.getServiceTel())) {
+                    goToDial(mDealerInfo.getServiceTel());
+                }
             }
         });
         root.findViewById(R.id.contact_us_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (null != mAlbumDialog && mAlbumDialog.isShowing()) {
+                    mAlbumDialog.dismiss();
                 }
             }
         });

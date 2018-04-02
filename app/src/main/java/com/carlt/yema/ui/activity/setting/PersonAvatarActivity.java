@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 
@@ -18,6 +17,7 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avatar_display);
+        initTitle("");
         initComponent();
         setBtnOptText("修改");
         setBtnOptVisible(true);
@@ -27,7 +27,7 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
     private void initComponent() {
         image_display=$ViewByID(R.id.image_display);
         view=$ViewByID(R.id.avatar_image_opt);
-        Glide.with(this).load(getIntent().getStringExtra("imagePath")).into(image_display);
+//        Glide.with(this).load(getIntent().getStringExtra("imagePath")).into(image_display);
     }
 
 

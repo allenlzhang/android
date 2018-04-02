@@ -6,8 +6,6 @@
     android:background="@color/main_color"
     android:orientation="vertical"
     tools:context="com.carlt.yema.ui.activity.setting.NicknameEditActivity">
-    <include
-        layout="@layout/layout_title"/>
     <EditText
         android:id="@+id/nickname_input"
         android:layout_width="match_parent"
@@ -21,8 +19,7 @@
         android:textSize="14sp"
         android:background="@drawable/login_input_bg"
         android:hint="@string/nickname_edit_default_txt"
-        android:inputType="number"
-        android:maxLength="7" />
+        />
     <TextView
         android:id="@+id/nickname_input_commit"
         style="@style/public_bottom_btn"

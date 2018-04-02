@@ -235,6 +235,8 @@ public class URLConfig {
     private static String M_CAR_MODIFY = "car/modifyCar";
     //获取经销商信息
     private static String M_GET_DEALER_INFO = "dealer/getDealerInfo";
+    //修改用户信息
+    private static String M_USER_EDIT_INFO = "user/editinfo";
 
 
     public static String getM_SAFETY_MESSAGE_URL() {
@@ -446,6 +448,9 @@ public class URLConfig {
     }
     public static String getM_GET_DEALER_INFO() {
         return getYemaURL(M_GET_DEALER_INFO);
+    }
+    public static String getM_USER_EDIT_INFO() {
+        return getYemaURL(M_USER_EDIT_INFO);
     }
 
 

@@ -2,6 +2,7 @@ package com.carlt.yema.ui.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,15 +12,24 @@ import com.bigkoo.pickerview.lib.WheelView;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.protocolparser.DefaultStringParser;
+import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.DensityUtil;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+
 /**
  * Created by marller on 2018\3\17 0017.
  */
 
 public class PersonInfoActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG="PersonInfoActivity";
 
     private ImageView back;
     private TextView title;
@@ -34,6 +44,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
     private OptionsPickerView mSexOptions;//性别选择
     private static String[] sexItems = {"男", "女", "保密"};
     private List<String> sexList;
+    private String gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +68,13 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
         edit_person_nickname = findViewById(R.id.edit_person_nickname);
         person_sex_txt = findViewById(R.id.person_sex_txt);
-
+        if (!TextUtils.isEmpty(LoginInfo.getGender())){
+            person_sex_txt.setText(LoginInfo.getGender());
+        }
+        person_nickname_txt = findViewById(R.id.person_nickname_txt);
+        if (!TextUtils.isEmpty(LoginInfo.getUsername())){
+            person_nickname_txt.setText(LoginInfo.getUsername());
+        }
         initSexSelector();
     }
 
@@ -84,22 +101,27 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.edit_person_avatar:
-                Intent avatarIntent=new Intent(this,PersonAvatarActivity.class);
+                Intent avatarIntent = new Intent(this, PersonAvatarActivity.class);
                 //avatarIntent.putExtra("avatar",avatarPath);
                 startActivity(avatarIntent);
                 break;
             case R.id.edit_person_nickname:
                 Intent nicknameEdit = new Intent(this, NicknameEditActivity.class);
-                startActivity(nicknameEdit);
+                startActivityForResult(nicknameEdit, 0);
                 break;
             case R.id.edit_person_sex:
                 mSexOptions.show();
                 break;
-            case R.id.sex_change_OK:
-                break;
-            case R.id.sex_change_cancel:
-                break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data!=null&&!TextUtils.isEmpty(data.getStringExtra("nickName"))) {
+
+            person_nickname_txt.setText(data.getStringExtra("nickName"));
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void initSexSelector() {
@@ -109,7 +131,8 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 String tx = sexList.get(options1);
-                person_sex_txt.setText(tx);
+                chanageNickNameRequest(tx);
+                gender = tx;
             }
         })
                 .setLayoutRes(R.layout.sex_edit_dialog, new CustomListener() {
@@ -135,7 +158,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
                     }
                 })
                 .setSelectOptions(0)
-                .setContentTextSize(DensityUtil.sp2px(PersonInfoActivity.this,14))
+                .setContentTextSize(DensityUtil.sp2px(PersonInfoActivity.this, 14))
                 .setDividerType(WheelView.DividerType.FILL)
                 .setLineSpacingMultiplier(2.0f)
                 .isDialog(false)
@@ -144,5 +167,24 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
     }
 
+    private void chanageNickNameRequest(String info) {
+        DefaultStringParser parser = new DefaultStringParser(callback);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("gender", info);
+        parser.executePost(URLConfig.getM_USER_EDIT_INFO(), params);
+    }
 
+    private BaseParser.ResultCallback callback = new BaseParser.ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(PersonInfoActivity.this, "性别修改成功");
+            person_sex_txt.setText(gender);
+            LoginInfo.setGender(gender);
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(PersonInfoActivity.this, "性别修改失败");
+        }
+    };
 }
