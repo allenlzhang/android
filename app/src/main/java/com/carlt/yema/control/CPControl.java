@@ -467,29 +467,12 @@ public class CPControl {
 
 	public static void GetNavigationResult(String position, String location, BaseParser.ResultCallback listener_navigation) {
 
+		DefaultStringParser paser = new DefaultStringParser(listener_navigation);
+		HashMap mapParam = new HashMap();
+		mapParam.put("position",position);
+		mapParam.put("location",location);
+		mapParam.put("move_device_name",YemaApplication.MODEL_NAME);
+		paser.executePost(URLConfig.getM_NAVIGATION_URL(),mapParam);
 	}
-
-
-	public interface GetResultListCallback {
-		void onFinished(Object o);
-
-		void onErro(Object o);
-
-	}
-
-	public interface GetResultList2Callback {
-		void onFinished(Object o1, Object o2, Object o3);
-
-		void onErro(Object o);
-
-	}
-
-	public interface GetResultList3Callback {
-		void onFinished();
-
-		void onSuccess(Object o1);
-
-		void onErro();
-
-	}
+	
 }

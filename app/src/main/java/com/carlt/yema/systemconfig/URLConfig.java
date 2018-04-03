@@ -252,6 +252,13 @@ public class URLConfig {
     // 获取车辆位置信息
     private static String M_CAR_GETCAREXTINFO = "car/getCarExtInfo";
 
+    // 获取导航同步到车--改为远程相关接口
+    private static String M_NAVIGATION_URL = "remote/navigation";
+
+    public static String getM_NAVIGATION_URL() {
+        return getUrlRemote(M_NAVIGATION_URL);
+    }
+
     public static String getM_CAR_GETCAREXTINFO_URL() {
         return getYemaURL(M_CAR_GETCAREXTINFO);
     }

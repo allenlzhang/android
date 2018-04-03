@@ -18,6 +18,7 @@ import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.protocolparser.BaseParser;
 
 
 public class UUDialogBaseLoading extends Dialog {
@@ -119,10 +120,10 @@ public class UUDialogBaseLoading extends Dialog {
         loading.setVisibility(View.GONE);
     }
 
-    protected CPControl.GetResultListCallback listener = new CPControl.GetResultListCallback() {
+    protected BaseParser.ResultCallback listener = new BaseParser.ResultCallback () {
 
         @Override
-        public void onFinished(Object o) {
+        public void onSuccess(BaseResponseInfo o) {
             Message msg = new Message();
             msg.what = 1;
             msg.obj = o;
@@ -130,15 +131,15 @@ public class UUDialogBaseLoading extends Dialog {
         }
 
         @Override
-        public void onErro(Object o) {
+        public void onError(BaseResponseInfo o) {
             Message msg = new Message();
             msg.what = 0;
             msg.obj = o;
             mHandler.sendMessage(msg);
-
         }
+
     };
-    
+
     private Handler mHandler = new Handler() {
 
         @Override
