@@ -18,7 +18,7 @@
         android:layout_marginTop="12dp"
         android:text="@string/old_remote_passwd_txt"/>
     <com.carlt.yema.ui.view.PasswordView
-        android:id="@+id/old_remote_passwd"
+        android:id="@+id/reset_old_remote_passwd"
         android:layout_width="match_parent"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
@@ -36,7 +36,7 @@
         android:layout_marginTop="12dp"
         android:text="@string/new_remote_passwd_txt"/>
     <com.carlt.yema.ui.view.PasswordView
-        android:id="@+id/new_remote_passwd"
+        android:id="@+id/reset_new_remote_passwd"
         android:layout_width="match_parent"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
@@ -54,7 +54,7 @@
         android:layout_marginTop="12dp"
         android:text="@string/new_remote_passwd_again_txt"/>
     <com.carlt.yema.ui.view.PasswordView
-        android:id="@+id/new_remote_passwd_again"
+        android:id="@+id/reset_new_remote_passwd_again"
         android:layout_width="match_parent"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="5dp"

@@ -48,9 +48,9 @@ public class ResetRemotePasswdActivity extends BaseActivity implements View.OnCl
         title = $ViewByID(R.id.title);
         title.setText("修改远程密码");
 
-        old_remote_passwd = $ViewByID(R.id.old_remote_passwd);
-        new_remote_passwd = $ViewByID(R.id.new_remote_passwd);
-        new_remote_passwd_again = $ViewByID(R.id.new_remote_passwd_again);
+        old_remote_passwd = $ViewByID(R.id.reset_old_remote_passwd);
+        new_remote_passwd = $ViewByID(R.id.reset_new_remote_passwd);
+        new_remote_passwd_again = $ViewByID(R.id.reset_new_remote_passwd_again);
 
         reset_remote_commit = $ViewByID(R.id.reset_remote_commit);
         reset_remote_commit.setOnClickListener(this);
@@ -58,7 +58,7 @@ public class ResetRemotePasswdActivity extends BaseActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        switch (R.id.back) {
+        switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
@@ -87,14 +87,13 @@ public class ResetRemotePasswdActivity extends BaseActivity implements View.OnCl
             UUToast.showUUToast(ResetRemotePasswdActivity.this, "远程控制密码修改成功");
             Intent intent = new Intent(ResetRemotePasswdActivity.this, AccountSecurityActivity.class);
             startActivity(intent);
-            finish();
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
             switch (bInfo.getFlag()) {
                 case 1004:
-                    UUToast.showUUToast(ResetRemotePasswdActivity.this, "密码不可为空");
+                    UUToast.showUUToast(ResetRemotePasswdActivity.this, "原始密码错误");
                     break;
                 case 1014:
                     UUToast.showUUToast(ResetRemotePasswdActivity.this, "已设置过该密码");
@@ -117,7 +116,7 @@ public class ResetRemotePasswdActivity extends BaseActivity implements View.OnCl
         } else if (TextUtils.isEmpty(newPasswd) || newPasswd.length() < 6) {
             UUToast.showUUToast(this, "新密码长度至少为6位");
             return false;
-        } else if (TextUtils.isEmpty(confirmPasswd) || !newPasswd.equals(confirmPasswd)) {
+        } else if (TextUtils.isEmpty(newPasswd) || !newPasswd.equals(confirmPasswd)) {
             UUToast.showUUToast(this, "两次输入密码不一致");
             return false;
         } else {

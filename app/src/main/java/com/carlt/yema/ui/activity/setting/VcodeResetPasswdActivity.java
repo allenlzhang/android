@@ -148,7 +148,7 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
         DefaultStringParser parser = new DefaultStringParser(vCodeCallback);
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("mobile", mobile);
-        params.put("type", "3");
+        params.put("type", "2");
         params.put("voiceVerify", "0");
         parser.executePost(URLConfig.getM_AUTH_SET_VALIDATE(), params);
     }
@@ -196,7 +196,7 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(VcodeResetPasswdActivity.this,"密码修改失败");
+            UUToast.showUUToast(VcodeResetPasswdActivity.this,bInfo.getInfo());
         }
     };
 

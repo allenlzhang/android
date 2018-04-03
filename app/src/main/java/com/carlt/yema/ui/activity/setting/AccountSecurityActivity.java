@@ -93,7 +93,7 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
                 startActivity(remoteReset);
                 break;
         }
-        finish();
+//        finish();
     }
 
     @Override

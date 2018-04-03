@@ -118,7 +118,12 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
                 }
                 break;
             case R.id.forget_reset_remote_commit:
-                editPasswdCommitRequest();
+                passwd=new_remote_passwd.getPassword();
+                confirmPasswd=new_remote_passwd_again.getPassword();
+                vCode=certified_code_input.getText().toString();
+                if (isCommitInvalid(mobile,vCode,passwd,confirmPasswd)) {
+                    editPasswdCommitRequest();
+                }
                 break;
         }
     }
@@ -139,8 +144,6 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
         public void onSuccess(BaseResponseInfo bInfo) {
             // 获取验证码成功
             UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "验证码已发送成功！");
-            confirmPasswd=new_remote_passwd_again.getPassword();
-            vCode=certified_code_input.getText().toString();
         }
 
         @Override
