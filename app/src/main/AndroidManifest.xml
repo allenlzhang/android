@@ -96,7 +96,6 @@
         <activity android:name=".ui.activity.setting.PersonAvatarActivity" />
         <activity android:name=".ui.activity.carstate.FindCarActivity" />
         <activity android:name=".ui.activity.carstate.LocationSynchronizeActivity"></activity>
-        <activity android:name=".ui.activity.remote.RealNameActivity"></activity>
         <activity android:name=".ui.activity.remote.RemotePswResetActivity3"></activity>
     </application>
 

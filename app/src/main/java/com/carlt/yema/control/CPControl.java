@@ -5,6 +5,7 @@ import com.carlt.yema.YemaApplication;
 import com.carlt.yema.data.login.UserRegisterParams;
 import com.carlt.yema.data.remote.AirMainInfo;
 import com.carlt.yema.data.set.ModifyCarInfo;
+import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
@@ -25,6 +26,7 @@ import com.carlt.yema.protocolparser.home.ReportMonthStatisticParser;
 import com.carlt.yema.protocolparser.login.UserRegisterParser;
 import com.carlt.yema.protocolparser.remote.CarStateInfoParser;
 import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.utils.CipherUtils;
 import com.carlt.yema.utils.CreateHashMap;
 import com.carlt.yema.utils.FileUtil;
 
@@ -55,10 +57,12 @@ public class CPControl {
 		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_CARLOCATING(),param);
 	}
 
+	//远程开启后背箱
 	public static void GetRemoteTrunk(BaseParser.ResultCallback mListener) {
 		DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
 		HashMap param = new HashMap();
 		param.put("move_device_name",YemaApplication.MODEL_NAME);
+		param.put("rtlu","1");	//1:开启，2：关闭
 		remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_TRUNK(),param);
 	}
 
@@ -101,6 +105,9 @@ public class CPControl {
 	 * 远程-车辆实时温度 成功返回 AirMainInfo
 	 */
 	public static void GetRemoteCarTemp(BaseParser.ResultCallback mListener_temp, AirMainInfo mAirMainInfo1) {
+
+
+
 	}
 
 	public static void GetRemoteCarState(final BaseParser.ResultCallback mListener_states ) {
@@ -116,15 +123,23 @@ public class CPControl {
 		paser.executePost(URLConfig.getM_REMOTEPWDVERIFY(),mapParam);
 	}
 
-	public static void GetRealNameResult(String authen_name, String authen_card, BaseParser.ResultCallback listener_realname) {
-	}
-
 	public static void GetSetRemotePwdResult(String pswNew1, BaseParser.ResultCallback listener_set) {
+		DefaultStringParser paser = new DefaultStringParser(listener_set);
+		HashMap mapParam = new HashMap();
+		mapParam.put("remote_pwd",FileUtil.stringToMD5(pswNew1));
+		paser.executePost(URLConfig.getM_SAFE_SETREMOTEPWD_URL(),mapParam);
 	}
 
 	public static void GetForgetRemotePwdResult(String name, String idcard, String mobile, String pswNew1, String validate, BaseParser.ResultCallback listener_forget) {
+		DefaultStringParser parser=new DefaultStringParser(listener_forget);
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("authen_card", idcard);
+		params.put("authen_name", name);
+		params.put("mobile", mobile);
+		params.put("validate",validate);
+		params.put("remote_pwd", CipherUtils.md5(pswNew1));
+		parser.executePost(URLConfig.getM_FORGET_REMOTE_PWD(),params);
 	}
-
 
 	/**
 	 * 注册接口 onFinished表示成功

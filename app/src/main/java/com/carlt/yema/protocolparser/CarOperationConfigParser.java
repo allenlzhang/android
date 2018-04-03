@@ -24,7 +24,6 @@ public class CarOperationConfigParser<T> extends BaseParser<T>  {
         super(callback);
         //TODO TEST DATA
         setTestFileName("json_CarOperationConfigParser.txt") ;
-
         setTest(true);
     }
 

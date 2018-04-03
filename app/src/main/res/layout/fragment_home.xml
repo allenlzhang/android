@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layout_background"
-    android:orientation="vertical">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/title_image"
-        />
+    >
+    <FrameLayout
+        android:id="@+id/fl_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/title_image" />
+    </FrameLayout>
     <LinearLayout
+        android:id="@+id/ll_homepage"
         android:layout_width="match_parent"
         android:layout_height="192dp"
         android:background="@drawable/home_bg"
         android:orientation="vertical"
+        android:layout_below="@+id/fl_title"
         android:paddingLeft="10dp">
-
         <TextView
             android:id="@+id/home_txt_date"
             android:layout_width="wrap_content"
@@ -40,9 +44,12 @@
         layout="@layout/layout_report_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_below="@+id/ll_homepage"
+        android:layout_above="@+id/iv_line"
         />
     <ImageView
+        android:id="@+id/iv_line"
+        android:layout_above="@+id/activity_home_relative2"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/text_color_gray3"
@@ -52,12 +59,8 @@
         android:layout_width="fill_parent"
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/layout_background"
-        android:paddingBottom="10dp"
         android:paddingLeft="20dip"
         android:paddingRight="20dip"
-        android:paddingTop="10dip"
-        android:layout_weight="0"
         >
 
         <ImageView
@@ -122,4 +125,4 @@
                 android:textSize="13sp" />
         </LinearLayout>
     </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

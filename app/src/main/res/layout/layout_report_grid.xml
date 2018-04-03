@@ -3,14 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layout_background"
-    android:paddingBottom="21dp"
-    android:paddingTop="21dp" >
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" >
-
+    android:layout_centerInParent="true"
+    android:paddingTop="15dp" >
         <TextView
             android:id="@+id/line1"
             style="@style/line_v"
@@ -63,7 +57,7 @@
             android:id="@+id/layout_report_grid_linear3"
             style="@style/layout_report_grid_layout"
             android:layout_below="@id/layout_report_grid_linear2"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="15dp"
             android:layout_toLeftOf="@id/line1" >
 
             <ImageView
@@ -86,7 +80,7 @@
             android:id="@+id/layout_report_grid_linear4"
             style="@style/layout_report_grid_layout"
             android:layout_below="@id/layout_report_grid_linear2"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/line1" >
 
             <ImageView
@@ -104,6 +98,4 @@
                 style="@style/layout_report_grid_txt1"
                 android:text="平均油耗(升/百公里)" />
         </LinearLayout>
-    </RelativeLayout>
-
 </RelativeLayout>

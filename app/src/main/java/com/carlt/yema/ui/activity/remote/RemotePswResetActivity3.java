@@ -181,8 +181,7 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
                     break;
                 case TYPE_FORGET:
                     String mobile = LoginInfo.getMobile();
-                    CPControl.GetForgetRemotePwdResult(name, idcard, mobile, pswNew1, validate,
-                            listener_forget);
+                    CPControl.GetForgetRemotePwdResult(name, idcard, mobile, pswNew1, validate,listener_forget);
                     break;
                 case TYPE_REMOTE:
                     CPControl.GetSetRemotePwdResult(pswNew1, listener_set);

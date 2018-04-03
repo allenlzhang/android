@@ -1,8 +1,10 @@
 package com.carlt.yema.ui.fragment;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -32,7 +34,6 @@ import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.CarOperationConfigParser;
 import com.carlt.yema.systemconfig.URLConfig;
-import com.carlt.yema.ui.activity.remote.RealNameActivity;
 import com.carlt.yema.ui.activity.remote.RemoteLogActivity;
 import com.carlt.yema.ui.activity.remote.RemotePswResetActivity3;
 import com.carlt.yema.ui.adapter.RemoteStatesAdapter;
@@ -206,6 +207,15 @@ public class RemoteMainFragment extends BaseFragment implements
         mViewStopmask = $ViewByID(R.id.remote_main_view_stop_mask);
         mRContainer = (LinearLayout) $ViewByID(R.id.remote_main_line_function);
         mRControl = new RemoteGridControl(getActivity());
+        // 生成广播处理
+        mReceiver = new RemoteReceiver();
+        IntentFilter filter = new IntentFilter();
+        mRControl.setOnItemClick(mItemClick1);
+        filter.addAction(ACTION_REMOTE_SETPSW);
+        filter.addAction(ACTION_REMOTE_RESETPSW);
+        filter.addAction(ACTION_REMOTE_FORGETPSW);
+        getActivity().registerReceiver(mReceiver, filter);
+
         mRControl.setOnItemClick(mItemClick1);
         mTxtState.setOnClickListener(this);
         mTxtRecorder.setOnClickListener(this);
@@ -301,7 +311,6 @@ public class RemoteMainFragment extends BaseFragment implements
                 lastOpt = 7;
                 CPControl.GetRemoteLock("2", mListener);
                 break;
-
             case 4://升起车窗，关窗
                 //
                 lastOpt = 8;
@@ -639,6 +648,10 @@ public class RemoteMainFragment extends BaseFragment implements
      */
     private void clickLogic() {
         boolean hasRemotePswMd5 = LoginInfo.isSetRemotePwd();
+        //TODO test data
+        hasRemotePswMd5 = true;
+        LoginInfo.setNoneedpsw(false);
+
         if (mViewState.getVisibility() == View.VISIBLE) {
             // 车辆状态view打开
             mViewState.setVisibility(View.GONE);
@@ -662,21 +675,13 @@ public class RemoteMainFragment extends BaseFragment implements
                 PopBoxCreat.DialogWithTitleClick click = new PopBoxCreat.DialogWithTitleClick() {
                     @Override
                     public void onRightClick() {
-                        if (LoginInfo.isAuthen()) {
                             Intent mIntent = new Intent(
                                     getActivity(),
                                     RemotePswResetActivity3.class);
                             mIntent.putExtra(RemotePswResetActivity3.TYPE,
                                     RemotePswResetActivity3.TYPE_REMOTE);
                             startActivity(mIntent);
-                        } else {
-                            Intent mIntent = new Intent(
-                                    getActivity(),
-                                    RealNameActivity.class);
-                            mIntent.putExtra(RealNameActivity.TYPE,
-                                    RealNameActivity.TYPE_REMOTE);
-                            startActivity(mIntent);
-                        }
+//
                     }
 
                     @Override
@@ -815,6 +820,26 @@ public class RemoteMainFragment extends BaseFragment implements
     public void dissmissWaitingDialog() {
         if (mDialog != null && mDialog.isShowing()) {
             mDialog.dismiss();
+        }
+    }
+
+    private RemoteReceiver mReceiver;
+
+    public class RemoteReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(ACTION_REMOTE_SETPSW)) {
+                // 设置密码成功
+                startTime = System.currentTimeMillis();
+                isFirstClick = false;
+            } else if (action.equals(ACTION_REMOTE_RESETPSW)) {
+                // 修改密码成功
+                isFirstClick = true;
+            } else if (action.equals(ACTION_REMOTE_FORGETPSW)) {
+                // 重置密码成功
+                isFirstClick = true;
+            }
         }
     }
 }

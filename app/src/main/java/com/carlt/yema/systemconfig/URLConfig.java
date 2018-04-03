@@ -33,6 +33,8 @@ public class URLConfig {
 
     public final static String JUHE_APPKEY = "fa80021879c30853fa80137f1110c2a6";// 聚合AppKey
 
+
+
     // 获取yema API URL
     private static String getYemaURL(String s) {
         String version = YemaApplication.Version_API + "/";
@@ -238,6 +240,8 @@ public class URLConfig {
     //修改用户信息
     private static String M_USER_EDIT_INFO = "user/editinfo";
 
+    // 安全-设置远程密码
+    private static String M_SAFE_SETREMOTEPWD_URL = "safe/setRemotePwd";
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -433,6 +437,9 @@ public class URLConfig {
 
     public static String getM_RESET_REMOTE_PWD() {
         return getYemaURL(M_RESET_REMOTE_PWD);
+    }
+    public static String getM_SAFE_SETREMOTEPWD_URL() {
+        return getYemaURL(M_SAFE_SETREMOTEPWD_URL);
     }
 
     public static String getM_FORGET_REMOTE_PWD() {

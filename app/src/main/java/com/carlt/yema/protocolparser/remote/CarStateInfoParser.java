@@ -15,6 +15,9 @@ public class CarStateInfoParser extends BaseParser {
 
     public CarStateInfoParser(ResultCallback callback) {
         super(callback);
+		//TODO TEST DATA
+		setTestFileName("json_carstate.txt") ;
+		setTest(true);
     }
 
 	@Override
