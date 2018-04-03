@@ -177,9 +177,8 @@ public class PhoneAuthenticationActivity extends BaseActivity implements View.On
                 mDialog.dismiss();
             }
             UUToast.showUUToast(PhoneAuthenticationActivity.this, "验证成功");
-            String code = bInfo.getValue().toString();
             Intent mIntent = new Intent(PhoneAuthenticationActivity.this, ResetCetifiedPhoneActivity.class);
-            mIntent.putExtra(ResetCetifiedPhoneActivity.CODE_INFO, code);
+            mIntent.putExtra("newPhone", phoneNum);
             startActivity(mIntent);
             finish();
         }
@@ -190,7 +189,7 @@ public class PhoneAuthenticationActivity extends BaseActivity implements View.On
             if (mDialog != null && mDialog.isShowing()) {
                 mDialog.dismiss();
             }
-            String info = bInfo.getValue().toString();
+            String info = bInfo.getInfo();
             if (info != null && info.length() > 0) {
                 UUToast.showUUToast(PhoneAuthenticationActivity.this, "验证失败：" + info);
             } else {

@@ -1,7 +1,6 @@
 package com.carlt.yema.ui.activity.setting;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -53,6 +52,7 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
 
     private TimerTask task;
     
+    private String vCode;
     private String code;
 
     @Override
@@ -89,6 +89,7 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
                 break;
             case R.id.reset_verification_send:
                 // 获取验证码
+                phoneNum=reset_phone_input.getText().toString();
                 if (phoneNum != null && phoneNum.length() == 11) {
                     String phoneOld = LoginInfo.getMobile();
                     if (phoneNum.equals(phoneOld)) {
@@ -118,8 +119,11 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
                 }
                 break;
             case R.id.reset_phone_commit:
-                Intent resetCertified = new Intent(this, AccountSecurityActivity.class);
-                startActivity(resetCertified);
+
+                vCode=reset_code_input.getText().toString();
+                if (isCommitInvalid(phoneNum,vCode)) {
+                    authenticationPhone(vCode,phoneNum);
+                }
                 break;
         }
     }
@@ -152,8 +156,8 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
             reset_verification_send.setClickable(true);
             reset_verification_send.setText("重发验证码");
             reset_verification_send.setBackgroundResource(R.drawable.verification_send_bg);
-            int flag = bInfo.getFlag();
-            UUToast.showUUToast(ResetCetifiedPhoneActivity.this, "验证码获取失败:" + bInfo.getInfo());
+            String info = bInfo.getInfo();
+            UUToast.showUUToast(ResetCetifiedPhoneActivity.this, "验证码获取失败:" + info);
         }
     };
 
@@ -163,7 +167,7 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
     private void authenticationPhone(String vCode, String mobile) {
         DefaultStringParser parser = new DefaultStringParser(commitCallback);
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("oldValidate", vCode);
+        params.put("oldValidate", code);
         params.put("newMobile", mobile);
         params.put("newValidate", vCode);
         parser.executePost(URLConfig.getM_EDIT_MOBILE(), params);
@@ -177,7 +181,7 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
                 mDialog.dismiss();
             }
             UUToast.showUUToast(ResetCetifiedPhoneActivity.this, "手机号修改成功");
-            String code = bInfo.getValue().toString();
+            LoginInfo.setMobile(reset_phone_input.getText().toString());
             LoginControl.logic(ResetCetifiedPhoneActivity.this);
             finish();
         }
@@ -188,7 +192,7 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
             if (mDialog != null && mDialog.isShowing()) {
                 mDialog.dismiss();
             }
-            String info = bInfo.getValue().toString();
+            String info = bInfo.getInfo().toString();
             if (info != null && info.length() > 0) {
                 UUToast.showUUToast(ResetCetifiedPhoneActivity.this, "手机号修改失败：" + info);
             } else {
