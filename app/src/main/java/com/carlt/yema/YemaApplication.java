@@ -11,7 +11,9 @@ import com.bumptech.glide.Glide;
 import com.carlt.yema.dao.DBManager;
 import com.carlt.yema.data.remote.RemoteMainInfo;
 import com.carlt.yema.utils.CipherUtils;
+import com.carlt.yema.utils.FileUtil;
 import com.carlt.yema.utils.ILog;
+import com.carlt.yema.utils.LocalConfig;
 
 import java.util.UUID;
 
@@ -127,6 +129,13 @@ public class YemaApplication extends Application {
         // 错误LOG
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(getApplicationContext());
+        FileUtil.openOrCreatDir(LocalConfig.mImageCacheSavePath_SD);
+        FileUtil.openOrCreatDir(LocalConfig.mImageCacheSavePath_Absolute);
+        FileUtil.openOrCreatDir(LocalConfig.mDownLoadFileSavePath_SD);
+        FileUtil.openOrCreatDir(LocalConfig.mDownLoadFileSavePath_Absolute);
+        FileUtil.openOrCreatDir(LocalConfig.mErroLogSavePath_SD);
+        FileUtil.openOrCreatDir(LocalConfig.mTracksSavePath_SD);
+
     }
 
     public static YemaApplication getInstanse(){

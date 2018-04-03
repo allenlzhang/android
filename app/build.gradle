@@ -45,5 +45,4 @@ dependencies {
     compile files('libs/AMap3DMap_5.5.0_AMapNavi_5.4.0_AMapSearch_5.5.0_AMapLocation_3.6.1_20171107.jar')
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:support-v4:26.x'
-//    implementation 'com.android.support:recyclerview-v7:26.x'
 }

@@ -158,7 +158,7 @@ public class HttpLinker {
     //上传图片
     public static Response uploadImage(String url, HashMap<String, Object> map, File file) throws IOException {
         if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
-            url = url + "?token=" + LoginInfo.getAccess_token();
+            url = url + "?token=" + YemaApplication.TOKEN;
         }
         MultipartBody.Builder multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         if (file != null) {
@@ -171,7 +171,7 @@ public class HttpLinker {
             String filename = file.getName();
             ILog.e("upload","pic-filename:"+filename);
             // 参数分别为， 请求key ，文件名称 ， RequestBody
-            multipartBuilder.addFormDataPart("fileOwner", filename, body);
+            multipartBuilder.addFormDataPart("fileData", filename, body);
         }
         if (map != null) {
             // map 里面是请求中所需要的 key 和 value
