@@ -40,6 +40,8 @@ public class YemaApplication extends Application {
 
     public static float ScreenDensity;
 
+    public static float ScaledDensity;
+
     public static String MODEL_NAME;// 手机名称
 
     public static String MODEL;// 手机型号
@@ -118,6 +120,7 @@ public class YemaApplication extends Application {
         ScreenWith = dm.widthPixels;
         ScreenHeight = dm.heightPixels;
         ScreenDensity = dm.density;
+        ScaledDensity = dm.scaledDensity;
         ILog.e("info", "ScreenDensity==" + ScreenDensity);
         ILog.e("info", "ScreenWith==" + ScreenWith);
         ILog.e("info", "ScreenHeight==" + ScreenHeight);

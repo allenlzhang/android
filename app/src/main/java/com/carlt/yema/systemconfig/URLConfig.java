@@ -249,7 +249,12 @@ public class URLConfig {
 
     // 安全-设置远程密码
     private static String M_SAFE_SETREMOTEPWD_URL = "safe/setRemotePwd";
+    // 获取车辆位置信息
+    private static String M_CAR_GETCAREXTINFO = "car/getCarExtInfo";
 
+    public static String getM_CAR_GETCAREXTINFO_URL() {
+        return getYemaURL(M_CAR_GETCAREXTINFO);
+    }
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);

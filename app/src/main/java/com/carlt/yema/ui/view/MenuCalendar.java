@@ -67,7 +67,7 @@ public abstract class MenuCalendar {
 			mHeight - getTopHeight(mContext));
 		mTitle = (TextView) menuView_main.findViewById(R.id.title);
 		mBack = (ImageView) menuView_main.findViewById(R.id.back);
-		mBack.setImageResource(R.drawable.arrow_back);
+		mBack.setImageResource(R.drawable.back_bg);
 		mBack.setOnClickListener(new OnClickListener() {
 
 			@Override

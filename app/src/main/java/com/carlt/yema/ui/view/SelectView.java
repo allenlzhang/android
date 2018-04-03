@@ -64,7 +64,7 @@ public abstract class SelectView {
         	mHeight - getTopHeight(mContext));
         mTitle = (TextView)menuView_main.findViewById(R.id.head_back_txt1);
         mBack = (ImageView)menuView_main.findViewById(R.id.head_back_img1);
-        mBack.setImageResource(R.drawable.arrow_back);
+        mBack.setImageResource(R.drawable.back_bg);
         mBack.setOnClickListener(new OnClickListener() {
 
             @Override

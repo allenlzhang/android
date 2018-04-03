@@ -178,6 +178,13 @@ public class CPControl {
 		paser.executePost(URLConfig.getM_REMOTE_STATE(),mapParam);
 	}
 
+	//
+	public static void GetCarExtInfo(BaseParser.ResultCallback mCallback) {
+		DefaultStringParser paser = new DefaultStringParser(mCallback);
+		HashMap mapParam = new HashMap();
+		paser.executePost(URLConfig.getM_CAR_GETCAREXTINFO_URL(),mapParam);
+	}
+
 	public static void GetRemoteCarState(final BaseParser.ResultCallback mListener_states ) {
 		CarStateInfoParser paser = new CarStateInfoParser(mListener_states);
 		HashMap mapParam = new HashMap();
@@ -457,6 +464,11 @@ public class CPControl {
 		parser.setTest(false);
 		parser.executePost(URLConfig.getM_SECRETARY_DELETE_URL(),mHashMap);
 	}
+
+	public static void GetNavigationResult(String position, String location, BaseParser.ResultCallback listener_navigation) {
+
+	}
+
 
 	public interface GetResultListCallback {
 		void onFinished(Object o);
