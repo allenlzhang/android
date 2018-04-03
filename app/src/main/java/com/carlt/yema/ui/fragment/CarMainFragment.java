@@ -1,6 +1,9 @@
 package com.carlt.yema.ui.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -46,6 +49,9 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
     private View viewMainState;
     private TextView headTxt;
     private TextView titleTV;
+    public final static String CARMAIN_SAFETY = "com.carlt.yema.carmain.safety";// 安防action
+
+    private CarmainBroadCastReceiver mReceiver;
 
     @Override
     protected View inflateView(LayoutInflater inflater) {
@@ -77,17 +83,31 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         viewSafetyLay.setOnClickListener(this);
         viewMainTainLay.setOnClickListener(this);
         viewMainState.setOnClickListener(this);
+
+        mReceiver = new CarmainBroadCastReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(CARMAIN_SAFETY);
+        getActivity().registerReceiver(mReceiver, filter);
+    }
+
+    class CarmainBroadCastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            initData();
+        }
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        LoadData();
+        initData();
     }
 
     CarOperationConfigParser carOperationConfigParser;
 
-    private void LoadData() {
+    private void initData() {
         //CARINDEX 以及支持的配置项
         BaseParser parser = new DefaultParser<CarIndexInfo>(new BaseParser.ResultCallback() {
             @Override

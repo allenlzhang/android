@@ -255,6 +255,21 @@ public class URLConfig {
     // 获取导航同步到车--改为远程相关接口
     private static String M_NAVIGATION_URL = "remote/navigation";
 
+    //信鸽token保存
+    private static String M_REGISTERXGPUSH_URL = "user/saveXingeToken";
+
+    //注销信鸽token
+    private static String M_REMOVERXGPUSH_URL = "user/clearXingeToken";
+
+    public static String getM_REMOVERXGPUSH_URL() {
+        return getYemaURL( M_REMOVERXGPUSH_URL);
+    }
+
+    public static String getM_REGISTERXGPUSH_URL() {
+        return getYemaURL(M_REGISTERXGPUSH_URL);
+    }
+
+
     public static String getM_NAVIGATION_URL() {
         return getUrlRemote(M_NAVIGATION_URL);
     }

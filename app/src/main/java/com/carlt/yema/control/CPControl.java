@@ -474,5 +474,19 @@ public class CPControl {
 		mapParam.put("move_device_name",YemaApplication.MODEL_NAME);
 		paser.executePost(URLConfig.getM_NAVIGATION_URL(),mapParam);
 	}
-	
+	public static void GetPushXgTokenResult( String xgtoken,  String move_deviceid,  BaseParser.ResultCallback listener) {
+		DefaultStringParser paser = new DefaultStringParser(listener);
+		HashMap mapParam = new HashMap();
+		mapParam.put("move_deviceid",move_deviceid);
+		mapParam.put("xgtoken",xgtoken);
+		paser.executePost(URLConfig.getM_REGISTERXGPUSH_URL(),mapParam);
+	}
+
+	public static void GetUnRigisterXgTokenResult(String move_deviceid,BaseParser.ResultCallback listener) {
+		DefaultStringParser paser = new DefaultStringParser(listener);
+		HashMap mapParam = new HashMap();
+		mapParam.put("move_deviceid",move_deviceid);
+		paser.executePost(URLConfig.getM_REMOVERXGPUSH_URL(),mapParam);
+	}
+
 }

@@ -9,6 +9,15 @@ android {
         versionCode 100
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86', 'x86_64', 'mips', 'mips64'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+            manifestPlaceholders = [
+                    XG_ACCESS_ID:"2100279265",
+                    XG_ACCESS_KEY:"AD5EA63GJ25R",
+            ]
+        }
     }
     buildTypes {
         release {
@@ -46,4 +55,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:support-v4:26.x'
 //    implementation 'com.android.support:recyclerview-v7:26.x'
+    //信鸽
+    compile 'com.tencent.xinge:xinge:3.1.2-beta'
+    compile 'com.tencent.wup:wup:1.0.0.E-alpha'
+    compile 'com.tencent.mid:mid:3.9.0-alpha'
 }
