@@ -288,7 +288,7 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
         params.put("fileOwner", "avatar");
 //        params.put("fileData", image.getName());
         try {
-            response = HttpLinker.uploadImage(URLConfig.getM_OSS_UPLOAD_URL(), null, image);
+            response = HttpLinker.uploadImage(URLConfig.getM_OSS_UPLOAD_URL(), params, image);
             Log.d(TAG, "uploadAvatar-------->" + response.toString());
         } catch (IOException e) {
             e.printStackTrace();

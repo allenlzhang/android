@@ -75,8 +75,8 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             person_sex_txt.setText(LoginInfo.getGender());
         }
         person_nickname_txt = findViewById(R.id.person_nickname_txt);
-        if (!TextUtils.isEmpty(LoginInfo.getUsername())){
-            person_nickname_txt.setText(LoginInfo.getUsername());
+        if (!TextUtils.isEmpty(LoginInfo.getRealname())){
+            person_nickname_txt.setText(LoginInfo.getRealname());
         }
         initSexSelector();
     }
@@ -89,6 +89,9 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void onResume() {
+        person_sex_txt.setText(LoginInfo.getGender());
+        Glide.with(this).load(LoginInfo.getAvatar_img()).into(usr_avatar);
+        person_nickname_txt.setText(LoginInfo.getRealname());
         super.onResume();
     }
 

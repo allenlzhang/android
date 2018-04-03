@@ -12,10 +12,21 @@ public class AvatarInfo extends BaseResponseInfo {
     private String filePath;//图片路径
     private String fileSize;//图片大小
     private String fileOwner;//图片类型(avatar:头像)
-    private String fileDownCount;//文件下载次数
     private String fileUid;//文件所属UID
     private String id;//图片ID
-    private String fileId;//文件id
+    private String thumbFilePath;//文件id
+    private String fileUploadType;//文件id
+    private String fileHash;//文件id
+
+    public long getFileTime() {
+        return fileTime;
+    }
+
+    public void setFileTime(long fileTime) {
+        this.fileTime = fileTime;
+    }
+
+    private long fileTime;//文件id
 
     public String getFileName() {
         return fileName;
@@ -57,14 +68,6 @@ public class AvatarInfo extends BaseResponseInfo {
         this.fileOwner = fileOwner;
     }
 
-    public String getFileDownCount() {
-        return fileDownCount;
-    }
-
-    public void setFileDownCount(String fileDownCount) {
-        this.fileDownCount = fileDownCount;
-    }
-
     public String getFileUid() {
         return fileUid;
     }
@@ -81,11 +84,27 @@ public class AvatarInfo extends BaseResponseInfo {
         this.id = id;
     }
 
-    public String getFileId() {
-        return fileId;
+    public String getThumbFilePath() {
+        return thumbFilePath;
     }
 
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
+    public void setThumbFilePath(String thumbFilePath) {
+        this.thumbFilePath = thumbFilePath;
+    }
+
+    public String getFileUploadType() {
+        return fileUploadType;
+    }
+
+    public void setFileUploadType(String fileUploadType) {
+        this.fileUploadType = fileUploadType;
+    }
+
+    public String getFileHash() {
+        return fileHash;
+    }
+
+    public void setFileHash(String fileHash) {
+        this.fileHash = fileHash;
     }
 }

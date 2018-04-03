@@ -27,22 +27,21 @@ public class AvatarParser extends BaseParser {
         mAvatarInfo.setFileOwner(mJson.get("fileOwner").getAsString());
         mAvatarInfo.setFileUid(mJson.get("fileUid").getAsString());
         mAvatarInfo.setId(mJson.get("id").getAsString());
-        mAvatarInfo.setFileId(mJson.get("fileId").getAsString());
         mBaseResponseInfo.setValue(mAvatarInfo);
     }
     public static AvatarInfo parser(JsonObject json){
         AvatarInfo mAvatarInfo=new AvatarInfo();
         JsonObject data=json.get("data").getAsJsonObject();
-        mAvatarInfo.setFileName(json.get("fileName").getAsString());
-        mAvatarInfo.setFileExt(json.get("fileExt").getAsString());
-        mAvatarInfo.setFilePath(json.get("filePath").getAsString());
-        mAvatarInfo.setFileSize(json.get("fileSize").getAsString());
-        mAvatarInfo.setFileOwner(json.get("fileOwner").getAsString());
-        mAvatarInfo.setFileUid(json.get("fileUid").getAsString());
-        mAvatarInfo.setId(json.get("id").getAsString());
-        LoginInfo.setAvatar_id(json.get("id").getAsString());
-        mAvatarInfo.setFileId(json.get("fileId").getAsString());
-        LoginInfo.setAvatar_img(json.get("filePath").getAsString());
+        mAvatarInfo.setFileName(data.get("fileName").getAsString());
+        mAvatarInfo.setFileExt(data.get("fileExt").getAsString());
+        mAvatarInfo.setFilePath(data.get("filePath").getAsString());
+        mAvatarInfo.setFileSize(data.get("fileSize").getAsString());
+        mAvatarInfo.setFileOwner(data.get("fileOwner").getAsString());
+        mAvatarInfo.setFileUid(data.get("fileUid").getAsString());
+        mAvatarInfo.setId(data.get("id").getAsString());
+        LoginInfo.setAvatar_id(data.get("id").getAsString());
+        mAvatarInfo.setFileTime(data.get("fileTime").getAsLong());
+        LoginInfo.setAvatar_img(data.get("filePath").getAsString());
       return mAvatarInfo;
     }
 }
