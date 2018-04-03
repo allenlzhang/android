@@ -518,7 +518,7 @@ public class RemoteMainFragment extends BaseFragment implements
                 case 8:
                     // 获取远程车辆温度成功
                     dissmissWaitingDialog();
-                    // 获取远程空调功能成功//x7的
+                    // 获取远程空调功能成功
                     AirMainInfo mAirMainInfo2 = (AirMainInfo) msg.obj;
                     if (!isReCall) {
                         if (airDialog == null || !airDialog.isShowing()) {
@@ -540,22 +540,10 @@ public class RemoteMainFragment extends BaseFragment implements
                 case 9:
                     // 获取远程车辆温度失败
                     dissmissWaitingDialog();
-                    AirMainInfo mAirMainInfo3 = (AirMainInfo) msg.obj;
-                    if (!isReCall) {
-                        if (airDialog == null || !airDialog.isShowing()) {
-                            if (TextUtils.isEmpty(mAirMainInfo3.getState())
-                                    || "0".equals(mAirMainInfo3.getState())) {
-                                // UUToast.showUUToast(getActivity(),
-                                // "获取空调状态超时");
-                            }
-                            airDialog = new UUAirConditionDialog(
-                                    getActivity(), mAirMainInfo3);
-                            airDialog.mListener = mListener;
-                            airDialog.mHandler = mHandler;
-                            airDialog.show();
-                        }
-                    } else {
-                        airDialog.reCall();
+                    BaseResponseInfo mInfo9 = (BaseResponseInfo) msg.obj;
+                    if (mInfo9 != null) {
+                        UUToast.showUUToast(getActivity(),
+                                mInfo9.getInfo());
                     }
                     break;
                 case 10:

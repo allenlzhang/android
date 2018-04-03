@@ -1,9 +1,14 @@
 package com.carlt.yema.control;
 
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import com.carlt.yema.YemaApplication;
+import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.login.UserRegisterParams;
 import com.carlt.yema.data.remote.AirMainInfo;
+import com.carlt.yema.data.remote.RemoteFunInfo;
 import com.carlt.yema.data.set.ModifyCarInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
@@ -29,11 +34,20 @@ import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.utils.CipherUtils;
 import com.carlt.yema.utils.CreateHashMap;
 import com.carlt.yema.utils.FileUtil;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CPControl {
-	public static void GetRemoteAir(BaseParser.ResultCallback mListener, String s, String s1) {
+	public static void GetRemoteAir(BaseParser.ResultCallback mListener, String racoc, String oc) {
+        DefaultStringParser remoteStartParser = new DefaultStringParser(mListener);
+        HashMap param = new HashMap();
+        param.put("racoc", racoc);
+        param.put("ratct", oc);
+        param.put("move_device_name",YemaApplication.MODEL_NAME);
+        remoteStartParser.executePost(URLConfig.getM_DEVICE_REMOTE_AIRCONDITION(),param);
 	}
 
 	public static void GetRemoteStart(BaseParser.ResultCallback mListener) {
@@ -104,10 +118,64 @@ public class CPControl {
 	/**
 	 * 远程-车辆实时温度 成功返回 AirMainInfo
 	 */
-	public static void GetRemoteCarTemp(BaseParser.ResultCallback mListener_temp, AirMainInfo mAirMainInfo1) {
+	public static void GetRemoteCarTemp(final BaseParser.ResultCallback mListener_temp, final AirMainInfo airMainInfo) {
+		DefaultStringParser paser = new DefaultStringParser(new BaseParser.ResultCallback() {
+			@Override
+			public void onSuccess(BaseResponseInfo mBaseResponseInfo) {
+				String value = (String) mBaseResponseInfo.getValue();
+                JsonParser jsonParser = new JsonParser();
+                JsonObject mParser = jsonParser.parse(value).getAsJsonObject();
+                String temp = "";
+                String airState = "";
+                if (mBaseResponseInfo.getFlag() == BaseResponseInfo.SUCCESS) {
+                    temp = mParser.get("ACTemp").getAsString();
+                    boolean isGetCurrentTempSuccess;
+                    if (TextUtils.isEmpty(temp)) {
+                        temp = "26";
+                        isGetCurrentTempSuccess = false;
+                    } else {
+                        if (temp.equals("0")) {
+                            temp = "26";
+                            isGetCurrentTempSuccess = false;
+                        } else {
+                            isGetCurrentTempSuccess = true;
+                        }
+                    }
+                    // 测试数据
+                    // temp = "35";
+                    // 测试数据结束
+                    airMainInfo.setCurrentTemp(temp);
+                    Log.e("info", "temp==------------" + temp);
+                    airMainInfo.setGetCurrentTempSuccess(isGetCurrentTempSuccess);
 
+                    airState = mParser.get("AC").getAsString();
+                    ArrayList<RemoteFunInfo> remoteFunInfos = airMainInfo
+                            .getmRemoteFunInfos();
+                    for (int i = 0; i < remoteFunInfos.size(); i++) {
+                        RemoteFunInfo item = remoteFunInfos.get(i);
+                        String id = item.getId();
+                        if (id.equals(airState)) {
+                            item.setSelect(true);
+                            break;
+                        }
+                    }
+                    airMainInfo.setState(airState);
+                    mListener_temp.onSuccess(airMainInfo);
+                } else {
+                    airMainInfo.setCurrentTemp("26");
+                    airMainInfo.setGetCurrentTempSuccess(false);
+                    airMainInfo.setState("-1");
+                    mListener_temp.onError(mBaseResponseInfo);
+                }
+			}
 
-
+			@Override
+			public void onError(BaseResponseInfo bInfo) {
+				mListener_temp.onError(bInfo);
+			}
+		});
+		HashMap mapParam = new HashMap();
+		paser.executePost(URLConfig.getM_REMOTE_STATE(),mapParam);
 	}
 
 	public static void GetRemoteCarState(final BaseParser.ResultCallback mListener_states ) {

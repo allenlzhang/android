@@ -219,6 +219,8 @@ public class URLConfig {
     private static String M_DEVICE_REMOTE_TRUNK = "remote/trunk";
     //远程天窗
     private static String M_DEVICE_REMOTE_SKYLIGHT = "remote/skyLight";
+    //远程开关空调
+    private static String M_DEVICE_REMOTE_AIRCONDITION = "remote/aircondition";
     //验证登录密码
     private static String M_USERCENTER_CHECK_PWD = "safe/checkPassword";
     //修改登录密码
@@ -428,6 +430,10 @@ public class URLConfig {
 
     public static String getM_DEVICE_REMOTE_SKYLIGHT() {
         return getUrlRemote(M_DEVICE_REMOTE_SKYLIGHT);
+    }
+
+    public static String getM_DEVICE_REMOTE_AIRCONDITION() {
+        return getUrlRemote(M_DEVICE_REMOTE_AIRCONDITION);
     }
 
     public static String getM_DEVICE_REMOTE_LOCK() {
