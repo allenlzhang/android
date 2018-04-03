@@ -227,12 +227,19 @@ public class MonthActivity extends LoadingActivity {
 				break;
 			case 3:
 				//拉取月报数据失败
-				loadonErrorUI((ReportMonthInfo) ((BaseResponseInfo) msg.obj).getValue());
+				loadonErrorUI((BaseResponseInfo) msg.obj);
+				loadDataError(msg.obj);
 				break;
 			}
 		}
 
 	};
+
+	@Override
+	public void reTryLoadData() {
+		super.reTryLoadData();
+		initData();
+	}
 
 	@Override
 	protected void onResume() {

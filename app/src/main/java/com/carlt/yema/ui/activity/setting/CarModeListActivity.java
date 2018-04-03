@@ -27,7 +27,7 @@ public class CarModeListActivity extends LoadingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_mode_list);
-        loadingDataUI();;
+        loadingDataUI();
         initComponent();
         initData();
         intent=getIntent();

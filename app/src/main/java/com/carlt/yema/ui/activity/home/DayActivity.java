@@ -2,6 +2,7 @@
 package com.carlt.yema.ui.activity.home;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.request.RequestOptions;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.control.CPControl;
@@ -116,7 +119,8 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
         mTxtName.setText(mReportDayInfo.getRealname());
         if (!mReportDayInfo.getAvatar_img().equals("")) {
             //TODO XIAOMOU 改
-//            Glide.with(mContext).load(mReportDayInfo.getAvatar_img()).placeholder(R.drawable.icon_default_head).into(mImgHead);
+
+            Glide.with(mContext).load(mReportDayInfo.getAvatar_img()).into(mImgHead);
         } else {
             mImgHead.setImageResource(R.mipmap.ic_launcher);
         }

@@ -146,7 +146,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     };
 
     private void loadRemoteError(BaseResponseInfo bInfo) {
-        UUToast.showUUToast(getContext(),bInfo.getInfo());
+//        UUToast.showUUToast(getContext(),bInfo.getInfo());
         mTxtObd.setText("--");
         mTxtEnduranceMile.setText("--");
         mTxtAvgSpeed.setText("--");

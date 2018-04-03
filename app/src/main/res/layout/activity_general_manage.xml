@@ -7,8 +7,6 @@
     android:orientation="vertical"
     tools:context=".ui.activity.setting.AccountSecurityActivity">
 
-    <include layout="@layout/layout_title" />
-
 
     <LinearLayout
         style="@style/setting_page_item_style"

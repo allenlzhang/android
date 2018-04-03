@@ -33,8 +33,6 @@ public class URLConfig {
 
     public final static String JUHE_APPKEY = "fa80021879c30853fa80137f1110c2a6";// 聚合AppKey
 
-
-
     // 获取yema API URL
     private static String getYemaURL(String s) {
         String version = YemaApplication.Version_API + "/";
@@ -235,6 +233,13 @@ public class URLConfig {
     private static String M_USER_REMOTE_SWITCH = "safe/userSwitch";
     //消息中心开关
     private static String M_CAR_MODIFY = "car/modifyCar";
+    //远程控制音效开关
+    private static String M_CONTROL_SOUND = "safe/remoteControlsound";
+    //获取推送设置
+    private static String M_GET_PUSH_SET = "user/getPushSet";
+    //更新推送设置
+    private static String M_UPDATE_PUSH_SET = "user/updatePushSet";
+
     //获取经销商信息
     private static String M_GET_DEALER_INFO = "dealer/getDealerInfo";
     //修改用户信息
@@ -242,6 +247,7 @@ public class URLConfig {
 
     // 安全-设置远程密码
     private static String M_SAFE_SETREMOTEPWD_URL = "safe/setRemotePwd";
+
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
@@ -317,6 +323,9 @@ public class URLConfig {
 
     public static String getM_SECRETARY_MESSAGE_URL() {
         return getYemaURL(M_SECRETARY_SECURITY_MSG);
+    }
+    public static String getM_SAFE_SETREMOTEPWD_URL() {
+        return getYemaURL(M_SAFE_SETREMOTEPWD_URL);
     }
 
     public static String getM_CAR_CURCARCONFIG_URL() {
@@ -438,9 +447,6 @@ public class URLConfig {
     public static String getM_RESET_REMOTE_PWD() {
         return getYemaURL(M_RESET_REMOTE_PWD);
     }
-    public static String getM_SAFE_SETREMOTEPWD_URL() {
-        return getYemaURL(M_SAFE_SETREMOTEPWD_URL);
-    }
 
     public static String getM_FORGET_REMOTE_PWD() {
         return getYemaURL(M_FORGET_REMOTE_PWD);
@@ -453,21 +459,26 @@ public class URLConfig {
     public static String getM_CAR_MODIFY() {
         return getYemaURL(M_CAR_MODIFY);
     }
-    public static String getM_GET_DEALER_INFO() {
-        return getYemaURL(M_GET_DEALER_INFO);
-    }
-    public static String getM_USER_EDIT_INFO() {
-        return getYemaURL(M_USER_EDIT_INFO);
+
+    public static String getM_CONTROL_SOUND(){
+        return getYemaURL(M_CONTROL_SOUND);
     }
 
+    public static String getM_PUSH_SET(){
+        return getYemaURL(M_GET_PUSH_SET);
+    }
+
+    public static String getM_UPDATE_PUSH_SET(){
+        return getYemaURL(M_UPDATE_PUSH_SET);
+    }
 
     /***********************旅行相册（其他接口在上面添加）***********************/
     //测试服
-    private static final String ALBUM_TEST_URL = "http://imgcloud.linewin.cc/";
+    private static final String ALBUM_TEST_URL = "http://imgcloud.linewin.cc";
     //预发服
-    private static final String ALBUM_PRE_URL = "https://pre-imagecloud.geni4s.com/";
+    private static final String ALBUM_PRE_URL = "https://pre-imagecloud.geni4s.com";
     //正式服
-    private static final String ALBUM_FORMAL_URL = "http://imgcloud.linewin.cc/";
+    private static final String ALBUM_FORMAL_URL = "http://imgcloud.linewin.cc";
     //相册列表查询
     public static final String ALBUM_QUERY="query";
     //相册列表查询
@@ -487,7 +498,7 @@ public class URLConfig {
                 break;
             case VERSION_TEST:
                 // 测试服
-                url = ALBUM_TEST_URL + version + path;
+                url = ALBUM_PRE_URL + version + path;
                 break;
         }
         return url;
