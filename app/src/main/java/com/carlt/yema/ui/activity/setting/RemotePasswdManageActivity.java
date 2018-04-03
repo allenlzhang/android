@@ -59,6 +59,7 @@ public class RemotePasswdManageActivity extends BaseActivity implements View.OnC
             case R.id.remote_passwd_forget:
                 Intent resetLoginPasswdByPhone=new Intent(this,VcodeResetRemotePasswdActivity.class);
                 startActivity(resetLoginPasswdByPhone);
+                break;
             case R.id.remote_set_passwd:
                 Intent setRemotePasswd=new Intent(this,RemotePswResetActivity3.class);
                 startActivity(setRemotePasswd);

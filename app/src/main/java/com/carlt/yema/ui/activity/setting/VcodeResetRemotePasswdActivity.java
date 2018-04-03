@@ -61,7 +61,6 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vcode_reset_remote_passwd);
-
         initComponent();
     }
 
@@ -70,14 +69,14 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
         back.setOnClickListener(this);
         title = $ViewByID(R.id.title);
         title.setText("修改远程密码");
-        certified_phone_input = $ViewByID(R.id.certified_phone_input);
-        certified_code_input = $ViewByID(R.id.certified_code_input);
+        certified_phone_input = $ViewByID(R.id.remote_phone_input);
+        certified_code_input = $ViewByID(R.id.remote_code_input);
         new_remote_passwd = $ViewByID(R.id.new_remote_passwd);
-        new_remote_passwd_again = $ViewByID(R.id.new_remote_passwd_again);
+        new_remote_passwd_again = $ViewByID(R.id.new_remote_vcode_passwd_again);
 
-        certified_verification_send = $ViewByID(R.id.certified_verification_send);
+        certified_verification_send = $ViewByID(R.id.remote_verification_send);
         certified_verification_send.setOnClickListener(this);
-        reset_remote_commit = $ViewByID(R.id.reset_remote_commit);
+        reset_remote_commit = $ViewByID(R.id.forget_reset_remote_commit);
         reset_remote_commit.setOnClickListener(this);
 
     }
@@ -88,7 +87,7 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
             case R.id.back:
                 finish();
                 break;
-            case R.id.certified_verification_send:
+            case R.id.remote_verification_send:
                 mobile = certified_phone_input.getText().toString();
                 if (mobile != null && StringUtils.checkCellphone(mobile)) {
                     String phoneOld = LoginInfo.getMobile();
@@ -118,8 +117,8 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
                     UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "请输入正确的手机号");
                 }
                 break;
-            case R.id.reset_remote_commit:
-                finish();
+            case R.id.forget_reset_remote_commit:
+                editPasswdCommitRequest();
                 break;
         }
     }
@@ -140,6 +139,8 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
         public void onSuccess(BaseResponseInfo bInfo) {
             // 获取验证码成功
             UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "验证码已发送成功！");
+            confirmPasswd=new_remote_passwd_again.getPassword();
+            vCode=certified_code_input.getText().toString();
         }
 
         @Override
