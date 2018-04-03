@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.model.LoginInfo;
 
 public class DeviceManageActivity extends BaseActivity implements View.OnClickListener{
 
@@ -30,7 +31,7 @@ public class DeviceManageActivity extends BaseActivity implements View.OnClickLi
         title.setText(getResources().getString(R.string.device_manager_txt));
 
         device_binded_index= $ViewByID(R.id.device_binded_index);
-        device_binded_index.setText(String.format(getResources().getString(R.string.device_binded_txt),"c000001"));
+        device_binded_index.setText(String.format(getResources().getString(R.string.device_binded_txt), LoginInfo.getDeviceidstring()));
 
     }
 

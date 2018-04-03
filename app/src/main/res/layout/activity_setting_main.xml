@@ -230,39 +230,6 @@
                         android:contentDescription="@string/app_name"
                         android:src="@mipmap/arrow_right" />
                 </LinearLayout>
-
-                <View style="@style/setting_page_item_divider" />
-
-                <LinearLayout
-                    android:id="@+id/btn_general_manager"
-                    style="@style/setting_page_item_style"
-                    android:layout_width="match_parent">
-
-                    <ImageView
-                        android:layout_width="18dip"
-                        android:layout_height="18dip"
-                        android:layout_gravity="center_vertical"
-                        android:contentDescription="@string/app_name"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/icon_general_manage" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="14dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="@string/general_manager_txt"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:contentDescription="@string/app_name"
-                        android:src="@mipmap/arrow_right" />
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -286,11 +253,21 @@
                         android:src="@mipmap/icon_clean_cache" />
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="14dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/clean_cache_txt"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/cache_size"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="14dp"
+                        android:paddingRight="12dp"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"
+                        android:gravity="center_vertical|right"
                         android:text="@string/clean_cache_txt"
                         android:textColor="@color/white"
                         android:textSize="14sp" />

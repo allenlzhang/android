@@ -11,9 +11,10 @@ import com.bigkoo.pickerview.listener.CustomListener;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.data.BaseResponseInfo;
-import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.protocolparser.BaseParser.ResultCallback;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.ui.view.UUToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,11 +38,8 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
     private TextView nspection_time_txt;//显示
     private TimePickerView pvCustomTime;
 
-    private String buydate = "";
-    private String mainten_miles = "";
-    private String mainten_date = "";
-    private String insurance_date = "";
-    private String register_date = "";
+
+    private String carDate;
 
 
 
@@ -54,7 +52,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
     }
 
     private void initComponent() {
-        setTitle("车辆管理");
+        initTitle("车辆管理");
         edit_car_type = findViewById(R.id.edit_car_type);
         edit_car_type.setOnClickListener(this);
         edit_purchase_time = findViewById(R.id.edit_purchase_time);
@@ -108,28 +106,60 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         }
     }
 
-    private void modifyCarInfoRequest() {
+    private void modifyCarInfoRequest(HashMap<String,String> params,ResultCallback modifyCallback) {
         DefaultStringParser parser = new DefaultStringParser(modifyCallback);
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("buydate", buydate);
-        params.put("mainten_miles", mainten_miles);
-        params.put("mainten_date", mainten_date);
-        params.put("insurance_date", insurance_date);
-        params.put("register_date", register_date);
         parser.executePost(URLConfig.getM_CAR_MODIFY(), params);
     }
 
-    private BaseParser.ResultCallback modifyCallback = new BaseParser.ResultCallback() {
+    private ResultCallback purchaseCallback = new ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            loadNodataUI();
+            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
+            purchase_time_txt.setText(carDate);
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-
+            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改失败");
         }
     };
+    private ResultCallback maintenCallback = new ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
+            maintenance_time_txt.setText(carDate);
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改失败");
+        }
+    };
+    private ResultCallback nspectionCallback = new ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
+            nspection_time_txt.setText(carDate);
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改失败");
+        }
+    };
+    private ResultCallback insuredCallback = new ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
+            insured_time_txt.setText(carDate);
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改失败");
+        }
+    };
+
 
     private void initCustomTimePicker() {
 
@@ -151,21 +181,30 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         pvCustomTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
+                HashMap<String,String> params=null;
+                carDate=getTime(date);
                 switch (v.getId()) {
-                    case R.id.edit_purchase_time:
-                        buydate=getTime(date);
+                    case R.id.purchase_time_txt:
+                        params=new HashMap<>();
+                        params.put("buydate",carDate);
+                        modifyCarInfoRequest(params,purchaseCallback);
                         break;
-                    case R.id.edit_maintenance_time:
-                        mainten_date=getTime(date);
+                    case R.id.maintenance_time_txt:
+                        params=new HashMap<>();
+                        params.put("mainten_date",carDate);
+                        modifyCarInfoRequest(params,maintenCallback);
                         break;
-                    case R.id.edit_insured_time:
-                        insurance_date=getTime(date);
+                    case R.id.insured_time_txt:
+                        params=new HashMap<>();
+                        params.put("insurance_date",carDate);
+                        modifyCarInfoRequest(params,insuredCallback);
                         break;
-                    case R.id.edit_nspection_time:
-                        register_date=getTime(date);
+                    case R.id.nspection_time_txt:
+                        params=new HashMap<>();
+                        params.put("register_date",carDate);
+                        modifyCarInfoRequest(params,nspectionCallback);
                         break;
                 }
-                modifyCarInfoRequest();
             }
         })
                 /*.setType(TimePickerView.Type.ALL)//default is all

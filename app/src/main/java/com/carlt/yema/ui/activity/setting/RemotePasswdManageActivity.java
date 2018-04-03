@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.ui.activity.remote.RemotePswResetActivity3;
 
 public class RemotePasswdManageActivity extends BaseActivity implements View.OnClickListener{
 
@@ -16,6 +18,7 @@ public class RemotePasswdManageActivity extends BaseActivity implements View.OnC
 
     private View remote_passwd_remember;//记得原密码
     private View remote_passwd_forget;//忘记原密码
+    private View remote_set_passwd;//设置远程密码
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +34,17 @@ public class RemotePasswdManageActivity extends BaseActivity implements View.OnC
         remote_passwd_remember.setOnClickListener(this);
         remote_passwd_forget=$ViewByID(R.id.remote_passwd_forget);
         remote_passwd_forget.setOnClickListener(this);
+        remote_set_passwd=$ViewByID(R.id.remote_set_passwd);
+        remote_set_passwd.setOnClickListener(this);
 
         title=$ViewByID(R.id.title);
         title.setText("远程密码管理");
+        if (LoginInfo.isSetRemotePwd()) {
+            remote_set_passwd.setVisibility(View.GONE);
+        } else {
+            remote_set_passwd.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -48,6 +59,9 @@ public class RemotePasswdManageActivity extends BaseActivity implements View.OnC
             case R.id.remote_passwd_forget:
                 Intent resetLoginPasswdByPhone=new Intent(this,VcodeResetRemotePasswdActivity.class);
                 startActivity(resetLoginPasswdByPhone);
+            case R.id.remote_set_passwd:
+                Intent setRemotePasswd=new Intent(this,RemotePswResetActivity3.class);
+                startActivity(setRemotePasswd);
                 break;
         }
         finish();

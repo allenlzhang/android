@@ -30,7 +30,6 @@ import com.carlt.yema.ui.activity.setting.AboutYemaActivity;
 import com.carlt.yema.ui.activity.setting.AccountSecurityActivity;
 import com.carlt.yema.ui.activity.setting.CarManagerActivity;
 import com.carlt.yema.ui.activity.setting.DeviceManageActivity;
-import com.carlt.yema.ui.activity.setting.GeneralManageActivity;
 import com.carlt.yema.ui.activity.setting.MsgManageActivity;
 import com.carlt.yema.ui.activity.setting.PersonInfoActivity;
 import com.carlt.yema.ui.activity.setting.TravelAlbumActivity;
@@ -58,12 +57,12 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
     private View btn_car_manager;//车辆管理item
     private View btn_msg_manager;//消息管理item
     private View btn_device_manager;//设备管理item
-    private View btn_general_manager;//通用管理item
     private View btn_clean_cache;//清除缓存item
     private View btn_contact_us;//联系我们item
     private View btn_about_yema;//关于item
 
     private TextView btn_sign_out;//退出登录按钮
+    private TextView cache_size;//退出登录按钮
 
     private DealerInfo mDealerInfo;
 
@@ -104,8 +103,6 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
         btn_msg_manager.setOnClickListener(this);
         btn_device_manager = parent.findViewById(R.id.btn_device_manager);
         btn_device_manager.setOnClickListener(this);
-        btn_general_manager = parent.findViewById(R.id.btn_general_manager);
-        btn_general_manager.setOnClickListener(this);
         btn_clean_cache = parent.findViewById(R.id.btn_clean_cache);
         btn_clean_cache.setOnClickListener(this);
         btn_contact_us = parent.findViewById(R.id.btn_contact_us);
@@ -114,6 +111,12 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
         btn_about_yema.setOnClickListener(this);
         btn_sign_out = parent.findViewById(R.id.btn_sign_out);
         btn_sign_out.setOnClickListener(this);
+        cache_size = parent.findViewById(R.id.cache_size);
+        try {
+            cache_size.setText(CacheUtils.getTotalCacheSize(this.getActivity()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -142,10 +145,6 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
             case R.id.btn_device_manager:
                 Intent devManager = new Intent(this.getActivity(), DeviceManageActivity.class);
                 startActivity(devManager);
-                break;
-            case R.id.btn_general_manager:
-                Intent generalManager = new Intent(this.getActivity(), GeneralManageActivity.class);
-                startActivity(generalManager);
                 break;
             case R.id.btn_clean_cache:
                 showCleanCacheDialog();
@@ -216,6 +215,11 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
             @Override
             public void onClick(View view) {
                 cleanCache();
+                try {
+                    cache_size.setText(CacheUtils.getTotalCacheSize(SettingMainFragment.this.getActivity()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 if (dialog.isShowing()) {
                     dialog.dismiss();
                 }
