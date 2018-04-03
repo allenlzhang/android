@@ -18,6 +18,9 @@ import com.carlt.yema.data.home.InformationMessageInfo;
 import com.carlt.yema.data.home.InformationMessageInfoList;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.protocolparser.DefaultStringParser;
+import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.ui.activity.setting.CarManagerActivity;
 import com.carlt.yema.ui.activity.setting.MsgManageActivity;
 import com.carlt.yema.ui.adapter.InformationCentreTipsAdapter;
 import com.carlt.yema.ui.pull.PullToRefreshBase;
@@ -25,10 +28,12 @@ import com.carlt.yema.ui.pull.PullToRefreshListView;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUDialog;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.CreateHashMap;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by Marlon on 2018/3/16.
@@ -127,17 +132,13 @@ public class RemindActivity extends LoadingActivity2 {
             sb1.append("天建议您及时带TA进行保养，让TA重新焕发活力");
             mTextViewSecretary.setText(sb1.toString());
 
-//            if (havemainten != null) {
-//                if (LoginInfo.isMainten()) {
-//                    havemainten.setTextColor(getResources().getColor(R.color.orange));
-//                    havemainten
-//                            .setBackgroundResource(R.drawable.activity_career_secretary_tips_kuang);
-//                } else {
-//                    havemainten
-//                            .setBackgroundResource(R.drawable.activity_career_secretary_tips_kuang_noclick);
-//                    havemainten.setTextColor(getResources().getColor(R.color.text_color_gray1));
-//                }
-//            }
+            if (havemainten != null) {
+                if (LoginInfo.isMainten()) {
+                    havemainten.setEnabled(true);
+                } else {
+                    havemainten.setEnabled(false);
+                }
+            }
         }
 
     }
@@ -163,7 +164,8 @@ public class RemindActivity extends LoadingActivity2 {
                         // 已经保养过
                         if (LoginInfo.isMainten()) {
                             mUUDialog.show();
-//                            CPControl.GetMaintainLogResult(listener_MaintainLog);
+                            DefaultStringParser parser = new DefaultStringParser(listener_MaintainLog);
+                            parser.executePost(URLConfig.getM_MAINTAIN_LOG(), new HashMap());
                         }
 
                         break;
@@ -174,10 +176,10 @@ public class RemindActivity extends LoadingActivity2 {
 //                        startActivity(mIntent2);
 //                        break;
                     case R.id.activity_career_secretary_tips_car:
-                        // 设置保养时间
-//                        Intent mIntent3 = new Intent(RemindActivity.this,
-//                                ManageCarActivity.class);
-//                        startActivity(mIntent3);
+                        // 不准确点这里
+                        Intent mIntent3 = new Intent(RemindActivity.this,
+                                CarManagerActivity.class);
+                        startActivity(mIntent3);
                         break;
                 }
 
@@ -188,26 +190,24 @@ public class RemindActivity extends LoadingActivity2 {
 
     }
 
-//    private GetResultListCallback listener_MaintainLog = new GetResultListCallback() {
-//
-//        @Override
-//        public void onFinished(Object o) {
-//            Message msg = new Message();
-//            msg.what = 7;
-//            msg.obj = o;
-//            mHandler.sendMessage(msg);
-//
-//        }
-//
-//        @Override
-//        public void onErro(Object o) {
-//            Message msg = new Message();
-//            msg.what = 8;
-//            msg.obj = o;
-//            mHandler.sendMessage(msg);
-//
-//        }
-//    };
+    private BaseParser.ResultCallback listener_MaintainLog = new BaseParser.ResultCallback() {
+
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            Message msg = new Message();
+            msg.what = 7;
+            msg.obj = bInfo;
+            mHandler.sendMessage(msg);
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            Message msg = new Message();
+            msg.what = 8;
+            msg.obj = bInfo;
+            mHandler.sendMessage(msg);
+        }
+    };
 
     private void init() {
         MaintenanceTitle = findViewById(R.id.activity_career_secretary_tips_title);
@@ -256,17 +256,13 @@ public class RemindActivity extends LoadingActivity2 {
                 sb1.append(LoginInfo.getMainten_next_day());
                 sb1.append("天建议您及时带TA进行保养，让TA重新焕发活力");
                 mTextViewSecretary.setText(sb1.toString());
-//                if (havemainten != null) {
-//                    if (LoginInfo.isMainten()) {
-//                        havemainten.setTextColor(getResources().getColor(R.color.orange));
-//                        havemainten
-//                                .setBackgroundResource(R.drawable.activity_career_secretary_tips_kuang);
-//                    } else {
-//                        havemainten
-//                                .setBackgroundResource(R.drawable.activity_career_secretary_tips_kuang_noclick);
-//                        havemainten.setTextColor(getResources().getColor(R.color.text_color_gray1));
-//                    }
-//                }
+                if (havemainten != null) {
+                    if (LoginInfo.isMainten()) {
+                        havemainten.setEnabled(true);
+                    } else {
+                        havemainten.setEnabled(false);
+                    }
+                }
             }
 
         }
@@ -715,17 +711,12 @@ public class RemindActivity extends LoadingActivity2 {
 
                 case 7:
                     // 点击保养过了成功
-
+                    LoginInfo.setMainten(false);
                     if (LoginInfo.isMainten()) {
 
-                        havemainten.setTextColor(getResources().getColor(R.color.orange));
-//                        havemainten
-//                                .setBackgroundResource(R.drawable.activity_career_secretary_tips_kuang);
+                        havemainten.setEnabled(true);
                     } else {
-
-//                        havemainten
-//                                .setBackgroundResource(R.drawable.activity_career_secretary_tips_kuang_noclick);
-                        havemainten.setTextColor(getResources().getColor(R.color.text_color_gray1));
+                        havemainten.setEnabled(false);
                     }
                     if (mUUDialog != null && mUUDialog.isShowing()) {
                         mUUDialog.dismiss();

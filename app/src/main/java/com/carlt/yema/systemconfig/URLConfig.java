@@ -175,6 +175,8 @@ public class URLConfig {
     //读取里程
     private static String M_MILESINFO = "remote/getMilesInfos";
 
+    private static String M_MAINTAIN_LOG = "car/maintainLog";
+
     private static String M_REMOTE_WARNINGLAMP = "remote/warningLamp";
     //实时车况
     private static String M_REMOTE_STATUS = "remote/status";
@@ -294,6 +296,10 @@ public class URLConfig {
 
     public static String getM_MILESINFO_URL() {
         return getUrlRemote(M_MILESINFO);
+    }
+
+    public static String getM_MAINTAIN_LOG(){
+        return getYemaURL(M_MAINTAIN_LOG);
     }
 
     public static String getM_GET_DEALER_INFO() {

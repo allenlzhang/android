@@ -482,6 +482,10 @@ public class CPControl {
 		paser.executePost(URLConfig.getM_REGISTERXGPUSH_URL(),mapParam);
 	}
 
+
+
+
+
 	public static void GetUnRigisterXgTokenResult(String move_deviceid,BaseParser.ResultCallback listener) {
 		DefaultStringParser paser = new DefaultStringParser(listener);
 		HashMap mapParam = new HashMap();
