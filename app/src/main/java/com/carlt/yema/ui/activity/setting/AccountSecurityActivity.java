@@ -123,7 +123,7 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
                 mDialog.dismiss();
             }
             if (bInfo != null) {
-                String info2 = bInfo.getValue().toString();
+                String info2 = bInfo.getInfo();
                 if (info2 != null && info2.length() > 0) {
                     UUToast.showUUToast(AccountSecurityActivity.this, info2);
                 } else {
@@ -142,7 +142,7 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
             }
             btn_remote_no_passwd_ctr.setOnCheckedChangeListener(null);
             if (bInfo != null) {
-                String info3 = bInfo.getValue().toString();
+                String info3 = bInfo.getInfo();
                 if (info3 != null && info3.length() > 0) {
                     UUToast.showUUToast(AccountSecurityActivity.this, info3);
                 } else {
