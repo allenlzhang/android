@@ -77,7 +77,7 @@ public class FindCarActivity extends LoadingActivity2 implements LocationSource,
     private ImageView mImgCha;// 叉号按钮
     private ImageView mImgPLoc;// che的位置
     private TextView mTxtPLoc;
-    private TextView txtRight;
+    private TextView txtRight;//title 右侧按钮
 
     private MapView mMapView;
     private AMap mMap;
@@ -245,7 +245,7 @@ public class FindCarActivity extends LoadingActivity2 implements LocationSource,
         mImgPLoc = (ImageView) findViewById(R.id.findCar_img_persion);
         mTxtPLoc = (TextView) findViewById(R.id.findCar_img_persion_txt);
         txtRight = (TextView) findViewById(R.id.head_back_text2);
-
+        backTV2.setVisibility(View.GONE);
         mImgPLoc.setVisibility(View.GONE);
         mTxtPLoc.setVisibility(View.GONE);
         mViewInput.setVisibility(View.GONE);
