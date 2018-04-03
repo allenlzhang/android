@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.lib.WheelView;
 import com.bigkoo.pickerview.listener.CustomListener;
+import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.data.BaseResponseInfo;
@@ -40,6 +41,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
     private TextView person_nickname_txt;
     private TextView person_sex_txt;
+    private ImageView usr_avatar;
 
     private OptionsPickerView mSexOptions;//性别选择
     private static String[] sexItems = {"男", "女", "保密"};
@@ -67,6 +69,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
         edit_person_sex.setOnClickListener(this);
 
         edit_person_nickname = findViewById(R.id.edit_person_nickname);
+        usr_avatar = findViewById(R.id.usr_avatar);
         person_sex_txt = findViewById(R.id.person_sex_txt);
         if (!TextUtils.isEmpty(LoginInfo.getGender())){
             person_sex_txt.setText(LoginInfo.getGender());
@@ -103,7 +106,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             case R.id.edit_person_avatar:
                 Intent avatarIntent = new Intent(this, PersonAvatarActivity.class);
                 //avatarIntent.putExtra("avatar",avatarPath);
-                startActivity(avatarIntent);
+                startActivityForResult(avatarIntent, 1);
                 break;
             case R.id.edit_person_nickname:
                 Intent nicknameEdit = new Intent(this, NicknameEditActivity.class);
@@ -117,9 +120,17 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data!=null&&!TextUtils.isEmpty(data.getStringExtra("nickName"))) {
-
-            person_nickname_txt.setText(data.getStringExtra("nickName"));
+        if (data==null)return;
+        if (requestCode == 0) {
+            if ( !TextUtils.isEmpty(data.getStringExtra("nickName"))) {
+                person_nickname_txt.setText(data.getStringExtra("nickName"));
+            }
+        } else {
+            if (!TextUtils.isEmpty(data.getStringExtra("imageId"))&&!data.getStringExtra("imageId").equals(-1)) {
+                HashMap<String,String> params=new HashMap<>();
+                params.put("avatar",data.getStringExtra("imageId"));
+                chanageInfoRequest(params);
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -131,7 +142,9 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 String tx = sexList.get(options1);
-                chanageNickNameRequest(tx);
+                HashMap<String,String> params=new HashMap<>();
+                params.put("gender",tx);
+                chanageInfoRequest(params);
                 gender = tx;
             }
         })
@@ -167,24 +180,26 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    private void chanageNickNameRequest(String info) {
+    private void chanageInfoRequest(HashMap<String, String> params) {
         DefaultStringParser parser = new DefaultStringParser(callback);
-        HashMap<String, String> params = new HashMap<>();
-        params.put("gender", info);
         parser.executePost(URLConfig.getM_USER_EDIT_INFO(), params);
     }
 
     private BaseParser.ResultCallback callback = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(PersonInfoActivity.this, "性别修改成功");
+            UUToast.showUUToast(PersonInfoActivity.this, "资料修改成功");
             person_sex_txt.setText(gender);
             LoginInfo.setGender(gender);
+            if (!TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
+                Glide.with(PersonInfoActivity.this).load(LoginInfo.getAvatar_img()).into(usr_avatar);
+            }
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(PersonInfoActivity.this, "性别修改失败");
+            UUToast.showUUToast(PersonInfoActivity.this, "资料修改失败");
         }
     };
+
 }

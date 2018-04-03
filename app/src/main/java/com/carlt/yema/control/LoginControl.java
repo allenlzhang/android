@@ -124,7 +124,7 @@ public class LoginControl {
             LoginInfo.setCreatedate(member.optString("createdate", ""));
             LoginInfo.setAvatar_img((member.optString("avatar_img", "")));
             LoginInfo.setLifetime((member.optString("lifetime", "")));
-
+            LoginInfo.setAccess_token(member.optString("access_token", ""));
             LoginInfo.setMain(getFlagResult(member.optString("is_main", "")));
             LoginInfo.setMainDevicename(member
                     .optString("move_device_name", ""));

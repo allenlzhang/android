@@ -25,6 +25,7 @@
             android:textSize="14sp" />
 
         <ImageView
+            android:id="@+id/usr_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="12dp"
