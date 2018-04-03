@@ -57,7 +57,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#b22e2d33"
+        android:background="#2e2d33"
         android:orientation="vertical"
         android:paddingBottom="6dip"
         android:paddingLeft="12dip"
@@ -67,7 +67,9 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="7dip" >
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="10dp"
+            >
 
             <TextView
                 android:id="@+id/gps_trail_txt_miles"
@@ -121,11 +123,5 @@
                 android:text="最高速度：" />
         </LinearLayout>
     </LinearLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:layout_above="@id/gps_trail_lay_bottom"
-        android:background="#D6D6D6" />
 
 </RelativeLayout>

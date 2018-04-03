@@ -40,6 +40,7 @@ public class LoadingActivity2 extends BaseActivity {
     protected TextView titleTV = null;
     protected View backTV2 = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,12 +97,15 @@ public class LoadingActivity2 extends BaseActivity {
             backTV2.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    onRightClick();
                 }
             });
         }
     }
 
+    public void onRightClick() {
+
+    }
 
     private OnClickListener mClickListener = new OnClickListener() {
 

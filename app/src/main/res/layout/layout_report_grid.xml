@@ -24,7 +24,9 @@
 
             <TextView
                 android:id="@+id/layout_report_grid_linear1_txt2"
-                style="@style/layout_report_grid_txt2" />
+                style="@style/layout_report_grid_txt2"
+                android:text="--"
+                />
 
             <TextView
                 android:id="@+id/layout_report_grid_linear1_txt1"
@@ -45,7 +47,9 @@
 
             <TextView
                 android:id="@+id/layout_report_grid_linear2_txt2"
-                style="@style/layout_report_grid_txt2" />
+                style="@style/layout_report_grid_txt2"
+                android:text="--"
+                />
 
             <TextView
                 android:id="@+id/layout_report_grid_linear2_txt1"
@@ -68,7 +72,9 @@
 
             <TextView
                 android:id="@+id/layout_report_grid_linear3_txt2"
-                style="@style/layout_report_grid_txt2" />
+                style="@style/layout_report_grid_txt2"
+                android:text="--"
+                />
 
             <TextView
                 android:id="@+id/layout_report_grid_linear3_txt1"
@@ -91,7 +97,9 @@
 
             <TextView
                 android:id="@+id/layout_report_grid_linear4_txt2"
-                style="@style/layout_report_grid_txt2" />
+                style="@style/layout_report_grid_txt2"
+                android:text="--"
+                />
 
             <TextView
                 android:id="@+id/layout_report_grid_linear4_txt1"

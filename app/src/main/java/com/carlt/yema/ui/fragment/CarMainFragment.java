@@ -184,6 +184,7 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.car_main_lay_safety://安防提醒
                 Intent mIntent3 = new Intent(getActivity(), CarSaftyListActivity.class);
+                mIntent3.putExtra("safetymsg",carinfo.getSafetymsg());
                 startActivity(mIntent3);
                 break;
             case R.id.car_main_lay_maintain://车况检测报告
