@@ -1,5 +1,6 @@
 package com.carlt.yema.ui.activity.carstate;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -49,6 +50,8 @@ public class CarSaftyListActivity extends LoadingActivity {
     private void initView() {
         safyHeadTV = $ViewByID(R.id.layout_sub_head_txt);
         mListView = $ViewByID(R.id.activity_car_query_illegal_list);
+        String safyHead = getIntent().getStringExtra("safetymsg");
+        safyHeadTV.setText(safyHead);
     }
 
     private void initData() {

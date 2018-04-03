@@ -12,11 +12,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
-import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.base.LoadingActivity2;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.InformationCategoryInfo;
 import com.carlt.yema.data.home.InformationCategoryInfoList;
+import com.carlt.yema.ui.activity.setting.MsgManageActivity;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  * Created by Marlon on 2018/3/16.
  */
 
-public class InformationCentreActivity extends LoadingActivity {
+public class InformationCentreActivity extends LoadingActivity2 {
 
     public final static String TIPS_TITLE = "tips_title";
 
@@ -39,6 +40,13 @@ public class InformationCentreActivity extends LoadingActivity {
         initTitle("信息中心");
         init();
         initData();
+    }
+
+    @Override
+    public void onRightClick() {
+        super.onRightClick();
+        Intent intent = new Intent(InformationCentreActivity.this, MsgManageActivity.class);
+        startActivity(intent);
     }
 
     private void initData() {

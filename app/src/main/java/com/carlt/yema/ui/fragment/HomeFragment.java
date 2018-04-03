@@ -76,13 +76,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.activity_home_iv_report:
+            case R.id.activity_home_iv_report:  //跳转行车报告
                 Intent mIntent = new Intent(getContext(), ReportActivity.class);
                 mIntent.putExtra("c", 0);
                 mIntent.putExtra(ReportActivity.DAY_INITIAL, currentDate);
                 startActivity(mIntent);
                 break;
-            case R.id.activity_home_relative2:
+            case R.id.activity_home_relative2:  //跳转信息中心
                 Intent mIntent1 = new Intent(getContext(), InformationCentreActivity.class);
                 startActivity(mIntent1);
                 break;

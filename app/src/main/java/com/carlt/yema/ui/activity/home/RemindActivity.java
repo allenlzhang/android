@@ -18,6 +18,7 @@ import com.carlt.yema.data.home.InformationMessageInfo;
 import com.carlt.yema.data.home.InformationMessageInfoList;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.ui.activity.setting.MsgManageActivity;
 import com.carlt.yema.ui.adapter.InformationCentreTipsAdapter;
 import com.carlt.yema.ui.pull.PullToRefreshBase;
 import com.carlt.yema.ui.pull.PullToRefreshListView;
@@ -107,6 +108,12 @@ public class RemindActivity extends LoadingActivity2 {
     private UUDialog mUUDialog;
 
     private TextView havemainten;
+
+    @Override
+    public void onRightClick() {
+        Intent intent = new Intent(RemindActivity.this, MsgManageActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onResume() {

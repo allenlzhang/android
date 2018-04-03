@@ -60,11 +60,6 @@ import java.util.List;
  */
 public class GpsTrailActivity extends LoadingActivity implements
 		AMap.OnMapLoadedListener, OnClickListener {
-	private ImageView back;// 头部返回键
-
-	private TextView title;// 标题文字
-
-	private ImageView txtRight;// 头部右侧图片
 
 	private ReportDayLogInfo mCarLogInfo;// 行车日志信息
 
@@ -161,6 +156,7 @@ public class GpsTrailActivity extends LoadingActivity implements
 						return;
 					}
 				}
+
 				CPControl.GetReportGpsResult(mCallback,gpsStartTime, gpsStopTime, runSn);
 			}
 		}else{
@@ -189,9 +185,8 @@ public class GpsTrailActivity extends LoadingActivity implements
 
 		zoomIn.setOnClickListener(this);
 		zoomOut.setOnClickListener(this);
-
-		txtMileage.setText("行驶里程 " + mCarLogInfo.getMiles());
-		txtDate.setText(dayInitialValue);
+		txtMileage.setText(mCarLogInfo.getStarttime()+"至"+mCarLogInfo.getStopTime()+"("+mCarLogInfo.getTime()+") "+mCarLogInfo.getMiles());
+//		txtDate.setText(dayInitialValue);
 		txtOilAll.setText("总油耗：" + mCarLogInfo.getFuel());
 		txtOilAvg.setText("平均油耗：" + mCarLogInfo.getAvgfuel());
 		txtSpeedAvg.setText("平均速度：" + mCarLogInfo.getAvgspeed());
@@ -391,6 +386,7 @@ public class GpsTrailActivity extends LoadingActivity implements
 			Log.e("DITU地图添加 线条耗时", System.currentTimeMillis() - time + "ms");
 
 			MarkerOptions startOpt = new MarkerOptions();
+			//TODO 行车轨迹 起点和终点icon
 			BitmapDescriptor descriptorStart = BitmapDescriptorFactory
 					.fromResource(R.drawable.gps_icon_qi);
 			startOpt.icon(descriptorStart);
@@ -401,12 +397,12 @@ public class GpsTrailActivity extends LoadingActivity implements
 			windowManager.getDefaultDisplay().getMetrics(dm);
 			Marker marker1 = mMap.addMarker(startOpt);
 			marker1.setDraggable(false);
-			TextOptions options1 = new TextOptions();
-			options1.text(mCarLogInfo.getStarttime());
-			options1.fontSize((int) (dm.scaledDensity * 12));
-			options1.backgroundColor(Color.parseColor("#f0f0f0"));
-			options1.position(mStart);
-			mMap.addText(options1);
+//			TextOptions options1 = new TextOptions();
+//			options1.text(mCarLogInfo.getStarttime());
+//			options1.fontSize((int) (dm.scaledDensity * 12));
+//			options1.backgroundColor(Color.parseColor("#f0f0f0"));
+//			options1.position(mStart);
+//			mMap.addText(options1);
 
 			MarkerOptions endOpt = new MarkerOptions();
 			BitmapDescriptor descriptorEnd = BitmapDescriptorFactory
@@ -419,12 +415,12 @@ public class GpsTrailActivity extends LoadingActivity implements
 			Marker marker2 = mMap.addMarker(endOpt);
 			marker2.setDraggable(false);
 
-			TextOptions options2 = new TextOptions();
-			options2.text(mCarLogInfo.getStopTime());
-			options2.fontSize((int) (dm.scaledDensity * 12));
-			options2.backgroundColor(Color.parseColor("#f0f0f0"));
-			options2.position(mEnd);
-			mMap.addText(options2);
+//			TextOptions options2 = new TextOptions();
+//			options2.text(mCarLogInfo.getStopTime());
+//			options2.fontSize((int) (dm.scaledDensity * 12));
+//			options2.backgroundColor(Color.parseColor("#f0f0f0"));
+//			options2.position(mEnd);
+//			mMap.addText(options2);
 
 			LatLngBounds bounds = null;
 			try {
@@ -492,12 +488,10 @@ public class GpsTrailActivity extends LoadingActivity implements
 					return;
 				}
 			}
-
 			CPControl.GetReportGpsResult(mCallback,gpsStartTime, gpsStopTime, runSn);
 		}
 		isMapLoaded = true;
 	}
-
 	@Override
 	public void onClick(View arg0) {
 		if (arg0.equals(zoomIn)) {

@@ -100,7 +100,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                 mHolder.mImgDelete.setVisibility(View.VISIBLE);
                 mHolder.mView2.setVisibility(View.VISIBLE);
                 mHolder.mImageView.setVisibility(View.GONE);
-//                mHolder.mViewTable.setVisibility(View.GONE);
+                mHolder.mViewTable.setVisibility(View.GONE);
 
                 mHolder.mTextView4.setVisibility(View.VISIBLE);
                 mHolder.mTextView5.setVisibility(View.GONE);
@@ -136,7 +136,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                 mHolder.mView2.setVisibility(View.VISIBLE);
 
                 mHolder.mImageView.setVisibility(View.GONE);
-//                mHolder.mViewTable.setVisibility(View.GONE);
+                mHolder.mViewTable.setVisibility(View.GONE);
 
                 switch (c2) {
                     case InformationMessageInfo.C1_T2_T1:
@@ -192,7 +192,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                 mHolder.mView2.setVisibility(View.VISIBLE);
                 // 奖品活动
                 mHolder.mImageView.setVisibility(View.VISIBLE);
-//                mHolder.mViewTable.setVisibility(View.GONE);
+                mHolder.mViewTable.setVisibility(View.GONE);
 
                 mHolder.mTextView4.setVisibility(View.GONE);
                 mHolder.mTextView5.setVisibility(View.VISIBLE);
@@ -234,25 +234,25 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                         mHolder.mTextView4.setVisibility(View.VISIBLE);
                         mHolder.mTextView4.setText("查看行车报告");
 
-//                        mHolder.mViewTable.setVisibility(View.VISIBLE);
-//                        if (mInfo.getMiles() != null) {
-//                            mHolder.mTextViewTable1.setText(mInfo.getMiles());
-//                        }
-//                        if (mInfo.getFuel() != null) {
-//                            mHolder.mTextViewTable2.setText(mInfo.getFuel());
-//                        }
+                        mHolder.mViewTable.setVisibility(View.VISIBLE);
+                        if (mInfo.getMiles() != null) {
+                            mHolder.mTextViewTable1.setText(mInfo.getMiles());
+                        }
+                        if (mInfo.getFuel() != null) {
+                            mHolder.mTextViewTable2.setText(mInfo.getFuel());
+                        }
                         // if (mInfo.getPoint() != null) {
                         // mHolder.mTextViewTable3.setText(mInfo.getPoint());
                         // }
-//                        if (mInfo.getMaxspeed() != null) {
-//                            mHolder.mTextViewTable3.setText(mInfo.getMaxspeed());
-//                        }
-//                        if (mInfo.getAvgfuel() != null) {
-//                            mHolder.mTextViewTable4.setText(mInfo.getAvgfuel());
-//                        }
-//                        if (mInfo.getSumtime() != null) {
-//                            mHolder.mTextViewTable5.setText(mInfo.getSumtime());
-//                        }
+                        if (mInfo.getMaxspeed() != null) {
+                            mHolder.mTextViewTable3.setText(mInfo.getMaxspeed());
+                        }
+                        if (mInfo.getAvgfuel() != null) {
+                            mHolder.mTextViewTable4.setText(mInfo.getAvgfuel());
+                        }
+                        if (mInfo.getSumtime() != null) {
+                            mHolder.mTextViewTable5.setText(mInfo.getSumtime());
+                        }
 
                         // if (mInfo.getMaxspeed() != null) {
                         // mHolder.mTextViewTable6.setText(mInfo.getMaxspeed());
@@ -293,25 +293,25 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                         mHolder.mTextView4.setVisibility(View.VISIBLE);
                         mHolder.mTextView4.setText("查看行车报告");
 
-//                        mHolder.mViewTable.setVisibility(View.VISIBLE);
-//                        if (mInfo.getMiles() != null) {
-//                            mHolder.mTextViewTable1.setText(mInfo.getMiles());
-//                        }
-//                        if (mInfo.getFuel() != null) {
-//                            mHolder.mTextViewTable2.setText(mInfo.getFuel());
-//                        }
+                        mHolder.mViewTable.setVisibility(View.VISIBLE);
+                        if (mInfo.getMiles() != null) {
+                            mHolder.mTextViewTable1.setText(mInfo.getMiles());
+                        }
+                        if (mInfo.getFuel() != null) {
+                            mHolder.mTextViewTable2.setText(mInfo.getFuel());
+                        }
                         // if (mInfo.getPoint() != null) {
                         // mHolder.mTextViewTable3.setText(mInfo.getPoint());
                         // }
-//                        if (mInfo.getMaxspeed() != null) {
-//                            mHolder.mTextViewTable3.setText(mInfo.getMaxspeed());
-//                        }
-//                        if (mInfo.getAvgfuel() != null) {
-//                            mHolder.mTextViewTable4.setText(mInfo.getAvgfuel());
-//                        }
-//                        if (mInfo.getSumtime() != null) {
-//                            mHolder.mTextViewTable5.setText(mInfo.getSumtime());
-//                        }
+                        if (mInfo.getMaxspeed() != null) {
+                            mHolder.mTextViewTable3.setText(mInfo.getMaxspeed());
+                        }
+                        if (mInfo.getAvgfuel() != null) {
+                            mHolder.mTextViewTable4.setText(mInfo.getAvgfuel());
+                        }
+                        if (mInfo.getSumtime() != null) {
+                            mHolder.mTextViewTable5.setText(mInfo.getSumtime());
+                        }
                         // if (mInfo.getMaxspeed() != null) {
                         // mHolder.mTextViewTable6.setText(mInfo.getMaxspeed());
                         // }
@@ -322,17 +322,17 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                         mHolder.mTextView4.setVisibility(View.VISIBLE);
                         mHolder.mTextView4.setText("查看勋章");
                         mHolder.mView2.setVisibility(View.VISIBLE);
-//                        mHolder.mViewTable.setVisibility(View.GONE);
+                        mHolder.mViewTable.setVisibility(View.GONE);
                         break;
                     case InformationMessageInfo.C1_T4_T5:
                         minTitle = "记录";
                         mHolder.mTextView4.setVisibility(View.GONE);
-//                        mHolder.mViewTable.setVisibility(View.GONE);
+                        mHolder.mViewTable.setVisibility(View.GONE);
                         break;
                     case InformationMessageInfo.C1_T4_T6:
                         minTitle = "驾驶证";
                         mHolder.mTextView4.setVisibility(View.GONE);
-//                        mHolder.mViewTable.setVisibility(View.GONE);
+                        mHolder.mViewTable.setVisibility(View.GONE);
                         break;
                 }
 
@@ -343,7 +343,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                 mHolder.mView2.setVisibility(View.VISIBLE);
 
                 mHolder.mImageView.setVisibility(View.GONE);
-//                mHolder.mViewTable.setVisibility(View.GONE);
+                mHolder.mViewTable.setVisibility(View.GONE);
 
                 mHolder.mTextView4.setVisibility(View.GONE);
                 mHolder.mTextView5.setVisibility(View.GONE);
@@ -363,7 +363,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                 mHolder.mImgDelete.setVisibility(View.VISIBLE);
                 mHolder.mView2.setVisibility(View.VISIBLE);
                 mHolder.mImageView.setVisibility(View.GONE);
-//                mHolder.mViewTable.setVisibility(View.GONE);
+                mHolder.mViewTable.setVisibility(View.GONE);
 
                 mHolder.mTextView4.setVisibility(View.GONE);
                 mHolder.mTextView5.setVisibility(View.GONE);
@@ -384,7 +384,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                 minTitle = "官方";
                 mHolder.mView2.setVisibility(View.VISIBLE);
                 mHolder.mTextView4.setVisibility(View.GONE);
-//                mHolder.mViewTable.setVisibility(View.GONE);
+                mHolder.mViewTable.setVisibility(View.GONE);
                 break;
         }
 
@@ -475,18 +475,18 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
         holder.mTextView4 = (TextView)convertView.findViewById(R.id.list_item_secretary_txt4);
         holder.mTextView5 = (TextView)convertView.findViewById(R.id.list_item_secretary_txt5);
 
-//        holder.mTextViewTable1 = (TextView)convertView
-//                .findViewById(R.id.layout_secretary_report_table_txt1);
-//        holder.mTextViewTable2 = (TextView)convertView
-//                .findViewById(R.id.layout_secretary_report_table_txt2);
-//        holder.mTextViewTable3 = (TextView)convertView
-//                .findViewById(R.id.layout_secretary_report_table_txt3);
-//        holder.mTextViewTable4 = (TextView)convertView
-//                .findViewById(R.id.layout_secretary_report_table_txt4);
-//        holder.mTextViewTable5 = (TextView)convertView
-//                .findViewById(R.id.layout_secretary_report_table_txt5);
-//        holder.mTextViewTable6 = (TextView)convertView
-//                .findViewById(R.id.layout_secretary_report_table_txt6);
+        holder.mTextViewTable1 = (TextView)convertView
+                .findViewById(R.id.layout_secretary_report_table_txt1);
+        holder.mTextViewTable2 = (TextView)convertView
+                .findViewById(R.id.layout_secretary_report_table_txt2);
+        holder.mTextViewTable3 = (TextView)convertView
+                .findViewById(R.id.layout_secretary_report_table_txt3);
+        holder.mTextViewTable4 = (TextView)convertView
+                .findViewById(R.id.layout_secretary_report_table_txt4);
+        holder.mTextViewTable5 = (TextView)convertView
+                .findViewById(R.id.layout_secretary_report_table_txt5);
+        holder.mTextViewTable6 = (TextView)convertView
+                .findViewById(R.id.layout_secretary_report_table_txt6);
 
         holder.mImageView = (ImageView)convertView.findViewById(R.id.list_item_secretary_img);
 //        holder.mImageViewTop = (ImageView)convertView
@@ -498,7 +498,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
 
         holder.mView1 = convertView.findViewById(R.id.list_item_secretary_layout1);
         holder.mView2 = convertView.findViewById(R.id.list_item_secretary_layout2);
-//        holder.mViewTable = convertView.findViewById(R.id.list_item_secretary_table);
+        holder.mViewTable = convertView.findViewById(R.id.list_item_secretary_table);
 
         return holder;
     }
@@ -514,17 +514,17 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
 
         private TextView mTextView5;// 提醒类别(不带右边箭头)
 
-//        private TextView mTextViewTable1;// 表格里程
-//
-//        private TextView mTextViewTable2;// 表格油耗
-//
-//        private TextView mTextViewTable3;// 表格得分
-//
-//        private TextView mTextViewTable4;// 表格平均油耗
-//
-//        private TextView mTextViewTable5;// 表格行车时间
-//
-//        private TextView mTextViewTable6;// 表格最高速度
+        private TextView mTextViewTable1;// 表格里程
+
+        private TextView mTextViewTable2;// 表格油耗
+
+        private TextView mTextViewTable3;// 表格得分
+
+        private TextView mTextViewTable4;// 表格平均油耗
+
+        private TextView mTextViewTable5;// 表格行车时间
+
+        private TextView mTextViewTable6;// 表格最高速度
 
         private ImageView mImageView; // 奖品图片
 
@@ -538,7 +538,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
 
         private View mView2;// item底部layout
 
-//        private View mViewTable;// 行车报告的表格布局
+        private View mViewTable;// 行车报告的表格布局
     }
 
     public interface OnBottomClickListner {

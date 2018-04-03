@@ -86,16 +86,22 @@
 
         <TextView
             android:id="@+id/activity_home_txt3"
-            android:layout_width="8dip"
-            android:layout_height="8dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignTop="@id/activity_home_txt2"
             android:layout_marginTop="1dip"
             android:layout_toRightOf="@id/activity_home_txt2"
             android:background="@drawable/circle_orange"
             android:gravity="center"
             android:textColor="@color/white"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:minHeight="15dp"
+            android:minWidth="20dp"
+            android:visibility="gone"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"

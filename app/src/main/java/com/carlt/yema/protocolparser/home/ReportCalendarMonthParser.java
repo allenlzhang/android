@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ReportCalendarMonthParser extends BaseParser<List<ReportCalendarMonthInfo>> {
 
-    List<ReportCalendarMonthInfo> list = new ArrayList<>();
+    private List<ReportCalendarMonthInfo> list = new ArrayList<>();
 
     public ReportCalendarMonthParser(ResultCallback callback) {
         super(callback);

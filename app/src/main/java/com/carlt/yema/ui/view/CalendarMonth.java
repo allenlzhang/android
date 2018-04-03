@@ -2,6 +2,7 @@
 package com.carlt.yema.ui.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -223,7 +224,7 @@ public class CalendarMonth extends MenuCalendar implements OnClickListener {
             String value = "";
             for (int x = 0; x < mlist.size(); x++) {
                 ReportCalendarMonthInfo info = mlist.get(x);
-                if (info.getDate() == v.getTag()) {
+                if (Integer.parseInt(info.getDate()) == (int)v.getTag()) {
                     value = info.getAvgpoint();
                 }
 

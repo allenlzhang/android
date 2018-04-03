@@ -30,7 +30,6 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/head_margin_h"
         android:src="@drawable/icon_message_manager_bg"
-        android:visibility="gone"
         />
 
     <TextView
