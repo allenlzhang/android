@@ -494,7 +494,7 @@ public class URLConfig {
     }
 
     public static String getM_USER_REMOTE_SWITCH() {
-        return getUrlRemote(M_USER_REMOTE_SWITCH);
+        return getYemaURL(M_USER_REMOTE_SWITCH);
     }
 
     public static String getM_CAR_MODIFY() {
