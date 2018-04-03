@@ -18,6 +18,7 @@ import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.http.HttpLinker;
@@ -202,10 +203,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         try {
             JSONObject mJson = new JSONObject(content);
             JSONObject mJSON_data = mJson.getJSONObject("data");
-            JSONObject mJSON_data2 = mJSON_data.getJSONObject("member");
-            String access_token = mJSON_data2.getString("access_token");
-            LoginInfo.setAccess_token(access_token);
-            YemaApplication.TOKEN = access_token;
+            LoginControl.parseLoginInfo(mJSON_data);
         } catch (JSONException e) {
             e.printStackTrace();
         }

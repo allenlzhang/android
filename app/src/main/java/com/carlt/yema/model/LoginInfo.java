@@ -3,13 +3,12 @@ package com.carlt.yema.model;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.carlt.yema.YemaApplication;
-import com.carlt.yema.data.remote.RemoteMainInfo;
-import com.carlt.yema.preference.TokenInfo;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarMainFunInfo;
+import com.carlt.yema.data.remote.RemoteMainInfo;
+import com.carlt.yema.preference.TokenInfo;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONException;
@@ -180,6 +179,8 @@ public class LoginInfo extends BaseResponseInfo {
     public final static String DEVICECATEGORY_X7 = "3";// 大迈X7
     // 设备真实顺序 0后装，1前装，2后装2016款，3大迈X7(v1.3.0版本添加默认值 0)
     private static String deviceCategory = "0";
+
+    private static String tbox_type;
 
     // 短位车架号
     private static String shortstandcarno = "";
@@ -1461,6 +1462,14 @@ public class LoginInfo extends BaseResponseInfo {
                 .apply();
     }
 
+    public static String getTbox_type() {
+        tbox_type = user_pref.getString("tbox_type", tbox_type);
+        return tbox_type;
+    }
 
+    public static void setTbox_type(String tbox_type) {
+        LoginInfo.tbox_type = tbox_type;
+        user_pref.edit().putString("tbox_type", tbox_type).commit();
+    }
 
 }
