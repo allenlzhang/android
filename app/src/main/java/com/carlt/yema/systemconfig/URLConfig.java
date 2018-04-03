@@ -265,6 +265,12 @@ public class URLConfig {
         return getUrlRemote(M_MILESINFO);
     }
 
+    public static String getM_GET_DEALER_INFO() {
+        return getYemaURL(M_GET_DEALER_INFO);
+    }
+    public static String getM_USER_EDIT_INFO() {
+        return getYemaURL(M_USER_EDIT_INFO);
+    }
     public static String getM_LOGIN_URL() {
         return getYemaURL(M_LOGIN_NEW_URL);
     }
@@ -474,11 +480,11 @@ public class URLConfig {
 
     /***********************旅行相册（其他接口在上面添加）***********************/
     //测试服
-    private static final String ALBUM_TEST_URL = "http://imgcloud.linewin.cc";
+    private static final String ALBUM_TEST_URL = "http://imgcloud.linewin.cc/";
     //预发服
-    private static final String ALBUM_PRE_URL = "https://pre-imagecloud.geni4s.com";
+    private static final String ALBUM_PRE_URL = "https://pre-imagecloud.geni4s.com/";
     //正式服
-    private static final String ALBUM_FORMAL_URL = "http://imgcloud.linewin.cc";
+    private static final String ALBUM_FORMAL_URL = "http://imgcloud.linewin.cc/";
     //相册列表查询
     public static final String ALBUM_QUERY="query";
     //相册列表查询
@@ -498,7 +504,7 @@ public class URLConfig {
                 break;
             case VERSION_TEST:
                 // 测试服
-                url = ALBUM_PRE_URL + version + path;
+                url = ALBUM_TEST_URL + version + path;
                 break;
         }
         return url;
