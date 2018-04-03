@@ -16,6 +16,7 @@ import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.adapter.CarSaftyAdapter;
 import com.carlt.yema.utils.ILog;
+import com.carlt.yema.utils.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -51,7 +52,11 @@ public class CarSaftyListActivity extends LoadingActivity {
         safyHeadTV = $ViewByID(R.id.layout_sub_head_txt);
         mListView = $ViewByID(R.id.activity_car_query_illegal_list);
         String safyHead = getIntent().getStringExtra("safetymsg");
-        safyHeadTV.setText(safyHead);
+        if (!StringUtils.isEmpty(safyHead)) {
+            safyHeadTV.setText(safyHead);
+        }else {
+            safyHeadTV.setText("您还没有新的安防提醒消息");
+        }
     }
 
     private void initData() {
