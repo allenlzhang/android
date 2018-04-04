@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.carlt.yema"
         minSdkVersion 21
         targetSdkVersion 26
@@ -52,7 +53,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.3.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
     implementation 'com.android.support:design:26.1.0'
-    compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.contrarywind:Android-PickerView:3.2.7'
     compile files('libs/AMap3DMap_5.5.0_AMapNavi_5.4.0_AMapSearch_5.5.0_AMapLocation_3.6.1_20171107.jar')
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -61,4 +61,5 @@ dependencies {
     compile 'com.tencent.xinge:xinge:3.1.2-beta'
     compile 'com.tencent.wup:wup:1.0.0.E-alpha'
     compile 'com.tencent.mid:mid:3.9.0-alpha'
+    compile "com.android.support:multidex:1.0.0"
 }
