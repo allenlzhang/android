@@ -37,6 +37,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract View inflateView(LayoutInflater inflater);
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();

@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layout_background"
-    android:layout_centerInParent="true"
+    android:gravity="center"
     android:paddingTop="15dp" >
+
         <TextView
             android:id="@+id/line1"
             style="@style/line_v"

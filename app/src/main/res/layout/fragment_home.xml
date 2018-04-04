@@ -39,14 +39,20 @@
             android:layout_marginTop="8dp"
             android:src="@drawable/home_driving_report_icon" />
     </LinearLayout>
-
-    <include
-        layout="@layout/layout_report_grid"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/ll_homepage"
         android:layout_above="@+id/iv_line"
-        />
+        >
+        <include
+            layout="@layout/layout_report_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+    </ScrollView>
+
     <ImageView
         android:id="@+id/iv_line"
         android:layout_above="@+id/activity_home_relative2"
