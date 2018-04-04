@@ -87,6 +87,7 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
+                finish();
                 break;
             case R.id.certified_phone_manage:
                 Intent phoneManage=new Intent(this,PhoneAuthenticationActivity.class);
