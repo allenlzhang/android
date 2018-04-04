@@ -298,7 +298,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         startActivity(carPage);
 
         //业务代码，为了测试暂时注释掉
-//        LoginControl.logic(this);
+        LoginControl.logic(this);
     }
 
     /**

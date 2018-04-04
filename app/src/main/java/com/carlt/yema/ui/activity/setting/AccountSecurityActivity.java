@@ -74,6 +74,13 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
 
     }
 
+    @Override
+    protected void onResume() {
+        if (!TextUtils.isEmpty(LoginInfo.getMobile())) {
+
+        }
+        super.onResume();
+    }
 
     @Override
     public void onClick(View view) {

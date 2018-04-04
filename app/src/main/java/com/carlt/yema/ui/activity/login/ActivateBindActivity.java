@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.ActivityControl;
@@ -130,11 +131,15 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             // 下发激活指令成功
-            if (mDialog != null) {
-                mDialog.goneWatch();
-                mDialog.setTitleText("提示");
-                mDialog.setContentText("野马设备正在更新配置，这个过程大约需要半分钟，请耐心等待");
-            }
+            UUToast.showUUToast(ActivateBindActivity.this,"野马设备已成功激活");
+            Intent intent=new Intent(ActivateBindActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+//            if (mDialog != null) {
+//                mDialog.goneWatch();
+//                mDialog.setTitleText("提示");
+//                mDialog.setContentText("野马设备正在更新配置，这个过程大约需要半分钟，请耐心等待");
+//            }
 
         }
 
