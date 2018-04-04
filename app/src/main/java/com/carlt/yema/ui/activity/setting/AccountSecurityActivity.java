@@ -42,7 +42,6 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_security);
         initComponent();
-        phoneNum=getIntent().getStringExtra("phone_num");
     }
 
     @Override
@@ -67,16 +66,18 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
         btn_remote_no_passwd_ctr.setOnCheckedChangeListener(this);
 
         verified_phone=$ViewByID(R.id.verified_phone);
-        StringBuilder builder=new StringBuilder(LoginInfo.getMobile());
-        if (null!=phoneNum&&!TextUtils.isEmpty(phoneNum)){
-            verified_phone.setText(builder.replace(3,7,"****"));
-        }
+
 
     }
 
     @Override
     protected void onResume() {
         if (!TextUtils.isEmpty(LoginInfo.getMobile())) {
+            phoneNum=LoginInfo.getMobile();
+            StringBuilder builder=new StringBuilder(LoginInfo.getMobile());
+            if (null!=phoneNum&&!TextUtils.isEmpty(phoneNum)){
+                verified_phone.setText(builder.replace(3,7,"****"));
+            }
 
         }
         super.onResume();

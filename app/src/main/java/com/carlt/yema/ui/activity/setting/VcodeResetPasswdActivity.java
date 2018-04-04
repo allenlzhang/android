@@ -124,7 +124,7 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
                 break;
             case R.id.verification_reset_passwd_commit:
                 mobile=phoneNumber.getText().toString();
-                vCode=vCodeSend.getText().toString();
+                vCode=verficationCode.getText().toString();
                 resetPasswd=passwd.getText().toString();
                 confirmPasswd=passwd2St.getText().toString();
                 if (isCommitInvalid(mobile,vCode,resetPasswd,confirmPasswd)) {

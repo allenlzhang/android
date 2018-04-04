@@ -48,6 +48,7 @@ public class PhoneAuthenticationActivity extends BaseActivity implements View.On
     private Timer timer = new Timer();
 
     private TimerTask task;
+    private String validate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,14 +110,14 @@ public class PhoneAuthenticationActivity extends BaseActivity implements View.On
             case R.id.certified_input_commit:
                 phoneNum = certified_phone_input.getText().toString();
                 // 修改手机号码接口
-                String validate = certified_code_input.getText().toString();
+                 validate = certified_code_input.getText().toString();
                 if (isCommitInvalid(phoneNum, validate)) {
 
                     if (mDialog == null) {
                         mDialog = PopBoxCreat.createDialogWithProgress(PhoneAuthenticationActivity.this, "提交中...");
                     }
                     mDialog.show();
-                    authenticationPhone(phoneNum,validate);
+                    authenticationPhone(validate,phoneNum);
                 }
                 break;
         }
@@ -178,7 +179,7 @@ public class PhoneAuthenticationActivity extends BaseActivity implements View.On
             }
             UUToast.showUUToast(PhoneAuthenticationActivity.this, "验证成功");
             Intent mIntent = new Intent(PhoneAuthenticationActivity.this, ResetCetifiedPhoneActivity.class);
-            mIntent.putExtra("newPhone", phoneNum);
+            mIntent.putExtra(ResetCetifiedPhoneActivity.CODE_INFO, validate);
             startActivity(mIntent);
             finish();
         }

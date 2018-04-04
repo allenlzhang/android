@@ -66,9 +66,9 @@ public class StringUtils {
      * @return
      */
     public static boolean checkCellphone(String cellphone) {
-        String regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17[0-9])|(18[0,5-9]))\\d{8}$";
-        Pattern phone = Pattern.compile(regex);
-        return phone.matcher(cellphone).matches();
+        Pattern pattern = Pattern.compile("^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\\d{8}$");
+        Matcher matcher = pattern.matcher(cellphone);
+        return matcher.matches();
     }
 
     /**
