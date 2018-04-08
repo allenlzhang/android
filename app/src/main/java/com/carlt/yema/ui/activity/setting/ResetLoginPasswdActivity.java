@@ -1,5 +1,6 @@
 package com.carlt.yema.ui.activity.setting;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,12 +11,12 @@ import android.widget.TextView;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.ActivityControl;
-import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
-import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.protocolparser.BaseParser.ResultCallback;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.view.UUToast;
 
 import java.util.HashMap;
@@ -97,11 +98,13 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
         parser.executePost(URLConfig.getM_USERCENTER_EDIT_PWD(),params);
     }
 
-    private BaseParser.ResultCallback editCallback=new BaseParser.ResultCallback() {
+    private ResultCallback editCallback=new ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(ResetLoginPasswdActivity.this,"密码修改成功");
-            LoginControl.logic(ResetLoginPasswdActivity.this);
+            Intent loginIntent=new Intent(ResetLoginPasswdActivity.this, UserLoginActivity.class);
+            startActivity(loginIntent);
+            finish();
         }
 
         @Override

@@ -1,6 +1,7 @@
 package com.carlt.yema.ui.activity.setting;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,12 +14,12 @@ import android.widget.TextView;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.ActivityControl;
-import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.StringUtils;
 
@@ -191,7 +192,9 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
         public void onSuccess(BaseResponseInfo bInfo) {
             // 获取验证码成功
             UUToast.showUUToast(VcodeResetPasswdActivity.this,"密码修改成功");
-            LoginControl.logic(VcodeResetPasswdActivity.this);
+            Intent loginIntent=new Intent(VcodeResetPasswdActivity.this, UserLoginActivity.class);
+            startActivity(loginIntent);
+            finish();
         }
 
         @Override
