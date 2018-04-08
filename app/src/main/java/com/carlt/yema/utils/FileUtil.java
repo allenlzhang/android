@@ -1,6 +1,9 @@
 
 package com.carlt.yema.utils;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
@@ -8,6 +11,7 @@ import android.webkit.MimeTypeMap;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,6 +25,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * 作者：秋良 描述：工具类 主要包括读写文件，数据流等方法
@@ -367,6 +374,58 @@ public class FileUtil {
         }
 
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(suffix);
+    }
+
+    /**
+     * 将Bitmap 图片保存到本地路径，并返回路径
+     * @param fileName 文件名称
+     * @param bitmap   图片
+     * @param资源类型，参照 MultimediaContentType 枚举，根据此类型，保存时可自动归类
+     */
+    public static String saveFile(Context c, String fileName, Bitmap bitmap) {
+        return saveFile(c, "", fileName, bitmap);
+    }
+
+    public static String saveFile(Context c, String filePath, String fileName, Bitmap bitmap) {
+        byte[] bytes = bitmapToBytes(bitmap);
+        return saveFile(c, filePath, fileName, bytes);
+    }
+
+    public static byte[] bitmapToBytes(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(CompressFormat.JPEG, 100, baos);
+        return baos.toByteArray();
+    }
+
+    public static String saveFile(Context c, String filePath, String fileName, byte[] bytes) {
+        String fileFullName = "";
+        FileOutputStream fos = null;
+        String dateFolder = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA)
+                .format(new Date());
+        try {
+            if (filePath == null || filePath.trim().length() == 0) {
+                filePath = LocalConfig.mImageCacheSavePath_SD;
+            }
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            File fullFile = new File(filePath, fileName );
+            fileFullName = fullFile.getPath();
+            fos = new FileOutputStream(new File(filePath, fileName ));
+            fos.write(bytes);
+        } catch (Exception e) {
+            fileFullName = "";
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    fileFullName = "";
+                }
+            }
+        }
+        return fileFullName;
     }
 
 }

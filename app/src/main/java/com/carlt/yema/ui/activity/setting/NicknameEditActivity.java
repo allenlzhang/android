@@ -71,18 +71,18 @@ public class NicknameEditActivity extends LoadingActivity implements View.OnClic
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             loadSuccessUI();
-            UUToast.showUUToast(NicknameEditActivity.this,"昵称修改成功");
+            UUToast.showUUToast(NicknameEditActivity.this,"修改资料成功");
             Intent intent=new Intent(NicknameEditActivity.this,PersonInfoActivity.class);
             intent.putExtra("nickName",nickname_input.getText().toString());
             NicknameEditActivity.this.setResult(RESULT_OK,intent);
-            LoginInfo.setUsername(nickname_input.getText().toString());
+            LoginInfo.setRealname(nickname_input.getText().toString());
             finish();
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
             loadSuccessUI();
-            UUToast.showUUToast(NicknameEditActivity.this,"昵称修改失败");
+            UUToast.showUUToast(NicknameEditActivity.this,"修改资料失败");
         }
     };
 }

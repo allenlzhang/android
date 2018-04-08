@@ -85,7 +85,6 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
                 Intent switchIntent = new Intent(this, CarModeListActivity.class);
                 switchIntent.putExtra("switch", true);//标记从车辆管理界面跳转
                 startActivity(switchIntent);
-                finish();
                 break;
             case R.id.edit_maintenance_mileage:
                 Intent editMaintenance = new Intent(this, MaintenanceMileageEditActivity.class);

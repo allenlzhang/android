@@ -16,6 +16,7 @@ import com.carlt.yema.protocolparser.car.CarTypeInfoListParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.activity.login.DeviceBindActivity;
 import com.carlt.yema.ui.adapter.CarTypeAdapter;
+import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class CarTypeListActivity extends LoadingActivity {
     private CarTypeAdapter adapter;
     private Intent intent;
     private String optionid;//车型ID
-    private static String brandid="21";//车系ID
+    private static String brandid = "21";//车系ID
     private String carId;//车款ID
     private String carTitle;
 
@@ -38,8 +39,8 @@ public class CarTypeListActivity extends LoadingActivity {
         setContentView(R.layout.activity_car_type_list);
         loadingDataUI();
         initComponent();
-        intent=getIntent();
-        optionid=intent.getStringExtra("optionid");
+        intent = getIntent();
+        optionid = intent.getStringExtra("optionid");
         initData();
     }
 
@@ -50,25 +51,25 @@ public class CarTypeListActivity extends LoadingActivity {
     }
 
     private void initData() {
-        CarTypeInfoListParser parser=new CarTypeInfoListParser(mCallback);
-        HashMap<String,String> params=new HashMap<>();
-        params.put("optionid",optionid);
-        parser.executePost(URLConfig.getM_CAR_TYPE_LIST(),params);
+        CarTypeInfoListParser parser = new CarTypeInfoListParser(mCallback);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("optionid", optionid);
+        parser.executePost(URLConfig.getM_CAR_TYPE_LIST(), params);
     }
 
-    private void initComponent(){
+    private void initComponent() {
         initTitle("车款");
-        car_type_list=$ViewByID(R.id.car_type_list);
+        car_type_list = $ViewByID(R.id.car_type_list);
         car_type_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CarModeInfo modeInfo= (CarModeInfo) adapterView.getItemAtPosition(i);
-                carId=modeInfo.getId();
-                carTitle=modeInfo.getTitle();
+                CarModeInfo modeInfo = (CarModeInfo) adapterView.getItemAtPosition(i);
+                carId = modeInfo.getId();
+                carTitle = modeInfo.getTitle();
                 if (CarTypeListActivity.this.getIntent() != null && CarTypeListActivity.this.getIntent().getBooleanExtra("switch", false)) {
-                    addCarType();
-                } else {
                     switchCarType();
+                } else {
+                    addCarType();
                 }
             }
         });
@@ -79,10 +80,10 @@ public class CarTypeListActivity extends LoadingActivity {
     public void loadDataSuccess(Object bInfo) {
         super.loadDataSuccess(bInfo);
         try {
-            BaseResponseInfo<ArrayList<CarModeInfo>> baseResponseInfo= (BaseResponseInfo<ArrayList<CarModeInfo>>) bInfo;
-            ArrayList<CarModeInfo> carModeInfos= (ArrayList<CarModeInfo>) baseResponseInfo.getValue();
+            BaseResponseInfo<ArrayList<CarModeInfo>> baseResponseInfo = (BaseResponseInfo<ArrayList<CarModeInfo>>) bInfo;
+            ArrayList<CarModeInfo> carModeInfos = (ArrayList<CarModeInfo>) baseResponseInfo.getValue();
             if (carModeInfos != null && carModeInfos.size() > 0) {
-                adapter = new CarTypeAdapter(this,carModeInfos);
+                adapter = new CarTypeAdapter(this, carModeInfos);
                 car_type_list.setAdapter(adapter);
             } else {
                 loadNodataUI();
@@ -98,55 +99,77 @@ public class CarTypeListActivity extends LoadingActivity {
         initData();
     }
 
-    private void addCarType(){
-        DefaultStringParser parser=new DefaultStringParser(addResult);
-        HashMap<String,String> params=new HashMap<>();
-        params.put("brandid",brandid);
-        params.put("optionid",optionid);
-        params.put("carid",carId);
-        parser.executePost(URLConfig.getM_CAR_ADD_CAR(),params);
+    private void addCarType() {
+        DefaultStringParser parser = new DefaultStringParser(addResult);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("brandid", brandid);
+        params.put("optionid", optionid);
+        params.put("carid", carId);
+        parser.executePost(URLConfig.getM_CAR_ADD_CAR(), params);
     }
 
-    BaseParser.ResultCallback addResult=new BaseParser.ResultCallback() {
+    BaseParser.ResultCallback addResult = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-                Intent intent =new Intent (CarTypeListActivity.this, CarManagerActivity.class);
-                intent.putExtra("cat_title",carTitle);
-                CarTypeListActivity.this.startActivity(intent);
-                UUToast.showUUToast(CarTypeListActivity.this," 车辆绑定成功");
-                finish();
+
+            PopBoxCreat.createDialogNotitle(CarTypeListActivity.this, null, "您选择的车型是" + carTitle, "取消", "确定", new PopBoxCreat.DialogWithTitleClick() {
+                @Override
+                public void onLeftClick() {
+
+                }
+
+                @Override
+                public void onRightClick() {
+                    UUToast.showUUToast(CarTypeListActivity.this, " 车辆绑定成功");
+                    Intent intent = new Intent(CarTypeListActivity.this, DeviceBindActivity.class);
+                    intent.putExtra("cat_title", carTitle);
+                    CarTypeListActivity.this.startActivity(intent);
+                    finish();
+                }
+            });
+
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
             switch (bInfo.getFlag()) {
                 case 1014:
-                    UUToast.showUUToast(CarTypeListActivity.this," 车辆绑定失败");
+                    UUToast.showUUToast(CarTypeListActivity.this, " 车辆绑定失败");
                     break;
                 case 1004:
-                    UUToast.showUUToast(CarTypeListActivity.this," 未能成功绑定车辆,请确认绑定信息后重试");
+                    UUToast.showUUToast(CarTypeListActivity.this, " 未能成功绑定车辆,请确认绑定信息后重试");
                     break;
             }
         }
     };
 
-    private void switchCarType(){
-        DefaultStringParser parser=new DefaultStringParser(switchResult);
-        HashMap<String,String> params=new HashMap<>();
-        params.put("brandid",brandid);
-        params.put("optionid",optionid);
-        params.put("carid",carId);
-        parser.executePost(URLConfig.getM_CAR_ADD_CAR(),params);
+    private void switchCarType() {
+        DefaultStringParser parser = new DefaultStringParser(switchResult);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("brandid", brandid);
+        params.put("optionid", optionid);
+        params.put("carid", carId);
+        parser.executePost(URLConfig.getM_SWITCHCAR_URL(), params);
     }
 
-    BaseParser.ResultCallback switchResult=new BaseParser.ResultCallback() {
+    BaseParser.ResultCallback switchResult = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-                Intent intent =new Intent (CarTypeListActivity.this, DeviceBindActivity.class);
-                intent.putExtra("cat_title",carTitle);
-                CarTypeListActivity.this.startActivity(intent);
-                UUToast.showUUToast(CarTypeListActivity.this," 车辆绑定成功");
-                finish();
+            PopBoxCreat.createDialogNotitle(CarTypeListActivity.this, null, "您选择的车型是" + carTitle, "取消", "确定", new PopBoxCreat.DialogWithTitleClick() {
+                @Override
+                public void onLeftClick() {
+
+                }
+
+                @Override
+                public void onRightClick() {
+                    UUToast.showUUToast(CarTypeListActivity.this, " 车型修改成功");
+                    Intent intent = new Intent(CarTypeListActivity.this, DeviceBindActivity.class);
+                    intent.putExtra("cat_title", carTitle);
+                    CarTypeListActivity.this.startActivity(intent);
+                    finish();
+                }
+            });
 
         }
 
@@ -154,10 +177,10 @@ public class CarTypeListActivity extends LoadingActivity {
         public void onError(BaseResponseInfo bInfo) {
             switch (bInfo.getFlag()) {
                 case 1014:
-                    UUToast.showUUToast(CarTypeListActivity.this," 车辆绑定失败");
+                    UUToast.showUUToast(CarTypeListActivity.this, " 车型修改失败");
                     break;
-                case 1004:
-                    UUToast.showUUToast(CarTypeListActivity.this," 未能成功绑定车辆,请确认绑定信息后重试");
+               default:
+                    UUToast.showUUToast(CarTypeListActivity.this, bInfo.getInfo());
                     break;
             }
         }

@@ -50,7 +50,6 @@ public class CarModeListActivity extends LoadingActivity {
                     intentType.putExtra("switch",intent.getBooleanExtra("switch",false));//标记从车辆管理界面跳转
                 }
                 CarModeListActivity.this.startActivity(intentType);
-                finish();
             }
         });
     }

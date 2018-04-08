@@ -1,15 +1,14 @@
 package com.carlt.yema.ui.activity.setting;
 
-import android.content.ContentResolver;
+import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Images;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -23,13 +22,10 @@ import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.data.set.AvatarInfo;
 import com.carlt.yema.http.HttpLinker;
 import com.carlt.yema.model.LoginInfo;
-import com.carlt.yema.protocolparser.user.AvatarParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.FileUtil;
 import com.carlt.yema.utils.LocalConfig;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,13 +37,18 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
 
     private static final String TAG = "PersonAvatarActivity";
 
-    private ImageView image_display;
-    private TextView avatar_photograph;
-    private TextView avatar_album;
-    private TextView avatar_cancel;
+    public static final String IMAGE_UNSPECIFIED = "image/*";//系统相册mime
+
+    private ImageView image_display;//头像展示
+    private TextView avatar_photograph;//调用系统相机
+    private TextView avatar_album;//调用系统相册
+    private TextView avatar_cancel;//取消按钮
     private View view;
 
     private Intent intent;
+
+    private String avatarName;
+    private String avatarPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +72,17 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
         avatar_album.setOnClickListener(this);
         avatar_cancel = $ViewByID(R.id.avatar_cancel);
         avatar_cancel.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
         if (intent != null && !TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
             Glide.with(this).load(LoginInfo.getAvatar_img()).into(image_display);
         } else {
             image_display.setImageResource(R.mipmap.default_avater);
         }
+        super.onResume();
     }
-
 
     @Override
     public void onClick(View view) {
@@ -117,7 +122,6 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
 
     public static final int QRCode = 4;
 
-    public static final String IMAGE_UNSPECIFIED = "image/*";
 
     private String ImageName;
 
@@ -139,154 +143,97 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
 
             }
             PersonAvatarActivity.this.setResult(RESULT_OK, backIntent);
+            finish();
             super.handleMessage(msg);
         }
     };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == NONE)
-            return;
-        // 拍照
-        if (requestCode == PHOTOHRAPH) {
-            //压缩
-            Log.d(TAG, LocalConfig.mImageCacheSavePath_SD + ImageName);
-            useCrop(Uri.fromFile(new File(LocalConfig.mImageCacheSavePath_SD + ImageName)));
-            return;
-        }
-
-        if (data == null)
-            return;
-
-        // 读取相册
-        if (requestCode == PHOTOZOOM) {
-            String[] proj = {
-                    Images.Media.DATA
-            };
-
-            Uri uri = data.getData();
-            String type = data.getType();
-            if (uri.getScheme().equals("file") && (type.contains("image/"))) {
-                String path_uri = uri.getEncodedPath();
-                if (path_uri != null) {
-                    path_uri = Uri.decode(path_uri);
-                    ContentResolver cr = this.getContentResolver();
-                    StringBuffer buff = new StringBuffer();
-                    buff.append("(").append(Images.ImageColumns.DATA).append("=")
-                            .append("'" + path_uri + "'").append(")");
-                    Cursor cur = cr.query(Images.Media.EXTERNAL_CONTENT_URI,
-                            new String[]{Images.ImageColumns._ID},
-                            buff.toString(), null, null);
-                    int index = 0;
-                    for (cur.moveToFirst(); !cur.isAfterLast(); cur.moveToNext()) {
-                        index = cur.getColumnIndex(Images.ImageColumns._ID);
-                        // set _id value
-                        index = cur.getInt(index);
+        if (resultCode != Activity.RESULT_CANCELED) {
+            switch (requestCode) {
+                // 如果是直接从相册获取
+                case 1:
+                    startPhotoZoom(data.getData());
+                    break;
+                // 如果是调用相机拍照时
+                case 2:
+                    File temp = new File(Environment.getExternalStorageDirectory()
+                            + avatarName);
+                    startPhotoZoom(Uri.fromFile(temp));
+                    break;
+                // 取得裁剪后的图片
+                case 3:
+                    if (data != null) {
+                        setPicToView(data);
                     }
-                    if (index == 0) {
-                        // do nothing
-                    } else {
-                        Uri uri_temp = Uri
-                                .parse("content://media/external/images/media/"
-                                        + index);
-                        if (uri_temp != null) {
-                            uri = uri_temp;
-                        }
-                    }
-                }
+                    break;
+                default:
+                    break;
+
             }
-            // 好像是android多媒体数据库的封装接口，具体的看Android文档
-            Cursor cursor;
-            if (Build.VERSION.SDK_INT < 11) {
-                cursor = managedQuery(uri, proj, null, null, null);
-            } else {
-                cursor = PersonAvatarActivity.this.getContentResolver().query(uri, proj, null, null, null);
-            }
-            if (cursor != null) {
-                // 按我个人理解 这个是获得用户选择的图片的索引值
-                int column_index = cursor.getColumnIndexOrThrow(Images.Media.DATA);
-                // 将光标移至开头 ，这个很重要，不小心很容易引起越界
-                cursor.moveToFirst();
-                // 最后根据索引值获取图片路径
-                final String path = cursor.getString(column_index);
-                useCrop(Uri.fromFile(new File(path)));
-            }
+            super.onActivityResult(requestCode, resultCode, data);
         }
-        if (requestCode == PHOTO_REQUEST_CUT) {
-            Intent it = new Intent();
-            it.setAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            it.setData(Uri.fromFile(new File(LocalConfig.mImageCacheSavePath_SD + ImageName)));
-            sendBroadcast(it);
-            Glide.with(this).load(new File(LocalConfig.mImageCacheSavePath_SD + ImageName)).into(image_display);
-            new Thread() {
-                @Override
-                public void run() {
-                    Response response = uploadAvatarRequest(new File(LocalConfig.mImageCacheSavePath_SD + ImageName));
-                    if (response != null && response.isSuccessful()) {
-                        JsonParser jp = new JsonParser();
-                        AvatarInfo avatarInfo = null;
-                        try {
-                            JsonElement element = jp.parse(response.body().string());
-                            JsonObject mJson = element.getAsJsonObject();
-                            int flag = mJson.get("code").getAsInt();
-                            String info = mJson.get("msg").getAsString();
-                            Log.d(TAG, "upload flag--------------------------------->" + flag);
-                            Log.d(TAG, "upload msg--------------------------------->" + info);
-                            if (flag == 200) {
-                                avatarInfo = AvatarParser.parser(mJson);
-                                Message msg = Message.obtain();
-                                msg.what = 0;
-                                msg.obj = avatarInfo;
-                                handler.sendMessage(msg);
-                            } else {
-                                handler.sendEmptyMessage(1);
-                            }
-//                            String url=mJson.get("url").getAsString();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        handler.sendEmptyMessage(1);
-                    }
-                    super.run();
-                }
-            }.start();
-            return;
+    }
+
+    /**
+     * 裁剪图片方法实现
+     *
+     * @param uri
+     */
+    public void startPhotoZoom(Uri uri) {
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        //下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
+        intent.putExtra("crop", "true");
+        // aspectX aspectY 是宽高的比例
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // outputX outputY 是裁剪图片宽高
+        intent.putExtra("outputX", 150);
+        intent.putExtra("outputY", 150);
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, 3);
+    }
+
+    /**
+     * 保存裁剪之后的图片数据
+     *
+     * @param picdata
+     */
+    private void setPicToView(Intent picdata) {
+        Bundle extras = picdata.getExtras();
+        if (extras != null) {
+            Bitmap photo = extras.getParcelable("data");
+            //图片路径
+            avatarPath = FileUtil.saveFile(PersonAvatarActivity.this, "temphead.jpg", photo);
+            System.out.println("----------路径----------" + avatarPath);
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     // 调用系统的相册
     public void usePhoto() {
-
         Intent intent = new Intent(Intent.ACTION_PICK, null);
-        intent.setDataAndType(Images.Media.EXTERNAL_CONTENT_URI, IMAGE_UNSPECIFIED);
-        // 调用剪切功能
-        startActivityForResult(intent, PHOTOZOOM);
+        intent.setDataAndType(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                "image/*");
+        startActivityForResult(intent, 1);
     }
 
     public void useCamera() {
-        ImageName = System.currentTimeMillis() + ".jpg";
+        avatarName = System.currentTimeMillis() + ".jpg";
         // 调用系统的拍照功能
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //下面这句指定调用相机拍照后的照片存储的路径
         intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                Uri.fromFile(new File(LocalConfig.mImageCacheSavePath_SD, ImageName)));
-        startActivityForResult(intent, PHOTOHRAPH);
-    }
-
-    public void useCrop(Uri imageUri) {
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(imageUri, "image/*");
-        intent.putExtra("scale", true);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, PHOTO_REQUEST_CUT);// 启动裁剪程序
+                Uri.fromFile(new File(LocalConfig.mImageCacheSavePath_SD, avatarName)));
+        startActivityForResult(intent, 2);
     }
 
     private Response uploadAvatarRequest(File image) {
         Response response = null;
         HashMap<String, Object> params = new HashMap<>();
         params.put("fileOwner", "avatar");
-//        params.put("fileData", image.getName());
         try {
             response = HttpLinker.uploadImage(URLConfig.getM_OSS_UPLOAD_URL(), params, image);
             Log.d(TAG, "uploadAvatar-------->" + response.toString());

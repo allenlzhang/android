@@ -16,6 +16,7 @@
         android:textColor="@color/white"
         android:textColorHint="@color/text_color_gray1"
         android:paddingLeft="12dp"
+        android:maxLength="16"
         android:textSize="14sp"
         android:background="@drawable/login_input_bg"
         android:hint="@string/nickname_edit_default_txt"

@@ -60,7 +60,7 @@
     <string name="last_maintenance_mileage">%1$d km</string>
     <string name="last_maintenance_time_txt">上次保养时间</string>
     <string name="last_insured_time_txt">上次投保时间</string>
-    <string name="last_inspection_time_txt">上次年检时间</string>
+    <string name="register_time">注册时间</string>
     <!--旅行相册界面-->
     <string name="travel_album_edit">编辑</string>
     <string name="travel_album_cancel">取消</string>
