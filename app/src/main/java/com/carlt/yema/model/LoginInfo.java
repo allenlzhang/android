@@ -325,9 +325,13 @@ public class LoginInfo extends BaseResponseInfo {
 
     private static String lately_month = "";
 
+    private static String insurance_time;//上次投保时间
+
     private static String mainten_miles = "";// 上次保养里程
 
     private static String mainten_time = "";// 上次保养日期
+
+    private static String register_time = "";// 注册时间
 
     private static String mainten_next_miles = "";// 距离下次保养里程
 
@@ -402,6 +406,8 @@ public class LoginInfo extends BaseResponseInfo {
         LoginInfo.setAuthen(destroy.optBoolean("is_authen"));
         LoginInfo.setAuthen_name(destroy.optString("authen_name", ""));
         LoginInfo.setAuthen_card(destroy.optString("authen_card", ""));
+        LoginInfo.setInsurance_time(destroy.optString("insurance_time", ""));
+        LoginInfo.setRegister_time(destroy.optString("register_time", ""));
 
     }
 
@@ -1317,6 +1323,26 @@ public class LoginInfo extends BaseResponseInfo {
     public static void setMainten_miles(String mainten_miles) {
         LoginInfo.mainten_miles = mainten_miles;
         car_pref.edit().putString("mainten_miles", mainten_miles).apply();
+    }
+
+    public static String getInsurance_time() {
+        insurance_time = car_pref.getString("insurance_time", insurance_time);
+        return insurance_time;
+    }
+
+    public static void setInsurance_time(String insurance_time) {
+        LoginInfo.insurance_time = insurance_time;
+        car_pref.edit().putString("insurance_time", insurance_time).apply();
+    }
+
+    public static String getRegister_time() {
+        register_time = car_pref.getString("register_time", register_time);
+        return register_time;
+    }
+
+    public static void setRegister_time(String register_time) {
+        LoginInfo.register_time = register_time;
+        car_pref.edit().putString("register_time", register_time).apply();
     }
 
     public static String getMainten_time() {

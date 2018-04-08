@@ -236,7 +236,7 @@ public class URLConfig {
     //消息中心开关
     private static String M_USER_REMOTE_SWITCH = "safe/userSwitch";
     //消息中心开关
-    private static String M_CAR_MODIFY = "car/modifyCar";
+    private static String M_CAR_MODIFY = "car/editCarInfo";
     //远程控制音效开关
     private static String M_CONTROL_SOUND = "safe/remoteControlsound";
     //获取推送设置

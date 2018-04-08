@@ -11,6 +11,7 @@ import com.bigkoo.pickerview.listener.CustomListener;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser.ResultCallback;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
@@ -69,10 +70,23 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         car_type_txt = findViewById(R.id.car_type_txt);
         purchase_time_txt = findViewById(R.id.purchase_time_txt);
         maintenance_mileage_txt = findViewById(R.id.maintenance_mileage_txt);
-        maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), 0));
+        if (!TextUtils.isEmpty(LoginInfo.getMainten_miles())) {
+            maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), Integer.parseInt(LoginInfo.getMainten_miles())));
+        } else {
+            maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), 0));
+        }
         maintenance_time_txt = findViewById(R.id.maintenance_time_txt);
+        if (!TextUtils.isEmpty(LoginInfo.getMainten_time())) {
+            maintenance_time_txt.setText(LoginInfo.getMainten_time());
+        }
         insured_time_txt = findViewById(R.id.insured_time_txt);
+        if (!TextUtils.isEmpty(LoginInfo.getInsurance_time())) {
+            insured_time_txt.setText(LoginInfo.getInsurance_time());
+        }
         nspection_time_txt = findViewById(R.id.nspection_time_txt);
+        if (!TextUtils.isEmpty(LoginInfo.getRegister_time())) {
+            nspection_time_txt.setText(LoginInfo.getRegister_time());
+        }
     }
 
     @Override
@@ -115,6 +129,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
             purchase_time_txt.setText(carDate);
+            LoginInfo.setBuydate(carDate);
         }
 
         @Override
@@ -127,6 +142,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
             maintenance_time_txt.setText(carDate);
+            LoginInfo.setMainten_time(carDate);
         }
 
         @Override
@@ -139,6 +155,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
             nspection_time_txt.setText(carDate);
+            LoginInfo.setRegister_time(carDate);
         }
 
         @Override
@@ -151,6 +168,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
             insured_time_txt.setText(carDate);
+            LoginInfo.setInsurance_time(carDate);
         }
 
         @Override
