@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
@@ -132,10 +132,10 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
                 }
                 break;
             case R.id.verification_new_passwd_input_toggle:
-                passwdInputToggle(view.getTag().toString());
+                ActivityControl.passwdToggle(this,passwd,passwdToggle,view.getTag().toString());
                 break;
             case R.id.verification_new_passwd_input_again_toggle:
-               passwdInputAgainToggle(view.getTag().toString());
+                ActivityControl.passwdToggle(this,passwd2St,passwd2StToggle,view.getTag().toString());
                 break;
 
         }
@@ -245,40 +245,5 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
             return true;
         }
 
-    }
-
-    /**
-     * 新密码是否显示按钮
-     *
-     * */
-    private void passwdInputToggle(String tag) {
-        if (!TextUtils.isEmpty(tag)) {
-            if (tag.equals("on")) {
-                passwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                passwdToggle.setImageDrawable(this.getResources().getDrawable(R.mipmap.passwd_off, null));
-                passwdToggle.setTag("off");
-            } else {
-                passwd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                passwdToggle.setImageDrawable(this.getResources().getDrawable(R.mipmap.passwd_on, null));
-                passwdToggle.setTag("on");
-            }
-        }
-    }
-    /**
-     * 确认密码是否显示按钮
-     *
-     * */
-    private void passwdInputAgainToggle(String tag) {
-        if (!TextUtils.isEmpty(tag)) {
-            if (tag.equals("on")) {
-                passwd2St.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                passwd2StToggle.setImageDrawable(this.getResources().getDrawable(R.mipmap.passwd_off, null));
-                passwd2StToggle.setTag("off");
-            } else {
-                passwd2St.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                passwd2StToggle.setImageDrawable(this.getResources().getDrawable(R.mipmap.passwd_on, null));
-                passwd2StToggle.setTag("on");
-            }
-        }
     }
 }

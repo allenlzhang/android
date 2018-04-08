@@ -115,11 +115,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
 
         user_phone = findViewById(R.id.user_phone);
         user_passwd = findViewById(R.id.user_passwd);
-        if (resultIntent != null) {
-            if (!TextUtils.isEmpty(resultIntent.getStringExtra("account"))) {
-                user_phone.setText(resultIntent.getStringExtra("account"));
-            }
-        }
 
     }
 
@@ -127,6 +122,9 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     protected void onResume() {
 
         isTimeOut = false;
+        if (!TextUtils.isEmpty(LoginInfo.getMobile())) {
+            user_phone.setText(LoginInfo.getMobile());
+        }
         super.onResume();
     }
 

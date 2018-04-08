@@ -41,7 +41,7 @@
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
             android:layout_height="25dp"
-            android:tag="on"
+            android:tag="off"
             android:src="@mipmap/passwd_off" />
     </LinearLayout>
     <LinearLayout
@@ -69,7 +69,7 @@
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
             android:layout_height="25dp"
-            android:tag="on"
+            android:tag="off"
             android:src="@mipmap/passwd_off" />
     </LinearLayout>
     <TextView

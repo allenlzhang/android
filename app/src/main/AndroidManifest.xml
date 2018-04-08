@@ -47,8 +47,9 @@
         <activity android:name=".ui.activity.home.InformationCentreActivity" />
         <activity android:name=".ui.activity.home.GpsTrailActivity" />
         <!--登录页面启动模式为singletask，任何跳转至此页面的发起将进行退栈操作-->
-        <activity android:name=".ui.activity.login.UserLoginActivity"
-            android:launchMode="singleTask">
+        <activity
+            android:name=".ui.activity.login.UserLoginActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,8 +57,9 @@
             </intent-filter>
         </activity>
         <!--MainActivity页面启动模式为singletask，任何跳转至此页面的路由将进行退栈操作-->
-        <activity android:name=".MainActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask" />
         <!--MainActivity页面启动模式为singletask，任何跳转至此页面的路由将进行退栈操作-->
 
         <activity android:name=".ui.activity.carstate.CarSaftyListActivity" />
@@ -66,9 +68,7 @@
         <activity android:name=".ui.activity.carstate.CarLocationActivity" />
         <activity android:name=".ui.activity.carstate.CarSynchronizeLocationActivity" />
         <activity android:name=".ui.activity.remote.RemoteLogActivity" />
-        <activity
-            android:name=".ui.activity.login.DeviceBindActivity"
-            android:launchMode="singleTask" />
+        <activity android:name=".ui.activity.login.DeviceBindActivity" />
         <activity android:name=".ui.activity.login.ResetPasswdActivity" />
         <activity android:name=".ui.activity.login.ActivateBindActivity" />
         <activity android:name=".ui.activity.login.UserRegisterActivity" />
@@ -100,8 +100,9 @@
         <activity android:name=".ui.activity.carstate.LocationSynchronizeActivity"></activity>
         <activity android:name=".ui.activity.remote.RemotePswResetActivity3"></activity>
 
-        <receiver android:name="com.carlt.yema.push.MessageReceiver"
-            android:exported="true" >
+        <receiver
+            android:name="com.carlt.yema.push.MessageReceiver"
+            android:exported="true">
             <intent-filter>
                 <!-- 接收消息透传 -->
                 <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />

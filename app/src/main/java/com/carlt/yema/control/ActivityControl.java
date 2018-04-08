@@ -3,8 +3,12 @@ package com.carlt.yema.control;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.data.UseInfo;
@@ -227,5 +231,19 @@ public class ActivityControl {
 	}
 	public static void onStopService(final Context context) {
 
+	}
+
+	public static void passwdToggle(Context context,EditText input, ImageView toggleView,String tag){
+		if (!TextUtils.isEmpty(tag)) {
+			if (tag.equals("on")) {
+				input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+				toggleView.setImageDrawable(context.getResources().getDrawable(R.mipmap.passwd_off, null));
+				toggleView.setTag("off");
+			} else {
+				input.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+				toggleView.setImageDrawable(context.getResources().getDrawable(R.mipmap.passwd_on, null));
+				toggleView.setTag("on");
+			}
+		}
 	}
 }

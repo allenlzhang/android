@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
@@ -23,6 +24,8 @@ import java.util.HashMap;
 public class ResetLoginPasswdActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView back;
+    private ImageView new_passwd_input_toggle;
+    private ImageView new_passwd_input_again_toggle;
     private TextView title;;
 
     private EditText old_passwd_input;//原始密码输入框
@@ -54,6 +57,11 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
 
         title=$ViewByID(R.id.title);
         title.setText("修改登录密码");
+
+        new_passwd_input_toggle=$ViewByID(R.id.new_passwd_input_toggle);
+        new_passwd_input_toggle.setOnClickListener(this);
+        new_passwd_input_again_toggle=$ViewByID(R.id.new_passwd_input_again_toggle);
+        new_passwd_input_again_toggle.setOnClickListener(this);
     }
 
 
@@ -71,7 +79,12 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
                     editPasswdRequest();
                 }
                 break;
-
+            case R.id.new_passwd_input_toggle:
+                ActivityControl.passwdToggle(this,new_passwd_input,new_passwd_input_toggle,view.getTag().toString());
+                break;
+            case R.id.new_passwd_input_again_toggle:
+                ActivityControl.passwdToggle(this,new_passwd_again_input,new_passwd_input_again_toggle,view.getTag().toString());
+                break;
         }
     }
 
@@ -93,7 +106,8 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(ResetLoginPasswdActivity.this,"密码修改失败");
+            if (null!=bInfo&&!TextUtils.isEmpty(bInfo.getInfo()))
+            UUToast.showUUToast(ResetLoginPasswdActivity.this,bInfo.getInfo());
         }
     };
 
@@ -115,4 +129,5 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
         }
 
     }
+
 }
