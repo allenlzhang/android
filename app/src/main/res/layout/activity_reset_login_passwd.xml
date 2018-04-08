@@ -15,7 +15,7 @@
         android:gravity="center_vertical"
         android:layout_marginBottom="0dp"
         android:hint="@string/old_passwd_txt"
-        android:inputType="number|textPhonetic"
+        android:inputType="textPassword"
         android:maxLength="32"/>
     <LinearLayout
         style="@style/login_input_bg"

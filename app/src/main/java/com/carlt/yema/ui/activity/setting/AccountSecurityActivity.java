@@ -17,7 +17,6 @@ import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
-import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
 
 import java.util.HashMap;
@@ -107,14 +106,16 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-        mDialog = PopBoxCreat.createDialogWithProgress(AccountSecurityActivity.this,
-                "提交中...");
-        mDialog.show();
+//        mDialog = PopBoxCreat.createDialogWithProgress(AccountSecurityActivity.this,
+//                "提交中...");
+//        mDialog.show();
         if (checked) {
-            noPasswdRequest("1");
+//            noPasswdRequest("1");
+            LoginInfo.setNoneedpsw(true);
         } else {
-            noPasswdRequest("0");
+            LoginInfo.setNoneedpsw(false);
         }
+        UUToast.showUUToast(this,"设置成功");
     }
 
     private void noPasswdRequest(String lesspwd_switch){
@@ -141,6 +142,11 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
             } else {
                 UUToast.showUUToast(AccountSecurityActivity.this, "操作成功！");
             }
+            if (btn_remote_no_passwd_ctr.isChecked()) {
+                btn_remote_no_passwd_ctr.setBackgroundResource(R.mipmap.icon_switch_open);
+            } else {
+                btn_remote_no_passwd_ctr.setBackgroundResource(R.mipmap.icon_switch_close);
+            }
         }
 
         @Override
@@ -159,6 +165,11 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
                 }
             } else {
                 UUToast.showUUToast(AccountSecurityActivity.this, "操作失败...");
+            }
+            if (btn_remote_no_passwd_ctr.isChecked()) {
+                btn_remote_no_passwd_ctr.setBackgroundResource(R.mipmap.icon_switch_close);
+            } else {
+                btn_remote_no_passwd_ctr.setBackgroundResource(R.mipmap.icon_switch_open);
             }
         }
     };

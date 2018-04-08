@@ -14,8 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
@@ -33,6 +31,7 @@ import com.carlt.yema.ui.activity.setting.DeviceManageActivity;
 import com.carlt.yema.ui.activity.setting.MsgManageActivity;
 import com.carlt.yema.ui.activity.setting.PersonInfoActivity;
 import com.carlt.yema.ui.activity.setting.TravelAlbumActivity;
+import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.utils.CacheUtils;
 import com.carlt.yema.utils.DensityUtil;
 
@@ -63,6 +62,7 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
 
     private TextView btn_sign_out;//退出登录按钮
     private TextView cache_size;//退出登录按钮
+    private TextView contact_us_phone;//联系我们的电话号码
 
     private DealerInfo mDealerInfo;
 
@@ -112,6 +112,7 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
         btn_sign_out = parent.findViewById(R.id.btn_sign_out);
         btn_sign_out.setOnClickListener(this);
         cache_size = parent.findViewById(R.id.cache_size);
+        contact_us_phone=parent.findViewById(R.id.contact_us_phone);
         try {
             cache_size.setText(CacheUtils.getTotalCacheSize(this.getActivity()));
         } catch (Exception e) {
@@ -150,7 +151,20 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
                 showCleanCacheDialog();
                 break;
             case R.id.btn_contact_us:
-                showDialog();
+//                showDialog();
+                if (null!=mDealerInfo&&!TextUtils.isEmpty(mDealerInfo.getServiceTel())) {
+                    PopBoxCreat.createDialogNotitle(this.getActivity(), null, mDealerInfo.getServiceTel(), "取消", "拨打", new PopBoxCreat.DialogWithTitleClick() {
+                        @Override
+                        public void onLeftClick() {
+
+                        }
+
+                        @Override
+                        public void onRightClick() {
+                            goToDial(mDealerInfo.getServiceTel());
+                        }
+                    });
+                }
                 break;
             case R.id.btn_about_yema:
                 Intent aboutYema = new Intent(this.getActivity(), AboutYemaActivity.class);
@@ -176,6 +190,7 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             mDealerInfo= (DealerInfo) bInfo.getValue();
+            contact_us_phone.setText(mDealerInfo.getServiceTel());
         }
 
         @Override
@@ -230,46 +245,6 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
 
     }
 
-
-    private void showDialog() {
-        final Dialog mAlbumDialog = new Dialog(this.getActivity(), R.style.BottomDialog);
-        LinearLayout root = (LinearLayout) LayoutInflater.from(this.getActivity()).inflate(R.layout.
-                contact_us_dialog_layout, null);
-        TextView contact_us_dial=root.findViewById(R.id.contact_us_dial);
-        if (mDealerInfo!=null)
-        contact_us_dial.setText(mDealerInfo.getServiceTel());
-        //初始化视图
-        contact_us_dial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (null!=mDealerInfo&&!TextUtils.isEmpty(mDealerInfo.getServiceTel())) {
-                    goToDial(mDealerInfo.getServiceTel());
-                }
-            }
-        });
-        root.findViewById(R.id.contact_us_cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (null != mAlbumDialog && mAlbumDialog.isShowing()) {
-                    mAlbumDialog.dismiss();
-                }
-            }
-        });
-        mAlbumDialog.setContentView(root);
-        Window dialogWindow = mAlbumDialog.getWindow();
-        dialogWindow.setGravity(Gravity.BOTTOM);
-//        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
-        lp.x = 0; // 新位置X坐标
-        lp.y = 0; // 新位置Y坐标
-        lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
-        root.measure(0, 0);
-        lp.height = root.getMeasuredHeight();
-
-        lp.alpha = 0.90f; // 透明度
-        dialogWindow.setAttributes(lp);
-        mAlbumDialog.show();
-    }
 
     /**
      * 清除缓存
