@@ -172,6 +172,10 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
             switch (msg.what) {
                 case 0:
                     loadSuccess(msg.obj);
+                    UseInfo mUseInfo = UseInfoLocal.getUseInfo();
+                    mUseInfo.setAccount(user_phone.getText().toString());
+                    mUseInfo.setPassword(user_passwd.getText().toString());
+                    UseInfoLocal.setUseInfo(mUseInfo);
                     break;
                 case 1:
                     LoadErro(msg.obj);

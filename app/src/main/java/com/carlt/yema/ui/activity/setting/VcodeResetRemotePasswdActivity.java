@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
@@ -164,13 +166,13 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
     };
 
     private void editPasswdCommitRequest(){
+        UseInfo mUseInfo = UseInfoLocal.getUseInfo();
         DefaultStringParser parser=new DefaultStringParser(commitCallback);
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("authen_card", LoginInfo.getAuthen_card());
-        params.put("authen_name", LoginInfo.getAuthen_name());
         params.put("mobile", mobile);
-        params.put("validate",vCode);
+        params.put("validate_code",vCode);
         params.put("remote_pwd", CipherUtils.md5(confirmPasswd));
+        params.put("password", mUseInfo.getPassword());
         parser.executePost(URLConfig.getM_FORGET_REMOTE_PWD(),params);
     }
 
@@ -186,17 +188,12 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            switch (bInfo.getFlag()) {
-                case 1004:
-                    UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "密码不可为空");
-                    break;
-                case 1014:
-                    UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "已设置过该密码");
-                    break;
-                default:
-                    UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "密码修改失败");
-                    break;
+            if (bInfo != null && !TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "远程控制密码修改失败");
             }
+
         }
     };
 

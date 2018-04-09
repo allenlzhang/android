@@ -4,20 +4,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseFragment;
-import com.carlt.yema.R;
-import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarIndexInfo;
-import com.carlt.yema.data.remote.RemoteMainInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.CarOperationConfigParser;
 import com.carlt.yema.protocolparser.DefaultParser;
@@ -198,5 +194,11 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().unregisterReceiver(mReceiver);
     }
 }

@@ -15,7 +15,9 @@ import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
@@ -190,6 +192,9 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
     private BaseParser.ResultCallback commitCallback = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
+            UseInfo mUseInfo = UseInfoLocal.getUseInfo();
+            mUseInfo.setPassword(confirmPasswd);
+            UseInfoLocal.setUseInfo(mUseInfo);
             // 获取验证码成功
             UUToast.showUUToast(VcodeResetPasswdActivity.this,"密码修改成功");
             Intent loginIntent=new Intent(VcodeResetPasswdActivity.this, UserLoginActivity.class);
