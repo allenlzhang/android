@@ -274,7 +274,8 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            back();
+//            back();
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);

@@ -258,7 +258,7 @@ public class CPControl {
 		// Post参数
 		HashMap<String, String> params = new HashMap<>();
 		params.put("mobile", phoneNum);
-		params.put("type", "2");
+		params.put("type", type);
 		params.put("voiceVerify", voiceVerify);
 		DefaultStringParser mParser = new DefaultStringParser(listener);
 		mParser.executePost(url, params);

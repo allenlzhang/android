@@ -45,7 +45,7 @@ public class LoginControl {
                 // 野马绑定和激活合并，如果激活直接进入主页
                 Intent mainIntent = new Intent(mContext,
                         MainActivity.class);
-                mainIntent.putExtra("page", "1");
+                mainIntent.putExtra("page", 1);
                 mContext.startActivity(mainIntent);
 
             } else {

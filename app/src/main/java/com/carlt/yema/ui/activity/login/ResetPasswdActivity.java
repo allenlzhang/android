@@ -92,7 +92,7 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
                 if (TextUtils.isEmpty(cellPhone) || !StringUtils.checkCellphone(cellPhone)) {
                     UUToast.showUUToast(this, getResources().getString(R.string.cell_phone_error));
                 } else {
-                    CPControl.GetMessageValidateResult("1", cellPhone, validateCodeListener);
+                    CPControl.GetMessageValidateResult("2", cellPhone, validateCodeListener);
                     count = 60;
                     bt_verification_send.setText(count + "秒后重发");
                     bt_verification_send.setClickable(false);
