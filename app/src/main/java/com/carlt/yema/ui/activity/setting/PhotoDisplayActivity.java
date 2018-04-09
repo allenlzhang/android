@@ -1,7 +1,12 @@
 package com.carlt.yema.ui.activity.setting;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,8 +19,15 @@ import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.LocalConfig;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 
 public class PhotoDisplayActivity extends LoadingActivity implements View.OnClickListener {
@@ -24,11 +36,13 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
     private TextView photo_save;
     private TextView photo_delete;
     private Intent intent;
+    private Dialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_display);
+        initTitle("");
         intent = getIntent();
         initComponent();
     }
@@ -48,12 +62,64 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+
             case R.id.photo_save:
+                mDialog = PopBoxCreat.createDialogWithProgress(this, "正在保存...");
+                mDialog.show();
+                final String url = intent.getStringExtra("imagePath");
+                if (intent != null && !TextUtils.isEmpty(url)) {
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            savePicture(url);
+                            Message msg = new Message();
+                            msg.what = 0;
+                            mHandler.sendMessage(msg);
+                            super.run();
+                        }
+                    }.start();
+                }
                 break;
             case R.id.photo_delete:
+                mDialog = PopBoxCreat.createDialogWithProgress(this, "正在删除...");
+                mDialog.show();
                 deleteImages();
                 break;
         }
+    }
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    if (mDialog!=null) {
+                        mDialog.dismiss();
+                    }
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
+    public void savePicture(String url) {
+        try {
+            URL pictureUrl = new URL(url);
+            InputStream in = pictureUrl.openStream();
+            Bitmap bitmap = BitmapFactory.decodeStream(in);
+            in.close();
+            String pictureName = LocalConfig.mImageCacheSavePath_SD + System.currentTimeMillis() + ".png";
+            File file = new File(pictureName);
+            FileOutputStream out;
+
+            out = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /*
@@ -75,12 +141,17 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(PhotoDisplayActivity.this, "相册删除成功");
-
+            if (mDialog != null) {
+                mDialog.dismiss();
+            }
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
             UUToast.showUUToast(PhotoDisplayActivity.this, "相册删除失败");
+            if (mDialog != null) {
+                mDialog.dismiss();
+            }
         }
     };
 }

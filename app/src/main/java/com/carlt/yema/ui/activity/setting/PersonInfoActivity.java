@@ -96,8 +96,12 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             }
 
         }
-        Glide.with(this).load(LoginInfo.getAvatar_img()).into(usr_avatar);
-        person_nickname_txt.setText(LoginInfo.getRealname());
+        if (!TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
+            Glide.with(this).load(LoginInfo.getAvatar_img()).into(usr_avatar);
+        }
+        if (!TextUtils.isEmpty(LoginInfo.getRealname())) {
+            person_nickname_txt.setText(LoginInfo.getRealname());
+        }
         super.onResume();
     }
 

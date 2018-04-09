@@ -49,7 +49,7 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/usercenter_hint_phone"
-            android:inputType="number|textPhonetic"
+            android:inputType="number|phone"
             android:maxLength="11" />
     </LinearLayout>
 

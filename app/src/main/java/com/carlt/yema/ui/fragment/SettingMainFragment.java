@@ -14,13 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.DealerInfo;
+import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.car.CarDealerParser;
 import com.carlt.yema.systemconfig.URLConfig;
@@ -63,6 +66,9 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
     private TextView btn_sign_out;//退出登录按钮
     private TextView cache_size;//退出登录按钮
     private TextView contact_us_phone;//联系我们的电话号码
+    private TextView tx_person_name;//联系我们的电话号码
+
+    private ImageView avatar;
 
     private DealerInfo mDealerInfo;
 
@@ -113,11 +119,25 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
         btn_sign_out.setOnClickListener(this);
         cache_size = parent.findViewById(R.id.cache_size);
         contact_us_phone=parent.findViewById(R.id.contact_us_phone);
+        tx_person_name=parent.findViewById(R.id.tx_person_name);
+        avatar=parent.findViewById(R.id.avatar);
         try {
             cache_size.setText(CacheUtils.getTotalCacheSize(this.getActivity()));
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if (!TextUtils.isEmpty(LoginInfo.getRealname())) {
+            tx_person_name.setText(LoginInfo.getRealname());
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        if (!TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
+            Glide.with(this.getActivity()).load(LoginInfo.getAvatar_img()).into(avatar);
+        }
+        super.onResume();
     }
 
     @Override

@@ -126,6 +126,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             Intent imageIntent = new Intent(this, PhotoDisplayActivity.class);
             imageIntent.putExtra("imagePath", info.getImagePath());
             imageIntent.putExtra("imageId", info.getId());
+            imageIntent.putExtra("imageName", info.getUploadTime());
             startActivity(imageIntent);
         } else {
             ViewHolder holder = (ViewHolder) view.getTag();

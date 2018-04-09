@@ -1,11 +1,11 @@
 package com.carlt.yema.ui.activity.setting;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -22,10 +22,15 @@ import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.data.set.AvatarInfo;
 import com.carlt.yema.http.HttpLinker;
 import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.protocolparser.user.AvatarParser;
 import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.FileUtil;
 import com.carlt.yema.utils.LocalConfig;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -106,35 +111,19 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
         }
     }
 
-    /**
-     * 以下部分是用于头像拍照上传
-     **/
-
-    public static final int NONE = 0;
-
-    public static final int PHOTOHRAPH = 1;// 拍照
-
-    public static final int PHOTOZOOM = 2; // 缩放
-
-    public static final int PHOTORESOULT = 3;// 结果
-
-    private static final int PHOTO_REQUEST_CUT = 5;// 结果
-
-    public static final int QRCode = 4;
-
-
-    private String ImageName;
-
-
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             AvatarInfo info = (AvatarInfo) msg.obj;
+            if (mDialog != null) {
+                mDialog.dismiss();
+            }
             Intent backIntent = new Intent(PersonAvatarActivity.this, PersonInfoActivity.class);
             switch (msg.what) {
                 case 0:
                     UUToast.showUUToast(PersonAvatarActivity.this, "头像上传成功");
                     intent.putExtra("imageId", info.getId());
+                    LoginInfo.setAvatar_img(info.getFilePath());
                     break;
                 case 1:
                     intent.putExtra("imageId", "-1");
@@ -158,7 +147,7 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
                     break;
                 // 如果是调用相机拍照时
                 case 2:
-                    File temp = new File(Environment.getExternalStorageDirectory()
+                    File temp = new File(LocalConfig.mImageCacheSavePath_SD
                             + avatarName);
                     startPhotoZoom(Uri.fromFile(temp));
                     break;
@@ -208,6 +197,43 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
             //图片路径
             avatarPath = FileUtil.saveFile(PersonAvatarActivity.this, "temphead.jpg", photo);
             System.out.println("----------路径----------" + avatarPath);
+            final File avatar = new File(avatarPath);
+            Glide.with(this).load(avatar).into(image_display);
+            mDialog = PopBoxCreat.createDialogWithProgress(PersonAvatarActivity.this, "正在上传...");
+            mDialog.show();
+            new Thread() {
+                @Override
+                public void run() {
+                    Response response = uploadAvatarRequest(avatar);
+                    if (response != null && response.isSuccessful()) {
+                        JsonParser jp = new JsonParser();
+                        AvatarInfo avatarInfo = null;
+                        try {
+                            JsonElement element = jp.parse(response.body().string());
+                            JsonObject mJson = element.getAsJsonObject();
+                            int flag = mJson.get("code").getAsInt();
+                            String info = mJson.get("msg").getAsString();
+                            Log.d(TAG, "upload flag--------------------------------->" + flag);
+                            Log.d(TAG, "upload msg--------------------------------->" + info);
+                            if (flag == 200) {
+                                avatarInfo = AvatarParser.parser(mJson);
+                                Message msg = Message.obtain();
+                                msg.what = 0;
+                                msg.obj = avatarInfo;
+                                handler.sendMessage(msg);
+                            } else {
+                                handler.sendEmptyMessage(1);
+                            }
+//                            String url=mJson.get("url").getAsString();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        handler.sendEmptyMessage(1);
+                    }
+                    super.run();
+                }
+            }.start();
         }
     }
 
@@ -229,6 +255,8 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
                 Uri.fromFile(new File(LocalConfig.mImageCacheSavePath_SD, avatarName)));
         startActivityForResult(intent, 2);
     }
+
+    private Dialog mDialog;
 
     private Response uploadAvatarRequest(File image) {
         Response response = null;
