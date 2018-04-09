@@ -24,6 +24,7 @@ import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.protocolparser.LoginInfoParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.PopBoxCreat;
+import com.carlt.yema.ui.view.PopBoxCreat.DialogWithTitleClick;
 import com.carlt.yema.ui.view.UUTimerDialog;
 import com.carlt.yema.ui.view.UUToast;
 
@@ -85,28 +86,35 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        PopBoxCreat.DialogWithTitleClick click = new PopBoxCreat.DialogWithTitleClick() {
+        switch (R.id.back) {
+            case R.id.back:
+                finish();
+                break;
+            case R.id.activate_commit:
+                DialogWithTitleClick click = new DialogWithTitleClick() {
 
-            @Override
-            public void onLeftClick() {
-                // 调用激活设备接口
-                mDialog = PopBoxCreat.createUUTimerDialog(
-                        ActivateBindActivity.this, "激活中...");
-                mDialog.show();
-                listener_time = System.currentTimeMillis();
-                ActivateCount++;
-                mTextViewSecretary.setText("已收到激活请求，正在连接野马设备…");
-                activateDevice();
-            }
+                    @Override
+                    public void onLeftClick() {
+                        // 调用激活设备接口
+                        mDialog = PopBoxCreat.createUUTimerDialog(
+                                ActivateBindActivity.this, "激活中...");
+                        mDialog.show();
+                        listener_time = System.currentTimeMillis();
+                        ActivateCount++;
+                        mTextViewSecretary.setText("已收到激活请求，正在连接野马设备…");
+                        activateDevice();
+                    }
 
-            @Override
-            public void onRightClick() {
-                // TODO Auto-generated method stub
+                    @Override
+                    public void onRightClick() {
+                        // TODO Auto-generated method stub
 
-            }
-        };
-        PopBoxCreat.createDialogWithTitle(ActivateBindActivity.this, "激活",
-                "您确定激活野马设备吗？", "", "确定", "取消", click);
+                    }
+                };
+                PopBoxCreat.createDialogWithTitle(ActivateBindActivity.this, "激活",
+                        "您确定激活野马设备吗？", "", "确定", "取消", click);
+                break;
+        }
     }
 
     private void activateDevice(){
