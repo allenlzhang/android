@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,6 +15,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
@@ -42,8 +41,8 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
     private EditText register_passwd_et;//输入修改密码
     private EditText register_passwd_again_et;//再次输入
 
-    private CheckedTextView register_passwd_toggle;//显示&隐藏密码按钮
-    private CheckedTextView register_passwd_again_toggle;//显示&隐藏密码按钮
+    private ImageView register_passwd_toggle;//显示&隐藏密码按钮
+    private ImageView register_passwd_again_toggle;//显示&隐藏密码按钮
 
     private TextView titleText;//页面标题
     private TextView register_txt_declaration;//页面标题
@@ -78,8 +77,8 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
 
         register_passwd_toggle = findViewById(R.id.register_passwd_toggle);
         register_passwd_toggle.setOnClickListener(this);
-        register_passwd_again_et = findViewById(R.id.register_passwd_again_et);
-        register_passwd_again_et.setOnClickListener(this);
+        register_passwd_again_toggle = findViewById(R.id.register_passwd_again_toggle);
+        register_passwd_again_toggle.setOnClickListener(this);
 
         register_verification_send = findViewById(R.id.register_verification_send);
         register_verification_send.setOnClickListener(this);
@@ -99,12 +98,10 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.change_passwd_toggle:
-                register_passwd_toggle.toggle();
-                passwdInputToggle();
+                ActivityControl.passwdToggle(this,register_passwd_et,register_passwd_toggle,view.getTag().toString());
                 break;
             case R.id.change_passwd_again_toggle:
-                register_passwd_again_toggle.toggle();
-                passwdInputAgainToggle();
+                ActivityControl.passwdToggle(this,register_passwd_again_et,register_passwd_again_toggle,view.getTag().toString());
                 break;
             case R.id.register_verification_send:
                 String cellPhone = register_phone_input.getText().toString();
@@ -273,23 +270,6 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
             mHandler.sendMessage(msg);
         }
     };
-
-    private void passwdInputToggle() {
-
-        if (register_passwd_toggle.isChecked()) {
-            register_passwd_et.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        } else {
-            register_passwd_et.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        }
-    }
-
-    private void passwdInputAgainToggle() {
-        if (register_passwd_again_toggle.isChecked()) {
-            register_passwd_again_et.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        } else {
-            register_passwd_again_et.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        }
-    }
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {

@@ -219,7 +219,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                 msg.obj = mLoginInfo;
                 mHandler.sendMessage(msg);
             } else {
-                mLoginInfo.setInfo(BaseParser.MSG_ERRO);
                 Message msg = new Message();
                 msg.what = 1;
                 msg.obj = mLoginInfo;
@@ -310,12 +309,10 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         if (mDialog != null && mDialog.isShowing()) {
             mDialog.dismiss();
         }
-        BaseResponseInfo mBaseResponseInfo = (BaseResponseInfo) erro;
+        LoginInfo mLoginInfo = (LoginInfo) erro;
 
-        if (mBaseResponseInfo != null) {
-            String info = mBaseResponseInfo.getInfo();
-            int flag = mBaseResponseInfo.getFlag();
-
+        if (mLoginInfo != null) {
+           String info=mLoginInfo.getInfo();
             // 其它
             if (info != null && info.length() > 0) {
                 UUToast.showUUToast(UserLoginActivity.this, info);

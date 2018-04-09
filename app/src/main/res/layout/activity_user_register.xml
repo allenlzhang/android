@@ -63,19 +63,14 @@
             android:inputType="textPassword"
             android:maxLength="32" />
 
-        <CheckedTextView
+        <ImageView
             android:id="@+id/register_passwd_toggle"
-            android:layout_width="40dp"
+            android:layout_width="25dp"
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
-            android:layout_height="40dp"
-            android:tag="on"
-            android:filterTouchesWhenObscured="true"
-            android:focusableInTouchMode="true"
-            android:clickable="true"
-            android:checkMark="@drawable/passwd_show_bg"
-            android:selectAllOnFocus="true"
-            android:checked="false"
+            android:layout_height="25dp"
+            android:tag="off"
+            android:src="@mipmap/passwd_off"
              />
     </LinearLayout>
     <LinearLayout
@@ -97,19 +92,14 @@
             android:inputType="textPassword"
             android:maxLength="32" />
 
-        <CheckedTextView
+        <ImageView
             android:id="@+id/register_passwd_again_toggle"
-            android:layout_width="40dp"
+            android:layout_width="25dp"
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
-            android:layout_height="40dp"
-            android:tag="on"
-            android:filterTouchesWhenObscured="true"
-            android:focusableInTouchMode="true"
-            android:selectAllOnFocus="true"
-            android:clickable="true"
-            android:checkMark="@drawable/passwd_show_bg"
-            android:checked="false" />
+            android:layout_height="25dp"
+            android:tag="off"
+            android:src="@mipmap/passwd_off"/>
     </LinearLayout>
     <RelativeLayout
         android:id="@+id/register_lay_declaration"
