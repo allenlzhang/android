@@ -3,6 +3,7 @@ package com.carlt.yema.ui.fragment;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,20 +16,26 @@ import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.home.CareerInfo;
+import com.carlt.yema.data.home.InformationCategoryInfo;
+import com.carlt.yema.data.home.InformationCategoryInfoList;
 import com.carlt.yema.data.home.MilesInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.activity.home.InformationCentreActivity;
 import com.carlt.yema.ui.activity.home.ReportActivity;
 import com.carlt.yema.ui.view.UUToast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
  * Created by Marlon on 2018/3/15.
  */
 
-public class HomeFragment extends BaseFragment implements View.OnClickListener{
+public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private ImageView mIvReport;
     private RelativeLayout mRlInformationCentre;
     private TextView mTxtDate;
@@ -43,7 +50,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected View inflateView(LayoutInflater inflater) {
-        View view = inflater.inflate(R.layout.fragment_home,null);
+        View view = inflater.inflate(R.layout.fragment_home, null);
         return view;
     }
 
@@ -74,14 +81,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void loadData() {
         super.loadData();
-        CPControl.GetCareerResult(callback);
+        CPControl.GetInformationCentreInfoListResult(callback);
         CPControl.GetMilesInfoResult(remoteCallback);
 
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.activity_home_iv_report:  //跳转行车报告
                 Intent mIntent = new Intent(getContext(), ReportActivity.class);
                 mIntent.putExtra("c", 0);
@@ -131,15 +138,15 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         }
     };
 
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case 0:
-                    actLoadSuccess((CareerInfo)((BaseResponseInfo) msg.obj).getValue());
+                    actLoadSuccess((BaseResponseInfo) msg.obj);
                     break;
                 case 1:
-                    actLoadError((CareerInfo)((BaseResponseInfo) msg.obj).getValue());
+                    actLoadError((BaseResponseInfo) msg.obj);
                     break;
                 case 2:
                     loadRemoteSuccess((BaseResponseInfo) msg.obj);
@@ -159,13 +166,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         mTxtAvgFuel.setText("--");
     }
 
-    protected void loadRemoteSuccess(BaseResponseInfo bInfo){
+    protected void loadRemoteSuccess(BaseResponseInfo bInfo) {
         milesInfo = (MilesInfo) (bInfo.getValue());
-        if (milesInfo!=null){
-            mTxtObd.setText(milesInfo.getObd()+"");
-            mTxtEnduranceMile.setText(milesInfo.getEnduranceMile()+"");
-            mTxtAvgSpeed.setText(milesInfo.getAvgSpeed()+"");
-            mTxtAvgFuel.setText(milesInfo.getAvgFuel()+"");
+        if (milesInfo != null) {
+            mTxtObd.setText(milesInfo.getObd() + "");
+            mTxtEnduranceMile.setText(milesInfo.getEnduranceMile() + "");
+            mTxtAvgSpeed.setText(milesInfo.getAvgSpeed() + "");
+            mTxtAvgFuel.setText(milesInfo.getAvgFuel() + "");
         }
     }
 
@@ -183,14 +190,24 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     protected void actLoadSuccess(BaseResponseInfo binfo) {
         super.actLoadSuccess(binfo);
-        CareerInfo mCareerInfo = (CareerInfo) binfo;
-
-        if (mCareerInfo != null) {
+        InformationCategoryInfoList infoList = (InformationCategoryInfoList) binfo.getValue();
+        if (infoList != null) {
             // 车秘书未读信息条数
-            String unreadmessage = mCareerInfo.getUnreadmessage();
+            String unreadmessage = infoList.getUnreadCount();
             // 车秘书最新消息内容
-            String latestmessage = mCareerInfo.getLatestmessage();
+            String latestmessage = "";
 
+            ArrayList<InformationCategoryInfo> mInformationCategoryInfos = infoList.getmAllList();
+            Collections.sort(mInformationCategoryInfos, new Comparator<InformationCategoryInfo>() {
+                @Override
+                public int compare(InformationCategoryInfo o1, InformationCategoryInfo o2) {
+                    Date date1 = new Date(Long.parseLong(o1.getMsgdate()));
+                    Date date2 = new Date(Long.parseLong(o2.getMsgdate()));
+
+                    return date2.compareTo(date1);
+                }
+            });
+            latestmessage = mInformationCategoryInfos.get(0).getLastmsg();
             if (unreadmessage != null && unreadmessage.length() > 0) {
                 if (unreadmessage.equals("0")) {
                     mTextView3.setVisibility(View.GONE);

@@ -13,7 +13,7 @@ import com.google.gson.JsonObject;
 
 public class InformationCentreInfoListParser extends BaseParser<InformationCategoryInfoList> {
 
-	private InformationCategoryInfoList mSecretaryCategoryInfoList = new InformationCategoryInfoList();
+	private InformationCategoryInfoList mSecretaryCategoryInfoList;
 
 	public InformationCentreInfoListParser(ResultCallback callback) {
 		super(callback);
@@ -21,6 +21,7 @@ public class InformationCentreInfoListParser extends BaseParser<InformationCateg
 
 	@Override
 	protected void parser() {
+		mSecretaryCategoryInfoList = new InformationCategoryInfoList();
 		try {
 			JsonObject mJSON_data = mJson.getAsJsonObject("data");
 			JsonArray mJSON_list = mJSON_data.getAsJsonArray("list");
@@ -71,7 +72,7 @@ public class InformationCentreInfoListParser extends BaseParser<InformationCateg
 				mInfo.setMsgdate(temp.get("msgdate").getAsString());
 				mSecretaryCategoryInfoList.addmAllList(mInfo);
 			}
-			mSecretaryCategoryInfoList.setUnreadCount(mJSON_data.get("unreadmessage").getAsInt());
+			mSecretaryCategoryInfoList.setUnreadCount(mJSON_data.get("unreadmessage").getAsString());
 			mBaseResponseInfo.setValue(mSecretaryCategoryInfoList);
 		} catch (Exception e) {
 			ILog.e(TAG, "--e==" + e);

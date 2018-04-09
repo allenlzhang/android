@@ -1,5 +1,7 @@
 package com.carlt.yema.data.home;
 
+import com.carlt.yema.data.BaseResponseInfo;
+
 import java.util.ArrayList;
 
 /**
@@ -10,7 +12,7 @@ public class InformationCategoryInfoList {
     private ArrayList<InformationCategoryInfo> mAllList = new ArrayList<InformationCategoryInfo>();
 
     // 未读消息个数
-    private int unreadCount;
+    private String unreadCount;
 
     public ArrayList<InformationCategoryInfo> getmAllList() {
         return mAllList;
@@ -24,11 +26,11 @@ public class InformationCategoryInfoList {
         this.mAllList.addAll(list);
     }
 
-    public int getUnreadCount() {
+    public String getUnreadCount() {
         return unreadCount;
     }
 
-    public void setUnreadCount(int unreadCount) {
+    public void setUnreadCount(String unreadCount) {
         this.unreadCount = unreadCount;
     }
 

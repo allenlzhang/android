@@ -84,7 +84,7 @@ public class InformationCentreActivity extends LoadingActivity2 {
                 }
             });
 
-            int unreadCount = mCentreInfoLists.getUnreadCount();
+            String unreadCount = mCentreInfoLists.getUnreadCount();
         }
     }
 

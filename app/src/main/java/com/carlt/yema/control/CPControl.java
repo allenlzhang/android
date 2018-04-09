@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.data.home.InformationCategoryInfoList;
 import com.carlt.yema.data.login.UserRegisterParams;
 import com.carlt.yema.data.remote.AirMainInfo;
 import com.carlt.yema.data.remote.RemoteFunInfo;
