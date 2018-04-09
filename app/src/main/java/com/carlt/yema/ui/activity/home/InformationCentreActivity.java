@@ -63,41 +63,41 @@ public class InformationCentreActivity extends LoadingActivity2 {
     @Override
     public void loadDataSuccess(Object bInfo) {
         super.loadDataSuccess(bInfo);
-            if (bInfo != null) {
-                InformationCategoryInfoList mCentreInfoLists;
-                mCentreInfoLists = (InformationCategoryInfoList) ((BaseResponseInfo)bInfo).getValue();
-                final ArrayList<InformationCategoryInfo> mList = mCentreInfoLists.getmAllList();
-                TypeAdapter mAdapter = new TypeAdapter(mList);
-                mListView.setAdapter(mAdapter);
-                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        if (bInfo != null) {
+            InformationCategoryInfoList mCentreInfoLists;
+            mCentreInfoLists = (InformationCategoryInfoList) ((BaseResponseInfo) bInfo).getValue();
+            final ArrayList<InformationCategoryInfo> mList = mCentreInfoLists.getmAllList();
+            TypeAdapter mAdapter = new TypeAdapter(mList);
+            mListView.setAdapter(mAdapter);
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        InformationCategoryInfo mInfo = mList.get(position);
-                        String title_s = mInfo.getName();
-                        int type = mInfo.getId();
-                        Intent mIntent = new Intent(InformationCentreActivity.this, RemindActivity.class);
-                        mIntent.putExtra(TIPS_TITLE, title_s);
-                        mIntent.putExtra(TIPS_TYPE, type);
-                        startActivity(mIntent);
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    InformationCategoryInfo mInfo = mList.get(position);
+                    String title_s = mInfo.getName();
+                    int type = mInfo.getId();
+                    Intent mIntent = new Intent(InformationCentreActivity.this, RemindActivity.class);
+                    mIntent.putExtra(TIPS_TITLE, title_s);
+                    mIntent.putExtra(TIPS_TYPE, type);
+                    startActivity(mIntent);
 
-                    }
-                });
+                }
+            });
 
-                int unreadCount = mCentreInfoLists.getUnreadCount();
+            int unreadCount = mCentreInfoLists.getUnreadCount();
         }
     }
 
-
-    private int count = 0;
+    @Override
+    public void reTryLoadData() {
+        super.reTryLoadData();
+        initData();
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (count > 0) {
-            initData();
-        }
-        count++;
+        initData();
     }
 
     class TypeAdapter extends BaseAdapter {
@@ -140,7 +140,7 @@ public class InformationCentreActivity extends LoadingActivity2 {
 
             line.setVisibility(View.VISIBLE);
             InformationCategoryInfo mInfo = mList.get(position);
-            if(position == mList.size() - 1){
+            if (position == mList.size() - 1) {
                 line.setVisibility(View.INVISIBLE);
             }
 

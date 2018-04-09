@@ -118,8 +118,6 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
     public void loadDataSuccess(Object bInfo) {
         mTxtName.setText(mReportDayInfo.getRealname());
         if (!mReportDayInfo.getAvatar_img().equals("")) {
-            //TODO XIAOMOU 改
-
             Glide.with(mContext).load(mReportDayInfo.getAvatar_img()).into(mImgHead);
         } else {
             mImgHead.setImageResource(R.mipmap.ic_launcher);
@@ -142,17 +140,17 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
         LogAdapter mAdapter = new LogAdapter();
         listView.setAdapter(mAdapter);
         mTxtDriveInfo.setText("今日行车" + count + "次");
-        String avgFuel=mReportDayInfo.getAvgfuel() ;
-        if(avgFuel!=null&&!avgFuel.equals("")&&!avgFuel.equals("--")){
-            mTxtAvgOil.setText(mReportDayInfo.getAvgfuel() + "L/100KM");
-        }else{
+//        String avgFuel=mReportDayInfo.getAvgfuel() ;
+//        if(avgFuel!=null&&!avgFuel.equals("")&&!avgFuel.equals("--")){
+//            mTxtAvgOil.setText(mReportDayInfo.getAvgfuel());
+//        }else{
             mTxtAvgOil.setText(mReportDayInfo.getAvgfuel());
-        }
+//        }
         mTxtOil.setText(mReportDayInfo.getSumfuel());
-        mTxtMiles.setText(mReportDayInfo.getSummiles() + "KM");
-        mTxtTime.setText(mReportDayInfo.getSumtime() + "H");
-        mTxtAvgSpeed.setText(mReportDayInfo.getAvgspeed() + "KM/H");
-        mTxtMaxSpeed.setText(mReportDayInfo.getMaxspeed() + "KM/H");
+        mTxtMiles.setText(mReportDayInfo.getSummiles());
+        mTxtTime.setText(mReportDayInfo.getSumtime());
+        mTxtAvgSpeed.setText(mReportDayInfo.getAvgspeed());
+        mTxtMaxSpeed.setText(mReportDayInfo.getMaxspeed());
     }
 
     protected void initData() {

@@ -85,7 +85,6 @@ public class ReportMonthStatisticParser extends BaseParser<MonthStatisticChartIn
 		int maxValueShow = 0;
 		float temp=(float) (maxValue/50.0);
 		maxValueShow= Math.round(temp)*50+50;
-		
 		return maxValueShow;
 	}
 

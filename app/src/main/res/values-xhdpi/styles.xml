@@ -504,6 +504,7 @@
     <style name="report_calendar_month_txt2">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/circle_orange</item>
         <item name="android:textSize">12sp</item>
         <item name="android:gravity">center</item>
     </style>

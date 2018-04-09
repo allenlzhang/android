@@ -23,7 +23,8 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score1"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle"
+                />
         </LinearLayout>
 
         <View style="@style/report_calendar_month_linev" />
@@ -39,7 +40,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score2"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
 
         <View style="@style/report_calendar_month_linev" />
@@ -55,7 +56,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score3"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
     </LinearLayout>
 
@@ -80,7 +81,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score4"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
 
         <View style="@style/report_calendar_month_linev" />
@@ -96,7 +97,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score5"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
 
         <View style="@style/report_calendar_month_linev" />
@@ -112,7 +113,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score6"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
     </LinearLayout>
 
@@ -137,7 +138,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score7"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
 
         <View style="@style/report_calendar_month_linev" />
@@ -153,7 +154,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score8"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
 
         <View style="@style/report_calendar_month_linev" />
@@ -169,7 +170,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score9"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
     </LinearLayout>
 
@@ -194,7 +195,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score10"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
 
         <View style="@style/report_calendar_month_linev" />
@@ -210,7 +211,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score11"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
 
         <View style="@style/report_calendar_month_linev" />
@@ -226,7 +227,7 @@
 
             <TextView
                 android:id="@+id/layout_calender_month_txt_score12"
-                style="@style/report_calendar_month_txt2" />
+                style="@style/report_calendar_month_circle" />
         </LinearLayout>
     </LinearLayout>
 
@@ -235,6 +236,7 @@
         style="@style/report_calendar_month_lineh"
         android:layout_below="@+id/linear_layout2" />
 
-    <include layout="@layout/loading_activity_with_title" />
+    <include layout="@layout/loading_activity_with_title"
+        />
 
 </RelativeLayout>

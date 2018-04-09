@@ -92,8 +92,8 @@
 
         <TextView
             android:id="@+id/activity_home_txt3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
             android:layout_alignTop="@id/activity_home_txt2"
             android:layout_marginTop="1dip"
             android:layout_toRightOf="@id/activity_home_txt2"
@@ -104,8 +104,6 @@
             android:paddingRight="1dp"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:minHeight="15dp"
-            android:minWidth="20dp"
             android:visibility="gone"
             />
 

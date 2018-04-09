@@ -105,6 +105,12 @@ public class RemindActivity extends LoadingActivity2 {
         super.onStart();
     }
 
+    @Override
+    public void reTryLoadData() {
+        super.reTryLoadData();
+        initData();
+    }
+
     private void initTitle() {
         initTitle(title_s);
 
@@ -492,7 +498,7 @@ public class RemindActivity extends LoadingActivity2 {
                     switch (class2) {
                         case InformationMessageInfo.C1_T4_T1:
                             mIntent4 = new Intent(RemindActivity.this, ReportActivity.class);
-                            mIntent4.putExtra("c", 2);
+                            mIntent4.putExtra("c", 0);
                             mIntent4.putExtra(ReportActivity.DAY_INITIAL, mInfo.getDate());
                             startActivity(mIntent4);
                             break;
@@ -504,7 +510,7 @@ public class RemindActivity extends LoadingActivity2 {
 //                            break;
                         case InformationMessageInfo.C1_T4_T3:
                             mIntent4 = new Intent(RemindActivity.this, ReportActivity.class);
-                            mIntent4.putExtra("c", 0);
+                            mIntent4.putExtra("c", 1);
                             mIntent4.putExtra(ReportActivity.MONTH_INITIAL, mInfo.getDate());
                             startActivity(mIntent4);
                             break;

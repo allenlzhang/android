@@ -127,7 +127,7 @@ public class GpsTrailActivity extends LoadingActivity implements
 			//报错
 		}
 
-		initTitle("轨迹回放");
+		initTitle("行车轨迹");
 		init(savedInstanceState);
 		initData();
 	}
@@ -388,7 +388,7 @@ public class GpsTrailActivity extends LoadingActivity implements
 			MarkerOptions startOpt = new MarkerOptions();
 			//TODO 行车轨迹 起点和终点icon
 			BitmapDescriptor descriptorStart = BitmapDescriptorFactory
-					.fromResource(R.drawable.gps_icon_qi);
+					.fromResource(R.drawable.gps_icon_start);
 			startOpt.icon(descriptorStart);
 			startOpt.anchor(0.5f, 1.1f);
 			startOpt.position(mStart);
@@ -406,7 +406,7 @@ public class GpsTrailActivity extends LoadingActivity implements
 
 			MarkerOptions endOpt = new MarkerOptions();
 			BitmapDescriptor descriptorEnd = BitmapDescriptorFactory
-					.fromResource(R.drawable.gps_icon_zong);
+					.fromResource(R.drawable.gps_icon_stop);
 			endOpt.icon(descriptorEnd);
 			endOpt.anchor(0.5f, 1.1f);
 			endOpt.position(mEnd);

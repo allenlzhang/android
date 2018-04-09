@@ -204,7 +204,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     mTextView3.setVisibility(View.VISIBLE);
                     if (latestmessage != null && latestmessage.length() > 0
                             && !latestmessage.equals("null")) {
-                        mTextView3.setText(unreadmessage);
                         mTextView4.setText("新消息：" + latestmessage + "");
                     } else {
                         mTextView4.setText("新消息：");

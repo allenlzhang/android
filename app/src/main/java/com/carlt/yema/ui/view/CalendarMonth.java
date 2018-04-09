@@ -85,7 +85,7 @@ public class CalendarMonth extends MenuCalendar implements OnClickListener {
         mDataTextViewList.add((TextView)child.findViewById(R.id.layout_calender_month_txt_data11));
         mDataTextViewList.add((TextView)child.findViewById(R.id.layout_calender_month_txt_data12));
 
-        mPointTextViewList = new ArrayList<TextView>();
+        mPointTextViewList = new ArrayList<>();
         mPointTextViewList.add((TextView)child.findViewById(R.id.layout_calender_month_txt_score1));
         mPointTextViewList.add((TextView)child.findViewById(R.id.layout_calender_month_txt_score2));
         mPointTextViewList.add((TextView)child.findViewById(R.id.layout_calender_month_txt_score3));
@@ -147,20 +147,21 @@ public class CalendarMonth extends MenuCalendar implements OnClickListener {
                     for (int i = 0; i < 12; i++) {
 
                         mDataTextViewList.get(i).setTextColor(color2);
-                        mPointTextViewList.get(i).setText("");
+                        mPointTextViewList.get(i).setVisibility(View.INVISIBLE);
                     }
                     for (int i = 0; i < mlist.size(); i++) {
                         ReportCalendarMonthInfo info = mlist.get(i);
                         int key = Integer.parseInt(info.getDate());
-                        String ponit = info.getAvgpoint();
-
-                        if (ponit.equals("0")) {
-                            mPointTextViewList.get(key - 1).setText("--");
-
-                        } else {
-                            mPointTextViewList.get(key - 1).setText(ponit + "分");
-                        }
-                        mPointTextViewList.get(key - 1).setTextColor(info.getPointColor());
+//                        String ponit = info.getAvgpoint();
+//
+//                        if (ponit.equals("0")) {
+//                            mPointTextViewList.get(key - 1).setText("--");
+//
+//                        } else {
+//                            mPointTextViewList.get(key - 1).setText(ponit + "分");
+//                        }
+//                        mPointTextViewList.get(key - 1).setTextColor(info.getPointColor());
+                        mPointTextViewList.get(key - 1).setVisibility(View.VISIBLE);
                         mDataTextViewList.get(key - 1).setTextColor(color1);
                     }
 

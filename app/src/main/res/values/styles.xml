@@ -193,11 +193,12 @@
         <item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="report_calendar_month_txt2">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:gravity">center</item>
+    <style name="report_calendar_month_circle">
+        <item name="android:layout_width">5dp</item>
+        <item name="android:layout_height">5dp</item>
+        <item name="android:background">@drawable/circle_green</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:layout_marginTop">4dp</item>
     </style>
 
     <style name="report_calendar_month_linev">
