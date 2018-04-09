@@ -121,21 +121,21 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
         contact_us_phone=parent.findViewById(R.id.contact_us_phone);
         tx_person_name=parent.findViewById(R.id.tx_person_name);
         avatar=parent.findViewById(R.id.avatar);
+    }
+
+    @Override
+    public void onResume() {
         try {
             cache_size.setText(CacheUtils.getTotalCacheSize(this.getActivity()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (!TextUtils.isEmpty(LoginInfo.getRealname())) {
-            tx_person_name.setText(LoginInfo.getRealname());
-        }
 
-    }
-
-    @Override
-    public void onResume() {
         if (!TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
             Glide.with(this.getActivity()).load(LoginInfo.getAvatar_img()).into(avatar);
+        }
+        if (!TextUtils.isEmpty(LoginInfo.getRealname())) {
+            tx_person_name.setText(LoginInfo.getRealname());
         }
         super.onResume();
     }

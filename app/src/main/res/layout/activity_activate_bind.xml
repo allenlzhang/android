@@ -35,7 +35,7 @@
         android:id="@+id/activate_commit"
         style="@style/public_bottom_btn"
         android:layout_height="44dp"
-        android:text="@string/device_bind_tx"
+        android:text="@string/device_activate_tx"
         android:layout_marginTop="75dip"
         android:layout_marginLeft="12dip"
         android:textColor="@color/black"

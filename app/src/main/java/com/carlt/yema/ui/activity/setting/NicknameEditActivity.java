@@ -30,7 +30,7 @@ public class NicknameEditActivity extends LoadingActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nickname_edit);
         initComponent();
-        setTitle("修改昵称");
+        initTitle("修改昵称");
     }
 
     private void initComponent(){

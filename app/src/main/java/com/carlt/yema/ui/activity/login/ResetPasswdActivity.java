@@ -4,16 +4,15 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
@@ -40,8 +39,8 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
     private EditText change_passwd_again_et;//再次输入
 
     private ImageView back;//返回按钮
-    private CheckedTextView change_passwd_toggle;//显示&隐藏密码按钮
-    private CheckedTextView change_passwd_again_toggle;//显示&隐藏密码按钮
+    private ImageView change_passwd_toggle;//显示&隐藏密码按钮
+    private ImageView change_passwd_again_toggle;//显示&隐藏密码按钮
 
     private TextView bt_verification_send;//发送验证码按钮
     private TextView titleText;//页面标题
@@ -74,18 +73,19 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
         bt_verification_send=findViewById(R.id.bt_verification_send);
         bt_verification_send.setOnClickListener(this);
 
+        change_passwd_commit=findViewById(R.id.change_passwd_commit);
+        change_passwd_commit.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.change_passwd_toggle:
-                change_passwd_toggle.toggle();
-                passwdInputToggle();
+                ActivityControl.passwdToggle(this,change_passwd_et,change_passwd_toggle,view.getTag().toString());
                 break;
             case R.id.change_passwd_again_toggle:
-                change_passwd_again_toggle.toggle();
-                passwdInputAgainToggle();
+                ActivityControl.passwdToggle(this,change_passwd_again_et,change_passwd_again_toggle,view.getTag().toString());
                 break;
             case R.id.bt_verification_send:
                 String cellPhone = forget_passwd_phone_et.getText().toString();
@@ -174,10 +174,10 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
                     }
                     UseInfo mUseInfo = UseInfoLocal.getUseInfo();
                     mUseInfo.setAccount(forget_passwd_phone_et.getText().toString());
-                    mUseInfo.setPassword(mBaseResponseInfo.getValue().toString());
+                    mUseInfo.setPassword(change_passwd_again_et.getText().toString());
                     UseInfoLocal.setUseInfo(mUseInfo);
 
-                    UUToast.showUUToast(ResetPasswdActivity.this, "注册成功！");
+                    UUToast.showUUToast(ResetPasswdActivity.this, "密码找回成功！");
                     LoginInfo.setPin(forget_passwd_phone_et.getText().toString(), "");
                     LoginControl.logic(ResetPasswdActivity.this);
                     finish();
@@ -187,8 +187,7 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
                         mDialog.dismiss();
                     }
                     mBaseResponseInfo = (BaseResponseInfo)msg.obj;
-                    UUToast.showUUToast(ResetPasswdActivity.this, "不好意思，注册失败，请稍候再试:"
-                            + mBaseResponseInfo.getInfo());
+                    UUToast.showUUToast(ResetPasswdActivity.this,  mBaseResponseInfo.getInfo());
                     break;
                 case 10:
                     count--;
@@ -254,23 +253,7 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
         params.put("newpassword",againPasswd);
         parser.executePost(URLConfig.getM_PASSWORD_RETRIEVE(),params);
     }
-    
-    private void passwdInputToggle() {
 
-        if (change_passwd_toggle.isChecked()) {
-            change_passwd_et.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        } else {
-            change_passwd_et.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        }
-    }
-
-    private void passwdInputAgainToggle() {
-        if (change_passwd_again_toggle.isChecked()) {
-            change_passwd_again_et.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        } else {
-            change_passwd_again_et.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        }
-    }
 
     private boolean isCommitInvalid(String phone, String vcode, String passwd, String passwdAgain) {
         if (TextUtils.isEmpty(phone) || !StringUtils.checkCellphone(phone)) {

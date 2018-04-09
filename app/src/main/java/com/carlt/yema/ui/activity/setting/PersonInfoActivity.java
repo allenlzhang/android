@@ -30,7 +30,7 @@ import java.util.List;
  */
 
 public class PersonInfoActivity extends BaseActivity implements View.OnClickListener {
-    private static final String TAG="PersonInfoActivity";
+    private static final String TAG = "PersonInfoActivity";
 
     private ImageView back;
     private TextView title;
@@ -72,7 +72,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
         usr_avatar = findViewById(R.id.usr_avatar);
         person_sex_txt = findViewById(R.id.person_sex_txt);
         person_nickname_txt = findViewById(R.id.person_nickname_txt);
-        if (!TextUtils.isEmpty(LoginInfo.getRealname())){
+        if (!TextUtils.isEmpty(LoginInfo.getRealname())) {
             person_nickname_txt.setText(LoginInfo.getRealname());
         }
         initSexSelector();
@@ -86,7 +86,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void onResume() {
-        if (!TextUtils.isEmpty(LoginInfo.getGender())){
+        if (!TextUtils.isEmpty(LoginInfo.getGender())) {
             if (LoginInfo.getGender().equals("1")) {
                 person_sex_txt.setText("男");
             } else if (LoginInfo.getGender().equals("2")) {
@@ -133,15 +133,15 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data==null)return;
+        if (data == null) return;
         if (requestCode == 0) {
-            if ( !TextUtils.isEmpty(data.getStringExtra("nickName"))) {
+            if (!TextUtils.isEmpty(data.getStringExtra("nickName"))) {
                 person_nickname_txt.setText(data.getStringExtra("nickName"));
             }
         } else {
-            if (!TextUtils.isEmpty(data.getStringExtra("imageId"))&&!data.getStringExtra("imageId").equals(-1)) {
-                HashMap<String,String> params=new HashMap<>();
-                params.put("avatar",data.getStringExtra("imageId"));
+            if (!TextUtils.isEmpty(data.getStringExtra("imageId")) && !data.getStringExtra("imageId").equals(-1)) {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("avatar", data.getStringExtra("imageId"));
                 chanageInfoRequest(params);
             }
         }
@@ -155,8 +155,12 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 String tx = sexList.get(options1);
-                HashMap<String,String> params=new HashMap<>();
-                params.put("gender",tx);
+                String sexFlag = "";
+                if (tx.equals("男")) sexFlag = "1";
+                else if (tx.equals("女")) sexFlag = "2";
+                else sexFlag = "3";
+                HashMap<String, String> params = new HashMap<>();
+                params.put("gender", sexFlag);
                 chanageInfoRequest(params);
                 gender = tx;
             }
@@ -211,7 +215,9 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(PersonInfoActivity.this, "资料修改失败");
+            if (bInfo != null && !TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(PersonInfoActivity.this, bInfo.getInfo());
+            }
         }
     };
 

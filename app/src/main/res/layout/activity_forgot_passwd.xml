@@ -63,17 +63,14 @@
             android:inputType="textPassword"
             android:maxLength="11" />
 
-        <CheckedTextView
+        <ImageView
             android:id="@+id/change_passwd_toggle"
             android:layout_width="25dp"
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
             android:layout_height="25dp"
-            android:tag="on"
-            android:filterTouchesWhenObscured="true"
-            android:focusableInTouchMode="true"
-            android:checked="false"
-            android:checkMark="@drawable/passwd_show_bg"
+            android:tag="off"
+            android:src="@mipmap/passwd_off"
             />
     </LinearLayout>
     <LinearLayout
@@ -95,17 +92,14 @@
             android:inputType="textPassword"
             android:maxLength="11" />
 
-        <CheckedTextView
+        <ImageView
             android:id="@+id/change_passwd_again_toggle"
             android:layout_width="25dp"
             android:layout_marginRight="10dip"
             android:layout_gravity="center_vertical"
             android:layout_height="25dp"
-            android:filterTouchesWhenObscured="true"
-            android:focusableInTouchMode="true"
-            android:tag="on"
-            android:checked="false"
-            android:checkMark="@drawable/passwd_show_bg"
+            android:tag="off"
+            android:src="@mipmap/passwd_off"
            />
     </LinearLayout>
 

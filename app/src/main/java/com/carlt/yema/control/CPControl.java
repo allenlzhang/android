@@ -10,7 +10,6 @@ import com.carlt.yema.data.login.UserRegisterParams;
 import com.carlt.yema.data.remote.AirMainInfo;
 import com.carlt.yema.data.remote.RemoteFunInfo;
 import com.carlt.yema.data.set.ModifyCarInfo;
-import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
@@ -259,7 +258,7 @@ public class CPControl {
 		// Post参数
 		HashMap<String, String> params = new HashMap<>();
 		params.put("mobile", phoneNum);
-		params.put("type", "1");
+		params.put("type", "2");
 		params.put("voiceVerify", voiceVerify);
 		DefaultStringParser mParser = new DefaultStringParser(listener);
 		mParser.executePost(url, params);
