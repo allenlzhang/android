@@ -63,7 +63,7 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
         remote_passwd_reset.setOnClickListener(this);
         btn_remote_no_passwd_ctr=$ViewByID(R.id.btn_remote_no_passwd_ctr);
         btn_remote_no_passwd_ctr.setOnCheckedChangeListener(this);
-
+        btn_remote_no_passwd_ctr.setOnClickListener(this);
         verified_phone=$ViewByID(R.id.verified_phone);
 
 
@@ -79,6 +79,7 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
             }
 
         }
+        btn_remote_no_passwd_ctr.setChecked(LoginInfo.isNoneedpsw());
         super.onResume();
     }
 
@@ -100,6 +101,9 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
                 Intent remoteReset=new Intent(this,RemotePasswdManageActivity.class);
                 startActivity(remoteReset);
                 break;
+            case R.id.btn_remote_no_passwd_ctr:
+                UUToast.showUUToast(AccountSecurityActivity.this, "设置成功！");
+                break;
         }
 //        finish();
     }
@@ -111,7 +115,6 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
         } else {
             LoginInfo.setNoneedpsw(false);
         }
-        UUToast.showUUToast(this,"设置成功");
     }
 
     private void noPasswdRequest(String lesspwd_switch){
