@@ -41,7 +41,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
 
 
     private String carDate;
-
+    private String mileage;
 
 
     @Override
@@ -119,7 +119,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         }
     }
 
-    private void modifyCarInfoRequest(HashMap<String,String> params,ResultCallback modifyCallback) {
+    private void modifyCarInfoRequest(HashMap<String, String> params, ResultCallback modifyCallback) {
         DefaultStringParser parser = new DefaultStringParser(modifyCallback);
         parser.executePost(URLConfig.getM_CAR_MODIFY(), params);
     }
@@ -127,53 +127,69 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
     private ResultCallback purchaseCallback = new ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
+            UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改成功");
             purchase_time_txt.setText(carDate);
             LoginInfo.setBuydate(carDate);
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改失败");
+            if (!TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(CarManagerActivity.this, bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改失败");
+            }
         }
     };
     private ResultCallback maintenCallback = new ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
+            UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改成功");
             maintenance_time_txt.setText(carDate);
             LoginInfo.setMainten_time(carDate);
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改失败");
+            if (!TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(CarManagerActivity.this, bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改失败");
+            }
         }
     };
     private ResultCallback nspectionCallback = new ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
+            UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改成功");
             nspection_time_txt.setText(carDate);
             LoginInfo.setRegister_time(carDate);
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改失败");
+            if (!TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(CarManagerActivity.this, bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改失败");
+            }
         }
     };
     private ResultCallback insuredCallback = new ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改成功");
+            UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改成功");
             insured_time_txt.setText(carDate);
             LoginInfo.setInsurance_time(carDate);
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(CarManagerActivity.this,"车辆信息修改失败");
+            if (!TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(CarManagerActivity.this, bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改失败");
+            }
         }
     };
 
@@ -198,28 +214,28 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         pvCustomTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
-                HashMap<String,String> params=null;
-                carDate=getTime(date);
+                HashMap<String, String> params = null;
+                carDate = getTime(date);
                 switch (v.getId()) {
                     case R.id.purchase_time_txt:
-                        params=new HashMap<>();
-                        params.put("buydate",carDate);
-                        modifyCarInfoRequest(params,purchaseCallback);
+                        params = new HashMap<>();
+                        params.put("buydate", carDate);
+                        modifyCarInfoRequest(params, purchaseCallback);
                         break;
                     case R.id.maintenance_time_txt:
-                        params=new HashMap<>();
-                        params.put("mainten_date",carDate);
-                        modifyCarInfoRequest(params,maintenCallback);
+                        params = new HashMap<>();
+                        params.put("mainten_date", carDate);
+                        modifyCarInfoRequest(params, maintenCallback);
                         break;
                     case R.id.insured_time_txt:
-                        params=new HashMap<>();
-                        params.put("insurance_date",carDate);
-                        modifyCarInfoRequest(params,insuredCallback);
+                        params = new HashMap<>();
+                        params.put("insurance_time", carDate);
+                        modifyCarInfoRequest(params, insuredCallback);
                         break;
                     case R.id.nspection_time_txt:
-                        params=new HashMap<>();
-                        params.put("register_date",carDate);
-                        modifyCarInfoRequest(params,nspectionCallback);
+                        params = new HashMap<>();
+                        params.put("register_time", carDate);
+                        modifyCarInfoRequest(params, nspectionCallback);
                         break;
                 }
             }
@@ -281,11 +297,31 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            String mileage = data.getStringExtra("mileage");
+            mileage = data.getStringExtra("mileage");
             if (!TextUtils.isEmpty(mileage)) {
-                maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), Integer.parseInt(mileage)));
+                HashMap<String, String> params = new HashMap<>();
+                params.put("mainten_miles", mileage);
+                modifyCarInfoRequest(params, maintenmilesCallback);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    private ResultCallback maintenmilesCallback = new ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改成功");
+            maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), Integer.parseInt(mileage)));
+            LoginInfo.setMainten_miles(mileage);
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            if (!TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(CarManagerActivity.this, bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(CarManagerActivity.this, "车辆信息修改失败");
+            }
+        }
+    };
 }

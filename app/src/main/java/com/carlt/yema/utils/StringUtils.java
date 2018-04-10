@@ -16,6 +16,7 @@
 package com.carlt.yema.utils;
 
 import android.net.TrafficStats;
+import android.text.TextUtils;
 
 import com.carlt.yema.YemaApplication;
 
@@ -66,9 +67,12 @@ public class StringUtils {
      * @return
      */
     public static boolean checkCellphone(String cellphone) {
-        Pattern pattern = Pattern.compile("^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\\d{8}$");
-        Matcher matcher = pattern.matcher(cellphone);
-        return matcher.matches();
+        if (!TextUtils.isEmpty(cellphone)&&cellphone.length()==11) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     /**

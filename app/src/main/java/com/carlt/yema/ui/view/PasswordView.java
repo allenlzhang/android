@@ -22,6 +22,7 @@ import com.carlt.yema.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 /**
  * Created by Arron on 2016/11/21 0021.
  * 密码输入框
@@ -222,7 +223,7 @@ public class PasswordView extends View {
                         return true;
                     }
                     String addText = add((keyCode - 7) + "");
-                    if (passwordListener != null && !TextUtils.isEmpty(addText)) {
+                    if (passwordListener != null && !TextUtils.isEmpty(addText)&&isNumeric(addText)) {
                         passwordListener.passwordChange(addText);
                     }
                     postInvalidate();
@@ -313,7 +314,7 @@ public class PasswordView extends View {
 
         //根据输入的密码位数，进行for循环绘制
         for (int i = 0; i < password.length; i++) {
-            if (!TextUtils.isEmpty(password[i])) {
+            if (!TextUtils.isEmpty(password[i])&&isNumeric(password[i])) {
                 // x = paddingLeft + 单个密码框大小/2 + ( 密码框大小 + 密码框间距 ) * i
                 // y = paddingTop + 文字居中所需偏移量
                 if (cipherEnable) {
@@ -329,6 +330,18 @@ public class PasswordView extends View {
                 }
             }
         }
+    }
+    /**
+     * 判断字符串是否为数字
+     *
+     * */
+    public static boolean isNumeric(String str){
+        for(int i=str.length();--i>=0;){
+            int chr=str.charAt(i);
+            if(chr<48 || chr>57)
+                return false;
+        }
+        return true;
     }
 
     /**
