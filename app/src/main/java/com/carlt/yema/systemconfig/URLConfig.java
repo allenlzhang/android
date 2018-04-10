@@ -49,7 +49,7 @@ public class URLConfig {
 
                 case VERSION_PREPARE:
                     // 预发布服
-                    url = U1_YEMA_TEST + version + s;
+                    url = U1_YEMA_PRE + version + s;
                     break;
                 case VERSION_TEST:
                     // 测试服

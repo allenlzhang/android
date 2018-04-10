@@ -28,9 +28,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MessageReceiver extends XGPushBaseReceiver {
-    private Intent intent = new Intent("com.qq.xgdemo.activity.UPDATE_LISTVIEW");
-
-    public static final String LogTag = "TPushReceiver";
 
     // 通知展示
     @Override

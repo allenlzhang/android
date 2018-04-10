@@ -43,6 +43,8 @@ import com.carlt.yema.ui.view.RemoteGridControl;
 import com.carlt.yema.ui.view.UUAirConditionDialog;
 import com.carlt.yema.ui.view.UUDialogRemote;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.ui.view.UUToastOpt;
+import com.carlt.yema.ui.view.UUToastOptError;
 import com.carlt.yema.utils.ILog;
 import com.carlt.yema.utils.MyParse;
 
@@ -442,7 +444,8 @@ public class RemoteMainFragment extends BaseFragment implements
                     if (uuDialogRemote != null && uuDialogRemote.isShowing()) {
                         uuDialogRemote.dismiss();
                     }
-                    UUToast.showUUToast(getActivity(), "操作成功");
+//                    UUToast.showUUToast(getActivity(), "操作成功");
+                    UUToastOpt.showUUToast(getActivity(), "操作成功");
                     break;
 
                 case 1:
@@ -453,10 +456,9 @@ public class RemoteMainFragment extends BaseFragment implements
                     BaseResponseInfo mInfo1 = (BaseResponseInfo) msg.obj;
                     if (mInfo1 != null) {
                         if (mInfo1.getFlag() == 1020) {
-                            UUToast.showUUToast(getActivity(), "硬件升级提示");
+                            UUToastOptError.showUUToast(getActivity(), "硬件升级提示");
                         } else {
-                            UUToast.showUUToast(getActivity(),
-                                    mInfo1.getInfo());
+                            UUToastOptError.showUUToast(getActivity(), mInfo1.getInfo());
                         }
                     }
                     break;
