@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,15 +12,9 @@ import android.widget.TextView;
 import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
-import com.carlt.yema.control.ActivityControl;
-import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
-import com.carlt.yema.data.UseInfo;
-import com.carlt.yema.model.LoginInfo;
-import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
-import com.carlt.yema.protocolparser.LoginInfoParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.PopBoxCreat.DialogWithTitleClick;
@@ -45,19 +38,6 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
 
     private int ActivateCount;
 
-    public final static String CLASS_DEVICE_REBIND = "com.hz17car.zotye.ui.activity.setting.ManageReBindActivity";// 重新绑定
-
-    private String fromName;// 纪录从何处跳转的
-
-    private long isOnlineTime = 1000 * 3;
-
-    private long delayedTime = 1000 * 3;
-
-    private long gapTime = 1000 * 1;
-
-    private int times = 0;// 拉取次数
-
-    private boolean isCheckThreadRun = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +66,7 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (R.id.back) {
+        switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
@@ -143,12 +123,6 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
             Intent intent=new Intent(ActivateBindActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-//            if (mDialog != null) {
-//                mDialog.goneWatch();
-//                mDialog.setTitleText("提示");
-//                mDialog.setContentText("野马设备正在更新配置，这个过程大约需要半分钟，请耐心等待");
-//            }
-
         }
 
         @Override
@@ -160,7 +134,7 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
             } else {
                 errorSwitch(bInfo);
             }
-           
+
         }
     };
 
@@ -211,70 +185,10 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
-    /**
-     *
-     */
-    private void reLogin() {
-        if (times < 2) {
-            UseInfo mUseInfo = UseInfoLocal.getUseInfo();
-            String account = mUseInfo.getAccount();
-            String password = mUseInfo.getPassword();
-            HashMap<String,String> params=new HashMap<>();
-            LoginInfoParser parser=new LoginInfoParser(new BaseParser.ResultCallback() {
-                @Override
-                public void onSuccess(BaseResponseInfo bInfo) {
-                    UUToast.showUUToast(ActivateBindActivity.this, "野马设备已成功激活");
-                    LoginInfo.setDeviceActivate(true);
-                    LoginControl.logic(ActivateBindActivity.this);
-                    finish();
-                }
-
-                @Override
-                public void onError(BaseResponseInfo bInfo) {
-                    reLogin();
-                }
-            });
-            parser.executePost(URLConfig.getM_LOGIN_URL(),params);
-        } else {
-            UUToast.showUUToast(ActivateBindActivity.this, "野马设备已成功激活");
-            LoginControl.logic(ActivateBindActivity.this);
-            finish();
-        }
-        times++;
-    }
-
-    private void back() {
-        if (fromName != null) {
-
-            if (!TextUtils.isEmpty(fromName)
-                    && fromName.equals(CLASS_DEVICE_REBIND)) {
-
-                ActivityControl.onLogout(this);
-            } else {
-
-                if ("1".equals(LoginInfo.getDevicetype())) {// 更换设备登陆进来的
-                    Intent mIntent = new Intent(ActivateBindActivity.this,
-                            UserLoginActivity.class);
-                    startActivity(mIntent);
-                    finish();
-                } else {
-//                    // 跳转至选车型输入序列号二合一页面
-//                    // LoginInfo.setInstallorder(true);
-//                    Intent mIntent = new Intent(ActivateActivity.this,
-//                            TwoDemisonCodeActivity.class);
-//                    mIntent.putExtra(TwoDemisonCodeActivity.FROM_NAME,
-//                            ActivateActivity.this.getClass().getName());
-//                    startActivity(mIntent);
-//                    finish();
-                }
-            }
-        }
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            back();
             finish();
             return true;
         }

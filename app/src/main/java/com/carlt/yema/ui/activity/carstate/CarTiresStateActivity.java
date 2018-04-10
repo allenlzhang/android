@@ -13,6 +13,7 @@ import com.carlt.yema.data.remote.RemoteDirectPressureInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
+import com.carlt.yema.utils.MyTimeUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 胎压检测
+ *胎压监测
  */
 public class CarTiresStateActivity extends LoadingActivity {
 
@@ -92,8 +93,12 @@ public class CarTiresStateActivity extends LoadingActivity {
         }
     }
 
+
+
     private void showData(List<RemoteDirectPressureInfo> remoteDirectPressureInfos) {
-        subHeadTxt.setText("胎压胎温正常");
+        String nowTimes = MyTimeUtils.formatDateMills(System.currentTimeMillis());
+
+        subHeadTxt.setText("胎压胎温正常。 \n" + nowTimes);
         // 胎压状态，1：正常；0：异常
         for (int i = 0; i < remoteDirectPressureInfos.size(); i++) {
             int pressure_status = remoteDirectPressureInfos.get(i).getPressure_status();
@@ -118,7 +123,7 @@ public class CarTiresStateActivity extends LoadingActivity {
 
             //检测是否正常
             if (pressure_status != 1) {
-                subHeadTxt.setText("胎压异常!请及时查看!");
+                subHeadTxt.setText("胎压异常!请及时查看! \n" + nowTimes);
                 //四个轮胎
                 if (i == 0) {   //左前
                     tirePressureLay0.setBackgroundResource(R.drawable.tire_err);

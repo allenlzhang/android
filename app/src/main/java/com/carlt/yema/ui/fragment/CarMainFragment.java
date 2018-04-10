@@ -166,7 +166,7 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
     public void onClick(View view) {
 
         switch (view.getId()) {
-            case R.id.car_main_txt_tire://胎压检测
+            case R.id.car_main_txt_tire://胎压监测
                 Intent mIntent = new Intent(getActivity(), CarTiresStateActivity.class);
                 startActivity(mIntent);
                 break;

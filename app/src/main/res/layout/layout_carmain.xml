@@ -171,7 +171,7 @@
             android:drawablePadding="6dip"
             android:drawableTop="@drawable/tire_car_main_selecter"
             android:clickable="true"
-            android:text="胎压检测" />
+            android:text="胎压监测" />
 
         <TextView
             android:id="@+id/car_main_txt_findcar"

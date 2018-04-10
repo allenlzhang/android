@@ -126,9 +126,6 @@ public class URLConfig {
 
     // 删除车秘书消息
     private static String M_SECRETARY_DELETE_URL_NEW = "life/deleteMessage";
-    //安防信息
-    private static String M_SECRETARY_SECURITY_MSG = "life/securityMessage";
-
     // 获取大迈车系（针对车款列表-二级列表）
     private static String M_OPTIONLIST_URL = "comm/getDomyOptionList";
 
@@ -364,9 +361,6 @@ public class URLConfig {
         return getYemaURL(M_SECRETARY_DELETE_URL_NEW);
     }
 
-    public static String getM_SECRETARY_MESSAGE_URL() {
-        return getYemaURL(M_SECRETARY_SECURITY_MSG);
-    }
     public static String getM_SAFE_SETREMOTEPWD_URL() {
         return getYemaURL(M_SAFE_SETREMOTEPWD_URL);
     }

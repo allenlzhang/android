@@ -97,10 +97,10 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.change_passwd_toggle:
+            case R.id.register_passwd_toggle:
                 ActivityControl.passwdToggle(this,register_passwd_et,register_passwd_toggle,view.getTag().toString());
                 break;
-            case R.id.change_passwd_again_toggle:
+            case R.id.register_passwd_again_toggle:
                 ActivityControl.passwdToggle(this,register_passwd_again_et,register_passwd_again_toggle,view.getTag().toString());
                 break;
             case R.id.register_verification_send:

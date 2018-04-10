@@ -71,9 +71,9 @@ public class CarSaftyAdapter extends BaseAdapter {
                 case InformationMessageInfo.C1_T2_T1:
                     viewHolder.mImg.setImageResource(R.drawable.icon_shake);
                     break;
-                case InformationMessageInfo.C1_T2_T2:
-                    viewHolder.mImg.setImageResource(R.drawable.icon_collision_alarm);
-                    break;
+//                case InformationMessageInfo.C1_T2_T2:
+//                    viewHolder.mImg.setImageResource(R.drawable.icon_collision_alarm);
+//                    break;
                 case InformationMessageInfo.C1_T2_T3:
                     viewHolder.mImg.setImageResource(R.drawable.icon_tire_pressure);
                     break;
@@ -94,6 +94,12 @@ public class CarSaftyAdapter extends BaseAdapter {
                     break;
                 case InformationMessageInfo.C1_T2_T9:
                     viewHolder.mImg.setImageResource(R.drawable.icon_flameout);
+                    break;
+                case InformationMessageInfo.C1_T2_T10:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_collision_alarm);
+                    break;
+                default:
+                    viewHolder.mImg.setImageResource(R.drawable.icon_security_warning);
                     break;
             }
         }

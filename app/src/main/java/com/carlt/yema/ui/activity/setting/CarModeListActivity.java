@@ -2,6 +2,7 @@ package com.carlt.yema.ui.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -27,10 +28,10 @@ public class CarModeListActivity extends LoadingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_mode_list);
+        intent=getIntent();
         loadingDataUI();
         initComponent();
         initData();
-        intent=getIntent();
     }
 
     /**
@@ -48,6 +49,10 @@ public class CarModeListActivity extends LoadingActivity {
                 intentType.putExtra("optionid",mCarModeInfo.getId());
                 if (intent!=null) {
                     intentType.putExtra("switch",intent.getBooleanExtra("switch",false));//标记从车辆管理界面跳转
+                    String vinCode=intent.getStringExtra("vin");
+                    if (!TextUtils.isEmpty(vinCode)) {
+                        intentType.putExtra("vin",vinCode);
+                    }
                 }
                 CarModeListActivity.this.startActivity(intentType);
             }
@@ -86,5 +91,11 @@ public class CarModeListActivity extends LoadingActivity {
     public void reTryLoadData() {
         super.reTryLoadData();
         initData();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
 }

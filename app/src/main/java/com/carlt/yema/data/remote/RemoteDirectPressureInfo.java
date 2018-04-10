@@ -1,7 +1,7 @@
 package com.carlt.yema.data.remote;
 
 /**
- * 直接式胎压检测 返回
+ * 直接式胎压监测 返回
  * Created by liu on 2018/3/30.
  *    "pressure_status":1,
  "pressure_value":250,
