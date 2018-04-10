@@ -61,7 +61,9 @@ public class CarSaftyListActivity extends LoadingActivity {
 
     private void initData() {
         DefaultStringParser parser = new DefaultStringParser(mCallback);
-        parser.executePost(URLConfig.getM_SECRETARY_MESSAGE_URL(),new HashMap());
+        HashMap map = new HashMap();
+        map.put("class1","21");
+        parser.executePost(URLConfig.getM_SAFETY_MESSAGE_URL(),map);
     }
 
     @Override

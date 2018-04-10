@@ -51,6 +51,7 @@ public class InformationMessageInfo {
 	public final static int C1_T2_T7 = 2107;// 2107 拖车提醒
 	public final static int C1_T2_T8 = 2108;// 2108 防盗报警提醒
 	public final static int C1_T2_T9 = 2109;// 2108 熄火提醒
+	public final static int C1_T2_T10 = 2110;// 2108 碰撞提醒
 
 	public final static int C1_T3_T1 = 3101;// 3101 奖品
 	public final static int C1_T3_T2 = 3102;// 3102 活动
