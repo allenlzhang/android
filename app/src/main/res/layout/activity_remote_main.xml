@@ -113,7 +113,7 @@
         android:layout_below="@id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#aa000000"
+        android:background="#dd000000"
         android:visibility="gone"
         >
         <com.carlt.yema.ui.view.MyGridView

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.UseInfo;
@@ -292,7 +293,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         mUseInfo.setAccount(userPhone);
         mUseInfo.setPassword(passwd);
         UseInfoLocal.setUseInfo(mUseInfo);
-
+        ActivityControl.initXG();
         //业务代码，为了测试暂时注释掉
         LoginControl.logic(this);
     }

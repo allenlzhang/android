@@ -1,10 +1,13 @@
 package com.carlt.yema.control;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -12,11 +15,17 @@ import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.data.UseInfo;
+import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.TokenInfo;
 import com.carlt.yema.preference.UseInfoLocal;
+import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.PopBoxCreat.DialogWithTitleClick;
+import com.tencent.android.tpush.XGBasicPushNotificationBuilder;
+import com.tencent.android.tpush.XGPushConfig;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.service.XGPushServiceV3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,70 +69,68 @@ public class ActivityControl {
 	 */
 	public static void initXG() {
 
-//		Context mContext = YemaApplication.getInstanse();
-//		// 新建自定义样式
-//		XGBasicPushNotificationBuilder build = new XGBasicPushNotificationBuilder();
-//		// 设置自定义样式属性，该属性对对应的编号生效，指定后不能修改。
-//		build.setIcon(R.drawable.ic_launcher);
-//		// 设置声音
-//		build.setSound(RingtoneManager.getActualDefaultRingtoneUri(mContext,
-//				RingtoneManager.TYPE_ALARM));
-//		// 振动
-//		build.setDefaults(Notification.DEFAULT_VIBRATE);
-//		// 是否可清除
-//		build.setFlags(Notification.FLAG_AUTO_CANCEL);
-//
-//		XGPushConfig.enableDebug(mContext, true);
-//		Log.e("info", "userId====" + LoginInfo.getUseId());
-//		if (YemaApplication.Formal_Version) {
-//			XGPushManager.registerPush(mContext, LoginInfo.getUseId());
-//			// 设置通知样式，样式编号为2，即build_id为2，可通过后台脚本指定
-//			XGPushManager.setPushNotificationBuilder(mContext, 2, build);
-//			XGPushManager.setTag(mContext, LoginInfo.getDealerId());
-//			if (LoginInfo.getPush_prizeinfo_flag() == 1) {
-//				XGPushManager.setTag(mContext, LoginInfo.getDealerId() + "_31");
-//			}
-//		} else {
-//			switch (URLConfig.flag) {
-//			case URLConfig.VERSION_FORMAL:
-//				// 正式服
-//				XGPushManager.registerPush(mContext, LoginInfo.getUseId());
-//				XGPushManager.setPushNotificationBuilder(mContext, 2, build);
-//				XGPushManager.setTag(mContext, LoginInfo.getDealerId());
-//				if (LoginInfo.getPush_prizeinfo_flag() == 1) {
-//					XGPushManager.setTag(mContext, LoginInfo.getDealerId()
-//							+ "_31");
-//				}
-//				break;
-//			case URLConfig.VERSION_PREPARE:
-//				// 预发布服
-//				XGPushManager.registerPush(mContext, LoginInfo.getUseId());
-//				XGPushManager.setPushNotificationBuilder(mContext, 2, build);
-//				XGPushManager.setTag(mContext, LoginInfo.getDealerId());
-//				if (LoginInfo.getPush_prizeinfo_flag() == 1) {
-//					XGPushManager.setTag(mContext, LoginInfo.getDealerId()
-//							+ "_31");
-//				}
-//				break;
-//			case URLConfig.VERSION_TEST:
-//				// 测试服
-//				XGPushManager.registerPush(mContext,
-//						"t_" + LoginInfo.getUseId());
-//				// XGPushManager.registerPush(this, "t_" +
-//				// LoginInfo.getToken());
-//				Log.e("info", "LoginInfo.getToken()==" + LoginInfo.getToken());
-//
-//				XGPushManager.setPushNotificationBuilder(mContext, 2, build);
-//				XGPushManager.setTag(mContext, "t_" + LoginInfo.getDealerId());
-//				if (LoginInfo.getPush_prizeinfo_flag() == 1) {
-//					XGPushManager.setTag(mContext,
-//							"t_" + LoginInfo.getDealerId() + "_31");
-//				}
-//				break;
-//			}
-//		}
-//		Intent service = new Intent(mContext, XGPushServiceV3.class);
-//		mContext.startService(service);
+		Context mContext = YemaApplication.getInstanse();
+		// 新建自定义样式
+		XGBasicPushNotificationBuilder build = new XGBasicPushNotificationBuilder();
+		// 设置自定义样式属性，该属性对对应的编号生效，指定后不能修改。
+		build.setIcon(R.mipmap.ic_launcher);
+		// 设置声音
+		build.setSound(RingtoneManager.getActualDefaultRingtoneUri(mContext,
+				RingtoneManager.TYPE_ALARM));
+		// 振动
+		build.setDefaults(Notification.DEFAULT_VIBRATE);
+		// 是否可清除
+		build.setFlags(Notification.FLAG_AUTO_CANCEL);
+
+		XGPushConfig.enableDebug(mContext, true);
+		Log.e("info", "userId====" + LoginInfo.getUseId());
+		if (YemaApplication.Formal_Version) {
+			XGPushManager.registerPush(mContext, LoginInfo.getUseId());
+			// 设置通知样式，样式编号为2，即build_id为2，可通过后台脚本指定
+			XGPushManager.setPushNotificationBuilder(mContext, 2, build);
+			XGPushManager.setTag(mContext, LoginInfo.getDealerId());
+			if (LoginInfo.getPush_prizeinfo_flag() == 1) {
+				XGPushManager.setTag(mContext, LoginInfo.getDealerId() + "_31");
+			}
+		} else {
+			switch (URLConfig.flag) {
+			case URLConfig.VERSION_FORMAL:
+				// 正式服
+				XGPushManager.registerPush(mContext, LoginInfo.getUseId());
+				XGPushManager.setPushNotificationBuilder(mContext, 2, build);
+				XGPushManager.setTag(mContext, LoginInfo.getDealerId());
+				if (LoginInfo.getPush_prizeinfo_flag() == 1) {
+					XGPushManager.setTag(mContext, LoginInfo.getDealerId()
+							+ "_31");
+				}
+				break;
+			case URLConfig.VERSION_PREPARE:
+				// 预发布服
+				XGPushManager.registerPush(mContext, LoginInfo.getUseId());
+				XGPushManager.setPushNotificationBuilder(mContext, 2, build);
+				XGPushManager.setTag(mContext, LoginInfo.getDealerId());
+				if (LoginInfo.getPush_prizeinfo_flag() == 1) {
+					XGPushManager.setTag(mContext, LoginInfo.getDealerId()
+							+ "_31");
+				}
+				break;
+			case URLConfig.VERSION_TEST:
+				// 测试服
+				XGPushManager.registerPush(mContext,
+						"t_" + LoginInfo.getUseId());
+				 XGPushManager.registerPush(mContext, "t_" + LoginInfo.getUseId());
+				Log.e("info", "LoginInfo.getToken()==" + LoginInfo.getAccess_token());
+				XGPushManager.setPushNotificationBuilder(mContext, 2, build);
+				XGPushManager.setTag(mContext, "t_" + LoginInfo.getDealerId());
+				if (LoginInfo.getPush_prizeinfo_flag() == 1) {
+					XGPushManager.setTag(mContext,
+							"t_" + LoginInfo.getDealerId() + "_31");
+				}
+				break;
+			}
+		}
+		Intent service = new Intent(mContext, XGPushServiceV3.class);
+		mContext.startService(service);
 	}
 
 	public static void exit(Context context) {
@@ -148,9 +155,7 @@ public class ActivityControl {
 		};
 		PopBoxCreat.createDialogWithTitle(context, "提示", "是否要注销?", "", "确定",
 				"取消", click);
-
 	}
-
 
 	// 注销操作
 	public static void onLogout(Context context) {
