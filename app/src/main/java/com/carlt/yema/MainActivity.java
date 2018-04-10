@@ -43,6 +43,7 @@ public class MainActivity extends BaseActivity {
         mViewPager =  findViewById(R.id.main_view_pager);
         mTabLayout = findViewById(R.id.main_tab_layout);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        mViewPager.setOffscreenPageLimit(1);
         mTabLayout.addTab(mTabLayout.newTab());
         mTabLayout.addTab(mTabLayout.newTab());
         mTabLayout.addTab(mTabLayout.newTab());
@@ -55,6 +56,7 @@ public class MainActivity extends BaseActivity {
         mTabLayout.getTabAt(2).setCustomView(getTabView(2));
         mTabLayout.getTabAt(3).setCustomView(getTabView(3));
         mViewPager.setNoScroll(true);
+
     }
 
     public View getTabView(int position) {

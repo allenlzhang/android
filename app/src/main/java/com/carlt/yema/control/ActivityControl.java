@@ -5,6 +5,8 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
+import android.os.Handler;
+import android.os.Message;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -227,13 +229,24 @@ public class ActivityControl {
 				}
 			}
 		}
-		Intent mIntent = new Intent(YemaApplication.getInstanse(),
-				UserLoginActivity.class);
+		handler.sendEmptyMessage(1);
 		// Intent mIntent = new Intent(getApplicationContext(),
 		// LoginActivity.class);
-		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		YemaApplication.getInstanse().startActivity(mIntent);
+
 	}
+	static Handler handler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			if(msg.what == 1){
+				Intent mIntent = new Intent(YemaApplication.getInstanse(),
+						UserLoginActivity.class);
+				mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				YemaApplication.getInstanse().startActivity(mIntent);
+			}
+		}
+	};
+
 	public static void onStopService(final Context context) {
 
 	}

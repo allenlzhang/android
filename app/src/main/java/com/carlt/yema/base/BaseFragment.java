@@ -18,7 +18,6 @@ public abstract class BaseFragment extends Fragment {
     protected View mView;
     private boolean isDestory = false;
     protected Context mCtx;
-
     public BaseFragment() {
     }
 

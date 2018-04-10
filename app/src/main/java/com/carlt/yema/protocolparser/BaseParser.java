@@ -4,8 +4,10 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.carlt.yema.YemaApplication;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.http.HttpLinker;
+import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.FileUtil;
 import com.carlt.yema.utils.ILog;
 import com.google.gson.JsonElement;
@@ -73,6 +75,10 @@ public abstract class BaseParser<T> {
                             mResultCallback.onError(mBaseResponseInfo);
                         }
                         break;
+                    case 2:
+                        ActivityControl.onTokenDisable();
+                        UUToast.showUUToast(YemaApplication.getInstanse(),mBaseResponseInfo.getInfo());
+                        break;
                 }
             }
         };
@@ -97,7 +103,9 @@ public abstract class BaseParser<T> {
                 if (mBaseResponseInfo.getFlag() == BaseResponseInfo.SUCCESS) {
                     parser();
                     mHandler.sendEmptyMessage(0);
-                } else {
+                }else if (mBaseResponseInfo.getFlag() == BaseResponseInfo.NO_TOKEN){
+                    mHandler.sendEmptyMessage(2);
+                }else {
                     mHandler.sendEmptyMessage(1);
                 }
             } catch (Exception ex) {
@@ -137,9 +145,13 @@ public abstract class BaseParser<T> {
                                 if (mBaseResponseInfo.getFlag() == BaseResponseInfo.ERRO) {
                                     mHandler.sendEmptyMessage(1);
                                     ILog.e(TAG, "请求失败：" + str);
+                                }else if (mBaseResponseInfo.getFlag() == BaseResponseInfo.NO_TOKEN){
+                                    mHandler.sendEmptyMessage(2);
                                 } else {
                                     mHandler.sendEmptyMessage(0);
                                 }
+                            }else if (mBaseResponseInfo.getFlag() == BaseResponseInfo.NO_TOKEN){
+                                mHandler.sendEmptyMessage(2);
                             } else {
                                 mHandler.sendEmptyMessage(1);
                                 ILog.e(TAG, "请求失败：" + str);
@@ -179,6 +191,8 @@ public abstract class BaseParser<T> {
                 if (mBaseResponseInfo.getFlag() == BaseResponseInfo.SUCCESS) {
                     parser();
                     mHandler.sendEmptyMessage(0);
+                }else if (mBaseResponseInfo.getFlag() == BaseResponseInfo.NO_TOKEN){
+                    mHandler.sendEmptyMessage(2);
                 } else {
                     mHandler.sendEmptyMessage(1);
                 }
@@ -216,6 +230,8 @@ public abstract class BaseParser<T> {
                             if (mBaseResponseInfo.getFlag() == BaseResponseInfo.SUCCESS) {
                                 parser();
                                 mHandler.sendEmptyMessage(0);
+                            }else if (mBaseResponseInfo.getFlag() == BaseResponseInfo.NO_TOKEN){
+                                mHandler.sendEmptyMessage(2);
                             }
                         } catch (Exception ex) {
                             mBaseResponseInfo.setFlag(BaseResponseInfo.ERRO);

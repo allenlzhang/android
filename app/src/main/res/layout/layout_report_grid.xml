@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:background="@color/layout_background"
     android:gravity="center"
-    android:paddingTop="15dp" >
+    android:paddingTop="15dp"
+    >
 
         <TextView
             android:id="@+id/line1"

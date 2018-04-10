@@ -3,6 +3,7 @@ package com.carlt.yema.ui.activity.home;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ import com.carlt.yema.utils.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MonthActivity extends LoadingActivity {
 
@@ -49,7 +51,6 @@ public class MonthActivity extends LoadingActivity {
 	private BarGraph mBarGraghTime;// 时间柱状图
 
 
-	private SimpleDateFormat format = new SimpleDateFormat("yyyy");
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -57,20 +58,32 @@ public class MonthActivity extends LoadingActivity {
 		setContentView(R.layout.activity_report_month);
 		initTitle("行车月报");
 		initView();
-		try {
-			monthInitialValue = getIntent().getStringExtra(
-					ReportActivity.MONTH_INITIAL);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+//		try {
+//			monthInitialValue = getIntent().getStringExtra(
+//					ReportActivity.MONTH_INITIAL);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 		if (monthInitialValue == null || monthInitialValue.equals("")) {
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			monthInitialValue = format.format(Calendar.getInstance().getTime());
+			monthInitialValue = getMonthAgo(Calendar.getInstance().getTime());
 		}
 		loadingDataUI();
 		initData();
-	}
 
+	}
+	/**
+	 *获取一个月前的日期
+	 * @param date 传入的日期
+	 * @return
+	 */
+	public static String getMonthAgo(Date date) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.MONTH, -1);
+		String monthAgo = simpleDateFormat.format(calendar.getTime());
+		return monthAgo;
+	}
 	private void initData() {
 		if (monthInitialValue != null && monthInitialValue.length() > 0) {
 			StringBuffer titleBuffer = new StringBuffer();

@@ -1,6 +1,7 @@
 package com.carlt.yema.ui.activity.login;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -179,7 +180,9 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
 
                     UUToast.showUUToast(ResetPasswdActivity.this, "密码找回成功！");
                     LoginInfo.setPin(forget_passwd_phone_et.getText().toString(), "");
-                    LoginControl.logic(ResetPasswdActivity.this);
+//                    LoginControl.logic(ResetPasswdActivity.this);
+                    Intent intent = new Intent(ResetPasswdActivity.this,UserLoginActivity.class);
+                    startActivity(intent);
                     finish();
                     break;
                 case 3:

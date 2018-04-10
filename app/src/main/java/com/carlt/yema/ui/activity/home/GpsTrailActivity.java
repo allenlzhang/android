@@ -1,10 +1,13 @@
 package com.carlt.yema.ui.activity.home;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextPaint;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -356,6 +359,16 @@ public class GpsTrailActivity extends LoadingActivity implements
 			return null;
 		}
 
+		protected View getMyView(String pm_val,int resId) {
+			View view=getLayoutInflater().inflate(R.layout.mymarker, null);
+			TextView tv_val=(TextView) view.findViewById(R.id.marker_tv_val);
+			ImageView iv_val = view.findViewById(R.id.marker_iv_val);
+			tv_val.setText(pm_val);
+			iv_val.setImageResource(resId);
+			return view;
+		}
+
+
 		@Override
 		protected void onPostExecute(Object result) {
 			super.onPostExecute(result);
@@ -387,16 +400,17 @@ public class GpsTrailActivity extends LoadingActivity implements
 
 			MarkerOptions startOpt = new MarkerOptions();
 			//TODO 行车轨迹 起点和终点icon
-			BitmapDescriptor descriptorStart = BitmapDescriptorFactory
-					.fromResource(R.drawable.gps_icon_start);
+			BitmapDescriptor descriptorStart =
+			BitmapDescriptorFactory.fromView(getMyView(mCarLogInfo.getStarttime(),R.drawable.gps_icon_start));
 			startOpt.icon(descriptorStart);
-			startOpt.anchor(0.5f, 1.1f);
+			startOpt.anchor(0.5f, 0.4f);
 			startOpt.position(mStart);
 			DisplayMetrics dm = new DisplayMetrics();
 			WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 			windowManager.getDefaultDisplay().getMetrics(dm);
 			Marker marker1 = mMap.addMarker(startOpt);
 			marker1.setDraggable(false);
+
 //			TextOptions options1 = new TextOptions();
 //			options1.text(mCarLogInfo.getStarttime());
 //			options1.fontSize((int) (dm.scaledDensity * 12));
@@ -406,11 +420,10 @@ public class GpsTrailActivity extends LoadingActivity implements
 
 			MarkerOptions endOpt = new MarkerOptions();
 			BitmapDescriptor descriptorEnd = BitmapDescriptorFactory
-					.fromResource(R.drawable.gps_icon_stop);
+					.fromView(getMyView(mCarLogInfo.getStopTime(),R.drawable.gps_icon_stop));
 			endOpt.icon(descriptorEnd);
-			endOpt.anchor(0.5f, 1.1f);
+			endOpt.anchor(0.5f, 0.4f);
 			endOpt.position(mEnd);
-
 			mMap.addMarker(endOpt);
 			Marker marker2 = mMap.addMarker(endOpt);
 			marker2.setDraggable(false);
@@ -420,6 +433,7 @@ public class GpsTrailActivity extends LoadingActivity implements
 //			options2.fontSize((int) (dm.scaledDensity * 12));
 //			options2.backgroundColor(Color.parseColor("#f0f0f0"));
 //			options2.position(mEnd);
+//
 //			mMap.addText(options2);
 
 			LatLngBounds bounds = null;
