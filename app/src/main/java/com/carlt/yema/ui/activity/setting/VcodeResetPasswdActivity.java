@@ -107,7 +107,7 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
                     count = 60;
                     vCodeSend.setText(count + "秒后重发");
                     vCodeSend.setClickable(false);
-                    vCodeSend.setBackgroundResource(R.drawable.verification_send_bg);
+                    vCodeSend.setBackgroundResource(R.drawable.verification_sending_bg);
 
                     task = new TimerTask() {
 

@@ -38,6 +38,8 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
 
     private String deviceId;//设备ID
 
+    private static String vinCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,10 +92,11 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
             case R.id.btn_select_car:
                 // 选择车系
                 Intent intent=new Intent(this, CarModeListActivity.class);
-                if (!TextUtils.isEmpty(car_vin_code.getText())) {
-                    intent.putExtra("vin",car_vin_code.getText());
+                if (!TextUtils.isEmpty(car_vin_code.getText().toString())) {
+                    intent.putExtra("vin",car_vin_code.getText().toString());
+                    vinCode=car_vin_code.getText().toString();
                 }
-                startActivity(intent );
+                startActivity(intent);
                 break;
             case R.id.bind_commit:
                 deviceId=car_vin_code.getText().toString();

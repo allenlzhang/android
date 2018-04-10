@@ -24,11 +24,13 @@ public class CarModeListActivity extends LoadingActivity {
     private ListView car_mode_list;//车型列表
     private CarModeAdapter adapter;//车型列表适配器
     private Intent intent;
+    private String vinCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_mode_list);
         intent=getIntent();
+        vinCode=intent.getStringExtra("vin");
         loadingDataUI();
         initComponent();
         initData();
@@ -49,7 +51,6 @@ public class CarModeListActivity extends LoadingActivity {
                 intentType.putExtra("optionid",mCarModeInfo.getId());
                 if (intent!=null) {
                     intentType.putExtra("switch",intent.getBooleanExtra("switch",false));//标记从车辆管理界面跳转
-                    String vinCode=intent.getStringExtra("vin");
                     if (!TextUtils.isEmpty(vinCode)) {
                         intentType.putExtra("vin",vinCode);
                     }

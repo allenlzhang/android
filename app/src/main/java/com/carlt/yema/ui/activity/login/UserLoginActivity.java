@@ -27,7 +27,6 @@ import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.PopBoxCreat;
-import com.carlt.yema.ui.view.UUAuthorDialog;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.CipherUtils;
 import com.carlt.yema.utils.StringUtils;
@@ -76,7 +75,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     public final static int ERRO_CODE_DATA = 1025;// 用户名或密码错误
 
 
-    UUAuthorDialog mAuthorDialog;
 
     private static final String TAG = "UserLoginActivity";
 
@@ -231,6 +229,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
 
     private void passwdToggle(String tag) {
         if (!TextUtils.isEmpty(tag)) {
+
             if (tag.equals("on")) {
                 user_passwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 passwd_toggle.setImageDrawable(this.getResources().getDrawable(R.mipmap.passwd_off, null));

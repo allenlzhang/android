@@ -1,5 +1,6 @@
 package com.carlt.yema.ui.activity.setting;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -35,10 +37,13 @@ import com.google.gson.JsonParser;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.Response;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
-public class PersonAvatarActivity extends LoadingActivity implements OnClickListener {
+public class PersonAvatarActivity extends LoadingActivity implements OnClickListener, EasyPermissions.PermissionCallbacks {
 
     private static final String TAG = "PersonAvatarActivity";
 
@@ -54,6 +59,8 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
 
     private String avatarName;
     private String avatarPath;
+
+    private static final int CAMERA_WRITE_READ=3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +107,8 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
                 }
                 break;
             case R.id.avatar_photograph:
-                useCamera();
+//                useCamera();
+                methodRequires3Permission();
                 break;
             case R.id.avatar_album:
                 usePhoto();
@@ -147,9 +155,11 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
                     break;
                 // 如果是调用相机拍照时
                 case 2:
+
                     File temp = new File(LocalConfig.mImageCacheSavePath_SD
                             + avatarName);
                     startPhotoZoom(Uri.fromFile(temp));
+
                     break;
                 // 取得裁剪后的图片
                 case 3:
@@ -271,5 +281,33 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
         return response;
     }
 
+    String permissions[] = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
 
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        methodRequires3Permission();
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        UUToast.showUUToast(this, "您未授权授权头像上传需要的权限，如需使用请到对野马管家权限进行设置");
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @AfterPermissionGranted(CAMERA_WRITE_READ)
+    private void methodRequires3Permission() {
+        String[] perms = {Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            useCamera();
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, "拍照上传头像需要SDcard读写权限，相机使用权限",
+                    CAMERA_WRITE_READ, perms);
+        }
+    }
 }

@@ -68,24 +68,49 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         edit_nspection_time.setOnClickListener(this);
 
         car_type_txt = findViewById(R.id.car_type_txt);
+        if (!TextUtils.isEmpty(LoginInfo.getCarname())) {
+            car_type_txt.setText(LoginInfo.getCarname());
+        } else {
+            car_type_txt.setText("--");
+        }
         purchase_time_txt = findViewById(R.id.purchase_time_txt);
+        if (!TextUtils.isEmpty(LoginInfo.getBuydate())) {
+            purchase_time_txt.setText((LoginInfo.getBuydate()));
+        } else {
+            purchase_time_txt.setText("--");
+        }
         maintenance_mileage_txt = findViewById(R.id.maintenance_mileage_txt);
         if (!TextUtils.isEmpty(LoginInfo.getMainten_miles())) {
             maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), Integer.parseInt(LoginInfo.getMainten_miles())));
         } else {
-            maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), 0));
+            maintenance_mileage_txt.setText("--");
         }
         maintenance_time_txt = findViewById(R.id.maintenance_time_txt);
         if (!TextUtils.isEmpty(LoginInfo.getMainten_time())) {
             maintenance_time_txt.setText(LoginInfo.getMainten_time());
+        } else {
+            maintenance_time_txt.setText("--");
         }
         insured_time_txt = findViewById(R.id.insured_time_txt);
         if (!TextUtils.isEmpty(LoginInfo.getInsurance_time())) {
             insured_time_txt.setText(LoginInfo.getInsurance_time());
+        }else {
+            insured_time_txt.setText("--");
         }
         nspection_time_txt = findViewById(R.id.nspection_time_txt);
         if (!TextUtils.isEmpty(LoginInfo.getRegister_time())) {
             nspection_time_txt.setText(LoginInfo.getRegister_time());
+        }else {
+            nspection_time_txt.setText("--");
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String carName=getIntent().getStringExtra("cat_title");
+        if (!TextUtils.isEmpty(carName)) {
+            car_type_txt.setText(carName);
         }
     }
 
@@ -240,21 +265,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
                 }
             }
         })
-                /*.setType(TimePickerView.Type.ALL)//default is all
-                .setCancelText("Cancel")
-                .setSubmitText("Sure")
-                .setContentSize(18)
-                .setTitleSize(20)
-                .setTitleText("Title")
-                .setTitleColor(Color.BLACK)
-               /*.setDividerColor(Color.WHITE)//设置分割线的颜色
-                .setTextColorCenter(Color.LTGRAY)//设置选中项的颜色
-                .setLineSpacingMultiplier(1.6f)//设置两横线之间的间隔倍数
-                .setTitleBgColor(Color.DKGRAY)//标题背景颜色 Night mode
-                .setBgColor(Color.BLACK)//滚轮背景颜色 Night mode
-                .setSubmitColor(Color.WHITE)
-                .setCancelColor(Color.WHITE)*/
-               /*.gravity(Gravity.RIGHT)// default is center*/
+
                 .setDate(selectedDate)
                 .setRangDate(startDate, endDate)
                 .setLayoutRes(R.layout.time_edit_dialog, new CustomListener() {

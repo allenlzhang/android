@@ -58,6 +58,8 @@
             android:layout_marginLeft="0dip"
             android:layout_marginRight="0dip"
             android:background="@null"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:gravity="center_vertical"
             android:hint="@string/usercenter_hint_phone2"
             android:inputType="textPassword"
@@ -89,6 +91,8 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/usercenter_hint_password_reset"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:inputType="textPassword"
             android:maxLength="11" />
 

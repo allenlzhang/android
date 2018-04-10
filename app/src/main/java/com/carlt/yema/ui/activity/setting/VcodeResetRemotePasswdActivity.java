@@ -101,7 +101,7 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
                     count = 60;
                     certified_verification_send.setText(count + "秒后重发");
                     certified_verification_send.setClickable(false);
-                    certified_verification_send.setBackgroundResource(R.drawable.verification_send_bg);
+                    certified_verification_send.setBackgroundResource(R.drawable.verification_sending_bg);
 
                     task = new TimerTask() {
 
@@ -120,6 +120,7 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
                 }
                 break;
             case R.id.forget_reset_remote_commit:
+                mobile = certified_phone_input.getText().toString();
                 passwd=new_remote_passwd.getPassword();
                 confirmPasswd=new_remote_passwd_again.getPassword();
                 vCode=certified_code_input.getText().toString();
@@ -160,8 +161,12 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
             certified_verification_send.setClickable(true);
             certified_verification_send.setText("重发验证码");
             certified_verification_send.setBackgroundResource(R.drawable.verification_send_bg);
-            int flag = bInfo.getFlag();
-            UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "验证码获取失败:" + bInfo.getInfo());
+            if (!TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "验证码获取失败:" + bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(VcodeResetRemotePasswdActivity.this, "验证码获取失败:");
+            }
+
         }
     };
 

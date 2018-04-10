@@ -48,7 +48,7 @@
             android:layout_marginRight="0dip"
             android:background="@null"
             android:gravity="center_vertical"
-            android:hint="@string/usercenter_hint_phone"
+            android:hint="请输入手机号码"
             android:inputType="number|phone"
             android:maxLength="11" />
     </LinearLayout>
@@ -75,9 +75,12 @@
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="0dip"
             android:layout_marginRight="0dip"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:selectAllOnFocus="true"
             android:background="@null"
             android:gravity="center_vertical"
-            android:hint="@string/usercenter_hint_password"
+            android:hint="请输入密码"
             android:inputType="textPassword"
             android:maxLength="32" />
 

@@ -1,6 +1,7 @@
 package com.carlt.yema.ui.activity.setting;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,7 +20,6 @@ import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.UUToast;
-import com.carlt.yema.utils.DensityUtil;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -187,10 +187,11 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
                     }
                 })
+                .setBgColor(Color.parseColor("#95161922"))
                 .setSelectOptions(0)
-                .setContentTextSize(DensityUtil.sp2px(PersonInfoActivity.this, 14))
+                .setContentTextSize(20)
                 .setDividerType(WheelView.DividerType.FILL)
-                .setLineSpacingMultiplier(2.0f)
+                .setLineSpacingMultiplier(0.5f)
                 .isDialog(false)
                 .build();
         mSexOptions.setPicker(sexList);//添加数据
