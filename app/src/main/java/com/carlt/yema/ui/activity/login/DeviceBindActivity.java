@@ -85,11 +85,14 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
-                finish();
+                back();
                 break;
             case R.id.btn_select_car:
                 // 选择车系
                 Intent intent=new Intent(this, CarModeListActivity.class);
+                if (!TextUtils.isEmpty(car_vin_code.getText())) {
+                    intent.putExtra("vin",car_vin_code.getText());
+                }
                 startActivity(intent );
                 break;
             case R.id.bind_commit:
@@ -153,12 +156,26 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
     private boolean isVinValid(){
         if (TextUtils.isEmpty(deviceId)) {
             UUToast.showUUToast(this," VIN码不能为空");
+            return  false;
         } else if (deviceId.length()<17) {
             UUToast.showUUToast(this," 请输入正确的VIN码");
+            return  false;
         } else if (btn_select_car.getText().equals(getResources().getString(R.string._car_select_type))) {
             UUToast.showUUToast(this," 爱车信息不能为空");
+            return  false;
         }
         return true;
     }
 
+    private void back(){
+        Intent loginIntent=new Intent(this,UserLoginActivity.class);
+        startActivity(loginIntent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        back();
+        super.onBackPressed();
+    }
 }

@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
@@ -293,10 +292,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         mUseInfo.setAccount(userPhone);
         mUseInfo.setPassword(passwd);
         UseInfoLocal.setUseInfo(mUseInfo);
-        //TODO TEST DATA
-        Intent carPage = new Intent(this, MainActivity.class);
-        carPage.putExtra("page", "1");
-        startActivity(carPage);
 
         //业务代码，为了测试暂时注释掉
         LoginControl.logic(this);

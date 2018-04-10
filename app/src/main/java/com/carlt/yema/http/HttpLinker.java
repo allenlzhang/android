@@ -33,7 +33,7 @@ import okhttp3.Response;
 
 public class HttpLinker {
 
-    private static final String TAG="HttpLinker";
+    private static final String TAG = "HttpLinker";
 
     private static OkHttpClient mHttpClient = new OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
@@ -49,7 +49,7 @@ public class HttpLinker {
 
     public static void post(String url, HashMap<String, String> param, Callback callback) {
         param.put("client_id", URLConfig.getClientID());
-        if(!TextUtils.isEmpty(YemaApplication.TOKEN)){
+        if (!TextUtils.isEmpty(YemaApplication.TOKEN)) {
             param.put("token", YemaApplication.TOKEN);
         }
         FormBody.Builder formBuilder = new FormBody.Builder();
@@ -98,8 +98,8 @@ public class HttpLinker {
     }
 
     public static void get(String url, HashMap<String, String> param, Callback callback) {
-        if(!TextUtils.isEmpty(LoginInfo.getAccess_token())){
-            param.put("token",LoginInfo.getAccess_token());
+        if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
+            param.put("token", LoginInfo.getAccess_token());
         }
         String urlP = url + CreatString(param);
         Request request = new Request.Builder()
@@ -112,8 +112,8 @@ public class HttpLinker {
     }
 
     public static Response getSync(String url, HashMap<String, String> param) throws IOException {
-        if(!TextUtils.isEmpty(LoginInfo.getAccess_token())){
-            param.put("token",LoginInfo.getAccess_token());
+        if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
+            param.put("token", LoginInfo.getAccess_token());
         }
         String urlP = url + CreatString(param);
         Request request = new Request.Builder()
@@ -163,15 +163,16 @@ public class HttpLinker {
         MultipartBody.Builder multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         if (file != null) {
             // MediaType.parse() 里面是上传的文件类型。
-           String mimeTypeName = FileUtil.getFileMimeType(file);
-            ILog.e("upload","pic-mimeTypeName:"+mimeTypeName);
-            MediaType mediaType = MediaType.parse(mimeTypeName);
-            ILog.e("upload","pic-mediaType:"+mediaType.toString());
-            RequestBody body = RequestBody.create(mediaType, file);
-            String filename = file.getName();
-            ILog.e("upload","pic-filename:"+filename);
-            // 参数分别为， 请求key ，文件名称 ， RequestBody
-            multipartBuilder.addFormDataPart("fileData", filename, body);
+            String mimeTypeName = FileUtil.getFileMimeType(file);
+            MediaType mediaType = null;
+            if (!TextUtils.isEmpty(mimeTypeName)) {
+                mediaType = MediaType.parse(mimeTypeName);
+
+                RequestBody body = RequestBody.create(mediaType, file);
+                String filename = file.getName();
+                // 参数分别为， 请求key ，文件名称 ， RequestBody
+                multipartBuilder.addFormDataPart("fileData", filename, body);
+            }
         }
         if (map != null) {
             // map 里面是请求中所需要的 key 和 value

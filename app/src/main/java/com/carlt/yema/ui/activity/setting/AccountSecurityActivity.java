@@ -106,11 +106,7 @@ public class AccountSecurityActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-//        mDialog = PopBoxCreat.createDialogWithProgress(AccountSecurityActivity.this,
-//                "提交中...");
-//        mDialog.show();
         if (checked) {
-//            noPasswdRequest("1");
             LoginInfo.setNoneedpsw(true);
         } else {
             LoginInfo.setNoneedpsw(false);

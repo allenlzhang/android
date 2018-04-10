@@ -109,5 +109,6 @@
     <string name="listItem_day_driveInfo">今日驾驶%1$s次</string>
     <string name="day_score">分</string>
     <string name="listItem_day_timeAndMile">%1$s至%2$s(%3$s)</string>
+    <string name="vin_filter_string">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.carlt.yema.ui.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -32,15 +33,17 @@ public class CarTypeListActivity extends LoadingActivity {
     private static String brandid = "21";//车系ID
     private String carId;//车款ID
     private String carTitle;
+    private String vinCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_type_list);
+        intent = getIntent();
         loadingDataUI();
         initComponent();
-        intent = getIntent();
         optionid = intent.getStringExtra("optionid");
+        vinCode=intent.getStringExtra("vin");
         initData();
     }
 
@@ -123,6 +126,9 @@ public class CarTypeListActivity extends LoadingActivity {
                     UUToast.showUUToast(CarTypeListActivity.this, " 车辆绑定成功");
                     Intent intent = new Intent(CarTypeListActivity.this, DeviceBindActivity.class);
                     intent.putExtra("cat_title", carTitle);
+                    if (!TextUtils.isEmpty(vinCode)) {
+                        intent.putExtra("vin", vinCode);
+                    }
                     CarTypeListActivity.this.startActivity(intent);
                     finish();
                 }
@@ -185,5 +191,9 @@ public class CarTypeListActivity extends LoadingActivity {
             }
         }
     };
-
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 }
