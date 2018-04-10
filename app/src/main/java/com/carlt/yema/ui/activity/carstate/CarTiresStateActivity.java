@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 胎压检测
+ *胎压监测
  */
 public class CarTiresStateActivity extends LoadingActivity {
 
