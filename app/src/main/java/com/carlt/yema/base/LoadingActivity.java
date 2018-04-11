@@ -39,6 +39,10 @@ public class LoadingActivity extends BaseActivity {
     protected TextView titleTV = null;
     protected TextView btnOpt=null;
 
+    private RequestPermissionCallBack mRequestPermissionCallBack;
+
+    private static final int PERMISSION_REQUEST_CODE=1024;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -224,5 +228,4 @@ public class LoadingActivity extends BaseActivity {
     public void reTryLoadData() {
         //子类选择可以实现，重新加载
     }
-
 }

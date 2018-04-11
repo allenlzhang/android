@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.base.BaseFragment;
-import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.adapter.FragmentAdapter;
 import com.carlt.yema.ui.view.NoScrollViewPager;
 
