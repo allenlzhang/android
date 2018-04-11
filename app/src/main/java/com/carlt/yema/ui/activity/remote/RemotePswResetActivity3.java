@@ -18,6 +18,7 @@ import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.preference.RemotePswInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.fragment.RemoteMainFragment;
 import com.carlt.yema.ui.view.PopBoxCreat;
@@ -175,6 +176,7 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
             }
             mDialog.show();
 
+            remote_pwd = pswNew1;
             switch (type) {
                 case TYPE_REALNAME:
                     CPControl.GetSetRemotePwdResult(pswNew1, listener_set);
@@ -236,6 +238,8 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
 
     };
 
+    String remote_pwd;
+
     Handler mHandler = new Handler() {
 
         @Override
@@ -246,6 +250,9 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
                     if (mDialog != null && mDialog.isShowing()) {
                         mDialog.dismiss();
                     }
+
+                    RemotePswInfo.setRemotePsw(remote_pwd);
+                    LoginInfo.setSetRemotePwd(true);
                     BaseResponseInfo mInfo = (BaseResponseInfo)msg.obj;
                     if (mInfo != null) {
                         String info = mInfo.getInfo();
@@ -269,6 +276,7 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
                     if (mDialog != null && mDialog.isShowing()) {
                         mDialog.dismiss();
                     }
+                    LoginInfo.setSetRemotePwd(false);
                     BaseResponseInfo mInfo1 = (BaseResponseInfo)msg.obj;
                     if (mInfo1 != null) {
                         String info = mInfo1.getInfo();
@@ -287,6 +295,8 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
                     if (mDialog != null && mDialog.isShowing()) {
                         mDialog.dismiss();
                     }
+                    RemotePswInfo.setRemotePsw(remote_pwd);
+                    LoginInfo.setSetRemotePwd(true);
                     BaseResponseInfo mInfo2 = (BaseResponseInfo)msg.obj;
                     if (mInfo2 != null) {
                         String info = mInfo2.getInfo();

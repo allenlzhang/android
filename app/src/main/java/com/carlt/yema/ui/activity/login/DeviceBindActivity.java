@@ -126,34 +126,10 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            switch (bInfo.getFlag()) {
-                case 1004:
-                    UUToast.showUUToast(DeviceBindActivity.this,"设备号格式不正确");
-                    break;
-                case 1105:
-                    UUToast.showUUToast(DeviceBindActivity.this,"该设备未出库,无法绑定或解绑");
-                    break;
-                case 2710:
-                    UUToast.showUUToast(DeviceBindActivity.this,"您不能绑定其他经销商的设备");
-                    break;
-                case 2708:
-                    UUToast.showUUToast(DeviceBindActivity.this,"您已经绑定设备,不能绑定多个设备");
-                    break;
-                case 2709:
-                    UUToast.showUUToast(DeviceBindActivity.this,"该设备不能重复绑定");
-                    break;
-                case 2701:
-                    UUToast.showUUToast(DeviceBindActivity.this,"该设备不支持您绑定的车型");
-                    break;
-                case 2702:
-                    UUToast.showUUToast(DeviceBindActivity.this,"该设备不能重复绑定");
-                    break;
-                case 2703:
-                    UUToast.showUUToast(DeviceBindActivity.this,"该设备不支持您绑定的车款");
-                    break;
-                case 1014:
-                    UUToast.showUUToast(DeviceBindActivity.this,"操作失败,请确认信息后重试");
-                    break;
+            if (!TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(DeviceBindActivity.this, bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(DeviceBindActivity.this, "车辆绑定成功");
             }
         }
     };

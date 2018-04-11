@@ -113,7 +113,6 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                 selectAll();
                 break;
             case R.id.album_delete:
-                UUToast.showUUToast(this, "点击了删除");
                 deleteImages();
                 break;
         }
