@@ -8,7 +8,6 @@ import android.util.Log;
 import com.carlt.yema.MainActivity;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.model.LoginInfo;
-import com.carlt.yema.preference.TokenInfo;
 import com.carlt.yema.ui.activity.login.ActivateBindActivity;
 import com.carlt.yema.ui.activity.login.DeviceBindActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
@@ -147,7 +146,6 @@ public class LoginControl {
 
             LoginInfo.setAccess_token((member.optString("access_token", "")));
             LoginInfo.setExpires_in((member.optString("expires_in", "")));
-            TokenInfo.setToken(member.optString("access_token", ""));
             YemaApplication.TOKEN = member.optString("access_token", "");
             LoginInfo.setExpiresIn((member.optString("expires_in", "")));
             LoginInfo.setSSID(member.optString("SSID", ""));

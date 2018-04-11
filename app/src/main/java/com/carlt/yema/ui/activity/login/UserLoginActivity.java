@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -271,5 +273,17 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         msg.what = 1;
         msg.obj = bInfo;
         mHandler.sendMessage(msg);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Log.e("info", "KeyEvent.KEYCODE_BACK--login");
+            ActivityControl.onExit();
+            System.exit(0);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+
     }
 }

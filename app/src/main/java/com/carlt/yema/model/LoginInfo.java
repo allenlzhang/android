@@ -8,7 +8,6 @@ import com.carlt.yema.YemaApplication;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarMainFunInfo;
 import com.carlt.yema.data.remote.RemoteMainInfo;
-import com.carlt.yema.preference.TokenInfo;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONException;
@@ -365,7 +364,7 @@ public class LoginInfo extends BaseResponseInfo {
         LoginInfo.setAvatar_img((destroy.optString("avatar_img", "")));
         LoginInfo.setMobile((destroy.optString("mobile", "")));
         LoginInfo.setVisitor(destroy.optBoolean("isVisitor"));
-        TokenInfo.setToken("");
+        YemaApplication.TOKEN = "";
         LoginInfo.setExpiresIn((destroy.optString("expires_in", "")));
         LoginInfo.setDealerId((destroy.optString("expires_in", "")));
         LoginInfo.setUseId((destroy.optString("uid", "")));
@@ -408,6 +407,7 @@ public class LoginInfo extends BaseResponseInfo {
         LoginInfo.setAuthen_card(destroy.optString("authen_card", ""));
         LoginInfo.setInsurance_time(destroy.optString("insurance_time", ""));
         LoginInfo.setRegister_time(destroy.optString("register_time", ""));
+        LoginInfo.setAccess_token(destroy.optString("access_token", ""));
 
     }
 

@@ -16,10 +16,11 @@ import android.widget.ImageView;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.model.LoginInfo;
-import com.carlt.yema.preference.TokenInfo;
 import com.carlt.yema.preference.UseInfoLocal;
+import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
@@ -137,7 +138,23 @@ public class ActivityControl {
 
 	public static void exit(Context context) {
 
+		DialogWithTitleClick click = new DialogWithTitleClick() {
 
+			@Override
+			public void onRightClick() {
+				// 取消
+
+			}
+
+			@Override
+			public void onLeftClick() {
+				// 退出
+				onExit();
+				System.exit(0);
+			}
+		};
+		PopBoxCreat.createDialogWithTitle(context, "提示", "是否要退出?", "", "确定",
+				"取消", click);
 	}
 
 	public static void logout(final Context context) {
@@ -166,7 +183,7 @@ public class ActivityControl {
 		UseInfo mUseInfo = UseInfoLocal.getUseInfo();
 		mUseInfo.setPassword("");
 		UseInfoLocal.setUseInfo(mUseInfo);
-		TokenInfo.setToken("");
+		YemaApplication.TOKEN = "";
 		Intent mIntent = new Intent(context, UserLoginActivity.class);
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(mIntent);
@@ -175,23 +192,23 @@ public class ActivityControl {
 
 	/******** 退出操作 ****************/
 	public static void onExit() {
-		if (!TextUtils.isEmpty(TokenInfo.getToken())) {
-//			CPControl.GetUnRigisterXgTokenResult(YemaApplication.NIMEI,
-//					new GetResultListCallback() {
-//						@Override
-//						public void onFinished(Object o) {
-//							LoginInfo.Destroy();
-//							TokenInfo.setToken("");
-//							Log.e("info", "注销信鸽成功");
-//						}
-//
-//						@Override
-//						public void onErro(Object o) {
-//							LoginInfo.Destroy();
-//							TokenInfo.setToken("");
-//							Log.e("info", "注销信鸽失败");
-//						}
-//					});
+		if (!TextUtils.isEmpty(YemaApplication.TOKEN)) {
+			CPControl.GetUnRigisterXgTokenResult(YemaApplication.NIMEI,
+					new BaseParser.ResultCallback() {
+						@Override
+						public void onSuccess(BaseResponseInfo bInfo) {
+							LoginInfo.Destroy();
+							YemaApplication.TOKEN = "";
+							Log.e("info", "注销信鸽成功");
+						}
+
+						@Override
+						public void onError(BaseResponseInfo bInfo) {
+							LoginInfo.Destroy();
+							YemaApplication.TOKEN = "";
+							Log.e("info", "注销信鸽失败");
+						}
+					});
 		}
 		int size = mActivityList.size();
 		for (int i = 0; i < size; i++) {
@@ -214,7 +231,7 @@ public class ActivityControl {
 		UseInfo mUseInfo = UseInfoLocal.getUseInfo();
 		mUseInfo.setPassword("");
 		UseInfoLocal.setUseInfo(mUseInfo);
-		TokenInfo.setToken("");
+		YemaApplication.TOKEN = "";
 		Intent mIntent = new Intent(context, UserLoginActivity.class);
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(mIntent);

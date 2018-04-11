@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.base.BaseActivityGroup;
 import com.carlt.yema.base.BaseFragment;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.adapter.FragmentAdapter;
 import com.carlt.yema.ui.view.NoScrollViewPager;
@@ -93,7 +95,8 @@ public class MainActivity extends BaseActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK){
 //            Intent intent = new Intent(MainActivity.this, UserLoginActivity.class);
 //            startActivity(intent);
-            finish();
+//            finish();
+            ActivityControl.exit(this);
             return true;
         }
         return super.onKeyDown(keyCode, event);
