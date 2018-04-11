@@ -55,7 +55,7 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
 
     private UserRegisterParams registerParams = new UserRegisterParams();
 
-    private final static String URL_PROVISION = "http://m.cheler.com/domy.html";// 服务条款URL
+    private final static String URL_PROVISION = "http://m.cheler.com/yema.html";// 服务条款URL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
