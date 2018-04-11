@@ -49,7 +49,7 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="请输入手机号码"
-            android:inputType="number|phone"
+            android:inputType="number"
             android:maxLength="11" />
     </LinearLayout>
 
