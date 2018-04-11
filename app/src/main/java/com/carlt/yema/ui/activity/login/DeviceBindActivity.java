@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
@@ -39,6 +40,8 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
     private String deviceId;//设备ID
 
     private static String vinCode;
+
+    public static final String TAG="DeviceBindActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,7 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
                     intent.putExtra("vin",car_vin_code.getText().toString());
                     vinCode=car_vin_code.getText().toString();
                 }
+                intent.putExtra("from_bind",TAG);
                 startActivity(intent);
                 break;
             case R.id.bind_commit:
@@ -149,6 +153,7 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
     private void back(){
         Intent loginIntent=new Intent(this,UserLoginActivity.class);
         startActivity(loginIntent);
+        ActivityControl.onExit();
         finish();
     }
 

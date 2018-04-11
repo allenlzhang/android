@@ -136,9 +136,15 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
                 break;
             case R.id.verification_new_passwd_input_toggle:
                 ActivityControl.passwdToggle(this,passwd,passwdToggle,view.getTag().toString());
+                if (!TextUtils.isEmpty(passwd.getText().toString())) {
+                    passwd.setSelection(passwd.getText().toString().length());
+                }
                 break;
             case R.id.verification_new_passwd_input_again_toggle:
                 ActivityControl.passwdToggle(this,passwd2St,passwd2StToggle,view.getTag().toString());
+                if (!TextUtils.isEmpty(passwd2St.getText().toString())) {
+                    passwd2St.setSelection(passwd2St.getText().toString().length());
+                }
                 break;
 
         }

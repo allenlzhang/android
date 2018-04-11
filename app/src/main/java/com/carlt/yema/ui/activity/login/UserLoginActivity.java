@@ -133,6 +133,9 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.passwd_toggle:
                 passwdToggle(view.getTag().toString());
+                if (!TextUtils.isEmpty(user_passwd.getText().toString())) {
+                    user_passwd.setSelection(user_passwd.getText().toString().length());
+                }
                 break;
             case R.id.login_commit:
                 userPhone = user_phone.getText().toString();

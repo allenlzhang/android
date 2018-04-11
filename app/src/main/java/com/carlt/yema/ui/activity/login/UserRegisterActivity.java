@@ -99,9 +99,15 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
         switch (view.getId()) {
             case R.id.register_passwd_toggle:
                 ActivityControl.passwdToggle(this,register_passwd_et,register_passwd_toggle,view.getTag().toString());
+                if (!TextUtils.isEmpty(register_passwd_et.getText().toString())) {
+                    register_passwd_et.setSelection(register_passwd_et.getText().toString().length());
+                }
                 break;
             case R.id.register_passwd_again_toggle:
                 ActivityControl.passwdToggle(this,register_passwd_again_et,register_passwd_again_toggle,view.getTag().toString());
+                if (!TextUtils.isEmpty(register_passwd_again_et.getText().toString())) {
+                    register_passwd_again_et.setSelection(register_passwd_again_et.getText().toString().length());
+                }
                 break;
             case R.id.register_verification_send:
                 String cellPhone = register_phone_input.getText().toString();
