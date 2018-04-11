@@ -9,12 +9,10 @@ import com.carlt.yema.MainActivity;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.TokenInfo;
-import com.carlt.yema.ui.TestActivity;
 import com.carlt.yema.ui.activity.login.ActivateBindActivity;
 import com.carlt.yema.ui.activity.login.DeviceBindActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUUpdateDialog;
-
 import org.json.JSONObject;
 
 

@@ -14,6 +14,7 @@ import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.utils.MyTimeUtils;
+import com.carlt.yema.utils.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -93,7 +94,20 @@ public class CarTiresStateActivity extends LoadingActivity {
         }
     }
 
+    @Override
+    public void loadonErrorUI(BaseResponseInfo error) {
+        loadSuccessUI();
+        if(null == error || StringUtils.isEmpty(error.getInfo())){
+            subHeadTxt.setText("胎压获取失败");
+        }else{
+            subHeadTxt.setText("胎压获取失败,"+ error.getInfo());
+        }
+        tirePressureLay0.setBackgroundResource(R.drawable.tire_fail);
+        tirePressureLay1.setBackgroundResource(R.drawable.tire_fail);
+        tirePressureLay2.setBackgroundResource(R.drawable.tire_fail);
+        tirePressureLay3.setBackgroundResource(R.drawable.tire_fail);
 
+    }
 
     private void showData(List<RemoteDirectPressureInfo> remoteDirectPressureInfos) {
         String nowTimes = MyTimeUtils.formatDateMills(System.currentTimeMillis());

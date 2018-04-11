@@ -25,6 +25,7 @@ import com.carlt.yema.ui.activity.carstate.FindCarActivity;
 import com.carlt.yema.ui.activity.carstate.LocationSynchronizeActivity;
 import com.carlt.yema.ui.activity.carstate.MainTestingActivity;
 import com.carlt.yema.utils.ILog;
+import com.carlt.yema.utils.StringUtils;
 
 import java.util.HashMap;
 
@@ -40,6 +41,7 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
     private View view2;
     private View view3;
     private View viewSafetyLay;
+    private View viewRedDot;
     private TextView viewSafetyText;
     private View viewMainTainLay;
     private View viewMainState;
@@ -65,6 +67,7 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         view3 = $ViewByID(R.id.car_main_txt_carlocation);
         //安防提醒
         viewSafetyLay = $ViewByID(R.id.car_main_lay_safety);
+        viewRedDot = $ViewByID(R.id.car_main_lay_safety_lay2_dot2);
         viewSafetyText = $ViewByID(R.id.car_main_txt_safety);
         //车况检测
         viewMainTainLay = $ViewByID(R.id.car_main_lay_maintain);
@@ -156,8 +159,10 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
             } else if (TextUtils.equals("0", carinfo.getIsrunning())) {
                 headTxt.setText("您的爱车正在休息");
             }
-            if (!TextUtils.isEmpty(carinfo.getSafetymsg())) {
+            if (!StringUtils.isEmpty(carinfo.getSafetymsg())) {
                 viewSafetyText.setText(carinfo.getSafetymsg());
+            }else{
+                viewSafetyText.setText("暂无新消息");
             }
         }
     }
