@@ -142,10 +142,10 @@ public class CarOperationConfigParser<T> extends BaseParser<T>  {
 
             RemoteFunInfo mFunInfo8 = new RemoteFunInfo();
             mFunInfo8.setId("8");
-            mFunInfo8.setApi_field("remoteCharger");
+            mFunInfo8.setApi_field("remoteSkylightPry");
             mFunInfo8.setName("天窗开翘");
             mFunInfo8.setIcon_id(R.drawable.remote_top_win_open1_selector);
-            String state8 = mJSON_data.get("remoteCharger").getAsInt()+"";
+            String state8 = mJSON_data.get("remoteSkylightPry").getAsInt()+"";
             mFunInfo8.setState(state8);
 
             RemoteFunInfo mFunInfo7 = new RemoteFunInfo();
