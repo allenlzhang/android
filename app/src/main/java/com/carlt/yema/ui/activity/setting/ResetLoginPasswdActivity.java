@@ -85,9 +85,15 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
                 break;
             case R.id.new_passwd_input_toggle:
                 ActivityControl.passwdToggle(this, new_passwd_input, new_passwd_input_toggle, view.getTag().toString());
+                if (!TextUtils.isEmpty(new_passwd_input.getText().toString())) {
+                    new_passwd_input.setSelection(new_passwd_input.getText().toString().length());
+                }
                 break;
             case R.id.new_passwd_input_again_toggle:
                 ActivityControl.passwdToggle(this, new_passwd_again_input, new_passwd_input_again_toggle, view.getTag().toString());
+                if (!TextUtils.isEmpty(new_passwd_again_input.getText().toString())) {
+                    new_passwd_again_input.setSelection(new_passwd_again_input.getText().toString().length());
+                }
                 break;
         }
     }

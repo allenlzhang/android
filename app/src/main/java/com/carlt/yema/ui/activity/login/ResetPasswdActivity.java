@@ -15,7 +15,6 @@ import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.control.CPControl;
-import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.model.LoginInfo;
@@ -84,9 +83,15 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
         switch (view.getId()) {
             case R.id.change_passwd_toggle:
                 ActivityControl.passwdToggle(this,change_passwd_et,change_passwd_toggle,view.getTag().toString());
+                if (!TextUtils.isEmpty(change_passwd_et.getText().toString())) {
+                    change_passwd_et.setSelection(change_passwd_et.getText().toString().length());
+                }
                 break;
             case R.id.change_passwd_again_toggle:
                 ActivityControl.passwdToggle(this,change_passwd_again_et,change_passwd_again_toggle,view.getTag().toString());
+                if (!TextUtils.isEmpty(change_passwd_again_et.getText().toString())) {
+                    change_passwd_again_et.setSelection(change_passwd_again_et.getText().toString().length());
+                }
                 break;
             case R.id.bt_verification_send:
                 String cellPhone = forget_passwd_phone_et.getText().toString();
