@@ -75,6 +75,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    @Override
     public void loadData() {
         super.loadData();
         CPControl.GetInformationCentreInfoListResult(callback);

@@ -2,7 +2,9 @@ package com.carlt.yema.ui.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -84,7 +86,31 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
         bind_commit = findViewById(R.id.bind_commit);
         bind_commit.setOnClickListener(this);
         car_vin_code = findViewById(R.id.car_vin_code);
+        car_vin_code.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //当输入为小写字母时，自动转换为大写字母
+
+                car_vin_code.removeTextChangedListener(this);//解除文字改变事件
+                car_vin_code.setText(s.toString().toUpperCase());//转换
+                car_vin_code.setSelection(s.toString().length());//重新设置光标位置
+                car_vin_code.addTextChangedListener(this);//重新绑
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
+
+
+
 
     @Override
     public void onClick(View view) {
