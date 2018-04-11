@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -77,7 +78,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        loadData();
+
     }
 
     @Override
@@ -100,8 +101,21 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.activity_home_relative2:  //跳转信息中心
                 Intent mIntent1 = new Intent(getContext(), InformationCentreActivity.class);
-                startActivity(mIntent1);
+                startActivityForResult(mIntent1,REQUESTCODE);
                 break;
+        }
+    }
+
+    private final static int REQUESTCODE = 1; // 返回的结果码
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUESTCODE){
+            if( resultCode == 2){
+                Log.e(TAG,"loadData  onActivityResult");
+                loadData();
+            }
         }
     }
 

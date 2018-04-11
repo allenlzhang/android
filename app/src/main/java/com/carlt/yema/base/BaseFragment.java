@@ -19,6 +19,8 @@ public abstract class BaseFragment extends Fragment {
     protected View mView;
     private boolean isDestory = false;
     protected Context mCtx;
+
+    protected String TAG = getClass().getSimpleName();
     public BaseFragment() {
     }
 
