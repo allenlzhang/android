@@ -1,9 +1,11 @@
 package com.carlt.yema.ui.fragment;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -80,6 +82,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -187,21 +190,32 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         InformationCategoryInfoList infoList = (InformationCategoryInfoList) binfo.getValue();
         if (infoList != null) {
             // 车秘书未读信息条数
-            String unreadmessage = infoList.getUnreadCount();
+            String unreadmessage = "";
             // 车秘书最新消息内容
             String latestmessage = "";
 
             ArrayList<InformationCategoryInfo> mInformationCategoryInfos = infoList.getmAllList();
-            Collections.sort(mInformationCategoryInfos, new Comparator<InformationCategoryInfo>() {
-                @Override
-                public int compare(InformationCategoryInfo o1, InformationCategoryInfo o2) {
-                    Date date1 = new Date(Long.parseLong(o1.getMsgdate()));
-                    Date date2 = new Date(Long.parseLong(o2.getMsgdate()));
-
-                    return date2.compareTo(date1);
+            ArrayList<InformationCategoryInfo> unReadMsgInfos = new ArrayList<>();
+            ArrayList<InformationCategoryInfo> readMsgInfos = new ArrayList<>();
+            for (int i = 0; i <mInformationCategoryInfos.size() ; i++) {
+                if (Integer.parseInt(mInformationCategoryInfos.get(i).getMsgcount())>0){
+                    unReadMsgInfos.add(mInformationCategoryInfos.get(i));
+                }else {
+                    readMsgInfos.add(mInformationCategoryInfos.get(i));
                 }
-            });
-            latestmessage = mInformationCategoryInfos.get(0).getLastmsg();
+            }
+            if (unReadMsgInfos.size()>0){
+                lastTime(unReadMsgInfos);
+                latestmessage = unReadMsgInfos.get(0).getLastmsg();
+                unreadmessage = unReadMsgInfos.get(0).getMsgcount();
+            }else {
+                lastTime(readMsgInfos);
+                latestmessage = readMsgInfos.get(0).getLastmsg();
+                unreadmessage = readMsgInfos.get(0).getMsgcount();
+            }
+
+
+
             if (unreadmessage != null && unreadmessage.length() > 0) {
                 if (unreadmessage.equals("0")) {
                     mTextView3.setVisibility(View.GONE);
@@ -230,5 +244,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 }
             }
         }
+    }
+    private void lastTime(ArrayList<InformationCategoryInfo> list){
+        Collections.sort(list, new Comparator<InformationCategoryInfo>() {
+            @Override
+            public int compare(InformationCategoryInfo o1, InformationCategoryInfo o2) {
+                Date date1 = new Date(Long.parseLong(o1.getMsgdate()));
+                Date date2 = new Date(Long.parseLong(o2.getMsgdate()));
+
+                return date2.compareTo(date1);
+            }
+        });
     }
 }
