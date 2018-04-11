@@ -71,6 +71,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--<activity android:name=".ui.TestActivity"/>-->
         <activity android:name=".ui.activity.home.RemindActivity" />
         <activity android:name=".ui.activity.home.ReportActivity" />
         <activity android:name=".ui.activity.home.MonthActivity" />
@@ -133,7 +134,6 @@
             android:name="com.tencent.android.tpush.XGPushReceiver"
             android:process=":xg_service_v3">
             <intent-filter android:priority="0x7fffffff">
-
                 <!-- 【必须】 信鸽SDK的内部广播 -->
                 <action android:name="com.tencent.android.tpush.action.SDK" />
                 <action android:name="com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE" />
@@ -150,7 +150,6 @@
             android:name="com.carlt.yema.push.MessageReceiver"
             android:exported="true">
             <intent-filter>
-
                 <!-- 接收消息透传 -->
                 <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
                 <!-- 监听注册、反注册、设置/删除标签、通知被点击等处理结果 -->
@@ -163,7 +162,6 @@
             android:name="com.tencent.android.tpush.XGPushActivity"
             android:exported="false">
             <intent-filter>
-
                 <!-- 若使用AndroidStudio，请设置android:name="android.intent.action" -->
                 <action android:name="android.intent.action" />
             </intent-filter>
@@ -186,7 +184,6 @@
             android:name="com.tencent.android.tpush.rpc.XGRemoteService"
             android:exported="true">
             <intent-filter>
-
                 <!-- 【必须】 请修改为当前APP包名 .PUSH_ACTION, 如demo的包名为：com.qq.xgdemo -->
                 <action android:name="com.carlt.yema.PUSH_ACTION" />
             </intent-filter>
@@ -204,11 +201,13 @@
             android:authorities="com.carlt.yema.TPUSH_PROVIDER"
             android:exported="false" />
 
-        <!-- 【必须】 【注意】authorities修改为 包名.TENCENT.MID.V3, 如demo的包名为：com.qq.xgdemo -->
+        <!-- 【必须】 【注意】authorities修改为 包名.TENCENT.MID.V3, 如demo的包名为：com.qq.xgdemo-->
         <provider
             android:name="com.tencent.mid.api.MidProvider"
             android:authorities="com.carlt.yema.TENCENT.MID.V3"
-            android:exported="true" />
+            android:exported="true"></provider>
+
+
 
         <!-- 【必须】 请将YOUR_ACCESS_ID修改为APP的AccessId，“21”开头的10位数字，中间没空格 -->
         <meta-data
@@ -219,5 +218,4 @@
             android:name="XG_V2_ACCESS_KEY"
             android:value="AD5EA63GJ25R" />
     </application>
-
 </manifest>

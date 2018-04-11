@@ -9,6 +9,7 @@ import com.carlt.yema.MainActivity;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.TokenInfo;
+import com.carlt.yema.ui.TestActivity;
 import com.carlt.yema.ui.activity.login.ActivateBindActivity;
 import com.carlt.yema.ui.activity.login.DeviceBindActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
@@ -45,7 +46,6 @@ public class LoginControl {
                 // 野马绑定和激活合并，如果激活直接进入主页
                 Intent mainIntent = new Intent(mContext,
                         MainActivity.class);
-                mainIntent.putExtra("page", 1);
                 mContext.startActivity(mainIntent);
 
             } else {
@@ -86,6 +86,7 @@ public class LoginControl {
                                 ActivateBindActivity.class);
                         loginIntent.putExtra("account", LoginInfo.getMobile());
                         mContext.startActivity(loginIntent);
+                        mContext.finish();
                     }
                 }
 
@@ -96,6 +97,7 @@ public class LoginControl {
             loginIntent.putExtra("account", LoginInfo.getVin(LoginInfo.getMobile()));
             loginIntent.putExtra("carType", LoginInfo.getCarname());
             mContext.startActivity(loginIntent);
+            mContext.finish();
         }
     }
 

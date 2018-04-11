@@ -3,7 +3,6 @@ package com.carlt.yema;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,18 +20,12 @@ public class MainActivity extends BaseActivity {
     private String [] tabTexts = {"首页","座驾","远程","我的"};
     private int [] tabIcons = {R.drawable.tab_home_bg,R.drawable.tab_car_bg,R.drawable.tab_remote_bg,
             R.drawable.tab_my_bg};
-    private int pageIdx;//页面索引
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        pageIdx=getIntent().getIntExtra("page",0);
-        if (pageIdx!=mTabLayout.getSelectedTabPosition()) {
-            mTabLayout.getTabAt(pageIdx).setCustomView(getTabView(pageIdx));
-        }
-
     }
 
     @Override
