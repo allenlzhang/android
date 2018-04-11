@@ -55,7 +55,7 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
 
     private UserRegisterParams registerParams = new UserRegisterParams();
 
-    private final static String URL_PROVISION = "http://m.cheler.com/domy.html";// 服务条款URL
+    private final static String URL_PROVISION = "http://m.cheler.com/yema.html";// 服务条款URL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +181,7 @@ public class UserRegisterActivity extends BaseActivity implements View.OnClickLi
                     }
                     register_verification_send.setClickable(true);
                     register_verification_send.setText(R.string.usercenter_push_validate1);
-                    register_verification_send.setBackgroundResource(R.drawable.verification_send_bg);
+                    register_verification_send.setBackgroundResource(R.drawable.verification_sending_bg);
 
                     mBaseResponseInfo = (BaseResponseInfo) msg.obj;
                     int flag = mBaseResponseInfo.getFlag();

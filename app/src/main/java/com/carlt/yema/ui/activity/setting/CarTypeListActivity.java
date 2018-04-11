@@ -11,6 +11,7 @@ import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarModeInfo;
+import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.protocolparser.car.CarTypeInfoListParser;
@@ -40,10 +41,10 @@ public class CarTypeListActivity extends LoadingActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_type_list);
         intent = getIntent();
+        vinCode=intent.getStringExtra("vin");
+        optionid = intent.getStringExtra("optionid");
         loadingDataUI();
         initComponent();
-        optionid = intent.getStringExtra("optionid");
-        vinCode=intent.getStringExtra("vin");
         initData();
     }
 
@@ -69,7 +70,7 @@ public class CarTypeListActivity extends LoadingActivity {
                 CarModeInfo modeInfo = (CarModeInfo) adapterView.getItemAtPosition(i);
                 carId = modeInfo.getId();
                 carTitle = modeInfo.getTitle();
-                if (CarTypeListActivity.this.getIntent() != null && CarTypeListActivity.this.getIntent().getBooleanExtra("switch", false)) {
+                if (intent != null && intent.getBooleanExtra("switch", false)) {
                     switchCarType();
                 } else {
                     addCarType();
@@ -103,91 +104,88 @@ public class CarTypeListActivity extends LoadingActivity {
     }
 
     private void addCarType() {
-        DefaultStringParser parser = new DefaultStringParser(addResult);
-        HashMap<String, String> params = new HashMap<>();
-        params.put("brandid", brandid);
-        params.put("optionid", optionid);
-        params.put("carid", carId);
-        parser.executePost(URLConfig.getM_CAR_ADD_CAR(), params);
+        PopBoxCreat.createDialogNotitle(CarTypeListActivity.this, null, "您选择的车型是" + carTitle, "取消", "确定", new PopBoxCreat.DialogWithTitleClick() {
+            @Override
+            public void onLeftClick() {
+
+            }
+
+            @Override
+            public void onRightClick() {
+                DefaultStringParser parser = new DefaultStringParser(addResult);
+                HashMap<String, String> params = new HashMap<>();
+                params.put("brandid", brandid);
+                params.put("optionid", optionid);
+                params.put("carid", carId);
+                parser.executePost(URLConfig.getM_CAR_ADD_CAR(), params);
+
+            }
+        });
+
     }
 
     BaseParser.ResultCallback addResult = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-
-            PopBoxCreat.createDialogNotitle(CarTypeListActivity.this, null, "您选择的车型是" + carTitle, "取消", "确定", new PopBoxCreat.DialogWithTitleClick() {
-                @Override
-                public void onLeftClick() {
-
-                }
-
-                @Override
-                public void onRightClick() {
-                    UUToast.showUUToast(CarTypeListActivity.this, " 车辆绑定成功");
-                    Intent intent = new Intent(CarTypeListActivity.this, DeviceBindActivity.class);
-                    intent.putExtra("cat_title", carTitle);
-                    if (!TextUtils.isEmpty(vinCode)) {
-                        intent.putExtra("vin", vinCode);
-                    }
-                    CarTypeListActivity.this.startActivity(intent);
-                    finish();
-                }
-            });
-
+            LoginInfo.setCarname(carTitle);
+            UUToast.showUUToast(CarTypeListActivity.this, " 车辆绑定成功");
+            Intent intent = new Intent(CarTypeListActivity.this, DeviceBindActivity.class);
+            intent.putExtra("cat_title", carTitle);
+            if (!TextUtils.isEmpty(vinCode)) {
+                intent.putExtra("vin", vinCode);
+            }
+            CarTypeListActivity.this.startActivity(intent);
+            finish();
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            switch (bInfo.getFlag()) {
-                case 1014:
-                    UUToast.showUUToast(CarTypeListActivity.this, " 车辆绑定失败");
-                    break;
-                case 1004:
-                    UUToast.showUUToast(CarTypeListActivity.this, " 未能成功绑定车辆,请确认绑定信息后重试");
-                    break;
+            if (!TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(CarTypeListActivity.this, bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(CarTypeListActivity.this, " 车型绑定失败");
             }
         }
     };
 
     private void switchCarType() {
-        DefaultStringParser parser = new DefaultStringParser(switchResult);
-        HashMap<String, String> params = new HashMap<>();
-        params.put("brandid", brandid);
-        params.put("optionid", optionid);
-        params.put("carid", carId);
-        parser.executePost(URLConfig.getM_SWITCHCAR_URL(), params);
+        PopBoxCreat.createDialogNotitle(CarTypeListActivity.this, null, "您选择的车型是" + carTitle, "取消", "确定", new PopBoxCreat.DialogWithTitleClick() {
+            @Override
+            public void onLeftClick() {
+
+            }
+
+            @Override
+            public void onRightClick() {
+                DefaultStringParser parser = new DefaultStringParser(switchResult);
+                HashMap<String, String> params = new HashMap<>();
+                params.put("brandid", brandid);
+                params.put("optionid", optionid);
+                params.put("carid", carId);
+                parser.executePost(URLConfig.getM_SWITCHCAR_URL(), params);
+            }
+        });
+
+
     }
 
     BaseParser.ResultCallback switchResult = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            PopBoxCreat.createDialogNotitle(CarTypeListActivity.this, null, "您选择的车型是" + carTitle, "取消", "确定", new PopBoxCreat.DialogWithTitleClick() {
-                @Override
-                public void onLeftClick() {
-
-                }
-
-                @Override
-                public void onRightClick() {
-                    UUToast.showUUToast(CarTypeListActivity.this, " 车型修改成功");
-                    Intent intent = new Intent(CarTypeListActivity.this, DeviceBindActivity.class);
-                    intent.putExtra("cat_title", carTitle);
-                    CarTypeListActivity.this.startActivity(intent);
-                    finish();
-                }
-            });
-
+            LoginInfo.setCarname(carTitle);
+            UUToast.showUUToast(CarTypeListActivity.this, " 车型修改成功");
+            Intent intent = new Intent(CarTypeListActivity.this, CarManagerActivity.class);
+            intent.putExtra("cat_title", carTitle);
+            CarTypeListActivity.this.startActivity(intent);
+            finish();
         }
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            switch (bInfo.getFlag()) {
-                case 1014:
-                    UUToast.showUUToast(CarTypeListActivity.this, " 车型修改失败");
-                    break;
-               default:
-                    UUToast.showUUToast(CarTypeListActivity.this, bInfo.getInfo());
-                    break;
+            if (!TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(CarTypeListActivity.this, bInfo.getInfo());
+            } else {
+                UUToast.showUUToast(CarTypeListActivity.this, " 车型修改失败");
             }
         }
     };

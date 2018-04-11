@@ -18,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="64dip"
         android:layout_toRightOf="@id/item_address_img"
-        android:background="#ffffff"
         android:paddingRight="@dimen/safe_margin_h" >
 
         <TextView
@@ -40,7 +39,7 @@
             android:layout_marginTop="9dip"
             android:layout_toLeftOf="@id/item_address_txt_distance"
             android:text="地址名称"
-            android:textColor="@color/text_color_gray3"
+            android:textColor="@color/white"
             android:textSize="16sp" 
             android:singleLine="true"/>
 

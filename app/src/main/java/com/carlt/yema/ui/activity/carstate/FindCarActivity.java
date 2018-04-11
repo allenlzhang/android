@@ -171,8 +171,8 @@ public class FindCarActivity extends LoadingActivity2 implements LocationSource,
         super.loadDataSuccess(bInfo);
        // "position":"120.132851,30.281979",
 //		 data = "108.95224799262152,34.19749321831597";
-      String value = "{'position':'120.132851,30.281979'}";
-//        String value = (String) ((BaseResponseInfo) bInfo).getValue();
+//      String value = "{'position':'120.132851,30.281979'}";
+        String value = (String) ((BaseResponseInfo) bInfo).getValue();
         JsonParser jsonParser = new JsonParser();
       String  data =  jsonParser.parse(value).getAsJsonObject().get("position").getAsString();
         if (data != null && !TextUtils.isEmpty(data.toString())) {
@@ -250,10 +250,11 @@ public class FindCarActivity extends LoadingActivity2 implements LocationSource,
         mTxtPLoc.setVisibility(View.GONE);
         mViewInput.setVisibility(View.GONE);
         txtRight.setVisibility(View.VISIBLE);
-
+        txtRight.setText("修改终点");
         mMapView.onCreate(savedInstanceState);
         mMap = mMapView.getMap();
         mMap.setLocationSource(this);
+        mMap.setMapType(AMap.MAP_TYPE_NIGHT);
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
         mMap.setMyLocationType(AMap.LOCATION_TYPE_LOCATE);
         setMylocEnable(false);
@@ -397,7 +398,7 @@ public class FindCarActivity extends LoadingActivity2 implements LocationSource,
 
     private void reSet() {
         mViewInput.setVisibility(View.GONE);
-        txtRight.setText("终点变更");
+        txtRight.setText("修改终点");
         setMylocEnable(true);
         mImgPLoc.setVisibility(View.GONE);
         mTxtPLoc.setVisibility(View.GONE);
@@ -640,7 +641,7 @@ public class FindCarActivity extends LoadingActivity2 implements LocationSource,
     }
     void showProgressDialog() {
         dissmissDialog();
-        mPDialog = PopBoxCreat.createDialogWithProgress(this, "正在处理请稍等。。。");
+        mPDialog = PopBoxCreat.createDialogWithProgress(this, "正在处理请稍等...");
         mPDialog.show();
     }
 
