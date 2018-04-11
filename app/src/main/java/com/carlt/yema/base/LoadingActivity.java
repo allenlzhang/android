@@ -323,7 +323,7 @@ public class LoadingActivity extends BaseActivity {
             if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED) {
                 isAllGranted = false;
                 if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, permission)) {
-                    new AlertDialog.Builder(LoadingActivity.this).setTitle("PermissionTest")//设置对话框标题
+                    new AlertDialog.Builder(LoadingActivity.this).setTitle("权限申请")//设置对话框标题
                             .setMessage("您好，野马管家部分功能需要如下权限：" + permissionNames +
                                     " 请允许，否则将影响部分功能的正常使用。")//设置显示的内容
                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加确定按钮
