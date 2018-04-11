@@ -36,6 +36,7 @@ import com.carlt.yema.protocolparser.CarOperationConfigParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.activity.remote.RemoteLogActivity;
 import com.carlt.yema.ui.activity.remote.RemotePswResetActivity3;
+import com.carlt.yema.ui.activity.setting.VcodeResetRemotePasswdActivity;
 import com.carlt.yema.ui.adapter.RemoteStatesAdapter;
 import com.carlt.yema.ui.view.MyGridView;
 import com.carlt.yema.ui.view.PopBoxCreat;
@@ -259,10 +260,10 @@ public class RemoteMainFragment extends BaseFragment implements
         public void onClick(View v) {
             RemoteFunInfo mInfo = (RemoteFunInfo) v.getTag();
             selectedPos = MyParse.parseInt(mInfo.getId());
-            if(selectedPos == 5){
+            if (selectedPos == 5) {
                 //天窗
                 skyWindowsInfo = mInfo;
-            }else{
+            } else {
                 skyWindowsInfo = null;
             }
             clickLogic();
@@ -633,13 +634,14 @@ public class RemoteMainFragment extends BaseFragment implements
             mViewState.setVisibility(View.GONE);
         }
     }
+
     /**
      * 点击逻辑
      */
     private void clickLogic() {
         boolean hasRemotePswMd5 = LoginInfo.isSetRemotePwd();
         //TODO test data
-//        hasRemotePswMd5 = true;
+//        hasRemotePswMd5 = false;
 //        LoginInfo.setNoneedpsw(false);
 
         if (mViewState.getVisibility() == View.VISIBLE) {
@@ -665,13 +667,9 @@ public class RemoteMainFragment extends BaseFragment implements
                 PopBoxCreat.DialogWithTitleClick click = new PopBoxCreat.DialogWithTitleClick() {
                     @Override
                     public void onRightClick() {
-                            Intent mIntent = new Intent(
-                                    getActivity(),
-                                    RemotePswResetActivity3.class);
-                            mIntent.putExtra(RemotePswResetActivity3.TYPE,
-                                    RemotePswResetActivity3.TYPE_REMOTE);
-                            startActivity(mIntent);
-//
+                        Intent mIntent = new Intent(getActivity(), RemotePswResetActivity3.class);
+                        mIntent.putExtra(RemotePswResetActivity3.TYPE, RemotePswResetActivity3.TYPE_REMOTE);
+                        startActivity(mIntent);
                     }
 
                     @Override
@@ -716,6 +714,16 @@ public class RemoteMainFragment extends BaseFragment implements
         TextView btn2 = (TextView) view
                 .findViewById(R.id.dialog_withedit_new_btn2);
 
+        TextView btnForget= (TextView) view
+                .findViewById(R.id.dialog_withedit_forget_psw);
+
+        btnForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent resetLoginPasswdByPhone=new Intent(getActivity(),VcodeResetRemotePasswdActivity.class);
+                startActivity(resetLoginPasswdByPhone);
+            }
+        });
 
         // 正常模式
         editPassword.setEnabled(true);
