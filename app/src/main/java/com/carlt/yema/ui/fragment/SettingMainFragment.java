@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
+import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.DealerInfo;
@@ -45,7 +46,7 @@ import java.util.HashMap;
  * Created by marller on 2018\3\14 0014.
  */
 
-public class SettingMainFragment extends Fragment implements View.OnClickListener {
+public class SettingMainFragment extends BaseFragment implements View.OnClickListener {
 
     private static final String TAG=SettingMainFragment.class.getSimpleName();
 
@@ -72,22 +73,15 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
 
     private DealerInfo mDealerInfo;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getDealerInfo();
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View parent = inflater.inflate(R.layout.activity_setting_main, container, false);
-        initComponent(parent);
+    protected View inflateView(LayoutInflater inflater) {
+        View parent = inflater.inflate(R.layout.activity_setting_main, null, false);
         return parent;
     }
 
@@ -96,7 +90,8 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
         super.onActivityCreated(savedInstanceState);
     }
 
-    private void initComponent(View parent) {
+    @Override
+    public void init(View parent) {
         btn_person_info = parent.findViewById(R.id.btn_person_info);
         btn_person_info.setOnClickListener(this);
         btn_travel_album = parent.findViewById(R.id.btn_travel_album);
@@ -200,7 +195,8 @@ public class SettingMainFragment extends Fragment implements View.OnClickListene
     /**
      * 获取经销商信息
      * */
-    private void getDealerInfo(){
+    @Override
+    public void loadData(){
         CarDealerParser parser=new CarDealerParser(dealerCallback);
         HashMap<String,String> params=new HashMap<>();
         parser.executePost(URLConfig.getM_GET_DEALER_INFO(),params);

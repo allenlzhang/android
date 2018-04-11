@@ -16,25 +16,35 @@ import com.carlt.yema.ui.fragment.RemoteMainFragment;
 
 public class FragmentAdapter extends FragmentStatePagerAdapter {
     private int numTab;
+
+    private  HomeFragment homeFragment;
+
+    private  CarMainFragment carMainFragment;
+
+    private  RemoteMainFragment remoteMainFragment;
+
+    private SettingMainFragment settingFragment;
+
+
     public FragmentAdapter(FragmentManager fm, int numTab) {
         super(fm);
         this.numTab = numTab;
+        homeFragment  = new HomeFragment();
+        carMainFragment = new CarMainFragment();
+        remoteMainFragment  = new RemoteMainFragment();
+        settingFragment   = new SettingMainFragment();
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
             case 1:
-                CarMainFragment carMainFragment = new CarMainFragment();
                 return carMainFragment;
             case 2:
-                RemoteMainFragment remoteMainFragment = new RemoteMainFragment();
                 return remoteMainFragment;
             case 3:
-                SettingMainFragment settingFragment = new SettingMainFragment();
                 return settingFragment;
         }
         return null;

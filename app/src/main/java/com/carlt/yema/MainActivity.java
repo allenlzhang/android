@@ -3,6 +3,8 @@ package com.carlt.yema;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.adapter.FragmentAdapter;
 import com.carlt.yema.ui.view.NoScrollViewPager;
@@ -22,6 +25,7 @@ public class MainActivity extends BaseActivity {
     private String [] tabTexts = {"首页","座驾","远程","我的"};
     private int [] tabIcons = {R.drawable.tab_home_bg,R.drawable.tab_car_bg,R.drawable.tab_remote_bg,
             R.drawable.tab_my_bg};
+    private FragmentAdapter fragmentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +50,32 @@ public class MainActivity extends BaseActivity {
         mTabLayout.addTab(mTabLayout.newTab());
         mTabLayout.addTab(mTabLayout.newTab());
         mTabLayout.setSelectedTabIndicatorHeight(0);
-        mViewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager(),mTabLayout.getTabCount()));
+        fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
+        mViewPager.setAdapter(fragmentAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.getTabAt(0).setCustomView(getTabView(0));
         mTabLayout.getTabAt(1).setCustomView(getTabView(1));
         mTabLayout.getTabAt(2).setCustomView(getTabView(2));
         mTabLayout.getTabAt(3).setCustomView(getTabView(3));
         mViewPager.setNoScroll(true);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.e("BaseFragment","onPageScrolled position==="+position);
+                ((BaseFragment)(fragmentAdapter.getItem(position))).loadData();
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.e("BaseFragment","onPageSelected position==="+position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 

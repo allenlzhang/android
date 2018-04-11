@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,8 @@ public abstract class BaseFragment extends Fragment {
             mCtx = getActivity();
             mView = inflateView(inflater);
             init(mView);
-            loadData();
         }
+        Log.e("BaseFragment",this.getClass().getSimpleName()+"onCreateView");
         return mView;
     }
 
@@ -38,8 +39,16 @@ public abstract class BaseFragment extends Fragment {
 
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        Log.e("BaseFragment",this.getClass().getSimpleName()+"onResume");
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.e("BaseFragment",this.getClass().getSimpleName()+"onDestroy");
         isDestory = true;
         ViewGroup vg = ((ViewGroup) mView.getParent());
         if (vg != null) {
@@ -54,7 +63,6 @@ public abstract class BaseFragment extends Fragment {
      * 加载数据调用
      */
     public void loadData() {
-//        isDestory = false;
     }
 
     protected void actLoadError(BaseResponseInfo bInfo) {

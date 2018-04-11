@@ -90,23 +90,19 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
     }
 
     class CarmainBroadCastReceiver extends BroadcastReceiver {
-
         @Override
         public void onReceive(Context context, Intent intent) {
-            initData();
+            loadData();
         }
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        initData();
-    }
 
     CarOperationConfigParser carOperationConfigParser;
 
-    private void initData() {
+
+    @Override
+    public void loadData() {
         //CARINDEX 以及支持的配置项
         BaseParser parser = new DefaultParser<CarIndexInfo>(new BaseParser.ResultCallback() {
             @Override
@@ -204,6 +200,11 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onDetach() {
         super.onDetach();
-        getActivity().unregisterReceiver(mReceiver);
+        try{
+            getActivity().unregisterReceiver(mReceiver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

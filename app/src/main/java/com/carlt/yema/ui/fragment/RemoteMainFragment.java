@@ -136,8 +136,7 @@ public class RemoteMainFragment extends BaseFragment implements
     CarOperationConfigParser carOperationConfigParser;
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void loadData() {
         if (YemaApplication.getInstanse().getRemoteMainInfo() == null) {
             carOperationConfigParser = new CarOperationConfigParser<String>(new BaseParser.ResultCallback() {
                 @Override
