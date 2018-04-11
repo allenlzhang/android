@@ -99,6 +99,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
+            bInfo.setInfo("暂未拉取到图片");
             loadonErrorUI(bInfo);
         }
     };

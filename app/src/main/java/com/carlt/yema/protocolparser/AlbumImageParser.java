@@ -24,14 +24,11 @@ public class AlbumImageParser extends BaseParser {
     @Override
     protected void parser() throws Exception {
         JsonObject jsonObject=mJson.getAsJsonObject("data");
-        if (jsonObject != null) {
-            mBaseResponseInfo.setInfo("暂未拉取到图片");
-        } else {
             Gson gson=new Gson();
             Type type=new TypeToken<ArrayList<AlbumImageInfo>>(){}.getType();
             JsonArray albumImages=mJson.getAsJsonArray("data");
             albumImageInfos=gson.fromJson(albumImages,type);
             mBaseResponseInfo.setValue(albumImageInfos);
-        }
+
     }
 }

@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,35 +17,25 @@ import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.ActivityControl;
+import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.UseInfo;
-import com.carlt.yema.http.HttpLinker;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
-import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
-import com.carlt.yema.utils.CipherUtils;
 import com.carlt.yema.utils.StringUtils;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.HashMap;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 /**
  * Created by marller on 2018\3\15 0015.
  */
 
-public class UserLoginActivity extends BaseActivity implements View.OnClickListener, Callback {
+public class UserLoginActivity extends BaseActivity implements View.OnClickListener, BaseParser.ResultCallback {
 
 
     private TextView login_version;//版本信息
@@ -150,7 +139,8 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                     mDialog = PopBoxCreat.createDialogWithProgress(UserLoginActivity.this, "正在验证信息...");
                     mDialog.show();
                     mLoginInfo = new LoginInfo();
-                    login(userPhone, passwd);
+//                    login(userPhone, passwd);
+                    CPControl.GetLogin(userPhone,passwd,this);
                 }
                 break;
             case R.id.user_regist:
@@ -183,49 +173,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         }
     };
 
-    @Override
-    public void onFailure(Call call, IOException e) {
-        mLoginInfo.setInfo(BaseParser.MSG_ERRO);
-        Message msg = new Message();
-        msg.what = 1;
-        msg.obj = mLoginInfo;
-        mHandler.sendMessage(msg);
-    }
-
-    @Override
-    public void onResponse(Call call, Response response) throws IOException {
-        Log.d(TAG, "__onResponse__" + response.toString());
-        if (null==response) {
-            UUToast.showUUToast(this,BaseResponseInfo.NET_ERROR);
-            return;
-        }
-        String content = response.body().string();
-        try {
-            JSONObject mJson = new JSONObject(content);
-            JSONObject mJSON_data = mJson.getJSONObject("data");
-            LoginControl.parseLoginInfo(mJSON_data);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        Gson gson = new Gson();
-        mLoginInfo = gson.fromJson(content, LoginInfo.class);
-        if (mLoginInfo != null) {
-            if (response.isSuccessful() && mLoginInfo.getFlag() == 200) {
-                Message msg = new Message();
-                msg.what = 0;
-                msg.obj = mLoginInfo;
-                mHandler.sendMessage(msg);
-            } else {
-                Message msg = new Message();
-                msg.what = 1;
-                msg.obj = mLoginInfo;
-                mHandler.sendMessage(msg);
-            }
-        } else {
-            UUToast.showUUToast(this,BaseResponseInfo.NET_ERROR);
-        }
-    }
 
     private void passwdToggle(String tag) {
         if (!TextUtils.isEmpty(tag)) {
@@ -258,28 +205,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     }
 
 
-    /**
-     * 登录
-     */
-    private void login(String userPhone, String passwd) {
-        HashMap<String, String> mMap = new HashMap<String, String>();
-        mMap.put("version", YemaApplication.Version + "");
-        mMap.put("mobile", userPhone);
-        mMap.put("password", CipherUtils.md5(passwd));
-        mMap.put("move_deviceid", YemaApplication.NIMEI);
-        mMap.put("move_device_name", YemaApplication.MODEL_NAME);
-        mMap.put("move_model", YemaApplication.MODEL);
-        mMap.put("softtype", "android");
-        StringBuffer sysinfo = new StringBuffer(YemaApplication.ANDROID_VERSION);
-        sysinfo.append(",");
-        sysinfo.append(YemaApplication.DISPLAY);
-        sysinfo.append(",");
-        sysinfo.append(YemaApplication.MODEL_NAME);
-        mMap.put("sysinfo", sysinfo.toString());
-        String url = URLConfig.getM_LOGIN_URL();
-        HttpLinker.post(url, mMap, this);
-    }
-
 
     /**
      * 加载成功
@@ -304,7 +229,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         if (mDialog != null && mDialog.isShowing()) {
             mDialog.dismiss();
         }
-        LoginInfo mLoginInfo = (LoginInfo) erro;
+        BaseResponseInfo mLoginInfo = (BaseResponseInfo) erro;
 
         if (mLoginInfo != null) {
            String info=mLoginInfo.getInfo();
@@ -318,4 +243,33 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public void onSuccess(BaseResponseInfo bInfo) {
+
+        try {
+            String dataValue = (String) bInfo.getValue();
+            JSONObject mJSON_data = new JSONObject(dataValue);
+            LoginControl.parseLoginInfo(mJSON_data);
+            Message msg = new Message();
+            msg.what = 0;
+            msg.obj = bInfo;
+            mHandler.sendMessage(msg);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Message msg = new Message();
+            bInfo.setInfo("解析失败");
+            msg.what = 1;
+            msg.obj = bInfo;
+            mHandler.sendMessage(msg);
+        }
+
+    }
+
+    @Override
+    public void onError(BaseResponseInfo bInfo) {
+        Message msg = new Message();
+        msg.what = 1;
+        msg.obj = bInfo;
+        mHandler.sendMessage(msg);
+    }
 }

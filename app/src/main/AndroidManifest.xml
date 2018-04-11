@@ -64,7 +64,7 @@
             android:name="com.amap.api.v2.apikey"
             android:value="90eead545ff2bc5407490fbae5aab92a" />
 
-        <activity android:name=".ui.activity.login.UserLoginActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -72,6 +72,7 @@
             </intent-filter>
         </activity>
         <!--<activity android:name=".ui.TestActivity"/>-->
+        <activity android:name=".ui.activity.login.UserLoginActivity" />
         <activity android:name=".ui.activity.home.RemindActivity" />
         <activity android:name=".ui.activity.home.ReportActivity" />
         <activity android:name=".ui.activity.home.MonthActivity" />

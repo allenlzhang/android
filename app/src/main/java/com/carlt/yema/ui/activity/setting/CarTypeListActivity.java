@@ -128,7 +128,6 @@ public class CarTypeListActivity extends LoadingActivity {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             LoginInfo.setCarname(carTitle);
-            UUToast.showUUToast(CarTypeListActivity.this, " 车辆绑定成功");
             Intent intent = new Intent(CarTypeListActivity.this, DeviceBindActivity.class);
             intent.putExtra("cat_title", carTitle);
             if (!TextUtils.isEmpty(vinCode)) {

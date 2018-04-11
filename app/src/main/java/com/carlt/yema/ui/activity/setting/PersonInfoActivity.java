@@ -47,6 +47,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
     private static String[] sexItems = {"男", "女", "保密"};
     private List<String> sexList;
     private String gender;
+    String sexFlag = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +156,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 String tx = sexList.get(options1);
-                String sexFlag = "";
+
                 if (tx.equals("男")) sexFlag = "1";
                 else if (tx.equals("女")) sexFlag = "2";
                 else sexFlag = "3";
@@ -207,8 +208,9 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(PersonInfoActivity.this, "资料修改成功");
-            person_sex_txt.setText(gender);
-            LoginInfo.setGender(gender);
+            LoginInfo.setGender(sexFlag);
+             person_sex_txt.setText(gender);
+
             if (!TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
                 Glide.with(PersonInfoActivity.this).load(LoginInfo.getAvatar_img()).into(usr_avatar);
             }

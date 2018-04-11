@@ -44,22 +44,24 @@ public class AlbumImageAdapter extends BaseAdapter {
         this.albumImageInfos = albumImageInfos;
         isSelected = new HashMap<>();
         inflater = LayoutInflater.from(context);
-        //按时间排序
-        Collections.sort(this.albumImageInfos, new Comparator<AlbumImageInfo>() {
-            @Override
-            public int compare(AlbumImageInfo albumImageInfo, AlbumImageInfo albumImageInfo1) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Date date1 = null, date2 = null;
-                try {
-                    date1 = simpleDateFormat.parse(albumImageInfo.getUploadTime());
-                    date2 = simpleDateFormat.parse(albumImageInfo1.getUploadTime());
-                } catch (ParseException e) {
-                    e.printStackTrace();
+        if (this.albumImageInfos!=null&&this.albumImageInfos.size()>0) {
+            //按时间排序
+            Collections.sort(this.albumImageInfos, new Comparator<AlbumImageInfo>() {
+                @Override
+                public int compare(AlbumImageInfo albumImageInfo, AlbumImageInfo albumImageInfo1) {
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date date1 = null, date2 = null;
+                    try {
+                        date1 = simpleDateFormat.parse(albumImageInfo.getUploadTime());
+                        date2 = simpleDateFormat.parse(albumImageInfo1.getUploadTime());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return date2.compareTo(date1);
                 }
-                return date2.compareTo(date1);
-            }
-        });
-        checkedInit();
+            });
+            checkedInit();
+        }
     }
 
     private void checkedInit() {

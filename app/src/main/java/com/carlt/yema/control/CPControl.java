@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.data.BaseResponseInfo;
-import com.carlt.yema.data.home.InformationCategoryInfoList;
 import com.carlt.yema.data.login.UserRegisterParams;
 import com.carlt.yema.data.remote.AirMainInfo;
 import com.carlt.yema.data.remote.RemoteFunInfo;
@@ -493,4 +492,26 @@ public class CPControl {
 		paser.executePost(URLConfig.getM_REMOVERXGPUSH_URL(),mapParam);
 	}
 
+    public static void GetLogin(String account, String password, BaseParser.ResultCallback listener_login) {
+
+		HashMap<String, String> mMap = new HashMap<String, String>();
+		mMap.put("version", YemaApplication.Version + "");
+		mMap.put("mobile", account);
+		mMap.put("password", CipherUtils.md5(password));
+		mMap.put("move_deviceid", YemaApplication.NIMEI);
+		mMap.put("move_device_name", YemaApplication.MODEL_NAME);
+		mMap.put("move_model", YemaApplication.MODEL);
+		mMap.put("softtype", "android");
+		StringBuffer sysinfo = new StringBuffer(YemaApplication.ANDROID_VERSION);
+		sysinfo.append(",");
+		sysinfo.append(YemaApplication.DISPLAY);
+		sysinfo.append(",");
+		sysinfo.append(YemaApplication.MODEL_NAME);
+		mMap.put("sysinfo", sysinfo.toString());
+		String url = URLConfig.getM_LOGIN_URL();
+
+		DefaultStringParser parser = new DefaultStringParser(listener_login);
+		parser.executePost(url,mMap);
+
+    }
 }

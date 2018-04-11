@@ -36,6 +36,6 @@
         android:layout_marginRight="12dp"
         android:layout_alignParentRight="true"
         android:visibility="gone"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="@string/travel_album_edit" />
 </RelativeLayout>

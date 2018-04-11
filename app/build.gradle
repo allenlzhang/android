@@ -12,20 +12,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-    signingConfigs {
-        release {
-            storeFile file('C:/Users/liu/Desktop/hz17car_key.key')
-            storePassword "hz17car"
-            keyAlias "联云"
-            keyPassword "hz17car"
-        }
-        debug {
-            storeFile file('C:/Users/liu/Desktop/hz17car_key.key')
-            storePassword "hz17car"
-            keyAlias "联云"
-            keyPassword "hz17car"
-        }
-    }
+
     buildTypes {
         release {
             minifyEnabled false
