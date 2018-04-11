@@ -82,7 +82,7 @@
             android:paddingLeft="5dp"
             android:singleLine="true"
             android:text="目的地地址信息"
-            android:textColor="#999999"
+            android:textColor="@color/text_color_gray0"
             android:textSize="14sp" />
     </RelativeLayout>
 

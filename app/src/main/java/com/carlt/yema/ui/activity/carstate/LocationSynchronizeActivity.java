@@ -53,6 +53,7 @@ import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.StringUtils;
 import com.carlt.yema.utils.map.PositionEntity;
 import com.carlt.yema.utils.map.SensorEventHelper;
 
@@ -122,7 +123,7 @@ public class LocationSynchronizeActivity extends BaseActivity implements
         mMapView.onCreate(savedInstanceState);
         mMap = mMapView.getMap();
         mMap.setLocationSource(this);
-
+        mMap.setMapType(AMap.MAP_TYPE_NIGHT);
         // 定位图标样式
         MyLocationStyle myLocationStyle;
         myLocationStyle = new MyLocationStyle();
@@ -310,8 +311,8 @@ public class LocationSynchronizeActivity extends BaseActivity implements
                     return;
                 }
 
-                String location = mTxtAddrDetail.getText().toString();
-                if (TextUtils.isEmpty(location)) {
+                String location = mTxtAddrName.getText().toString();
+                if (StringUtils.isEmpty(location)) {
                     UUToast.showUUToast(this, "您还没有输入目的地哦");
                     return;
                 }

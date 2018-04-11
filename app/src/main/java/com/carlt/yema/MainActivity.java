@@ -3,6 +3,7 @@ package com.carlt.yema;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ public class MainActivity extends BaseActivity {
         if (pageIdx!=mTabLayout.getSelectedTabPosition()) {
             mTabLayout.getTabAt(pageIdx).setCustomView(getTabView(pageIdx));
         }
+
     }
 
     @Override

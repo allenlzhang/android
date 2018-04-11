@@ -83,6 +83,7 @@
         <activity android:name=".ui.activity.carstate.CarStateNowActivity" />
         <activity android:name=".ui.activity.carstate.CarLocationActivity" />
         <activity android:name=".ui.activity.carstate.CarSynchronizeLocationActivity" />
+        <activity android:name=".ui.activity.carstate.SearchAddrActivity" />
         <activity android:name=".ui.activity.remote.RemoteLogActivity" />
         <activity android:name=".ui.activity.login.DeviceBindActivity" />
         <activity android:name=".ui.activity.login.ResetPasswdActivity" />
@@ -116,17 +117,7 @@
         <activity android:name=".ui.activity.carstate.LocationSynchronizeActivity" />
         <activity android:name=".ui.activity.remote.RemotePswResetActivity3" />
 
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.carlt.yema"
-            android:exported="false"
-            android:grantUriPermissions="true">
 
-            <!-- 提供共享路径 -->
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
         <!-- 【必须】 信鸽receiver广播接收 -->
         <receiver
             android:name="com.tencent.android.tpush.XGPushReceiver"
@@ -146,7 +137,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".push.MessageReceiver"
+            android:name="com.carlt.yema.push.MessageReceiver"
             android:exported="true">
             <intent-filter>
 
@@ -167,9 +158,9 @@
                 <action android:name="android.intent.action" />
             </intent-filter>
         </activity>
-
+        <service android:name="com.amap.api.location.APSService" />
         <service
-            android:name=".push.PushService"
+            android:name="com.carlt.yema.push.PushService"
             android:exported="true"
             android:persistent="true" />
 
