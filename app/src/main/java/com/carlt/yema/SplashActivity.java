@@ -20,6 +20,9 @@ import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.FileUtil;
 import com.carlt.yema.utils.LocalConfig;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -150,13 +153,12 @@ public class SplashActivity extends BaseActivity implements Callback {
 
         @Override
         public void onSuccess(BaseResponseInfo o) {
+
             final Message msg = new Message();
             msg.what = 1;
             msg.obj = o;
-
             long duration = 2500 - (System.currentTimeMillis() - mMills);
             mHandler.postDelayed(new Runnable() {
-
                 @Override
                 public void run() {
                     // 不是第一次使用
@@ -180,19 +182,30 @@ public class SplashActivity extends BaseActivity implements Callback {
 
         @Override
         public void onSuccess(BaseResponseInfo o) {
-            final Message msg = new Message();
-            msg.what = 3;
-            msg.obj = o;
 
-            long duration = 3000 - (System.currentTimeMillis() - mMills);
-            mHandler.postDelayed(new Runnable() {
+            String dataValue = (String) o.getValue();
+            JSONObject mJSON_data = null;
+            try {
+                mJSON_data = new JSONObject(dataValue);
+                LoginControl.parseLoginInfo(mJSON_data);
+                final Message msg = new Message();
+                msg.what = 3;
+                msg.obj = o;
+                long duration = 3000 - (System.currentTimeMillis() - mMills);
+                mHandler.postDelayed(new Runnable() {
 
-                @Override
-                public void run() {
-                    mHandler.sendMessage(msg);
-                }
-            }, duration > 0 ? duration : 0);
-
+                    @Override
+                    public void run() {
+                        mHandler.sendMessage(msg);
+                    }
+                }, duration > 0 ? duration : 0);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Message msg = new Message();
+                msg.what = 4;
+                msg.obj = o;
+                mHandler.sendMessage(msg);
+            }
         }
 
         @Override

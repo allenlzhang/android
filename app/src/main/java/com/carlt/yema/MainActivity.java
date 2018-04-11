@@ -91,8 +91,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK){
-            Intent intent = new Intent(MainActivity.this, UserLoginActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MainActivity.this, UserLoginActivity.class);
+//            startActivity(intent);
             finish();
             return true;
         }
