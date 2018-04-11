@@ -86,7 +86,6 @@ public class LoginControl {
                                 ActivateBindActivity.class);
                         loginIntent.putExtra("account", LoginInfo.getMobile());
                         mContext.startActivity(loginIntent);
-                        mContext.finish();
                     }
                 }
 
@@ -97,7 +96,6 @@ public class LoginControl {
             loginIntent.putExtra("account", LoginInfo.getVin(LoginInfo.getMobile()));
             loginIntent.putExtra("carType", LoginInfo.getCarname());
             mContext.startActivity(loginIntent);
-            mContext.finish();
         }
     }
 

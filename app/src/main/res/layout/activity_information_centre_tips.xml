@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/btn_blue_rec"
                 android:gravity="center_horizontal"
-                android:text="不确定？点这里！"
+                android:text="不准确？点这里！"
                 android:textColor="#fff"
                 android:textSize="14sp"
                 android:paddingLeft="10dp"
@@ -47,10 +47,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dip"
                 android:layout_weight="1"
-                android:background="@drawable/activity_information_centre_tips_kuang"
+                android:background="@drawable/activity_information_centre_tips_bg"
                 android:gravity="center"
                 android:text="我已经保养过了"
-                android:textColor="@color/white"
+                android:textColor="@color/information_centre_tips_kuang_txt_color"
                 android:textSize="14sp" />
 
 

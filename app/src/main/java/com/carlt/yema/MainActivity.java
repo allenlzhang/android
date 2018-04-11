@@ -3,12 +3,14 @@ package com.carlt.yema;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.adapter.FragmentAdapter;
 import com.carlt.yema.ui.view.NoScrollViewPager;
 
@@ -61,5 +63,16 @@ public class MainActivity extends BaseActivity {
         ImageView img_title = (ImageView) view.findViewById(R.id.tab_custom_iv);
         img_title.setImageResource(tabIcons[position]);
         return view;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            Intent intent = new Intent(MainActivity.this, UserLoginActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

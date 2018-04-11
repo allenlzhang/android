@@ -121,7 +121,6 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
             LoginInfo.setVin(LoginInfo.getMobile(),deviceId);
             Intent activateIntent=new Intent(DeviceBindActivity.this,ActivateBindActivity.class);
             startActivity(activateIntent);
-            finish();
         }
 
         @Override
