@@ -15,7 +15,7 @@ import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
-import com.carlt.yema.ui.activity.home.LoginActivity;
+import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.FileUtil;
 import com.carlt.yema.utils.LocalConfig;
@@ -43,6 +43,7 @@ public class SplashActivity extends BaseActivity implements Callback {
     private final static long interval = 30 * 1000;// 友盟统计-时间间隔
 
     long mMills = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class SplashActivity extends BaseActivity implements Callback {
         splash();
     }
 
-    private void splash(){
+    private void splash() {
         FileUtil.openOrCreatDir(LocalConfig.mImageCacheSavePath_SD);
         FileUtil.openOrCreatDir(LocalConfig.mImageCacheSavePath_Absolute);
         FileUtil.openOrCreatDir(LocalConfig.mDownLoadFileSavePath_SD);
@@ -63,21 +64,21 @@ public class SplashActivity extends BaseActivity implements Callback {
         account = mUseInfo.getAccount();
         password = mUseInfo.getPassword();
 
-        File mFile = new File(LocalConfig.mErroLogSavePath_SD);
-        if(mFile == null){
-            return;
-        }
-        File[] files = mFile.listFiles();
-        if(files == null || files.length == 0){
-            return;
-        }
-        ArrayList<String> filePaths = new ArrayList<String>();
-        int length = files.length;
-        for (int i = 0; i < length; i++) {
-            File file = files[i];
-            String fileName = file.getName();
-            filePaths.add(LocalConfig.mErroLogSavePath_SD + fileName);
-        }
+//        File mFile = new File(LocalConfig.mErroLogSavePath_SD);
+//        if(mFile == null){
+//            return;
+//        }
+//        File[] files = mFile.listFiles();
+//        if(files == null || files.length == 0){
+//            return;
+//        }
+//        ArrayList<String> filePaths = new ArrayList<String>();
+//        int length = files.length;
+//        for (int i = 0; i < length; i++) {
+//            File file = files[i];
+//            String fileName = file.getName();
+//            filePaths.add(LocalConfig.mErroLogSavePath_SD + fileName);
+//        }
 
         jumpLogic();
     }
@@ -105,7 +106,7 @@ public class SplashActivity extends BaseActivity implements Callback {
                     // 不是第一次使用
                     // 跳转至登录页面
                     Intent mIntent2 = new Intent(SplashActivity.this,
-                            LoginActivity.class);
+                            UserLoginActivity.class);
                     startActivity(mIntent2);
                     finish();
                 }
@@ -133,7 +134,7 @@ public class SplashActivity extends BaseActivity implements Callback {
                     UUToast.showUUToast(SplashActivity.this, "登录错误："
                             + mBaseResponseInfo.getInfo());
                     Intent mIntent4 = new Intent(SplashActivity.this,
-                            LoginActivity.class);
+                            UserLoginActivity.class);
                     finish();
                     overridePendingTransition(R.anim.enter_alpha, R.anim.exit_alpha);
                     startActivity(mIntent4);

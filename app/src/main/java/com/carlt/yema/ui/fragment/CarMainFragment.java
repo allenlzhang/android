@@ -1,5 +1,6 @@
 package com.carlt.yema.ui.fragment;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
+import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarIndexInfo;
@@ -24,6 +26,8 @@ import com.carlt.yema.ui.activity.carstate.CarTiresStateActivity;
 import com.carlt.yema.ui.activity.carstate.FindCarActivity;
 import com.carlt.yema.ui.activity.carstate.LocationSynchronizeActivity;
 import com.carlt.yema.ui.activity.carstate.MainTestingActivity;
+import com.carlt.yema.ui.activity.setting.PersonAvatarActivity;
+import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.ILog;
 import com.carlt.yema.utils.StringUtils;
 
@@ -163,6 +167,17 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         }
     }
 
+    /**
+     * 需要进行检测的权限数组
+     */
+    protected String[] needPermissions = {
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//            Manifest.permission.READ_EXTERNAL_STORAGE,
+//            Manifest.permission.READ_PHONE_STATE
+    };
+
     @Override
     public void onClick(View view) {
 
@@ -172,12 +187,33 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
                 startActivity(mIntent);
                 break;
             case R.id.car_main_txt_findcar://定位寻车
-                Intent mIntent1 = new Intent(getActivity(), FindCarActivity.class);
-                startActivity(mIntent1);
+                ((BaseActivity)getActivity()).requestPermissions(getActivity(), needPermissions, new BaseActivity.RequestPermissionCallBack() {
+                    @Override
+                    public void granted() {
+                        Intent mIntent1 = new Intent(getActivity(), FindCarActivity.class);
+                        startActivity(mIntent1);
+                    }
+
+                    @Override
+                    public void denied() {
+                        UUToast.showUUToast(getActivity(),"未获取到权限，定位功能不可用");
+                    }
+                });
+
                 break;
             case R.id.car_main_txt_carlocation://导航同步
-                Intent mIntent2 = new Intent(getActivity(), LocationSynchronizeActivity.class);
-                startActivity(mIntent2);
+                ((BaseActivity)getActivity()).requestPermissions(getActivity(), needPermissions, new BaseActivity.RequestPermissionCallBack() {
+                    @Override
+                    public void granted() {
+                        Intent mIntent2 = new Intent(getActivity(), LocationSynchronizeActivity.class);
+                        startActivity(mIntent2);
+                    }
+                    @Override
+                    public void denied() {
+                        UUToast.showUUToast(getActivity(),"未获取到权限，导航同步功能不可用");
+                    }
+                });
+
                 break;
             case R.id.car_main_lay_safety://安防提醒
                 Intent mIntent3 = new Intent(getActivity(), CarSaftyListActivity.class);
