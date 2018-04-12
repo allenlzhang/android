@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
+import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.data.BaseResponseInfo;
@@ -106,6 +107,29 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
     }
 
     @Override
+    protected void initTitle(String titleString) {
+        try{
+            backTV = $ViewByID(R.id.back);
+            titleTV = $ViewByID(R.id.title);
+            btnOpt = $ViewByID(R.id.btnOpt);
+        }catch (Exception e){
+            //是设置标题出错
+            return;
+        }
+        if(null != backTV){
+            backTV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    back();
+                }
+            });
+        }
+        if(null != titleTV){
+            titleTV.setText(titleString);
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         String carName=getIntent().getStringExtra("cat_title");
@@ -118,7 +142,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
-                finish();
+                back();
                 break;
             case R.id.edit_car_type:
                 Intent switchIntent = new Intent(this, CarModeListActivity.class);
@@ -335,4 +359,15 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
             }
         }
     };
+
+    private void back(){
+        Intent backIntent=new Intent(this, MainActivity.class);
+        startActivity(backIntent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        back();
+    }
 }

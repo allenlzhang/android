@@ -21,6 +21,9 @@ import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.UUToast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -140,7 +143,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
                 person_nickname_txt.setText(data.getStringExtra("nickName"));
             }
         } else {
-            if (!TextUtils.isEmpty(data.getStringExtra("imageId")) && !data.getStringExtra("imageId").equals(-1)) {
+            if (!TextUtils.isEmpty(data.getStringExtra("imageId"))) {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("avatar", data.getStringExtra("imageId"));
                 chanageInfoRequest(params);
@@ -209,11 +212,8 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(PersonInfoActivity.this, "资料修改成功");
             LoginInfo.setGender(sexFlag);
-             person_sex_txt.setText(gender);
-
-            if (!TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
-                Glide.with(PersonInfoActivity.this).load(LoginInfo.getAvatar_img()).into(usr_avatar);
-            }
+            person_sex_txt.setText(gender);
+            parseAvatarUrl(bInfo);
         }
 
         @Override
@@ -223,5 +223,22 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             }
         }
     };
+
+    private void parseAvatarUrl(BaseResponseInfo bInfo) {
+        String data = bInfo.getValue().toString();
+        try {
+            JSONObject json=new JSONObject(data);
+            if (json != null) {
+                String avatar_url = json.optString("avatar_img");
+                LoginInfo.setAvatar_img(avatar_url);
+                if (!TextUtils.isEmpty(avatar_url)) {
+                    LoginInfo.setAvatar_img(avatar_url);
+                    Glide.with(PersonInfoActivity.this).load(LoginInfo.getAvatar_img()).into(usr_avatar);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -78,6 +78,11 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
         setBtnOptVisible(true);
         setOnBtnOptClickListener(this);
         loadSuccessUI();
+        if (!TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
+            Glide.with(this).load(LoginInfo.getAvatar_img()).into(image_display);
+        } else {
+            image_display.setImageResource(R.mipmap.default_avater);
+        }
     }
 
     private void initComponent() {
@@ -93,7 +98,7 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
 
     @Override
     protected void onResume() {
-        if (intent != null && !TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
+        if ( !TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
             Glide.with(this).load(LoginInfo.getAvatar_img()).into(image_display);
         } else {
             image_display.setImageResource(R.mipmap.default_avater);
@@ -158,11 +163,11 @@ public class PersonAvatarActivity extends LoadingActivity implements OnClickList
             switch (msg.what) {
                 case 0:
                     UUToast.showUUToast(PersonAvatarActivity.this, "头像上传成功");
-                    intent.putExtra("imageId", info.getId());
+                    backIntent.putExtra("imageId", info.getId());
                     LoginInfo.setAvatar_img(info.getFilePath());
                     break;
                 case 1:
-                    intent.putExtra("imageId", "-1");
+                    backIntent.putExtra("imageId", "-1");
                     UUToast.showUUToast(PersonAvatarActivity.this, "头像上传失败");
                     break;
 
