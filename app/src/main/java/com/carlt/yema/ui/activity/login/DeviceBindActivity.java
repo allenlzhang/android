@@ -73,6 +73,9 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
                 car_vin_code.setText(LoginInfo.getVin(LoginInfo.getMobile()));
             }
         }
+        if (intent != null && !TextUtils.isEmpty(intent.getStringExtra("carType"))) {
+            btn_select_car.setText(intent.getStringExtra("carType"));
+        }
     }
 
     @Override
