@@ -101,7 +101,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.activity_home_relative2:  //跳转信息中心
                 Intent mIntent1 = new Intent(getContext(), InformationCentreActivity.class);
-                startActivityForResult(mIntent1,REQUESTCODE);
+                getActivity().startActivityForResult(mIntent1,REQUESTCODE);
                 break;
         }
     }
@@ -112,10 +112,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUESTCODE){
-            if( resultCode == 2){
                 Log.e(TAG,"loadData  onActivityResult");
                 loadData();
-            }
         }
     }
 
