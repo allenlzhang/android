@@ -31,7 +31,7 @@ public class YemaApplication extends Application {
 
     public static String VersionName;
 
-    public static boolean Formal_Version = false;
+    public static boolean Formal_Version = true;
     public static String TOKEN = "";
 
     public static android.content.pm.PackageManager PackageManager;
@@ -56,7 +56,7 @@ public class YemaApplication extends Application {
 
     public static String IMEI;//手机唯一标识吗 (旧的)
 
-    public final static String packDate = "_2017112001";// 打包日期，打包的时候记得改
+    public final static String packDate = "_2018041201";// 打包日期，打包的时候记得改
 
     private static YemaApplication instance;
 
