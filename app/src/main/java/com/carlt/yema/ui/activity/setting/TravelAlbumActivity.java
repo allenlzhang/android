@@ -53,6 +53,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         setBtnOptText("编辑");
         setOnBtnOptClickListener(this);
         initComponent();
+        initData();
     }
 
     private void initComponent() {
@@ -73,7 +74,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
 
     @Override
     protected void onResume() {
-        initData();
+
         super.onResume();
     }
 

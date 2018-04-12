@@ -23,7 +23,6 @@ public class AlbumImageParser extends BaseParser {
 
     @Override
     protected void parser() throws Exception {
-        JsonObject jsonObject=mJson.getAsJsonObject("data");
             Gson gson=new Gson();
             Type type=new TypeToken<ArrayList<AlbumImageInfo>>(){}.getType();
             JsonArray albumImages=mJson.getAsJsonArray("data");
