@@ -21,6 +21,7 @@ import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.PopBoxCreat.DialogWithTitleClick;
 import com.carlt.yema.ui.view.UUTimerDialog;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.StringUtils;
 
 import java.util.HashMap;
 
@@ -36,6 +37,8 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
     private TextView mTextViewSecretary;// 提醒消息
 
     private UUTimerDialog mDialog;
+
+    private String vinCode ="";
 
     private int ActivateCount;
 
@@ -53,7 +56,10 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
         back.setOnClickListener(this);
         titleText = findViewById(R.id.title);
         titleText.setText("激活设备");
-
+        Intent intent = getIntent();
+        if (intent != null) {
+            vinCode = intent.getStringExtra("vin");
+        }
         activate_commit=findViewById(R.id.activate_commit);
         activate_commit.setOnClickListener(this);
     }
@@ -189,6 +195,7 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
     private void back(){
         Intent backIntent=new Intent(this,DeviceBindActivity.class);
         backIntent.putExtra("from","com.carlt.yema.ActivateBindActivity");
+        backIntent.putExtra("vin",vinCode);
         startActivity(backIntent);
         finish();
         ActivityControl.onExit();
