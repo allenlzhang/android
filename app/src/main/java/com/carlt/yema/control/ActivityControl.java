@@ -23,6 +23,8 @@ import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.activity.login.UserLoginActivity;
+import com.carlt.yema.ui.activity.setting.CarModeListActivity;
+import com.carlt.yema.ui.activity.setting.CarTypeListActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.PopBoxCreat.DialogWithTitleClick;
 import com.tencent.android.tpush.XGBasicPushNotificationBuilder;
@@ -278,6 +280,18 @@ public class ActivityControl {
 				input.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
 				toggleView.setImageDrawable(context.getResources().getDrawable(R.mipmap.passwd_on, null));
 				toggleView.setTag("on");
+			}
+		}
+	}
+
+	public static void finishAllCarSelectActivity() {
+		for (Activity activity : mActivityList) {
+			if (activity instanceof CarTypeListActivity) {
+				activity.finish();
+			}else if(activity instanceof CarModeListActivity){
+				activity.finish();
+			}else{
+				//do nothing
 			}
 		}
 	}

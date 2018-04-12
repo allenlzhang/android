@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarModeInfo;
 import com.carlt.yema.model.LoginInfo;
@@ -173,10 +174,7 @@ public class CarTypeListActivity extends LoadingActivity {
         public void onSuccess(BaseResponseInfo bInfo) {
             LoginInfo.setCarname(carTitle);
             UUToast.showUUToast(CarTypeListActivity.this, " 车型修改成功");
-            Intent intent = new Intent(CarTypeListActivity.this, CarManagerActivity.class);
-            intent.putExtra("cat_title", carTitle);
-            CarTypeListActivity.this.startActivity(intent);
-            finish();
+            ActivityControl.finishAllCarSelectActivity();
         }
 
         @Override
@@ -188,9 +186,5 @@ public class CarTypeListActivity extends LoadingActivity {
             }
         }
     };
-    @Override
-    public void onBackPressed() {
-        finish();
-        super.onBackPressed();
-    }
+
 }

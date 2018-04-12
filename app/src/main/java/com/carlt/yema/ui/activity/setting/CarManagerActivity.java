@@ -8,13 +8,14 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
-import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.data.car.CarSettingInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser.ResultCallback;
 import com.carlt.yema.protocolparser.DefaultStringParser;
+import com.carlt.yema.protocolparser.car.CarSettingInfoParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.UUToast;
 
@@ -51,6 +52,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         setContentView(R.layout.activity_car_manager);
         initCustomTimePicker();
         initComponent();
+        getCarInfo();
     }
 
     private void initComponent() {
@@ -75,75 +77,17 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
             car_type_txt.setText("--");
         }
         purchase_time_txt = findViewById(R.id.purchase_time_txt);
-        if (!TextUtils.isEmpty(LoginInfo.getBuydate())) {
-            purchase_time_txt.setText((LoginInfo.getBuydate()));
-        } else {
-            purchase_time_txt.setText("--");
-        }
         maintenance_mileage_txt = findViewById(R.id.maintenance_mileage_txt);
-        if (!TextUtils.isEmpty(LoginInfo.getMainten_miles())) {
-            maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), Integer.parseInt(LoginInfo.getMainten_miles())));
-        } else {
-            maintenance_mileage_txt.setText("--");
-        }
         maintenance_time_txt = findViewById(R.id.maintenance_time_txt);
-        if (!TextUtils.isEmpty(LoginInfo.getMainten_time())) {
-            maintenance_time_txt.setText(LoginInfo.getMainten_time());
-        } else {
-            maintenance_time_txt.setText("--");
-        }
         insured_time_txt = findViewById(R.id.insured_time_txt);
-        if (!TextUtils.isEmpty(LoginInfo.getInsurance_time())) {
-            insured_time_txt.setText(LoginInfo.getInsurance_time());
-        }else {
-            insured_time_txt.setText("--");
-        }
         nspection_time_txt = findViewById(R.id.nspection_time_txt);
-        if (!TextUtils.isEmpty(LoginInfo.getRegister_time())) {
-            nspection_time_txt.setText(LoginInfo.getRegister_time());
-        }else {
-            nspection_time_txt.setText("--");
-        }
-    }
+}
 
-    @Override
-    protected void initTitle(String titleString) {
-        try{
-            backTV = $ViewByID(R.id.back);
-            titleTV = $ViewByID(R.id.title);
-            btnOpt = $ViewByID(R.id.btnOpt);
-        }catch (Exception e){
-            //是设置标题出错
-            return;
-        }
-        if(null != backTV){
-            backTV.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    back();
-                }
-            });
-        }
-        if(null != titleTV){
-            titleTV.setText(titleString);
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        String carName=getIntent().getStringExtra("cat_title");
-        if (!TextUtils.isEmpty(carName)) {
-            car_type_txt.setText(carName);
-        }
-    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.back:
-                back();
-                break;
+
             case R.id.edit_car_type:
                 Intent switchIntent = new Intent(this, CarModeListActivity.class);
                 switchIntent.putExtra("switch", true);//标记从车辆管理界面跳转
@@ -360,14 +304,50 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         }
     };
 
-    private void back(){
-        Intent backIntent=new Intent(this, MainActivity.class);
-        startActivity(backIntent);
-        finish();
+    private void getCarInfo(){
+        CarSettingInfoParser parser=new CarSettingInfoParser(carSettingCallback);
+        HashMap<String,String> params=new HashMap<>();
+        parser.executePost(URLConfig.getM_GET_CAR_SETTING(),params);
     }
+    ResultCallback carSettingCallback=new ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            CarSettingInfo carSettingInfo= (CarSettingInfo) bInfo.getValue();
+            if (!TextUtils.isEmpty(carSettingInfo.getBuydate())) {
+                purchase_time_txt.setText((carSettingInfo.getBuydate()));
+                LoginInfo.setBuydate(carSettingInfo.getBuydate());
+            } else {
+                purchase_time_txt.setText("--");
+            }
+            if (!TextUtils.isEmpty(carSettingInfo.getMainten_miles())) {
+                maintenance_mileage_txt.setText(String.format(getResources().getString(R.string.last_maintenance_mileage), Integer.parseInt(carSettingInfo.getMainten_miles())));
+                LoginInfo.setMainten_miles(carSettingInfo.getMainten_miles());
+            } else {
+                maintenance_mileage_txt.setText("--");
+            }
+            if (!TextUtils.isEmpty(carSettingInfo.getMainten_date())) {
+                maintenance_time_txt.setText(carSettingInfo.getMainten_date());
+                LoginInfo.setMainten_time(carSettingInfo.getMainten_date());
+            } else {
+                maintenance_time_txt.setText("--");
+            }
+            if (!TextUtils.isEmpty(carSettingInfo.getInsurance_time())) {
+                insured_time_txt.setText(carSettingInfo.getInsurance_time());
+                LoginInfo.setInsurance_time(carSettingInfo.getInsurance_time());
+            }else {
+                insured_time_txt.setText("--");
+            }
+            if (!TextUtils.isEmpty(carSettingInfo.getRegister_time())) {
+                nspection_time_txt.setText(carSettingInfo.getRegister_time());
+                LoginInfo.setRegister_time(carSettingInfo.getRegister_time());
+            }else {
+                nspection_time_txt.setText("--");
+            }
+        }
 
-    @Override
-    public void onBackPressed() {
-        back();
-    }
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+
+        }
+    };
 }

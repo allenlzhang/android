@@ -255,6 +255,8 @@ public class URLConfig {
     private static String M_NAVIGATION_URL = "remote/navigation";
     // 获取导航同步到车--改为远程相关接口
     private static String M_OSS_UPLOAD_URL = "oss/upload";
+    // 获取车辆详情
+    private static String M_GET_CAR_SETTING = "car/getCarSetting";
 
     //信鸽token保存
     private static String M_REGISTERXGPUSH_URL = "user/saveXingeToken";
@@ -515,6 +517,9 @@ public class URLConfig {
 
     public static String getM_OSS_UPLOAD_URL(){
         return getYemaURL(M_OSS_UPLOAD_URL);
+    }
+    public static String getM_GET_CAR_SETTING(){
+        return getYemaURL(M_GET_CAR_SETTING);
     }
 
     /***********************旅行相册（其他接口在上面添加）***********************/
