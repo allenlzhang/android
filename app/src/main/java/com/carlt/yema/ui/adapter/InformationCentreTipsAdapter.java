@@ -106,18 +106,18 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                 mHolder.mTextView5.setVisibility(View.GONE);
 
                 switch (c2) {
-                    case InformationMessageInfo.C1_T1_T1:
-                        minTitle = "保养";
-                        mHolder.mTextView4.setText("去预约");
-                        break;
-                    case InformationMessageInfo.C1_T1_T2:
-                        minTitle = "预约";
-                        mHolder.mTextView4.setText("(预约成功 ) 查看地点");
-                        break;
-                    case InformationMessageInfo.C1_T1_T3:
-                        minTitle = "违章";
-                        mHolder.mTextView4.setText("违章详情");
-                        break;
+//                    case InformationMessageInfo.C1_T1_T1:
+//                        minTitle = "保养";
+//                        mHolder.mTextView4.setText("去预约");
+//                        break;
+//                    case InformationMessageInfo.C1_T1_T2:
+//                        minTitle = "预约";
+//                        mHolder.mTextView4.setText("(预约成功 ) 查看地点");
+//                        break;
+//                    case InformationMessageInfo.C1_T1_T3:
+//                        minTitle = "违章";
+//                        mHolder.mTextView4.setText("违章详情");
+//                        break;
                     case InformationMessageInfo.C1_T1_T4:
                         minTitle = "激活";
                         // mHolder.mTextView4.setText("爱车体检");
@@ -130,96 +130,97 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                 }
 
                 break;
-            case InformationMessageInfo.C1_T2:
-                // 安防
-                mHolder.mImgDelete.setVisibility(View.VISIBLE);
-                mHolder.mView2.setVisibility(View.VISIBLE);
+//            case InformationMessageInfo.C1_T2:
+//                // 安防
+//                mHolder.mImgDelete.setVisibility(View.VISIBLE);
+//                mHolder.mView2.setVisibility(View.VISIBLE);
+//
+//                mHolder.mImageView.setVisibility(View.GONE);
+//                mHolder.mViewTable.setVisibility(View.GONE);
+//
+//                switch (c2) {
+//                    case InformationMessageInfo.C1_T2_T1:
+//                        minTitle = "振动";
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mTextView5.setVisibility(View.VISIBLE);
+//                        break;
+//                    case InformationMessageInfo.C1_T2_T3:
+//                        minTitle = "胎压";
+//                        mHolder.mTextView4.setVisibility(View.VISIBLE);
+//                        mHolder.mTextView5.setVisibility(View.GONE);
+//                        mHolder.mTextView4.setText("查看胎压");
+//                        //v1.3.0修改
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mTextView5.setVisibility(View.GONE);
+//                        mHolder.mTextView4.setText("查看胎压");
+//                        //v1.3.0修改完毕
+//                        break;
+//                    case InformationMessageInfo.C1_T2_T4:
+//                        minTitle = "缺电";
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mTextView5.setVisibility(View.VISIBLE);
+//                        break;
+//                    case InformationMessageInfo.C1_T2_T5:
+//                        minTitle = "启动";
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mTextView5.setVisibility(View.VISIBLE);
+//                        break;
+//                    case InformationMessageInfo.C1_T2_T6:
+//                        minTitle = "门窗";
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mTextView5.setVisibility(View.VISIBLE);
+//                        break;
+//                    case InformationMessageInfo.C1_T2_T7:
+//                        minTitle = "拖车";
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mTextView5.setVisibility(View.VISIBLE);
+//                        break;
+//                    case InformationMessageInfo.C1_T2_T8:
+//                        minTitle = "防盗";
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mTextView5.setVisibility(View.VISIBLE);
+//                        break;
+//                    case InformationMessageInfo.C1_T2_T9:
+//                        minTitle = "熄火";
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mTextView5.setVisibility(View.VISIBLE);
+//                        break;
+//                }
+//                break;
 
-                mHolder.mImageView.setVisibility(View.GONE);
-                mHolder.mViewTable.setVisibility(View.GONE);
-
-                switch (c2) {
-                    case InformationMessageInfo.C1_T2_T1:
-                        minTitle = "振动";
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mTextView5.setVisibility(View.VISIBLE);
-                        break;
-                    case InformationMessageInfo.C1_T2_T3:
-                        minTitle = "胎压";
-                        mHolder.mTextView4.setVisibility(View.VISIBLE);
-                        mHolder.mTextView5.setVisibility(View.GONE);
-                        mHolder.mTextView4.setText("查看胎压");
-                        //v1.3.0修改
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mTextView5.setVisibility(View.GONE);
-                        mHolder.mTextView4.setText("查看胎压");
-                        //v1.3.0修改完毕
-                        break;
-                    case InformationMessageInfo.C1_T2_T4:
-                        minTitle = "缺电";
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mTextView5.setVisibility(View.VISIBLE);
-                        break;
-                    case InformationMessageInfo.C1_T2_T5:
-                        minTitle = "启动";
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mTextView5.setVisibility(View.VISIBLE);
-                        break;
-                    case InformationMessageInfo.C1_T2_T6:
-                        minTitle = "门窗";
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mTextView5.setVisibility(View.VISIBLE);
-                        break;
-                    case InformationMessageInfo.C1_T2_T7:
-                        minTitle = "拖车";
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mTextView5.setVisibility(View.VISIBLE);
-                        break;
-                    case InformationMessageInfo.C1_T2_T8:
-                        minTitle = "防盗";
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mTextView5.setVisibility(View.VISIBLE);
-                        break;
-                    case InformationMessageInfo.C1_T2_T9:
-                        minTitle = "熄火";
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mTextView5.setVisibility(View.VISIBLE);
-                        break;
-                }
-                break;
-            case InformationMessageInfo.C1_T3:
-                mHolder.mImgDelete.setVisibility(View.VISIBLE);
-                mHolder.mView2.setVisibility(View.VISIBLE);
-                // 奖品活动
-                mHolder.mImageView.setVisibility(View.VISIBLE);
-                mHolder.mViewTable.setVisibility(View.GONE);
-
-                mHolder.mTextView4.setVisibility(View.GONE);
-                mHolder.mTextView5.setVisibility(View.VISIBLE);
-
-                String imgUrl = mInfo.getImg();
+//            case InformationMessageInfo.C1_T3:
+//                mHolder.mImgDelete.setVisibility(View.VISIBLE);
+//                mHolder.mView2.setVisibility(View.VISIBLE);
+//                // 奖品活动
+//                mHolder.mImageView.setVisibility(View.VISIBLE);
+//                mHolder.mViewTable.setVisibility(View.GONE);
+//
+//                mHolder.mTextView4.setVisibility(View.GONE);
+//                mHolder.mTextView5.setVisibility(View.VISIBLE);
+//
+//                String imgUrl = mInfo.getImg();
 //                Bitmap bitmap1 = mAsyncImageLoader.getBitmapByUrl(imgUrl);
 //                if (bitmap1 != null) {
 //                    mHolder.mImageView.setImageBitmap(bitmap1);
 //                } else {
 //                    mHolder.mImageView.setImageResource(R.drawable.icon_default_reward);
 //                }
-                if (c2 == InformationMessageInfo.C1_T3_T1) {
-                    minTitle = "奖品";
-                    if (mInfo.getIsgot() == InformationMessageInfo.GOT_NO) {
-                        mHolder.mTextView5.setText("领取奖品");
-                    } else {
-                        mHolder.mTextView5.setText("(已领取) 查看奖品");
-                    }
-                } else if (c2 == InformationMessageInfo.C1_T3_T2) {
-                    minTitle = "活动";
-                    if (mInfo.getIsgot() == InformationMessageInfo.GOT_NO) {
-                        mHolder.mTextView5.setText("报名参加");
-                    } else {
-                        mHolder.mTextView5.setText("取消报名");
-                    }
-                }
-                break;
+//                if (c2 == InformationMessageInfo.C1_T3_T1) {
+//                    minTitle = "奖品";
+//                    if (mInfo.getIsgot() == InformationMessageInfo.GOT_NO) {
+//                        mHolder.mTextView5.setText("领取奖品");
+//                    } else {
+//                        mHolder.mTextView5.setText("(已领取) 查看奖品");
+//                    }
+//                } else if (c2 == InformationMessageInfo.C1_T3_T2) {
+//                    minTitle = "活动";
+//                    if (mInfo.getIsgot() == InformationMessageInfo.GOT_NO) {
+//                        mHolder.mTextView5.setText("报名参加");
+//                    } else {
+//                        mHolder.mTextView5.setText("取消报名");
+//                    }
+//                }
+//                break;
             case InformationMessageInfo.C1_T4:
                 // 行车信息
                 mHolder.mImgDelete.setVisibility(View.VISIBLE);
@@ -259,10 +260,10 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                         // }
 //                        mHolder.mTextViewTable6.setText("");
                         break;
-                    case InformationMessageInfo.C1_T4_T2:
-                        minTitle = "周报";
-                        mHolder.mTextView4.setVisibility(View.VISIBLE);
-                        mHolder.mTextView4.setText("查看行车报告");
+//                    case InformationMessageInfo.C1_T4_T2:
+//                        minTitle = "周报";
+//                        mHolder.mTextView4.setVisibility(View.VISIBLE);
+//                        mHolder.mTextView4.setText("查看行车报告");
 
 //                        mHolder.mViewTable.setVisibility(View.VISIBLE);
 //                        if (mInfo.getMiles() != null) {
@@ -287,7 +288,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                         // mHolder.mTextViewTable6.setText(mInfo.getMaxspeed());
                         // }
 //                        mHolder.mTextViewTable6.setText("");
-                        break;
+//                        break;
                     case InformationMessageInfo.C1_T4_T3:
                         minTitle = "月报";
                         mHolder.mTextView4.setVisibility(View.VISIBLE);
@@ -317,46 +318,46 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                         // }
 //                        mHolder.mTextViewTable6.setText("");
                         break;
-                    case InformationMessageInfo.C1_T4_T4:
-                        minTitle = "勋章";
-                        mHolder.mTextView4.setVisibility(View.VISIBLE);
-                        mHolder.mTextView4.setText("查看勋章");
-                        mHolder.mView2.setVisibility(View.VISIBLE);
-                        mHolder.mViewTable.setVisibility(View.GONE);
-                        break;
-                    case InformationMessageInfo.C1_T4_T5:
-                        minTitle = "记录";
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mViewTable.setVisibility(View.GONE);
-                        break;
-                    case InformationMessageInfo.C1_T4_T6:
-                        minTitle = "驾驶证";
-                        mHolder.mTextView4.setVisibility(View.GONE);
-                        mHolder.mViewTable.setVisibility(View.GONE);
-                        break;
+//                    case InformationMessageInfo.C1_T4_T4:
+//                        minTitle = "勋章";
+//                        mHolder.mTextView4.setVisibility(View.VISIBLE);
+//                        mHolder.mTextView4.setText("查看勋章");
+//                        mHolder.mView2.setVisibility(View.VISIBLE);
+//                        mHolder.mViewTable.setVisibility(View.GONE);
+//                        break;
+//                    case InformationMessageInfo.C1_T4_T5:
+//                        minTitle = "记录";
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mViewTable.setVisibility(View.GONE);
+//                        break;
+//                    case InformationMessageInfo.C1_T4_T6:
+//                        minTitle = "驾驶证";
+//                        mHolder.mTextView4.setVisibility(View.GONE);
+//                        mHolder.mViewTable.setVisibility(View.GONE);
+//                        break;
                 }
 
                 break;
-            case InformationMessageInfo.C1_T5:
-                // 51 故障提醒
-                mHolder.mImgDelete.setVisibility(View.VISIBLE);
-                mHolder.mView2.setVisibility(View.VISIBLE);
-
-                mHolder.mImageView.setVisibility(View.GONE);
-                mHolder.mViewTable.setVisibility(View.GONE);
-
-                mHolder.mTextView4.setVisibility(View.GONE);
-                mHolder.mTextView5.setVisibility(View.GONE);
-                switch (c2) {
-                    case InformationMessageInfo.C1_T2_T2:
-                        minTitle = "故障";
-                        mHolder.mTextView4.setVisibility(View.VISIBLE);
-                        mHolder.mTextView5.setVisibility(View.GONE);
-                        break;
-
-                }
-                mHolder.mTextView4.setText("远程诊断");
-                break;
+//            case InformationMessageInfo.C1_T5:
+//                // 51 故障提醒
+//                mHolder.mImgDelete.setVisibility(View.VISIBLE);
+//                mHolder.mView2.setVisibility(View.VISIBLE);
+//
+//                mHolder.mImageView.setVisibility(View.GONE);
+//                mHolder.mViewTable.setVisibility(View.GONE);
+//
+//                mHolder.mTextView4.setVisibility(View.GONE);
+//                mHolder.mTextView5.setVisibility(View.GONE);
+//                switch (c2) {
+//                    case InformationMessageInfo.C1_T2_T2:
+//                        minTitle = "故障";
+//                        mHolder.mTextView4.setVisibility(View.VISIBLE);
+//                        mHolder.mTextView5.setVisibility(View.GONE);
+//                        break;
+//
+//                }
+//                mHolder.mTextView4.setText("远程诊断");
+//                break;
 
             case InformationMessageInfo.C1_T6:
                 // 养护贴士
@@ -370,22 +371,35 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
 
                 switch (c2) {
                     case InformationMessageInfo.C1_T6_T1:
-                        minTitle = "养护贴士";
+                        minTitle = "保养";
                         mHolder.mTextView4.setText("");
                         break;
                 }
 
                 break;
-            case InformationMessageInfo.C1_T9:
-
-                // 官方信息
+            case InformationMessageInfo.C1_T7:
+                //车主关怀
                 mHolder.mImgDelete.setVisibility(View.VISIBLE);
-                mHolder.mImageView.setVisibility(View.GONE);
-                minTitle = "官方";
                 mHolder.mView2.setVisibility(View.VISIBLE);
-                mHolder.mTextView4.setVisibility(View.GONE);
+                mHolder.mImageView.setVisibility(View.GONE);
                 mHolder.mViewTable.setVisibility(View.GONE);
+
+                mHolder.mTextView4.setVisibility(View.GONE);
+                mHolder.mTextView5.setVisibility(View.GONE);
+//                switch (c2){
+//                    case InformationMessageInfo.
+//                }
                 break;
+//            case InformationMessageInfo.C1_T9:
+//
+//                // 官方信息
+//                mHolder.mImgDelete.setVisibility(View.VISIBLE);
+//                mHolder.mImageView.setVisibility(View.GONE);
+//                minTitle = "官方";
+//                mHolder.mView2.setVisibility(View.VISIBLE);
+//                mHolder.mTextView4.setVisibility(View.GONE);
+//                mHolder.mViewTable.setVisibility(View.GONE);
+//                break;
         }
 
         StringBuffer mStingBuffer = new StringBuffer("");

@@ -14,11 +14,13 @@ import com.carlt.yema.R;
 import com.carlt.yema.base.LoadingActivity2;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.data.car.CarSettingInfo;
 import com.carlt.yema.data.home.InformationMessageInfo;
 import com.carlt.yema.data.home.InformationMessageInfoList;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
+import com.carlt.yema.protocolparser.car.CarSettingInfoParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.activity.setting.CarManagerActivity;
 import com.carlt.yema.ui.activity.setting.MsgManageActivity;
@@ -29,6 +31,7 @@ import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUDialog;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.CreateHashMap;
+import com.carlt.yema.utils.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -129,23 +132,7 @@ public class RemindActivity extends LoadingActivity2 {
     @Override
     protected void onResume() {
         super.onResume();
-        if (mTextViewSecretary != null) {
-            StringBuffer sb1 = new StringBuffer();
-            sb1.append("您的爱车距下次保养还有 ");
-            sb1.append(LoginInfo.getMainten_next_miles());
-            sb1.append("公里/");
-            sb1.append(LoginInfo.getMainten_next_day());
-            sb1.append("天建议您及时带TA进行保养，让TA重新焕发活力");
-            mTextViewSecretary.setText(sb1.toString());
-
-            if (havemainten != null) {
-                if (LoginInfo.isMainten()) {
-                    havemainten.setEnabled(true);
-                } else {
-                    havemainten.setEnabled(false);
-                }
-            }
-        }
+        getCarInfo();
 
     }
 
@@ -253,25 +240,6 @@ public class RemindActivity extends LoadingActivity2 {
     @Override
     public void loadDataSuccess(Object data) {
         super.loadDataSuccess(data);
-        if (type == InformationMessageInfo.C1_T6) {
-            if (mTextViewSecretary != null) {
-                StringBuffer sb1 = new StringBuffer();
-                sb1.append("您的爱车距下次保养还有 ");
-                sb1.append(LoginInfo.getMainten_next_miles());
-                sb1.append("公里/");
-                sb1.append(LoginInfo.getMainten_next_day());
-                sb1.append("天建议您及时带TA进行保养，让TA重新焕发活力");
-                mTextViewSecretary.setText(sb1.toString());
-                if (havemainten != null) {
-                    if (LoginInfo.isMainten()) {
-                        havemainten.setEnabled(true);
-                    } else {
-                        havemainten.setEnabled(false);
-                    }
-                }
-            }
-
-        }
 
         if (data != null) {
             mInfoLists = (InformationMessageInfoList)((BaseResponseInfo)data).getValue();
@@ -307,15 +275,20 @@ public class RemindActivity extends LoadingActivity2 {
     protected void initData() {
         if (type > 0) {
             if(type == InformationMessageInfo.C1_T6){
-//                CPControl.getCarMangerInfo(listener_secretary);
+                getCarInfo();
             }else{
-//                CPControl.GetSecretaryMessageResult(LIMIT, 0, type, listener);
             }
             CPControl.GetInformationMessageResult(mCallback, type);
         } else {
             loadSuccessUI();
         }
 
+    }
+
+    private void getCarInfo(){
+        CarSettingInfoParser parser=new CarSettingInfoParser(listener_secretary);
+        HashMap<String,String> params=new HashMap<>();
+        parser.executePost(URLConfig.getM_GET_CAR_SETTING(),params);
     }
 
     private void setLastUpdateTime() {
@@ -346,17 +319,26 @@ public class RemindActivity extends LoadingActivity2 {
 
     private Dialog mDialog;
 
-//    private TestFirstView mTestFirstView;
-//
-//    private OnTestBtnClick mOnTestBtnClick = new OnTestBtnClick() {
-//
-//        @Override
-//        public void onClick() {
-//            Intent mIntent = new Intent(RemindActivity.this, CarTestActivity.class);
-//            startActivity(mIntent);
-//
-//        }
-//    };
+    /**
+     * 保养提醒 车秘书需要下次保养里程和时间
+     */
+    BaseParser.ResultCallback listener_secretary = new BaseParser.ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            Message msg = new Message();
+            msg.what = 9;
+            msg.obj = bInfo;
+            mHandler.sendMessage(msg);
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            Message msg = new Message();
+            msg.what = 10;
+            msg.obj = bInfo;
+            mHandler.sendMessage(msg);
+        }
+    };
 
     private int dele_position;
 
@@ -627,28 +609,6 @@ public class RemindActivity extends LoadingActivity2 {
 
     };
 
-    /**
-     * 车秘书话术需要信息
-     */
-//    private GetResultListCallback listener_secretary = new GetResultListCallback() {
-//
-//        @Override
-//        public void onFinished(Object o) {
-//            Message msg = new Message();
-//            msg.what = 9;
-//            msg.obj = o;
-//            mHandler.sendMessage(msg);
-//        }
-//
-//        @Override
-//        public void onErro(Object o) {
-//            Message msg = new Message();
-//            msg.what =10;
-//            msg.obj = o;
-//            mHandler.sendMessage(msg);
-//
-//        }
-//    };
 
     private Handler mHandler = new Handler() {
 
@@ -745,11 +705,61 @@ public class RemindActivity extends LoadingActivity2 {
                     }
                     break;
                 case 9:
-//                    CPControl.GetSecretaryMessageResult(LIMIT, 0, type, listener);
+                    CarSettingInfo info = (CarSettingInfo) ((BaseResponseInfo)msg.obj).getValue();
+                    if (type == InformationMessageInfo.C1_T6) {
+                        String mainten_next_miles = "";
+                        String mainten_next_date ="";
+                        if (!StringUtils.isEmpty(info.getMainten_next_miles())){
+                            mainten_next_miles = info.getMainten_next_miles();
+                        }else {
+                            mainten_next_miles = "--";
+                        }
+
+                        if (!StringUtils.isEmpty(info.getMainten_next_date())){
+                            mainten_next_date = info.getMainten_next_date();
+                        }else {
+                            mainten_next_date = "--";
+                        }
+                        if (mTextViewSecretary != null) {
+                            StringBuffer sb1 = new StringBuffer();
+                            sb1.append("您的爱车距下次保养还有 ");
+                            sb1.append(mainten_next_miles);
+                            sb1.append("公里/");
+                            sb1.append(mainten_next_date);
+                            sb1.append("天建议您及时带TA进行保养，让TA重新焕发活力");
+                            mTextViewSecretary.setText(sb1.toString());
+                            if (havemainten != null) {
+                                if (LoginInfo.isMainten()) {
+                                    havemainten.setEnabled(true);
+                                } else {
+                                    havemainten.setEnabled(false);
+                                }
+                            }
+                        }
+
+                    }
                     break;
 
                 case 10:
-//                    CPControl.GetSecretaryMessageResult(LIMIT, 0, type, listener);
+                    if (type == InformationMessageInfo.C1_T6) {
+                        if (mTextViewSecretary != null) {
+                            StringBuffer sb1 = new StringBuffer();
+                            sb1.append("您的爱车距下次保养还有 ");
+                            sb1.append("--");
+                            sb1.append("公里/");
+                            sb1.append("--");
+                            sb1.append("天建议您及时带TA进行保养，让TA重新焕发活力");
+                            mTextViewSecretary.setText(sb1.toString());
+                            if (havemainten != null) {
+                                if (LoginInfo.isMainten()) {
+                                    havemainten.setEnabled(true);
+                                } else {
+                                    havemainten.setEnabled(false);
+                                }
+                            }
+                        }
+
+                    }
                     break;
 
             }
