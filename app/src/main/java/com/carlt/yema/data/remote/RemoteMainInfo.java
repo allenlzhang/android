@@ -87,4 +87,25 @@ public class RemoteMainInfo extends BaseResponseInfo {
 	public void setmAirMainInfo(AirMainInfo mAirMainInfo) {
 		this.mAirMainInfo = mAirMainInfo;
 	}
+
+	//导航同步
+	private String navigationSync;
+	//直式胎压检测
+	private String directPSTsupervise;
+
+	public String getNavigationSync() {
+		return navigationSync;
+	}
+
+	public void setNavigationSync(String navigationSync) {
+		this.navigationSync = navigationSync;
+	}
+
+	public String getDirectPSTsupervise() {
+		return directPSTsupervise;
+	}
+
+	public void setDirectPSTsupervise(String directPSTsupervise) {
+		this.directPSTsupervise = directPSTsupervise;
+	}
 }

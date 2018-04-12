@@ -35,6 +35,15 @@ public class CarOperationConfigParser<T> extends BaseParser<T>  {
     protected void parser() throws Exception {
         JsonObject mJSON_data = mJson.getAsJsonObject("data");
         if (mJSON_data != null) {
+
+
+
+           String directPSTsupervise =  mJSON_data.get("directPSTsupervise").getAsInt() + "";
+           String navigationSync =  mJSON_data.get("navigationSync").getAsInt() + "";
+
+            mRemoteMainInfo.setDirectPSTsupervise(directPSTsupervise);
+            mRemoteMainInfo.setNavigationSync(navigationSync);
+
             RemoteFunInfo mFunInfo;
             String state = "";
 

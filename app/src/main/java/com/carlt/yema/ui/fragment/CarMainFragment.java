@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.CarIndexInfo;
+import com.carlt.yema.data.remote.RemoteFunInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.CarOperationConfigParser;
 import com.carlt.yema.protocolparser.DefaultParser;
@@ -41,9 +43,9 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
     private static String TAG = "CarMainFragment";
 
     private CarIndexInfo carinfo;
-    private View view1;
-    private View view2;
-    private View view3;
+    private TextView view1;
+    private TextView view2;
+    private TextView view3;
     private View viewSafetyLay;
     private View viewRedDot;
     private TextView viewSafetyText;
@@ -86,7 +88,8 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         viewSafetyLay.setOnClickListener(this);
         viewMainTainLay.setOnClickListener(this);
         viewMainState.setOnClickListener(this);
-
+        view1.setClickable(false);
+        view3.setClickable(false);
         mReceiver = new CarmainBroadCastReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(CARMAIN_SAFETY);
@@ -165,6 +168,28 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
                 viewSafetyText.setText("暂无新消息");
             }
         }
+        //是否支持胎压监测
+        if(TextUtils.equals(YemaApplication.getInstanse().getRemoteMainInfo().getDirectPSTsupervise() ,RemoteFunInfo.STATE_SUPPORT)){
+            view1.setClickable(true);
+            Drawable top = getResources().getDrawable(R.drawable.tire_car_main_selecter);
+            view3.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
+        }else{
+            view1.setClickable(false);
+            Drawable top = getResources().getDrawable(R.mipmap.tire_car_main_unpress);
+            view3.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
+        }
+        //是否支持导航同步
+        if(TextUtils.equals(YemaApplication.getInstanse().getRemoteMainInfo().getNavigationSync() ,RemoteFunInfo.STATE_SUPPORT)){
+            view3.setClickable(true);
+            Drawable top = getResources().getDrawable(R.drawable.daohang_car_main_selecter);
+            view3.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
+        }else{
+            view3.setClickable(false);
+            Drawable top = getResources().getDrawable(R.mipmap.navigate_carmain_unpress);
+            view3.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
+        }
+
+
     }
 
     /**

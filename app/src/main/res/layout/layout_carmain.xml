@@ -191,7 +191,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:drawablePadding="6dip"
-            android:drawableTop="@drawable/tire_car_main_selecter"
+            android:drawableTop="@mipmap/tire_car_main_unpress"
             android:text="胎压监测" />
 
         <TextView
@@ -211,7 +211,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:drawablePadding="6dip"
-            android:drawableTop="@drawable/daohang_car_main_selecter"
+            android:drawableTop="@mipmap/navigate_carmain_unpress"
             android:text="导航同步" />
 
     </LinearLayout>

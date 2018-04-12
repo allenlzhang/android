@@ -316,6 +316,7 @@ public class FindCarActivity extends LoadingActivity2 implements LocationSource,
                     mImgPLoc.setVisibility(View.GONE);
                     mTxtPLoc.setVisibility(View.GONE);
                     initTitle("终点变更");
+                    txtRight.setText("修改终点");
                     // 点击确定开始导航画线
                     BitmapDescriptor bd = BitmapDescriptorFactory.fromResource(R.mipmap.icon_loaction_car);
                     int w = mMapView.getWidth() / 2 + bd.getWidth() / 2;
