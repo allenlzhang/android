@@ -139,8 +139,6 @@ public class LoginControl {
             // 测试代码
             // LoginInfo.setAuthen(getFlagResult("0"));
             // 测试代码结束
-            LoginInfo.setNoneedpsw(getFlagResult(member.optString(
-                    "lesspwd_switch", "")));
             LoginInfo.setAuthen_name(member.optString("authen_name", ""));
             LoginInfo.setAuthen_card(member.optString("authen_card", ""));
 
