@@ -96,7 +96,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_toRightOf="@id/car_main_lay_safety_lay2_dot2"
-                            android:src="@drawable/arrow_right2" />
+                            android:src="@drawable/arrow_right" />
                     </RelativeLayout>
 
                     <TextView
@@ -155,7 +155,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_toRightOf="@id/car_main_lay_maintain_dot"
-                            android:src="@drawable/arrow_right2" />
+                            android:src="@drawable/arrow_right" />
                     </RelativeLayout>
 
                     <TextView

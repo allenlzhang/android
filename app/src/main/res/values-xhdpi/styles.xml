@@ -717,7 +717,7 @@
     <style name="setting_img2">
         <item name="android:layout_width">8dip</item>
         <item name="android:layout_height">14.5dip</item>
-        <item name="android:src">@drawable/arrow_right2</item>
+        <item name="android:src">@drawable/arrow_right</item>
     </style>
 
     <style name="setting_line">
