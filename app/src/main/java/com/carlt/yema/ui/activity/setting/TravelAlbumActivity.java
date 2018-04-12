@@ -2,6 +2,7 @@ package com.carlt.yema.ui.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -26,15 +27,13 @@ import java.util.Set;
 
 public class TravelAlbumActivity extends LoadingActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    private static final String TAG=TravelAlbumActivity.class.getName();
+    private static final String TAG = TravelAlbumActivity.class.getName();
 
     private boolean idEditing = true;//是否为可编辑状态
 
     private ArrayList<AlbumImageInfo> albumImageInfos;
 
     private AlbumImageAdapter adapter;//相册适配器
-
-    private StringBuilder builder;//拼接请求参数
 
     private GridView album_list;//相册列表
 
@@ -43,6 +42,8 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
     private TextView album_select_all;//全选按钮
 
     private TextView album_delete;//删除按钮
+
+    private boolean isSelectAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         HashMap<String, String> params = new HashMap<>();
         parser.executePost(URLConfig.getAlbumUrl(URLConfig.ALBUM_QUERY), params);
     }
+
     /**
      * 查询相册回调
      */
@@ -92,7 +94,6 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             loadSuccessUI();
-            builder = new StringBuilder();
             albumImageInfos = (ArrayList<AlbumImageInfo>) bInfo.getValue();
             adapter = new AlbumImageAdapter(TravelAlbumActivity.this, albumImageInfos);
             album_list.setAdapter(adapter);
@@ -112,10 +113,15 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                 changeAlbumStatus();
                 break;
             case R.id.album_select_all:
+                isSelectAll=true;
                 selectAll();
                 break;
             case R.id.album_delete:
-                deleteImages();
+                if (isSelectAll) {
+                    deleteAllImages();
+                } else {
+                    deleteImages();
+                }
                 break;
         }
     }
@@ -142,14 +148,40 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
     private void deleteImages() {
         DefaultStringParser parser = new DefaultStringParser(deleteCallback);
         HashMap<String, String> params = new HashMap<>();
-        Set<Integer> idx = AlbumImageAdapter.getIsSelected().keySet();
-        Iterator<Integer> iterator = idx.iterator();
-        if (builder != null) {
+        if (AlbumImageAdapter.getIsSelected() != null) {
+            Set<Integer> idx = AlbumImageAdapter.getIsSelected().keySet();
+            Log.e(TAG,"Hash大小"+idx.size());
+            Log.e(TAG,"albumImageInfos"+albumImageInfos.size());
+            Iterator<Integer> iterator = idx.iterator();
+            StringBuilder builder = new StringBuilder();
             while (iterator.hasNext()) {
-                if (AlbumImageAdapter.getIsSelected().get(iterator.next())) {
-                    builder.append(iterator.next()).append(",");
+                int selectIndex = iterator.next();
+                if (AlbumImageAdapter.getIsSelected().get(selectIndex)) {
+                    int imageId = albumImageInfos.get(selectIndex).getId();
+                    builder.append(imageId).append(",");
+                    albumImageInfos.remove(selectIndex);
                 }
             }
+            String paramIdx = builder.substring(0, builder.length() - 1);
+            params.put("id", paramIdx);
+            parser.executePost(URLConfig.getAlbumUrl(URLConfig.ALBUM_DELETE), params);
+        }
+
+    }
+
+    /*
+    * 删除照片
+    * */
+    private void deleteAllImages() {
+        DefaultStringParser parser = new DefaultStringParser(deleteCallback);
+        HashMap<String, String> params = new HashMap<>();
+        StringBuilder builder = new StringBuilder();
+        if (albumImageInfos != null && albumImageInfos.size() > 0) {
+            for (int i = 0; i < albumImageInfos.size(); i++) {
+                AlbumImageInfo albumImageInfo = albumImageInfos.get(i);
+                builder.append(albumImageInfo.getId()).append(",");
+            }
+            albumImageInfos.removeAll(albumImageInfos);
         }
         String paramIdx = builder.substring(0, builder.length() - 1);
         params.put("id", paramIdx);
@@ -163,8 +195,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(TravelAlbumActivity.this, "相册删除成功");
-            deleteSelectedImage();
-
+            initData();
         }
 
         @Override
@@ -178,7 +209,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             setBtnOptText(getResources().getString(R.string.travel_album_cancel));
             album_image_item_opt.setVisibility(View.VISIBLE);
             idEditing = false;
-            if (null!=adapter) {
+            if (null != adapter) {
                 adapter.setIsHide(false);
                 adapter.notifyDataSetChanged();
             }
@@ -226,15 +257,10 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
      */
     private void deleteSelectedImage() {
         if (adapter != null) {
-            if (null != albumImageInfos && albumImageInfos.size() > 0) {
-                for (int i = 0; i < albumImageInfos.size(); i++) {
-                    if (AlbumImageAdapter.getIsSelected().get(i)) {
-                        albumImageInfos.remove(i);
-                    }
-                }
-                cancelSelectall();
-            }
+            AlbumImageAdapter.getIsSelected().clear();
+            adapter.setAlbumImageInfos(albumImageInfos);
             adapter.notifyDataSetChanged();
+            cancelSelectall();
         }
     }
 

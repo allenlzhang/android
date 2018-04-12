@@ -74,6 +74,14 @@ public class AlbumImageAdapter extends BaseAdapter {
         return isHide;
     }
 
+    public ArrayList<AlbumImageInfo> getAlbumImageInfos() {
+        return albumImageInfos;
+    }
+
+    public void setAlbumImageInfos(ArrayList<AlbumImageInfo> albumImageInfos) {
+        this.albumImageInfos = albumImageInfos;
+    }
+
     /**
      * 设置CheckBox是否全部隐藏
      */
