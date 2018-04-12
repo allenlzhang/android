@@ -51,7 +51,7 @@ public class LoginControl {
                 if (vin == null || vin.equals("")) {
                     Intent loginIntent = new Intent(mContext,
                             DeviceBindActivity.class);
-                    loginIntent.putExtra("account", LoginInfo.getVin(LoginInfo.getMobile()));
+
                     mContext.startActivity(loginIntent);
                 } else {
                     boolean isUpdating = LoginInfo.isUpgradeing();
@@ -78,10 +78,11 @@ public class LoginControl {
                                     }
                                 });
                     } else {
-                        // 设备不需要升级，跳转至激活盒子
+                        // 设备不需要升级，跳转绑定 回填Vin码
                         Intent loginIntent = new Intent(mContext,
-                                ActivateBindActivity.class);
-                        loginIntent.putExtra("account", LoginInfo.getMobile());
+                                DeviceBindActivity.class);
+                        loginIntent.putExtra("vin", LoginInfo.getVin(LoginInfo.getMobile()));
+                        loginIntent.putExtra("carType", LoginInfo.getCarname());
                         mContext.startActivity(loginIntent);
                     }
                 }
@@ -90,7 +91,7 @@ public class LoginControl {
         } else {
             Intent loginIntent = new Intent(mContext,
                     DeviceBindActivity.class);
-            loginIntent.putExtra("account", LoginInfo.getVin(LoginInfo.getMobile()));
+            loginIntent.putExtra("vin", LoginInfo.getVin(LoginInfo.getMobile()));
             loginIntent.putExtra("carType", LoginInfo.getCarname());
             mContext.startActivity(loginIntent);
         }
