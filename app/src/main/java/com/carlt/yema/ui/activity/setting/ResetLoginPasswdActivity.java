@@ -111,7 +111,7 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             UseInfo mUseInfo = UseInfoLocal.getUseInfo();
-            mUseInfo.setPassword(confirmPasswd);
+            mUseInfo.setPassword(new_passwd_again_input.getText().toString());
             UseInfoLocal.setUseInfo(mUseInfo);
             UUToast.showUUToast(ResetLoginPasswdActivity.this, "密码修改成功");
             Intent loginIntent = new Intent(ResetLoginPasswdActivity.this, UserLoginActivity.class);
@@ -136,13 +136,13 @@ public class ResetLoginPasswdActivity extends BaseActivity implements View.OnCli
          * */
         private boolean isCommitInvalid(String passwd, String newPasswd, String confirmPasswd) {
             if (TextUtils.isEmpty(passwd)) {
-                UUToast.showUUToast(this, "原始密码不能为空");
+                UUToast.showUUToast(this, "原始密码不能为空",500);
                 return false;
             } else if (TextUtils.isEmpty(newPasswd) || newPasswd.length() < 6) {
-                UUToast.showUUToast(this, "新密码长度至少为6位");
+                UUToast.showUUToast(this, "新密码长度至少为6位",500);
                 return false;
             } else if (TextUtils.isEmpty(confirmPasswd) || !newPasswd.equals(confirmPasswd)) {
-                UUToast.showUUToast(this, "两次输入密码不一致");
+                UUToast.showUUToast(this, "两次输入密码不一致",500);
                 return false;
             } else {
                 return true;

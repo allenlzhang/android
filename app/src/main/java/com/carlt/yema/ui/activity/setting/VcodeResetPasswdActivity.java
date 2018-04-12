@@ -199,7 +199,7 @@ public class VcodeResetPasswdActivity extends BaseActivity implements View.OnCli
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             UseInfo mUseInfo = UseInfoLocal.getUseInfo();
-            mUseInfo.setPassword(confirmPasswd);
+            mUseInfo.setPassword(passwd2St.getText().toString());
             UseInfoLocal.setUseInfo(mUseInfo);
             // 获取验证码成功
             UUToast.showUUToast(VcodeResetPasswdActivity.this,"密码修改成功");

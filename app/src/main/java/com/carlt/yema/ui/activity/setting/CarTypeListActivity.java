@@ -131,11 +131,12 @@ public class CarTypeListActivity extends LoadingActivity {
             LoginInfo.setCarname(carTitle);
             Intent intent = new Intent(CarTypeListActivity.this, DeviceBindActivity.class);
             intent.putExtra("cat_title", carTitle);
+            intent.putExtra("from","com.carlt.yema.ActivateBindActivity");
             if (!TextUtils.isEmpty(vinCode)) {
                 intent.putExtra("vin", vinCode);
             }
             CarTypeListActivity.this.startActivity(intent);
-            finish();
+            ActivityControl.finishAllCarSelectActivity();
         }
 
         @Override

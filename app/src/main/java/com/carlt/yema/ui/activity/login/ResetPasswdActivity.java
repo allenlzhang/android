@@ -187,6 +187,7 @@ public class ResetPasswdActivity extends BaseActivity implements View.OnClickLis
                     LoginInfo.setPin(forget_passwd_phone_et.getText().toString(), "");
 //                    LoginControl.logic(ResetPasswdActivity.this);
                     Intent intent = new Intent(ResetPasswdActivity.this,UserLoginActivity.class);
+                    LoginInfo.setMobile(forget_passwd_phone_et.getText().toString());
                     startActivity(intent);
                     finish();
                     break;

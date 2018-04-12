@@ -110,9 +110,9 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onResume() {
 
-        isTimeOut = false;
-        if (!TextUtils.isEmpty(LoginInfo.getMobile())) {
-            user_phone.setText(LoginInfo.getMobile());
+        UseInfo mUseInfo = UseInfoLocal.getUseInfo();
+        if (!TextUtils.isEmpty(mUseInfo.getAccount())) {
+            user_phone.setText(mUseInfo.getAccount());
         }
         super.onResume();
     }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.carlt.yema.MainActivity;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
+import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
@@ -68,7 +69,7 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
-                finish();
+                back();
                 break;
             case R.id.activate_commit:
                 DialogWithTitleClick click = new DialogWithTitleClick() {
@@ -185,11 +186,18 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
+    private void back(){
+        Intent backIntent=new Intent(this,DeviceBindActivity.class);
+        backIntent.putExtra("from","com.carlt.yema.ActivateBindActivity");
+        startActivity(backIntent);
+        finish();
+        ActivityControl.onExit();
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
+            back();
             return true;
         }
         return super.onKeyDown(keyCode, event);

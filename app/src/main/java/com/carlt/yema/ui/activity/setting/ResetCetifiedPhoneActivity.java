@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.model.LoginInfo;
+import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
@@ -120,6 +122,7 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
                 if (intent!=null) {
                     code = intent.getStringExtra(CODE_INFO);
                 }
+                phoneNum = reset_phone_input.getText().toString();
                 vCode = reset_code_input.getText().toString();
                 if (isCommitInvalid(phoneNum, vCode, code)) {
                     authenticationPhone(vCode, phoneNum);
@@ -182,6 +185,9 @@ public class ResetCetifiedPhoneActivity extends BaseActivity implements View.OnC
             }
             UUToast.showUUToast(ResetCetifiedPhoneActivity.this, "手机号修改成功");
             LoginInfo.setMobile(reset_phone_input.getText().toString());
+            UseInfo mUseInfo = UseInfoLocal.getUseInfo();
+            mUseInfo.setAccount(reset_phone_input.getText().toString());
+            UseInfoLocal.setUseInfo(mUseInfo);
             Intent  loginIntent=new Intent(ResetCetifiedPhoneActivity.this, UserLoginActivity.class);
             startActivity(loginIntent);
             finish();

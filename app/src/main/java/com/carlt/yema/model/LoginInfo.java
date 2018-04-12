@@ -408,7 +408,7 @@ public class LoginInfo extends BaseResponseInfo {
         LoginInfo.setInsurance_time(destroy.optString("insurance_time", ""));
         LoginInfo.setRegister_time(destroy.optString("register_time", ""));
         LoginInfo.setAccess_token(destroy.optString("access_token", ""));
-
+        LoginInfo.setVin(LoginInfo.getMobile(),"");
     }
 
     public static String getExpiresIn() {

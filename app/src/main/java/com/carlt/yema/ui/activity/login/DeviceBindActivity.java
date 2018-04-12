@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
-import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
@@ -35,8 +34,6 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
 
     private EditText car_vin_code;//vin码输入框
 
-    private Intent intent;
-
     private String carTitle;//用户选择的车款
 
     private String deviceId;//设备ID
@@ -45,11 +42,19 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
 
     public static final String TAG="DeviceBindActivity";
 
+    private static String ACTIVATE="com.carlt.yema.ActivateBindActivity";
+
+    private Intent intent;
+
+    private String from;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_bind);
         initComponent();
+        intent=getIntent();
+        from=intent.getStringExtra("from");
     }
 
     @Override
@@ -59,13 +64,14 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
     }
 
     private void setBindData(){
-        intent=getIntent();
-        carTitle=intent.getStringExtra("cat_title");
-        if (!TextUtils.isEmpty(carTitle)) {
-            btn_select_car.setText(carTitle);
-        }
-        if (intent != null && !TextUtils.isEmpty(intent.getStringExtra("vin"))) {
-            car_vin_code.setText(intent.getStringExtra("vin"));
+        carTitle=LoginInfo.getCarname();
+        if (!TextUtils.isEmpty(from)&&from.equals(ACTIVATE)) {
+            if (!TextUtils.isEmpty(carTitle)) {
+                btn_select_car.setText(carTitle);
+            }
+            if (!TextUtils.isEmpty(LoginInfo.getVin(LoginInfo.getMobile()))) {
+                car_vin_code.setText(LoginInfo.getVin(LoginInfo.getMobile()));
+            }
         }
     }
 
@@ -147,8 +153,13 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
     BaseParser.ResultCallback callback=new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            LoginInfo.setDeviceidstring(bInfo.getValue().toString());
-            LoginInfo.setVin(LoginInfo.getMobile(),deviceId);
+            if (!TextUtils.isEmpty(car_vin_code.getText().toString())) {
+                LoginInfo.setVin(LoginInfo.getMobile(),car_vin_code.getText().toString());
+            }
+            if (!TextUtils.isEmpty(LoginInfo.getCarname())&&!TextUtils.isEmpty(from)&&from.equals(ACTIVATE)) {
+                btn_select_car.setText(LoginInfo.getCarname());
+            }
+
             Intent activateIntent=new Intent(DeviceBindActivity.this,ActivateBindActivity.class);
             startActivity(activateIntent);
         }
@@ -179,7 +190,6 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
     private void back(){
         Intent loginIntent=new Intent(this,UserLoginActivity.class);
         startActivity(loginIntent);
-        ActivityControl.onExit();
         finish();
     }
 
