@@ -118,6 +118,11 @@ public class SettingMainFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onResume() {
+        showUserUI();
+        super.onResume();
+    }
+
+    private void showUserUI() {
         try {
             cache_size.setText(CacheUtils.getTotalCacheSize(this.getActivity()));
         } catch (Exception e) {
@@ -130,7 +135,6 @@ public class SettingMainFragment extends BaseFragment implements View.OnClickLis
         if (!TextUtils.isEmpty(LoginInfo.getRealname())) {
             tx_person_name.setText(LoginInfo.getRealname());
         }
-        super.onResume();
     }
 
     @Override
@@ -195,6 +199,7 @@ public class SettingMainFragment extends BaseFragment implements View.OnClickLis
      * */
     @Override
     public void loadData(){
+        showUserUI();
         CarDealerParser parser=new CarDealerParser(dealerCallback);
         HashMap<String,String> params=new HashMap<>();
         parser.executePost(URLConfig.getM_GET_DEALER_INFO(),params);
