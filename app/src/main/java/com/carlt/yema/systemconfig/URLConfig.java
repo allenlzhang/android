@@ -524,9 +524,9 @@ public class URLConfig {
     //测试服
     private static final String ALBUM_TEST_URL = "http://imgcloud.linewin.cc/";
     //预发服
-    private static final String ALBUM_PRE_URL = "https://pre-imagecloud.geni4s.com/";
+    private static final String ALBUM_PRE_URL = "http://imgcloud.geni4s.com/";
     //正式服
-    private static final String ALBUM_FORMAL_URL = "http://imgcloud.linewin.cc/";
+    private static final String ALBUM_FORMAL_URL = "http://imgcloud.geni4s.com/";
     //相册列表查询
     public static final String ALBUM_QUERY="query";
     //相册列表查询
