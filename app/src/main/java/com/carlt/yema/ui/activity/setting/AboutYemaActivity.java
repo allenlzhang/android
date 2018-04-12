@@ -34,7 +34,7 @@ public class AboutYemaActivity extends BaseActivity implements OnClickListener{
         title.setText(getResources().getString(R.string.about_yema_txt));
 
         about_yema_ver=findViewById(R.id.about_yema_ver);
-        about_yema_ver.setText(String.format(getResources().getString(R.string.version),"1.1.0"));
+        about_yema_ver.setText(String.format(getResources().getString(R.string.version),"1.0.0"));
 
         about_yema_terms=findViewById(R.id.about_yema_terms);
         about_yema_terms.setOnClickListener(this);

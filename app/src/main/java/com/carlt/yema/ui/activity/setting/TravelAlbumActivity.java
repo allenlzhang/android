@@ -17,7 +17,6 @@ import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.adapter.AlbumImageAdapter;
-import com.carlt.yema.ui.adapter.AlbumImageAdapter.ViewHolder;
 import com.carlt.yema.ui.view.UUToast;
 
 import java.util.ArrayList;
@@ -136,9 +135,12 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             imageIntent.putExtra("imageName", info.getUploadTime());
             startActivity(imageIntent);
         } else {
-            ViewHolder holder = (ViewHolder) view.getTag();
-            holder.status.toggle();
-            AlbumImageAdapter.getIsSelected().put(i, holder.status.isChecked());
+            if (!adapter.isIsHide()) {
+                AlbumImageAdapter.ViewHolder holder = (AlbumImageAdapter.ViewHolder) view.getTag();
+                holder.status.toggle();
+                AlbumImageAdapter.getIsSelected().put(i, holder.status.isChecked());
+            }
+
         }
     }
 
@@ -161,6 +163,10 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                     builder.append(imageId).append(",");
                     albumImageInfos.remove(selectIndex);
                 }
+            }
+            if (builder.length()<=0) {
+                UUToast.showUUToast(this,"您还没有选择照片");
+                return;
             }
             String paramIdx = builder.substring(0, builder.length() - 1);
             params.put("id", paramIdx);
@@ -196,6 +202,8 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(TravelAlbumActivity.this, "相册删除成功");
             initData();
+            idEditing=false;
+            changeAlbumStatus();
         }
 
         @Override
@@ -209,6 +217,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             setBtnOptText(getResources().getString(R.string.travel_album_cancel));
             album_image_item_opt.setVisibility(View.VISIBLE);
             idEditing = false;
+            isSelectAll=false;
             if (null != adapter) {
                 adapter.setIsHide(false);
                 adapter.notifyDataSetChanged();
