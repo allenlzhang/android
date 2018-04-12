@@ -172,11 +172,11 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         if(TextUtils.equals(YemaApplication.getInstanse().getRemoteMainInfo().getDirectPSTsupervise() ,RemoteFunInfo.STATE_SUPPORT)){
             view1.setClickable(true);
             Drawable top = getResources().getDrawable(R.drawable.tire_car_main_selecter);
-            view3.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
+            view1.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
         }else{
             view1.setClickable(false);
             Drawable top = getResources().getDrawable(R.mipmap.tire_car_main_unpress);
-            view3.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
+            view1.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
         }
         //是否支持导航同步
         if(TextUtils.equals(YemaApplication.getInstanse().getRemoteMainInfo().getNavigationSync() ,RemoteFunInfo.STATE_SUPPORT)){

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
+import com.carlt.yema.YemaApplication;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.control.CPControl;

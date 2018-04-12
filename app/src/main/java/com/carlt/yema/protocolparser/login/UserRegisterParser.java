@@ -1,5 +1,6 @@
 package com.carlt.yema.protocolparser.login;
 
+import com.carlt.yema.YemaApplication;
 import com.carlt.yema.data.login.UserRegisterInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
@@ -28,7 +29,9 @@ public class UserRegisterParser extends BaseParser {
         LoginInfo.setGender(registerJobj.get("gender").getAsString());
         LoginInfo.setMobile(registerJobj.get("mobile").getAsString());
         LoginInfo.setAvatar_img(registerJobj.get("avatar_id").getAsString());
-        LoginInfo.setAccess_token(registerJobj.get("access_token").getAsString());
+        String access_token = registerJobj.get("access_token").getAsString();
+        LoginInfo.setAccess_token(access_token);
+        YemaApplication.TOKEN = access_token;
         LoginInfo.setExpiresIn(registerJobj.get("expires_in").getAsString());
         LoginInfo.setOriginate(registerJobj.get("originate").getAsString());
         LoginInfo.setLastlogin(registerJobj.get("lastlogin").getAsString());
@@ -37,8 +40,6 @@ public class UserRegisterParser extends BaseParser {
         LoginInfo.setCreatedate(registerJobj.get("createdate").getAsString());
         LoginInfo.setDeviceidstring("");
         LoginInfo.setCarname("");
-        LoginInfo.setPin(registerJobj.get("mobile").getAsString(), "");
-        LoginInfo.setVin(registerJobj.get("mobile").getAsString(), "");
         LoginInfo.setDeviceActivate(false);
     }
 }
