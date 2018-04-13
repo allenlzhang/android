@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/layout_background"
+    android:background="@mipmap/splash"
     tools:context="com.carlt.yema.SplashActivity">
 
 </FrameLayout>
