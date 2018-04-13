@@ -1,5 +1,6 @@
 package com.carlt.yema.ui.activity.setting;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -63,21 +64,32 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
         switch (view.getId()) {
 
             case R.id.photo_save:
-                mDialog = PopBoxCreat.createDialogWithProgress(this, "正在保存...");
-                mDialog.show();
-                final String url = intent.getStringExtra("imagePath");
-                if (intent != null && !TextUtils.isEmpty(url)) {
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            savePicture(url);
-                            Message msg = new Message();
-                            msg.what = 0;
-                            mHandler.sendMessage(msg);
-                            super.run();
+                requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new RequestPermissionCallBack() {
+                    @Override
+                    public void granted() {
+                        mDialog = PopBoxCreat.createDialogWithProgress(PhotoDisplayActivity.this, "正在保存...");
+                        mDialog.show();
+                        final String url = intent.getStringExtra("imagePath");
+                        if (intent != null && !TextUtils.isEmpty(url)) {
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    savePicture(url);
+                                    Message msg = new Message();
+                                    msg.what = 0;
+                                    mHandler.sendMessage(msg);
+                                    super.run();
+                                }
+                            }.start();
                         }
-                    }.start();
-                }
+                    }
+
+                    @Override
+                    public void denied() {
+                        UUToast.showUUToast(PhotoDisplayActivity.this,"部分权限获取失败，正常功能受到影响");
+                    }
+                });
+
                 break;
             case R.id.photo_delete:
                 mDialog = PopBoxCreat.createDialogWithProgress(this, "正在删除...");
