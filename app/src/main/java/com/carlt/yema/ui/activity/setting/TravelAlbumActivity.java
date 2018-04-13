@@ -17,6 +17,7 @@ import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.adapter.AlbumImageAdapter;
+import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
 
 import java.util.ArrayList;
@@ -53,7 +54,6 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         setBtnOptText("编辑");
         setOnBtnOptClickListener(this);
         initComponent();
-        initData();
     }
 
     private void initComponent() {
@@ -74,7 +74,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
 
     @Override
     protected void onResume() {
-
+        initData();
         super.onResume();
     }
 
@@ -117,7 +117,18 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                 break;
             case R.id.album_delete:
                 if (isSelectAll) {
-                    deleteAllImages();
+                    PopBoxCreat.createDialogWithTitle(this, "温馨提示", "确认是否删除所选内容", null, "取消", "删除", new PopBoxCreat.DialogWithTitleClick() {
+                        @Override
+                        public void onLeftClick() {
+                            idEditing=false;
+                            changeAlbumStatus();
+                        }
+
+                        @Override
+                        public void onRightClick() {
+                            deleteAllImages();
+                        }
+                    });
                 } else {
                     deleteImages();
                 }
@@ -133,7 +144,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             imageIntent.putExtra("imagePath", info.getImagePath());
             imageIntent.putExtra("imageId", info.getId());
             imageIntent.putExtra("imageName", info.getUploadTime());
-            startActivity(imageIntent);
+            startActivityForResult(imageIntent,0);
         } else {
             if (!adapter.isIsHide()) {
                 AlbumImageAdapter.ViewHolder holder = (AlbumImageAdapter.ViewHolder) view.getTag();
@@ -145,8 +156,8 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
     }
 
     /*
-    * 删除照片
-    * */
+        * 删除照片
+        * */
     private void deleteImages() {
         DefaultStringParser parser = new DefaultStringParser(deleteCallback);
         HashMap<String, String> params = new HashMap<>();

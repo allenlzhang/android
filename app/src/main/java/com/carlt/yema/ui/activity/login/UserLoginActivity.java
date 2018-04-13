@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.StringUtils;
@@ -65,7 +67,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
 
     public final static int ERRO_CODE_DATA = 1025;// 用户名或密码错误
 
-
+    private Button change;
 
     private static final String TAG = "UserLoginActivity";
 
@@ -105,6 +107,35 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         user_phone = findViewById(R.id.user_phone);
         user_passwd = findViewById(R.id.user_passwd);
 
+        change = (Button) findViewById(R.id.activity_usercenter_login_change);
+        change.setVisibility(View.GONE);
+        if (!YemaApplication.Formal_Version) {
+            login_logo.setOnLongClickListener(new View.OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+
+                    if (change.getVisibility() == View.VISIBLE) {
+                        change.setVisibility(View.GONE);
+                    } else {
+                        change.setVisibility(View.VISIBLE);
+                    }
+                    return true;
+                }
+            });
+
+            switch (URLConfig.flag) {
+                case URLConfig.VERSION_FORMAL:
+                    change.setText("正式:" + YemaApplication.VersionName);
+                    break;
+                case URLConfig.VERSION_PREPARE:
+                    change.setText("预发布:" + YemaApplication.VersionName);
+                    break;
+                case URLConfig.VERSION_TEST:
+                    change.setText("测试:" + YemaApplication.VersionName);
+                    break;
+            }
+        }
     }
 
     @Override
@@ -128,6 +159,29 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         super.onDestroy();
     }
 
+    public void switchServer(View view) {
+        if (!YemaApplication.Formal_Version) {
+            switch (URLConfig.flag) {
+                case URLConfig.VERSION_FORMAL:
+                    // 正式服
+                    URLConfig.flag = URLConfig.VERSION_TEST;
+                    change.setText("测试:" + YemaApplication.VersionName);
+                    break;
+
+                case URLConfig.VERSION_PREPARE:
+                    // 预发布服
+                    URLConfig.flag = URLConfig.VERSION_FORMAL;
+                    change.setText("正式:" + YemaApplication.VersionName);
+                    break;
+                case URLConfig.VERSION_TEST:
+                    // 测试服
+                    URLConfig.flag = URLConfig.VERSION_PREPARE;
+                    change.setText("预发布:" + YemaApplication.VersionName);
+                    break;
+            }
+        }
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -145,7 +199,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                     mDialog.show();
                     mLoginInfo = new LoginInfo();
 //                    login(userPhone, passwd);
-                    CPControl.GetLogin(userPhone,passwd,this);
+                    CPControl.GetLogin(userPhone, passwd, this);
                 }
                 break;
             case R.id.user_regist:
@@ -210,7 +264,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     }
 
 
-
     /**
      * 加载成功
      */
@@ -237,7 +290,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         BaseResponseInfo mLoginInfo = (BaseResponseInfo) erro;
 
         if (mLoginInfo != null) {
-           String info=mLoginInfo.getInfo();
+            String info = mLoginInfo.getInfo();
             // 其它
             if (info != null && info.length() > 0) {
                 UUToast.showUUToast(UserLoginActivity.this, info);

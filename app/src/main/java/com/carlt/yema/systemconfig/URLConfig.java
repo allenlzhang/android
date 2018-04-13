@@ -7,7 +7,7 @@ public class URLConfig {
     public final static int VERSION_FORMAL = 1001;// 正式服
     public final static int VERSION_PREPARE = 1002;// 预发布服
     public final static int VERSION_TEST = 1003;// 测试服
-    public static int flag = VERSION_FORMAL;
+    public static int flag = VERSION_TEST;
 
     // 车乐测试服务器
     private final static String C1 = "0896756ebec5bc62a51b15b9a7541901";
@@ -535,20 +535,26 @@ public class URLConfig {
     public static String getAlbumUrl(String path) {
         String version = YemaApplication.Version_API + "/";
         String url = "";
-        switch (flag) {
-            case VERSION_FORMAL:
-                // 正式服
-                url = ALBUM_FORMAL_URL + version + path;
-                break;
-            case VERSION_PREPARE:
-                // 预发布服
-                url = ALBUM_PRE_URL + version + path;
-                break;
-            case VERSION_TEST:
-                // 测试服
-                url = ALBUM_TEST_URL + version + path;
-                break;
+        // 正常版
+        if (YemaApplication.Formal_Version) {
+            url = ALBUM_FORMAL_URL + version + path;
+        } else {
+            switch (flag) {
+                case VERSION_FORMAL:
+                    // 正式服
+                    url = ALBUM_FORMAL_URL + version + path;
+                    break;
+                case VERSION_PREPARE:
+                    // 预发布服
+                    url = ALBUM_PRE_URL + version + path;
+                    break;
+                case VERSION_TEST:
+                    // 测试服
+                    url = ALBUM_TEST_URL + version + path;
+                    break;
+            }
         }
+
         return url;
     }
 }

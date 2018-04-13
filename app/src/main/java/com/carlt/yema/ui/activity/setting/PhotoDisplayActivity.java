@@ -58,7 +58,6 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
         photo_delete.setOnClickListener(this);
     }
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

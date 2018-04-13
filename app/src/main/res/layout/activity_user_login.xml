@@ -5,7 +5,16 @@
     android:background="@mipmap/login_bg"
     android:orientation="vertical"
     android:id="@+id/layout_login">
-
+    <Button
+        android:id="@+id/activity_usercenter_login_change"
+        android:layout_width="100dip"
+        android:layout_height="30dip"
+        android:background="#ffff00"
+        android:gravity="center"
+        android:onClick="switchServer"
+        android:text="测 试"
+        android:textColor="#ff00ff"
+        android:textSize="14sp" />
     <ImageView
         android:id="@+id/login_logo"
         android:layout_width="260dp"
