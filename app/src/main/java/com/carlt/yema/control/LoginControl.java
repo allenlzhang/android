@@ -143,7 +143,6 @@ public class LoginControl {
             LoginInfo.setAuthen_name(member.optString("authen_name", ""));
             LoginInfo.setAuthen_card(member.optString("authen_card", ""));
 
-            LoginInfo.setAccess_token((member.optString("access_token", "")));
             LoginInfo.setExpires_in((member.optString("expires_in", "")));
             YemaApplication.TOKEN = member.optString("access_token", "");
             LoginInfo.setExpiresIn((member.optString("expires_in", "")));

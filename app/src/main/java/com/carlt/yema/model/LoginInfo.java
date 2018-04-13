@@ -598,8 +598,8 @@ public class LoginInfo extends BaseResponseInfo {
         return access_token;
     }
 
-    public static void setAccess_token(String access_token) {
-        access_token = access_token;
+    public static void setAccess_token(String token) {
+        access_token = token;
         user_pref.edit().putString("access_token", access_token).apply();
     }
 

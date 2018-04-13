@@ -127,6 +127,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.edit_person_nickname:
                 Intent nicknameEdit = new Intent(this, NicknameEditActivity.class);
+                nicknameEdit.putExtra("nickname",person_nickname_txt.getText().toString());
                 startActivityForResult(nicknameEdit, 0);
                 break;
             case R.id.edit_person_sex:

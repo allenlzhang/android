@@ -23,7 +23,7 @@ public class NicknameEditActivity extends LoadingActivity implements View.OnClic
 
     private EditText nickname_input;//里程输入框
     private TextView nickname_input_commit;//确认修改按钮
-
+    private String oldName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,8 @@ public class NicknameEditActivity extends LoadingActivity implements View.OnClic
         nickname_input=findViewById(R.id.nickname_input);
         nickname_input_commit=findViewById(R.id.nickname_input_commit);
         nickname_input_commit.setOnClickListener(this);
+        Intent intent = getIntent();
+        oldName = intent.getStringExtra("nickname");
     }
 
     @Override
@@ -52,6 +54,9 @@ public class NicknameEditActivity extends LoadingActivity implements View.OnClic
                     return;
                 } else if (nickname_input.getText().toString().length() > 16) {
                     UUToast.showUUToast(this,"最多可输入16位数字、字母、汉字");
+                    return;
+                } else if (TextUtils.equals(oldName,nickname_input.getText().toString())){
+                    UUToast.showUUToast(this,"修改失败，与原昵称相同");
                     return;
                 }
                 chanageNickNameRequest(nickname_input.getText().toString());
