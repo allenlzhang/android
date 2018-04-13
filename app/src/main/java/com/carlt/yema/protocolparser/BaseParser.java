@@ -1,5 +1,6 @@
 package com.carlt.yema.protocolparser;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 
@@ -34,6 +35,8 @@ public abstract class BaseParser<T> {
     protected boolean isTest = false;// 是否是测试数据
     protected String testFileName;// 本地模拟数据名称
     public Handler mHandler;
+
+    private static final String LOGIN_ACTION="com.carlt.yema.LOGIN";
 
     public BaseParser(ResultCallback callback) {
         //TAG = this.getClass().getName();
@@ -77,6 +80,7 @@ public abstract class BaseParser<T> {
                         break;
                     case 2:
                         ActivityControl.onTokenDisable();
+
                         UUToast.showUUToast(YemaApplication.getInstanse(),mBaseResponseInfo.getInfo());
                         break;
                 }

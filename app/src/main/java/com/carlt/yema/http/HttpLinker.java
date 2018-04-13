@@ -49,8 +49,8 @@ public class HttpLinker {
 
     public static void post(String url, HashMap<String, String> param, Callback callback) {
         param.put("client_id", URLConfig.getClientID());
-        if (!TextUtils.isEmpty(YemaApplication.TOKEN)) {
-            param.put("token", YemaApplication.TOKEN);
+        if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
+            param.put("token", LoginInfo.getAccess_token());
         }
         FormBody.Builder formBuilder = new FormBody.Builder();
         Iterator<String> iterators = param.keySet().iterator();
@@ -158,7 +158,7 @@ public class HttpLinker {
     //上传图片
     public static Response uploadImage(String url, HashMap<String, Object> map, File file) throws IOException {
         if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
-            url = url + "?token=" + YemaApplication.TOKEN;
+            url = url + "?token=" + LoginInfo.getAccess_token();
         }
         MultipartBody.Builder multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         if (file != null) {

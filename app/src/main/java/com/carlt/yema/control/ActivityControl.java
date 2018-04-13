@@ -185,29 +185,30 @@ public class ActivityControl {
 		UseInfo mUseInfo = UseInfoLocal.getUseInfo();
 		mUseInfo.setPassword("");
 		UseInfoLocal.setUseInfo(mUseInfo);
-		YemaApplication.TOKEN = "";
+//		YemaApplication.TOKEN = "";
+		LoginInfo.setAccess_token("");
 		Intent mIntent = new Intent(context, UserLoginActivity.class);
-		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(mIntent);
 
 	}
 
 	/******** 退出操作 ****************/
 	public static void onExit() {
-		if (!TextUtils.isEmpty(YemaApplication.TOKEN)) {
+		if (!TextUtils.isEmpty(LoginInfo.getAccess_token())) {
 			CPControl.GetUnRigisterXgTokenResult(YemaApplication.NIMEI,
 					new BaseParser.ResultCallback() {
 						@Override
 						public void onSuccess(BaseResponseInfo bInfo) {
 							LoginInfo.Destroy();
-							YemaApplication.TOKEN = "";
+//							YemaApplication.TOKEN = "";
 							Log.e("info", "注销信鸽成功");
 						}
 
 						@Override
 						public void onError(BaseResponseInfo bInfo) {
 							LoginInfo.Destroy();
-							YemaApplication.TOKEN = "";
+//							YemaApplication.TOKEN = "";
 							Log.e("info", "注销信鸽失败");
 						}
 					});
@@ -233,7 +234,7 @@ public class ActivityControl {
 		UseInfo mUseInfo = UseInfoLocal.getUseInfo();
 		mUseInfo.setPassword("");
 		UseInfoLocal.setUseInfo(mUseInfo);
-		YemaApplication.TOKEN = "";
+//		YemaApplication.TOKEN = "";
 		Intent mIntent = new Intent(context, UserLoginActivity.class);
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(mIntent);

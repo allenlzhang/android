@@ -364,7 +364,7 @@ public class LoginInfo extends BaseResponseInfo {
         LoginInfo.setAvatar_img((destroy.optString("avatar_img", "")));
         LoginInfo.setMobile((destroy.optString("mobile", "")));
         LoginInfo.setVisitor(destroy.optBoolean("isVisitor"));
-        YemaApplication.TOKEN = "";
+//        YemaApplication.TOKEN = "";
         LoginInfo.setExpiresIn((destroy.optString("expires_in", "")));
         LoginInfo.setDealerId((destroy.optString("expires_in", "")));
         LoginInfo.setUseId((destroy.optString("uid", "")));

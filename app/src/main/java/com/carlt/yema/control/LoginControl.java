@@ -144,7 +144,7 @@ public class LoginControl {
             LoginInfo.setAuthen_card(member.optString("authen_card", ""));
 
             LoginInfo.setExpires_in((member.optString("expires_in", "")));
-            YemaApplication.TOKEN = member.optString("access_token", "");
+//            YemaApplication.TOKEN = member.optString("access_token", "");
             LoginInfo.setExpiresIn((member.optString("expires_in", "")));
             LoginInfo.setSSID(member.optString("SSID", ""));
             LoginInfo.setSSIDPWD(member.optString("SSIDPWD", ""));
