@@ -49,7 +49,6 @@ public class SplashActivity extends BaseActivity implements Callback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        splash();
     }
 
     private void splash() {
@@ -64,24 +63,13 @@ public class SplashActivity extends BaseActivity implements Callback {
         useTimes = mUseInfo.getTimes();
         account = mUseInfo.getAccount();
         password = mUseInfo.getPassword();
-
-//        File mFile = new File(LocalConfig.mErroLogSavePath_SD);
-//        if(mFile == null){
-//            return;
-//        }
-//        File[] files = mFile.listFiles();
-//        if(files == null || files.length == 0){
-//            return;
-//        }
-//        ArrayList<String> filePaths = new ArrayList<String>();
-//        int length = files.length;
-//        for (int i = 0; i < length; i++) {
-//            File file = files[i];
-//            String fileName = file.getName();
-//            filePaths.add(LocalConfig.mErroLogSavePath_SD + fileName);
-//        }
-
         jumpLogic();
+    }
+
+    @Override
+    protected void onResume() {
+        mHandler.sendEmptyMessageDelayed(0,3000);
+        super.onResume();
     }
 
     /**
@@ -122,6 +110,9 @@ public class SplashActivity extends BaseActivity implements Callback {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
+                case 0:
+                    splash();
+                    break;
                 case 3:
                     useTimes++;
                     ActivityControl.initXG();

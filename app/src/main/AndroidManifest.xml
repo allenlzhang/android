@@ -64,7 +64,8 @@
             android:name="com.amap.api.v2.apikey"
             android:value="90eead545ff2bc5407490fbae5aab92a" />
 
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

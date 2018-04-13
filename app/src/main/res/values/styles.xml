@@ -20,6 +20,10 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="splash" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
     <!-- 行车报告-网格内容 -->
     <style name="layout_report_grid_layout">
         <item name="android:layout_width">fill_parent</item>
