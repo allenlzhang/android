@@ -14,6 +14,7 @@ import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
@@ -40,6 +41,8 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
 
     private String vinCode ="";
 
+    private String carType = "";
+
     private int ActivateCount;
 
 
@@ -59,6 +62,7 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
         Intent intent = getIntent();
         if (intent != null) {
             vinCode = intent.getStringExtra("vin");
+            carType = intent.getStringExtra("carType");
         }
         activate_commit=findViewById(R.id.activate_commit);
         activate_commit.setOnClickListener(this);
@@ -134,6 +138,7 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(ActivateBindActivity.this,"激活失败");
             boolean t = (System.currentTimeMillis() - listener_time) > ONEMIN;
             int flagCode = bInfo.getFlag();
             if (flagCode == 2997 && !t) {
@@ -164,7 +169,13 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
                 mDialog = null;
             }
             PopBoxCreat.showUUUpdateDialog(ActivateBindActivity.this, null);
-        } else if (code == 2997) {
+        }else if (code == BaseResponseInfo.ERRO){
+            mTextViewSecretary.setText("激活失败，网络不稳定，请稍后重新再试");
+            if (mDialog != null && mDialog.isShowing()) {
+                mDialog.dismiss();
+                mDialog = null;
+            }
+        }else if (code == 2997) {
             // 下发不成功的情况
             if (ActivateCount == 1) {
                 mTextViewSecretary.setText(e1);
@@ -180,10 +191,13 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
         } else {
             if (code == 3004) {
                 mTextViewSecretary.setText(e4);
-            } else if (code == 3005) {
-                mTextViewSecretary.setText(e5);
-            } else {
-                mTextViewSecretary.setText(e3);
+            }
+//            else if (code == 3005) {
+//                mTextViewSecretary.setText(e5);
+//            }
+            else {
+//                mTextViewSecretary.setText(e3);
+                mTextViewSecretary.setText(mBaseResponseInfo.getInfo());
             }
             if (mDialog != null && mDialog.isShowing()) {
                 mDialog.dismiss();
@@ -196,9 +210,11 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
         Intent backIntent=new Intent(this,DeviceBindActivity.class);
         backIntent.putExtra("from","com.carlt.yema.ActivateBindActivity");
         backIntent.putExtra("vin",vinCode);
+        backIntent.putExtra("carType",carType);
         startActivity(backIntent);
         finish();
-        ActivityControl.onExit();
+        ActivityControl.clearAllActivity();
+
     }
 
     @Override

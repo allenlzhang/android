@@ -379,7 +379,7 @@ public class InformationCentreTipsAdapter extends BaseAdapter{
                 break;
             case InformationMessageInfo.C1_T7:
                 //车主关怀
-                mHolder.mImgDelete.setVisibility(View.VISIBLE);
+                mHolder.mImgDelete.setVisibility(View.GONE);
                 mHolder.mView2.setVisibility(View.VISIBLE);
                 mHolder.mImageView.setVisibility(View.GONE);
                 mHolder.mViewTable.setVisibility(View.GONE);

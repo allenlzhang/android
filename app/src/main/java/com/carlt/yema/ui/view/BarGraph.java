@@ -93,8 +93,8 @@ public class BarGraph extends View {
 //		}
 
 		height = YemaApplication.dpToPx(124);
-		GAP = YemaApplication.dpToPx(13);
-		SINGLE_WIDTH = YemaApplication.dpToPx(11);
+		GAP = YemaApplication.dpToPx(15);
+		SINGLE_WIDTH = YemaApplication.dpToPx(10);
 	}
 
 	public void setMonthStatisticCharInfo(
@@ -116,7 +116,7 @@ public class BarGraph extends View {
 					.getMonthStatisticInfos();
 			int size = monthStatisticInfos.size();
 			for (int i = 1; i < 13; i++) {
-				float left = 20 + (SINGLE_WIDTH + GAP) * i;
+				float left = 10 + (SINGLE_WIDTH + GAP) * i;
 				float top;
 
 				for (int j = 0; j < size; j++) {
@@ -172,8 +172,7 @@ public class BarGraph extends View {
 		mGRAYPaint.setColor(txtColor);
 		mGRAYPaint.setTextAlign(Paint.Align.CENTER);
 		mGRAYPaint.setTextSize(textSize);
-		mGRAYPaint.setTextAlign(Paint.Align.CENTER);
-
+		mGRAYPaint.setAntiAlias(true);
 		Paint.FontMetrics fontMetrics = mGRAYPaint.getFontMetrics();
 		float top = fontMetrics.top;// 为基线到字体上边框的距离,即上图中的top
 		float bottom = fontMetrics.bottom;// 为基线到字体下边框的距离,即上图中的bottom

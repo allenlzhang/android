@@ -24,6 +24,7 @@ import com.carlt.yema.ui.fragment.RemoteMainFragment;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.PwdEditText;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.StringUtils;
 
 
 /**
@@ -160,14 +161,15 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
     public void onClick(View v) {
         String pswNew1 = mPwdEdt1.getText().toString();
         String pswNew2 = mPwdEdt2.getText().toString();
-        if (pswNew1 == null || pswNew1.length() !=6) {
-            UUToast.showUUToast(RemotePswResetActivity3.this, "您的新密码应为6位，请重新输入...");
+        if(StringUtils.isEmpty(pswNew1)||StringUtils.isEmpty(pswNew2)){
+            UUToast.showUUToast(RemotePswResetActivity3.this, "密码不能为空");
             return;
-        } else if (pswNew2 == null || pswNew2.length() !=6) {
-            UUToast.showUUToast(RemotePswResetActivity3.this, "您再次输入的密码应为6位，请重新输入...");
+        }
+        else if (pswNew1.length() !=6||pswNew2.length() !=6) {
+            UUToast.showUUToast(RemotePswResetActivity3.this, "密码至少为6位数字");
             return;
         } else if (!pswNew1.equals(pswNew2)) {
-            UUToast.showUUToast(RemotePswResetActivity3.this, "您两次输入的密码不一致，请重新输入...");
+            UUToast.showUUToast(RemotePswResetActivity3.this, "两次输入密码不一致，请重新输入");
             return;
         } else {
             if (mDialog == null) {

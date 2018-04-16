@@ -222,6 +222,17 @@ public class ActivityControl {
 		mActivityList.clear();
 	}
 
+	public static void clearAllActivity(){
+		int size = mActivityList.size();
+		for (int i = 0; i < size; i++) {
+			if (null != mActivityList.get(i)) {
+				mActivityList.get(i).finish();
+			}
+		}
+		mActivityList.clear();
+	}
+
+
 	// 授权后逻辑
 	public static void bePushAside(Context context) {
 		int size = mActivityList.size();

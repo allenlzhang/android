@@ -69,15 +69,17 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
             if (!TextUtils.isEmpty(carTitle)) {
                 btn_select_car.setText(carTitle);
             }
+        }else {
+            if (intent != null && !TextUtils.isEmpty(intent.getStringExtra("carType"))) {
+                btn_select_car.setText(intent.getStringExtra("carType"));
+            }
         }
         vinCode =intent.getStringExtra("vin");
         if (!TextUtils.isEmpty(vinCode)) {
 
             car_vin_code.setText(vinCode);
         }
-        if (intent != null && !TextUtils.isEmpty(intent.getStringExtra("carType"))) {
-            btn_select_car.setText(intent.getStringExtra("carType"));
-        }
+
     }
 
     @Override
@@ -165,6 +167,7 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
 
             Intent activateIntent = new Intent(DeviceBindActivity.this, ActivateBindActivity.class);
             activateIntent.putExtra("vin",vinCode);
+            activateIntent.putExtra("carType",carTitle);
             startActivity(activateIntent);
         }
 
