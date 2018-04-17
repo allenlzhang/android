@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
@@ -15,9 +16,8 @@ public class ReportDayView extends LinearLayout {
 	private ImageView img;
 	private int color1;
 	private int color2;
-	
+	private RelativeLayout layout;
 	private Context mContext;
-
 	public ReportDayView(Context context) {
 		super(context);
 		mContext=context;
@@ -31,6 +31,16 @@ public class ReportDayView extends LinearLayout {
 		img=(ImageView)findViewById(R.id.rili_day_img);
 		color1 = context.getResources().getColor(R.color.white);
 		color2 = context.getResources().getColor(R.color.text_color_gray2);
+		layout = findViewById(R.id.rili_day_rl);
+
+	}
+
+	public void setResid(boolean isToday) {
+		if (isToday){
+			layout.setBackgroundResource(R.color.text_color_gray0);
+		}else {
+			layout.setBackgroundResource(R.color.item_bg);
+		}
 	}
 
 	public void setClickEnable(boolean flag) {

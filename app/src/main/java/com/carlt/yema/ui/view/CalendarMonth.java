@@ -137,7 +137,11 @@ public class CalendarMonth extends MenuCalendar implements OnClickListener {
                     if (year == today.get(Calendar.YEAR)) {
                         mImageViewR.setImageResource(R.drawable.arrow_calendar_right_enabled_false);
                         mImageViewR.setClickable(false);
-
+                        for (int i = 0; i < 12 ; i++) {
+                            if (today.get(Calendar.MONTH)==i){
+                                mViews.get(i).setBackgroundResource(R.color.text_color_gray0);
+                            }
+                        }
                     } else {
                         mImageViewR.setImageResource(R.drawable.arrow_calendar_right);
                         mImageViewR.setClickable(true);

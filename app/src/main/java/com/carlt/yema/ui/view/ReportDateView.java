@@ -4,6 +4,7 @@ package com.carlt.yema.ui.view;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -183,7 +184,12 @@ public class ReportDateView extends LinearLayout implements OnClickListener {
                                 mDayView.setText2("", 0);
                                 mDayView.setClickEnable(true);
                             }
-
+                            if (year == today.get(Calendar.YEAR) && month == today.get(Calendar.MONTH) + 1 &&
+                                    TextUtils.equals(mReportCalendarDayInfo.getDate(),today.get(Calendar.DAY_OF_MONTH)+"")){
+                                mDayView.setResid(true);
+                            }else {
+                                mDayView.setResid(false);
+                            }
                         }
                     }
                     dissmissLoading();

@@ -56,6 +56,8 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
     public final static String CARMAIN_SAFETY = "com.carlt.yema.carmain.safety";// 安防action
 
     private CarmainBroadCastReceiver mReceiver;
+    private boolean isTire;
+    private boolean isCarlocation;
 
     @Override
     protected View inflateView(LayoutInflater inflater) {
@@ -88,8 +90,8 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         viewSafetyLay.setOnClickListener(this);
         viewMainTainLay.setOnClickListener(this);
         viewMainState.setOnClickListener(this);
-        view1.setClickable(false);
-        view3.setClickable(false);
+        isTire = false;
+        isCarlocation = false;
         mReceiver = new CarmainBroadCastReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(CARMAIN_SAFETY);
@@ -147,7 +149,7 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
             });
             HashMap params2 = new HashMap();
             carOperationConfigParser.executePost(URLConfig.getM_CAR_CURCARCONFIG_URL(), params2);
-        }else{
+        } else {
             loadSuss();
         }
     }
@@ -164,29 +166,29 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
             }
             if (!StringUtils.isEmpty(carinfo.getSafetymsg())) {
                 viewSafetyText.setText(carinfo.getSafetymsg());
-            }else{
+            } else {
                 viewSafetyText.setText("暂无新消息");
             }
         }
         //是否支持胎压监测
-        if(TextUtils.equals(YemaApplication.getInstanse().getRemoteMainInfo().getDirectPSTsupervise() ,RemoteFunInfo.STATE_SUPPORT)){
-            view1.setClickable(true);
+        if (TextUtils.equals(YemaApplication.getInstanse().getRemoteMainInfo().getDirectPSTsupervise(), RemoteFunInfo.STATE_SUPPORT)) {
+            isTire = true;
             Drawable top = getResources().getDrawable(R.drawable.tire_car_main_selecter);
-            view1.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
-        }else{
-            view1.setClickable(false);
+            view1.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
+        } else {
+            isTire = false;
             Drawable top = getResources().getDrawable(R.mipmap.tire_car_main_unpress);
-            view1.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
+            view1.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
         }
         //是否支持导航同步
-        if(TextUtils.equals(YemaApplication.getInstanse().getRemoteMainInfo().getNavigationSync() ,RemoteFunInfo.STATE_SUPPORT)){
-            view3.setClickable(true);
+        if (TextUtils.equals(YemaApplication.getInstanse().getRemoteMainInfo().getNavigationSync(), RemoteFunInfo.STATE_SUPPORT)) {
+            isCarlocation = true;
             Drawable top = getResources().getDrawable(R.drawable.daohang_car_main_selecter);
-            view3.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
-        }else{
-            view3.setClickable(false);
+            view3.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
+        } else {
+            isCarlocation = false;
             Drawable top = getResources().getDrawable(R.mipmap.navigate_carmain_unpress);
-            view3.setCompoundDrawablesWithIntrinsicBounds(null,top,null,null);
+            view3.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
         }
 
 
@@ -208,11 +210,15 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
 
         switch (view.getId()) {
             case R.id.car_main_txt_tire://胎压监测
-                Intent mIntent = new Intent(getActivity(), CarTiresStateActivity.class);
-                startActivity(mIntent);
+                if (isTire) {
+                    Intent mIntent = new Intent(getActivity(), CarTiresStateActivity.class);
+                    startActivity(mIntent);
+                } else {
+                    UUToast.showUUToast(getContext(), "暂不支持该功能");
+                }
                 break;
             case R.id.car_main_txt_findcar://定位寻车
-                ((BaseActivity)getActivity()).requestPermissions(getActivity(), needPermissions, new BaseActivity.RequestPermissionCallBack() {
+                ((BaseActivity) getActivity()).requestPermissions(getActivity(), needPermissions, new BaseActivity.RequestPermissionCallBack() {
                     @Override
                     public void granted() {
                         Intent mIntent1 = new Intent(getActivity(), FindCarActivity.class);
@@ -221,28 +227,33 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
 
                     @Override
                     public void denied() {
-                        UUToast.showUUToast(getActivity(),"未获取到权限，定位功能不可用");
+                        UUToast.showUUToast(getActivity(), "未获取到权限，定位功能不可用");
                     }
                 });
 
                 break;
             case R.id.car_main_txt_carlocation://导航同步
-                ((BaseActivity)getActivity()).requestPermissions(getActivity(), needPermissions, new BaseActivity.RequestPermissionCallBack() {
-                    @Override
-                    public void granted() {
-                        Intent mIntent2 = new Intent(getActivity(), LocationSynchronizeActivity.class);
-                        startActivity(mIntent2);
-                    }
-                    @Override
-                    public void denied() {
-                        UUToast.showUUToast(getActivity(),"未获取到权限，导航同步功能不可用");
-                    }
-                });
+                if (isCarlocation) {
+                    ((BaseActivity) getActivity()).requestPermissions(getActivity(), needPermissions, new BaseActivity.RequestPermissionCallBack() {
+                        @Override
+                        public void granted() {
+                            Intent mIntent2 = new Intent(getActivity(), LocationSynchronizeActivity.class);
+                            startActivity(mIntent2);
+                        }
+
+                        @Override
+                        public void denied() {
+                            UUToast.showUUToast(getActivity(), "未获取到权限，导航同步功能不可用");
+                        }
+                    });
+                } else {
+                    UUToast.showUUToast(getContext(), "暂不支持该功能");
+                }
 
                 break;
             case R.id.car_main_lay_safety://安防提醒
                 Intent mIntent3 = new Intent(getActivity(), CarSaftyListActivity.class);
-                mIntent3.putExtra("safetymsg",carinfo.getSafetymsg());
+                mIntent3.putExtra("safetymsg", carinfo.getSafetymsg());
                 startActivity(mIntent3);
                 break;
             case R.id.car_main_lay_maintain://车况检测报告
@@ -261,9 +272,9 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onDetach() {
         super.onDetach();
-        try{
+        try {
             getActivity().unregisterReceiver(mReceiver);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
