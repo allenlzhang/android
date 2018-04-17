@@ -30,7 +30,6 @@ import com.carlt.yema.ui.pull.PullToRefreshListView;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUDialog;
 import com.carlt.yema.ui.view.UUToast;
-import com.carlt.yema.utils.CreateHashMap;
 import com.carlt.yema.utils.StringUtils;
 
 import java.text.SimpleDateFormat;
@@ -51,6 +50,8 @@ public class RemindActivity extends LoadingActivity2 {
     private ListView mListView;
 
     private TextView mTxtEmpty;// 没有消息时的提示文字
+
+    private ImageView mImgEmpty;// 没有消息时的提示UI
 
     private InformationMessageInfoList mInfoLists;// 接口返回的数据结构
 
@@ -211,6 +212,7 @@ public class RemindActivity extends LoadingActivity2 {
         }
         mPullListView = (PullToRefreshListView)findViewById(R.id.activity_career_secretary_tips_list);
         mTxtEmpty = (TextView)findViewById(R.id.activity_career_secretary_tips_empty);
+        mImgEmpty = (ImageView) findViewById(R.id.activity_career_secretary_img_empty);
 
         mListView = mPullListView.getRefreshableView();
         mListView.setDivider(getResources().getDrawable(R.drawable.list_divider_bg));
@@ -256,9 +258,15 @@ public class RemindActivity extends LoadingActivity2 {
 
                 if (mList.size() == 0) {
                     mPullListView.setVisibility(View.GONE);
+                    if (type==InformationMessageInfo.C1_T4||type==InformationMessageInfo.C1_T7) {
+                        mImgEmpty.setVisibility(View.VISIBLE);
+                    }
                     mTxtEmpty.setVisibility(View.VISIBLE);
                 } else {
                     mPullListView.setVisibility(View.VISIBLE);
+                    if (type==InformationMessageInfo.C1_T4||type==InformationMessageInfo.C1_T7) {
+                        mImgEmpty.setVisibility(View.GONE);
+                    }
                     mTxtEmpty.setVisibility(View.GONE);
                 }
 
