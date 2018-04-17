@@ -52,7 +52,6 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         setContentView(R.layout.activity_car_manager);
         initCustomTimePicker();
         initComponent();
-        getCarInfo();
     }
 
     private void initComponent() {
@@ -81,8 +80,13 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         maintenance_time_txt = findViewById(R.id.maintenance_time_txt);
         insured_time_txt = findViewById(R.id.insured_time_txt);
         nspection_time_txt = findViewById(R.id.nspection_time_txt);
-}
+    }
 
+    @Override
+    protected void onResume() {
+        getCarInfo();
+        super.onResume();
+    }
 
     @Override
     public void onClick(View view) {
@@ -304,15 +308,22 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
         }
     };
 
-    private void getCarInfo(){
-        CarSettingInfoParser parser=new CarSettingInfoParser(carSettingCallback);
-        HashMap<String,String> params=new HashMap<>();
-        parser.executePost(URLConfig.getM_GET_CAR_SETTING(),params);
+    private void getCarInfo() {
+        CarSettingInfoParser parser = new CarSettingInfoParser(carSettingCallback);
+        HashMap<String, String> params = new HashMap<>();
+        parser.executePost(URLConfig.getM_GET_CAR_SETTING(), params);
     }
-    ResultCallback carSettingCallback=new ResultCallback() {
+
+    ResultCallback carSettingCallback = new ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
-            CarSettingInfo carSettingInfo= (CarSettingInfo) bInfo.getValue();
+            CarSettingInfo carSettingInfo = (CarSettingInfo) bInfo.getValue();
+            if (!TextUtils.isEmpty(carSettingInfo.getCarname())) {
+                car_type_txt.setText((carSettingInfo.getCarname()));
+                LoginInfo.setCarname(carSettingInfo.getCarname());
+            } else {
+                car_type_txt.setText("--");
+            }
             if (!TextUtils.isEmpty(carSettingInfo.getBuydate())) {
                 purchase_time_txt.setText((carSettingInfo.getBuydate()));
                 LoginInfo.setBuydate(carSettingInfo.getBuydate());
@@ -334,13 +345,13 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
             if (!TextUtils.isEmpty(carSettingInfo.getInsurance_time())) {
                 insured_time_txt.setText(carSettingInfo.getInsurance_time());
                 LoginInfo.setInsurance_time(carSettingInfo.getInsurance_time());
-            }else {
+            } else {
                 insured_time_txt.setText("--");
             }
             if (!TextUtils.isEmpty(carSettingInfo.getRegister_time())) {
                 nspection_time_txt.setText(carSettingInfo.getRegister_time());
                 LoginInfo.setRegister_time(carSettingInfo.getRegister_time());
-            }else {
+            } else {
                 nspection_time_txt.setText("--");
             }
         }

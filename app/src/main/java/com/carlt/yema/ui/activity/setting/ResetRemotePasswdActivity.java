@@ -16,6 +16,7 @@ import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.PasswordView;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.CipherUtils;
+import com.carlt.yema.utils.StringUtils;
 
 import java.util.HashMap;
 
@@ -113,10 +114,16 @@ public class ResetRemotePasswdActivity extends BaseActivity implements View.OnCl
         if (TextUtils.isEmpty(passwd)) {
             UUToast.showUUToast(this, "原始密码不能为空");
             return false;
-        } else if (TextUtils.isEmpty(newPasswd) || newPasswd.length() < 6) {
+        } else if (StringUtils.isNumber(passwd)) {
+            UUToast.showUUToast(this, "密码必须为数字");
+            return false;
+        }else if (TextUtils.isEmpty(newPasswd) || newPasswd.length() < 6) {
             UUToast.showUUToast(this, "新密码长度至少为6位");
             return false;
-        } else if (TextUtils.isEmpty(newPasswd) || !newPasswd.equals(confirmPasswd)) {
+        } else if (StringUtils.isNumber(newPasswd)) {
+            UUToast.showUUToast(this, "密码必须为数字");
+            return false;
+        }else if (TextUtils.isEmpty(newPasswd) || !newPasswd.equals(confirmPasswd)) {
             UUToast.showUUToast(this, "两次输入密码不一致");
             return false;
         } else {

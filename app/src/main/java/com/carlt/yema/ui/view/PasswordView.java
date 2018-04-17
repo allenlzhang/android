@@ -215,20 +215,6 @@ public class PasswordView extends View {
                     postInvalidate();
                     return true;
                 }
-                if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {
-                    /**
-                     * 只支持数字
-                     */
-                    if (isInputComplete) {
-                        return true;
-                    }
-                    String addText = add((keyCode - 7) + "");
-                    if (passwordListener != null && !TextUtils.isEmpty(addText)&&isNumeric(addText)) {
-                        passwordListener.passwordChange(addText);
-                    }
-                    postInvalidate();
-                    return true;
-                }
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
                     /**
                      * 确认键
@@ -237,6 +223,20 @@ public class PasswordView extends View {
                         passwordListener.keyEnterPress(getPassword(), isInputComplete);
                     }
                     return true;
+                }
+                if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {
+                    /**
+                     * 只支持数字
+                     */
+                    if (isInputComplete) {
+                        return true;
+                    }
+                    String addText = add((keyCode - 7) + "");
+                    if (passwordListener != null && !TextUtils.isEmpty(addText) && isNumeric(addText)) {
+                        passwordListener.passwordChange(addText);
+                        postInvalidate();
+                        return true;
+                    }
                 }
             }
             return false;

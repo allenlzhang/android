@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layout_background"
@@ -16,9 +17,12 @@
         android:textColor="@color/text_color_gray1"
         android:textSize="14sp" />
 
-    <com.carlt.yema.ui.view.PwdEditText
+    <com.carlt.yema.ui.view.PasswordView
         android:id="@+id/remotepsw_reset3_pwdedt1"
-        style="@style/safety_psw_edt" />
+        style="@style/safety_psw_edt"
+        app:passwordLength="6"
+        app:borderColor="@color/setting_item_divider_bg"
+        app:mode="rect"/>
 
     <TextView
         android:id="@+id/remotepsw_reset3_txt_title2"
@@ -31,9 +35,12 @@
         android:textColor="@color/text_color_gray1"
         android:textSize="14sp" />
 
-    <com.carlt.yema.ui.view.PwdEditText
+    <com.carlt.yema.ui.view.PasswordView
         android:id="@+id/remotepsw_reset3_pwdedt2"
-        style="@style/safety_psw_edt" />
+        style="@style/safety_psw_edt"
+        app:passwordLength="6"
+        app:borderColor="@color/setting_item_divider_bg"
+        app:mode="rect"/>
     
     <TextView
         android:id="@+id/remotepsw_reset3_txt_edit"

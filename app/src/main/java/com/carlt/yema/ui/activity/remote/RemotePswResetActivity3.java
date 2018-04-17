@@ -9,11 +9,9 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
-import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
@@ -21,6 +19,7 @@ import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.RemotePswInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.fragment.RemoteMainFragment;
+import com.carlt.yema.ui.view.PasswordView;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.PwdEditText;
 import com.carlt.yema.ui.view.UUToast;
@@ -38,9 +37,9 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
 
     private TextView mTxtTitle2;// 小标题-新密码确认
 
-    private PwdEditText mPwdEdt1;// 密码编辑框-新密码
+    private PasswordView mPwdEdt1;// 密码编辑框-新密码
 
-    private PwdEditText mPwdEdt2;// 密码编辑框-新密码确认
+    private PasswordView mPwdEdt2;// 密码编辑框-新密码确认
 
     private TextView mTxtEdt;// 修改按钮
 
@@ -114,8 +113,8 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
         mTxtTitle1 = (TextView)findViewById(R.id.remotepsw_reset3_txt_title1);
         mTxtTitle2 = (TextView)findViewById(R.id.remotepsw_reset3_txt_title2);
 
-        mPwdEdt1 = (PwdEditText)findViewById(R.id.remotepsw_reset3_pwdedt1);
-        mPwdEdt2 = (PwdEditText)findViewById(R.id.remotepsw_reset3_pwdedt2);
+        mPwdEdt1 = (PasswordView)findViewById(R.id.remotepsw_reset3_pwdedt1);
+        mPwdEdt2 = (PasswordView)findViewById(R.id.remotepsw_reset3_pwdedt2);
 
         mTxtEdt = (TextView)findViewById(R.id.remotepsw_reset3_txt_edit);
 
@@ -137,8 +136,8 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
 
         mTxtTitle1.setText("请输入新密码");
         mTxtTitle2.setText("请再次输入新密码");
-        mPwdEdt1.setOnInputListener(mInputListener);
-        mPwdEdt2.setOnInputListener(mInputListener);
+//        mPwdEdt1.setOnInputListener(mInputListener);
+//        mPwdEdt2.setOnInputListener(mInputListener);
 
         // mTxtEdt.setBackgroundResource(R.drawable.bottom_btn_bg_gray);
         // mTxtEdt.setClickable(false);
@@ -159,16 +158,18 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
 
     @Override
     public void onClick(View v) {
-        String pswNew1 = mPwdEdt1.getText().toString();
-        String pswNew2 = mPwdEdt2.getText().toString();
-        if(StringUtils.isEmpty(pswNew1)||StringUtils.isEmpty(pswNew2)){
+        String pswNew1 = mPwdEdt1.getPassword();
+        String pswNew2 = mPwdEdt2.getPassword();
+        if(StringUtils.isEmpty(pswNew1)){
             UUToast.showUUToast(RemotePswResetActivity3.this, "密码不能为空");
             return;
         }
         else if (pswNew1.length() !=6||pswNew2.length() !=6) {
             UUToast.showUUToast(RemotePswResetActivity3.this, "密码至少为6位数字");
             return;
-        } else if (!pswNew1.equals(pswNew2)) {
+        } else if (StringUtils.isNumber(pswNew1)) {
+            UUToast.showUUToast(this, "密码必须为数字");
+        }else if (!pswNew1.equals(pswNew2)) {
             UUToast.showUUToast(RemotePswResetActivity3.this, "两次输入密码不一致，请重新输入");
             return;
         } else {

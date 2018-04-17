@@ -891,17 +891,11 @@
 
     -->
     <style name="safety_psw_edt">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">40dip</item>
-        <item name="android:textColor">@color/text_color_gray2</item>
-        <item name="android:layout_marginLeft">@dimen/safe_margin_h</item>
-        <item name="android:layout_marginRight">@dimen/safe_margin_h</item>
-        <item name="android:background">@drawable/edittext_bg</item>
-        <item name="android:cursorVisible">false</item>
-        <item name="android:enabled">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:inputType">number</item>
-        <item name="android:maxLength">6</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:layout_marginTop">5dp</item>
     </style>
 
     <style name="safety_edt">

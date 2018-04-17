@@ -241,7 +241,10 @@ public class VcodeResetRemotePasswdActivity extends BaseActivity implements View
         } else if (TextUtils.isEmpty(passwd) || passwd.length() < 6) {
             UUToast.showUUToast(this, "密码至少为6位");
             return false;
-        } else if (TextUtils.isEmpty(passwdAgain) || !passwd.equals(passwdAgain)) {
+        } else if (StringUtils.isNumber(passwd)) {
+            UUToast.showUUToast(this, "密码必须为数字");
+            return false;
+        }else if (TextUtils.isEmpty(passwdAgain) || !passwd.equals(passwdAgain)) {
             UUToast.showUUToast(this, "两次输入密码不一致");
             return false;
         } else {
