@@ -1,28 +1,22 @@
 package com.carlt.yema.ui.activity.carstate;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
-import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.SaftyMsgInfo;
-import com.carlt.yema.protocolparser.DefaultParser;
+import com.carlt.yema.data.home.InformationMessageInfo;
 import com.carlt.yema.protocolparser.DefaultStringParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.adapter.CarSaftyAdapter;
-import com.carlt.yema.utils.ILog;
 import com.carlt.yema.utils.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,7 +56,7 @@ public class CarSaftyListActivity extends LoadingActivity {
     private void initData() {
         DefaultStringParser parser = new DefaultStringParser(mCallback);
         HashMap map = new HashMap();
-        map.put("class1","21");
+        map.put("class1",String.valueOf(InformationMessageInfo.C1_T2));
         parser.executePost(URLConfig.getM_SAFETY_MESSAGE_URL(),map);
     }
 

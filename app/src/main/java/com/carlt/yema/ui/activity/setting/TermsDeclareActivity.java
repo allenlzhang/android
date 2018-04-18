@@ -62,7 +62,7 @@ public class TermsDeclareActivity extends BaseActivity implements DownloadListen
 		if (url.equals(URL_PROVISION)) {
 			title.setText("服务条款");
 		} else if (url.equals(URL_INTRODUCE)) {
-			title.setText("大迈介绍");
+			title.setText("野马介绍");
 		}
 
 		back.setOnClickListener(new OnClickListener() {

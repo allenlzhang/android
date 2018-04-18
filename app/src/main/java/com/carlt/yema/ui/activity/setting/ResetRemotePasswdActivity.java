@@ -111,19 +111,13 @@ public class ResetRemotePasswdActivity extends BaseActivity implements View.OnCl
      * 判断原始密码、新密码、再次输入新密码是否合法
      */
     private boolean isCommitInvalid(String passwd, String newPasswd, String confirmPasswd) {
-        if (TextUtils.isEmpty(passwd)) {
-            UUToast.showUUToast(this, "原始密码不能为空");
+        if (TextUtils.isEmpty(passwd)||passwd.length()<6) {
+            UUToast.showUUToast(this, "原远程操作密码不正确");
             return false;
-        } else if (StringUtils.isNumber(passwd)) {
-            UUToast.showUUToast(this, "密码必须为数字");
+        } else if (TextUtils.isEmpty(newPasswd) || newPasswd.length() < 6|| StringUtils.isNumber(newPasswd)) {
+            UUToast.showUUToast(this, "新远程操作密码至少为6位数字");
             return false;
-        }else if (TextUtils.isEmpty(newPasswd) || newPasswd.length() < 6) {
-            UUToast.showUUToast(this, "新密码长度至少为6位");
-            return false;
-        } else if (StringUtils.isNumber(newPasswd)) {
-            UUToast.showUUToast(this, "密码必须为数字");
-            return false;
-        }else if (TextUtils.isEmpty(newPasswd) || !newPasswd.equals(confirmPasswd)) {
+        } else if (!newPasswd.equals(confirmPasswd)) {
             UUToast.showUUToast(this, "两次输入密码不一致");
             return false;
         } else {

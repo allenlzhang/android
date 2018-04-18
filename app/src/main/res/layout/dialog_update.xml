@@ -22,7 +22,7 @@
 	      android:id="@+id/update_loading_txt_title"
 	     android:layout_width="wrap_content"
 	     android:layout_height="wrap_content"
-	     android:text="大迈盒子正在努力"
+	     android:text="野马盒子正在努力"
 	     android:textColor="#2ea2d5"
 	     android:textSize="14sp"
 	     android:layout_marginTop="20dip"/>

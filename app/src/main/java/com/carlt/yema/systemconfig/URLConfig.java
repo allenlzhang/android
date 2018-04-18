@@ -182,6 +182,8 @@ public class URLConfig {
 
     // 车秘书提醒
     private static String M_SAFETY_MESSAGE_URL = "life/message";
+    // 安防提醒
+    private static String M_SECURITY_MESSAGE_URL = "life/securityMessage";
     //获取车型
     private static String M_CAR_MODE_LIST = "comm/getModelList";
     //获取车款
@@ -281,6 +283,12 @@ public class URLConfig {
 
     public static String getM_SAFETY_MESSAGE_URL() {
         return getYemaURL(M_SAFETY_MESSAGE_URL);
+    }
+    /**
+     * 获取安防提醒
+     * */
+    public static String getM_SECURITY_MESSAGE_URL() {
+        return getYemaURL(M_SECURITY_MESSAGE_URL);
     }
 
     public static String getM_REPORTDAY_URL() {

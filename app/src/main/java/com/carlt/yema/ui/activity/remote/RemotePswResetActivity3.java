@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +29,7 @@ import com.carlt.yema.utils.StringUtils;
 
 /**
  * 忘记远程解锁密码-step3设置新密码
- * 
+ *
  * @author Administrator
  */
 public class RemotePswResetActivity3 extends LoadingActivity implements OnClickListener {
@@ -110,13 +111,13 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
     }
 
     private void init() {
-        mTxtTitle1 = (TextView)findViewById(R.id.remotepsw_reset3_txt_title1);
-        mTxtTitle2 = (TextView)findViewById(R.id.remotepsw_reset3_txt_title2);
+        mTxtTitle1 = (TextView) findViewById(R.id.remotepsw_reset3_txt_title1);
+        mTxtTitle2 = (TextView) findViewById(R.id.remotepsw_reset3_txt_title2);
 
-        mPwdEdt1 = (PasswordView)findViewById(R.id.remotepsw_reset3_pwdedt1);
-        mPwdEdt2 = (PasswordView)findViewById(R.id.remotepsw_reset3_pwdedt2);
+        mPwdEdt1 = (PasswordView) findViewById(R.id.remotepsw_reset3_pwdedt1);
+        mPwdEdt2 = (PasswordView) findViewById(R.id.remotepsw_reset3_pwdedt2);
 
-        mTxtEdt = (TextView)findViewById(R.id.remotepsw_reset3_txt_edit);
+        mTxtEdt = (TextView) findViewById(R.id.remotepsw_reset3_txt_edit);
 
         switch (type) {
             case TYPE_REALNAME:
@@ -160,16 +161,10 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
     public void onClick(View v) {
         String pswNew1 = mPwdEdt1.getPassword();
         String pswNew2 = mPwdEdt2.getPassword();
-        if(StringUtils.isEmpty(pswNew1)){
-            UUToast.showUUToast(RemotePswResetActivity3.this, "密码不能为空");
+        if(TextUtils.isEmpty(pswNew1)||pswNew1.length()<6||!StringUtils.isNumber(pswNew1)){
+            UUToast.showUUToast(this, "密码至少为6位数字");
             return;
-        }
-        else if (pswNew1.length() !=6||pswNew2.length() !=6) {
-            UUToast.showUUToast(RemotePswResetActivity3.this, "密码至少为6位数字");
-            return;
-        } else if (StringUtils.isNumber(pswNew1)) {
-            UUToast.showUUToast(this, "密码必须为数字");
-        }else if (!pswNew1.equals(pswNew2)) {
+        } else if (!pswNew1.equals(pswNew2)) {
             UUToast.showUUToast(RemotePswResetActivity3.this, "两次输入密码不一致，请重新输入");
             return;
         } else {
@@ -186,7 +181,7 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
                     break;
                 case TYPE_FORGET:
                     String mobile = LoginInfo.getMobile();
-                    CPControl.GetForgetRemotePwdResult(name, idcard, mobile, pswNew1, validate,listener_forget);
+                    CPControl.GetForgetRemotePwdResult(name, idcard, mobile, pswNew1, validate, listener_forget);
                     break;
                 case TYPE_REMOTE:
                     CPControl.GetSetRemotePwdResult(pswNew1, listener_set);
@@ -256,7 +251,7 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
 
                     RemotePswInfo.setRemotePsw(remote_pwd);
                     LoginInfo.setSetRemotePwd(true);
-                    BaseResponseInfo mInfo = (BaseResponseInfo)msg.obj;
+                    BaseResponseInfo mInfo = (BaseResponseInfo) msg.obj;
                     if (mInfo != null) {
                         String info = mInfo.getInfo();
                         if (info != null && info.length() > 0) {
@@ -280,7 +275,7 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
                         mDialog.dismiss();
                     }
                     LoginInfo.setSetRemotePwd(false);
-                    BaseResponseInfo mInfo1 = (BaseResponseInfo)msg.obj;
+                    BaseResponseInfo mInfo1 = (BaseResponseInfo) msg.obj;
                     if (mInfo1 != null) {
                         String info = mInfo1.getInfo();
                         if (info != null && info.length() > 0) {
@@ -300,7 +295,7 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
                     }
                     RemotePswInfo.setRemotePsw(remote_pwd);
                     LoginInfo.setSetRemotePwd(true);
-                    BaseResponseInfo mInfo2 = (BaseResponseInfo)msg.obj;
+                    BaseResponseInfo mInfo2 = (BaseResponseInfo) msg.obj;
                     if (mInfo2 != null) {
                         String info = mInfo2.getInfo();
                         if (info != null && info.length() > 0) {
@@ -321,7 +316,7 @@ public class RemotePswResetActivity3 extends LoadingActivity implements OnClickL
                     if (mDialog != null && mDialog.isShowing()) {
                         mDialog.dismiss();
                     }
-                    BaseResponseInfo mInfo3 = (BaseResponseInfo)msg.obj;
+                    BaseResponseInfo mInfo3 = (BaseResponseInfo) msg.obj;
                     if (mInfo3 != null) {
                         String info = mInfo3.getInfo();
                         if (info != null && info.length() > 0) {
