@@ -814,6 +814,19 @@ public class RemoteMainFragment extends BaseFragment implements
         mDialog.show();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.e(TAG,"onStop");
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e(TAG,"onPause");
+    }
+
     public void dissmissWaitingDialog() {
         if (mDialog != null && mDialog.isShowing()) {
             mDialog.dismiss();
@@ -821,6 +834,10 @@ public class RemoteMainFragment extends BaseFragment implements
     }
 
     private RemoteReceiver mReceiver;
+
+    public void unShow() {
+        isFirstClick = true;
+    }
 
     public class RemoteReceiver extends BroadcastReceiver {
         @Override

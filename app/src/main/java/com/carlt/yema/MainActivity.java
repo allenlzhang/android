@@ -17,6 +17,7 @@ import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.control.ActivityControl;
 import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.adapter.FragmentAdapter;
+import com.carlt.yema.ui.fragment.RemoteMainFragment;
 import com.carlt.yema.ui.view.NoScrollViewPager;
 
 public class MainActivity extends BaseActivity {
@@ -66,6 +67,10 @@ public class MainActivity extends BaseActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 Log.e("BaseFragment","onPageScrolled position==="+position);
                 ((BaseFragment)(fragmentAdapter.getItem(position))).loadData();
+                //点击了非远程页面，也就是远程页面不可见了
+                if(position != 2){
+                    ((RemoteMainFragment)(fragmentAdapter.getItem(2))).unShow();
+                }
             }
 
             @Override
