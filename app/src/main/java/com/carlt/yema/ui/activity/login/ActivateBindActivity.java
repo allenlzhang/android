@@ -138,7 +138,6 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
 
         @Override
         public void onError(BaseResponseInfo bInfo) {
-            UUToast.showUUToast(ActivateBindActivity.this,"激活失败");
             boolean t = (System.currentTimeMillis() - listener_time) > ONEMIN;
             int flagCode = bInfo.getFlag();
             if (flagCode == 2997 && !t) {
@@ -204,6 +203,7 @@ public class ActivateBindActivity extends BaseActivity implements View.OnClickLi
                 mDialog = null;
             }
         }
+        UUToast.showUUToast(ActivateBindActivity.this,"激活失败");
     }
 
     private void back(){
