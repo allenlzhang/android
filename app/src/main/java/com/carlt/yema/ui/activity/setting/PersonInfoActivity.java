@@ -147,7 +147,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             if (!TextUtils.isEmpty(data.getStringExtra("imageId"))) {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("avatar", data.getStringExtra("imageId"));
-                chanageInfoRequest(params);
+                chanageInfoRequest(params,imgCallback);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -166,7 +166,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
                 else sexFlag = "3";
                 HashMap<String, String> params = new HashMap<>();
                 params.put("gender", sexFlag);
-                chanageInfoRequest(params);
+                chanageInfoRequest(params,sexCallback);
                 gender = tx;
             }
         })
@@ -203,17 +203,15 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    private void chanageInfoRequest(HashMap<String, String> params) {
+    private void chanageInfoRequest(HashMap<String, String> params,BaseParser.ResultCallback callback) {
         DefaultStringParser parser = new DefaultStringParser(callback);
         parser.executePost(URLConfig.getM_USER_EDIT_INFO(), params);
     }
 
-    private BaseParser.ResultCallback callback = new BaseParser.ResultCallback() {
+    private BaseParser.ResultCallback imgCallback = new BaseParser.ResultCallback() {
         @Override
         public void onSuccess(BaseResponseInfo bInfo) {
             UUToast.showUUToast(PersonInfoActivity.this, "资料修改成功");
-            LoginInfo.setGender(sexFlag);
-            person_sex_txt.setText(gender);
             parseAvatarUrl(bInfo);
         }
 
@@ -224,7 +222,21 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
             }
         }
     };
+    private BaseParser.ResultCallback sexCallback = new BaseParser.ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            UUToast.showUUToast(PersonInfoActivity.this, "资料修改成功");
+            LoginInfo.setGender(sexFlag);
+            person_sex_txt.setText(gender);
+        }
 
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            if (bInfo != null && !TextUtils.isEmpty(bInfo.getInfo())) {
+                UUToast.showUUToast(PersonInfoActivity.this, bInfo.getInfo());
+            }
+        }
+    };
     private void parseAvatarUrl(BaseResponseInfo bInfo) {
         String data = bInfo.getValue().toString();
         try {

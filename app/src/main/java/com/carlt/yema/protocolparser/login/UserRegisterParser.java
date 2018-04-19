@@ -26,7 +26,7 @@ public class UserRegisterParser extends BaseParser {
         LoginInfo.setUseId(registerJobj.get("id").getAsString());
         LoginInfo.setDealerId(registerJobj.get("dealerid").getAsString());
         LoginInfo.setRealname(registerJobj.get("realname").getAsString());
-        LoginInfo.setGender(registerJobj.get("gender").getAsString());
+        LoginInfo.setGender(registerJobj.get("gender").getAsInt()+"");
         LoginInfo.setMobile(registerJobj.get("mobile").getAsString());
         LoginInfo.setAvatar_img(registerJobj.get("avatar_id").getAsString());
         String access_token = registerJobj.get("access_token").getAsString();
