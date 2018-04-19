@@ -92,6 +92,12 @@ public class CarMainFragment extends BaseFragment implements View.OnClickListene
         viewMainState.setOnClickListener(this);
         isTire = false;
         isCarlocation = false;
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         mReceiver = new CarmainBroadCastReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(CARMAIN_SAFETY);

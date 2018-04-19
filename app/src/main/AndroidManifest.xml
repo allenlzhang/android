@@ -73,7 +73,7 @@
             </intent-filter>
         </activity>
         <!--<activity android:name=".ui.TestActivity"/>-->
-        <activity android:name=".ui.activity.login.UserLoginActivity" >
+        <activity android:name=".ui.activity.login.UserLoginActivity">
             <intent-filter>
                 <action android:name="com.carlt.yema.LOGIN"/>
             </intent-filter>
@@ -84,7 +84,7 @@
         <activity android:name=".ui.activity.home.DayActivity" />
         <activity android:name=".ui.activity.home.InformationCentreActivity" />
         <activity android:name=".ui.activity.home.GpsTrailActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" android:launchMode="singleTask"/>
         <activity android:name=".ui.activity.carstate.CarSaftyListActivity" />
         <activity android:name=".ui.activity.carstate.MainTestingActivity" />
         <activity android:name=".ui.activity.carstate.CarStateNowActivity" />
