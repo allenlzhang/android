@@ -3,15 +3,15 @@ package com.carlt.yema.control;
 import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.carlt.yema.MainActivity;
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.model.LoginInfo;
-import com.carlt.yema.ui.activity.login.ActivateBindActivity;
 import com.carlt.yema.ui.activity.login.DeviceBindActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUUpdateDialog;
+import com.carlt.yema.utils.Log;
+
 import org.json.JSONObject;
 
 

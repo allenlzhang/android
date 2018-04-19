@@ -4,30 +4,25 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
-import com.carlt.yema.data.home.CareerInfo;
 import com.carlt.yema.data.home.InformationCategoryInfo;
 import com.carlt.yema.data.home.InformationCategoryInfoList;
 import com.carlt.yema.data.home.MilesInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.activity.home.InformationCentreActivity;
 import com.carlt.yema.ui.activity.home.ReportActivity;
-import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.Log;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;

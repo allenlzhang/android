@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -24,6 +23,7 @@ import com.carlt.yema.ui.view.PasswordView;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.PwdEditText;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.Log;
 import com.carlt.yema.utils.StringUtils;
 
 

@@ -3,7 +3,8 @@ package com.carlt.yema.http;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
+
+import com.carlt.yema.utils.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

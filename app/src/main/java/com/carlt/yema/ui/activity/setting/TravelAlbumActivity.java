@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -24,6 +23,7 @@ import com.carlt.yema.ui.adapter.FileImageAdapter;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.LocalConfig;
+import com.carlt.yema.utils.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -150,8 +150,6 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                 if (albumImageInfos != null && albumImageInfos.size() > 0) {
                     selectAll();
                 }
-                    selectAllFile();
-
                 break;
             case R.id.album_delete:
                 if (isSelectAll) {
@@ -323,6 +321,15 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                 builder.append(albumImageInfo.getId()).append(",");
             }
             albumImageInfos.removeAll(albumImageInfos);
+        }
+        File travelDir = new File(LocalConfig.mTravelImageCacheSavePath_SD);
+        File[] travelImages = travelDir.listFiles();
+        imageList = Arrays.asList(travelImages);
+        if (imageList != null && imageList.size() > 0) {
+            for (int i = 0; i < imageList.size(); i++) {
+                File imageFile = imageList.get(i);
+                imageFile.delete();
+            }
         }
         String paramIdx = builder.substring(0, builder.length() - 1);
         params.put("id", paramIdx);

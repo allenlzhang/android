@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Environment;
 import android.os.StatFs;
-import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import java.io.BufferedReader;

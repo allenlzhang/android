@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +35,7 @@ import com.carlt.yema.ui.activity.setting.TravelAlbumActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.utils.CacheUtils;
 import com.carlt.yema.utils.DensityUtil;
+import com.carlt.yema.utils.Log;
 
 import java.util.HashMap;
 

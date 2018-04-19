@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Handler;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +29,7 @@ import com.carlt.yema.data.remote.AirMainInfo;
 import com.carlt.yema.data.remote.RemoteFunInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.adapter.RemoteAirAdapter;
+import com.carlt.yema.utils.Log;
 import com.carlt.yema.utils.MyParse;
 import com.carlt.yema.utils.PlayRadio;
 

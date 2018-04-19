@@ -3,10 +3,10 @@ package com.carlt.yema.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.data.UseInfo;
+import com.carlt.yema.utils.Log;
 
 
 /**

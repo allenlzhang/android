@@ -7,11 +7,9 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.util.Log;
 
 import com.carlt.yema.MainActivity;
 import com.carlt.yema.control.ActivityControl;
-import com.carlt.yema.control.CPControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.UseInfo;
 import com.carlt.yema.data.car.SecretaryMessageInfo;
@@ -19,6 +17,7 @@ import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.UseInfoLocal;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.activity.home.RemindActivity;
+import com.carlt.yema.utils.Log;
 
 public class PushService extends Service {
 

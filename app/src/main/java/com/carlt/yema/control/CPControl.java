@@ -2,7 +2,6 @@ package com.carlt.yema.control;
 
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.carlt.yema.YemaApplication;
 import com.carlt.yema.data.BaseResponseInfo;
@@ -33,6 +32,7 @@ import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.utils.CipherUtils;
 import com.carlt.yema.utils.CreateHashMap;
 import com.carlt.yema.utils.FileUtil;
+import com.carlt.yema.utils.Log;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 

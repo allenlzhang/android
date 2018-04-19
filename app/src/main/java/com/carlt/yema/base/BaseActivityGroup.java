@@ -2,10 +2,10 @@
 package com.carlt.yema.base;
 
 import android.app.ActivityGroup;
-import android.util.Log;
 import android.view.KeyEvent;
 
 import com.carlt.yema.control.ActivityControl;
+import com.carlt.yema.utils.Log;
 
 
 public class BaseActivityGroup extends ActivityGroup {

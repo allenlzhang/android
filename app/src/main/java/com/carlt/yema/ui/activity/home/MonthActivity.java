@@ -3,10 +3,8 @@ package com.carlt.yema.ui.activity.home;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.TextView;
-
 
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;

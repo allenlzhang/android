@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -27,6 +26,7 @@ import com.carlt.yema.ui.activity.setting.CarModeListActivity;
 import com.carlt.yema.ui.activity.setting.CarTypeListActivity;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.PopBoxCreat.DialogWithTitleClick;
+import com.carlt.yema.utils.Log;
 import com.tencent.android.tpush.XGBasicPushNotificationBuilder;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;

@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.WindowManager;
 
 import com.bumptech.glide.Glide;
@@ -14,6 +13,7 @@ import com.carlt.yema.utils.CipherUtils;
 import com.carlt.yema.utils.FileUtil;
 import com.carlt.yema.utils.ILog;
 import com.carlt.yema.utils.LocalConfig;
+import com.carlt.yema.utils.Log;
 
 import java.util.UUID;
 

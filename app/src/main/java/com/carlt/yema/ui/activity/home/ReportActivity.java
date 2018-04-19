@@ -1,26 +1,21 @@
 package com.carlt.yema.ui.activity.home;
 
 import android.app.Activity;
-import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.base.BaseActivityGroup;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.Log;
 
 
 /**

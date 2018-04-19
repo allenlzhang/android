@@ -1,20 +1,13 @@
 package com.carlt.yema.ui.activity.carstate;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.carlt.yema.R;
-import com.carlt.yema.base.BaseActivity;
 import com.carlt.yema.base.LoadingActivity;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.car.WaringLampInfo;
 import com.carlt.yema.data.car.WaringLampItemInfo;
-import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.protocolparser.DefaultParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.adapter.WaringLampAdapter;
@@ -23,7 +16,6 @@ import com.carlt.yema.utils.ILog;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 车况检测报告

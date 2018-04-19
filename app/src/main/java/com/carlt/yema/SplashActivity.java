@@ -1,7 +1,6 @@
 package com.carlt.yema;
 
 import android.content.Intent;
-import android.icu.util.VersionInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,10 +11,16 @@ import com.carlt.yema.control.CPControl;
 import com.carlt.yema.control.LoginControl;
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.UseInfo;
+import com.carlt.yema.data.VersionInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.preference.UseInfoLocal;
-import com.carlt.yema.protocolparser.BaseParser;
+import com.carlt.yema.protocolparser.BaseParser.ResultCallback;
+import com.carlt.yema.protocolparser.VersionInfoParser;
+import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.activity.login.UserLoginActivity;
+import com.carlt.yema.ui.view.DownloadView;
+import com.carlt.yema.ui.view.PopBoxCreat;
+import com.carlt.yema.ui.view.PopBoxCreat.DialogWithTitleClick;
 import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.FileUtil;
 import com.carlt.yema.utils.LocalConfig;
@@ -24,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -58,18 +64,83 @@ public class SplashActivity extends BaseActivity implements Callback {
         FileUtil.openOrCreatDir(LocalConfig.mDownLoadFileSavePath_Absolute);
         FileUtil.openOrCreatDir(LocalConfig.mErroLogSavePath_SD);
         FileUtil.openOrCreatDir(LocalConfig.mTracksSavePath_SD);
+        FileUtil.openOrCreatDir(LocalConfig.mTravelImageCacheSavePath_SD);
 
         mUseInfo = UseInfoLocal.getUseInfo();
         useTimes = mUseInfo.getTimes();
         account = mUseInfo.getAccount();
         password = mUseInfo.getPassword();
-        jumpLogic();
+//        CPControl.GetVersion(listener_version);
+        getVersion();
+//        jumpLogic();
     }
+
+    private void getVersion() {
+        VersionInfoParser parser = new VersionInfoParser(versionCallback);
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("softtype", "android");
+        params.put("version", YemaApplication.Version + "");
+        parser.executePost(URLConfig.getM_GET_APP_UPDATE(),params);
+    }
+
+    ResultCallback versionCallback = new ResultCallback() {
+        @Override
+        public void onSuccess(BaseResponseInfo bInfo) {
+            mVersionInfo = (VersionInfo) bInfo.getValue();
+            int status = mVersionInfo.getStatus();
+
+            switch (status) {
+                case VersionInfo.STATUS_ENABLE:
+                    // 不升级
+                    jumpLogic();
+                    break;
+                case VersionInfo.STATUS_ABLE:
+                    // 强制升级
+                    dialogUpdateAble();
+                    break;
+                case VersionInfo.STATUS_CHOSE:
+                    // 可选升级
+                    dialogUpdateChose();
+                    break;
+            }
+        }
+
+        @Override
+        public void onError(BaseResponseInfo bInfo) {
+            dialogErro();
+        }
+    };
 
     @Override
     protected void onResume() {
-        mHandler.sendEmptyMessageDelayed(0,3000);
+        splash();
         super.onResume();
+    }
+
+    /**
+     * 获取升级信息失败对话框
+     */
+    private void dialogErro() {
+        DialogWithTitleClick click = new DialogWithTitleClick() {
+
+            @Override
+            public void onLeftClick() {
+                getVersion();
+            }
+
+            @Override
+            public void onRightClick() {
+                ActivityControl.onExit();
+            }
+        };
+
+        String content = getResources().getString(R.string.update_erro);
+        if (SplashActivity.this.isFinishing()) {
+            return;
+        }
+        PopBoxCreat.createDialogWithNodismiss(SplashActivity.this, "提示",
+                content, "", "重试", "退出", click);
+
     }
 
     /**
@@ -105,6 +176,88 @@ public class SplashActivity extends BaseActivity implements Callback {
         // }
     }
 
+    private void showDownloadView(String apkUrl) {
+        DownloadView mDownloadView = new DownloadView(SplashActivity.this);
+        mDownloadView.showView(apkUrl);
+    }
+
+    /**
+     * 强制升级对话框
+     */
+    private void dialogUpdateAble() {
+        final String url = mVersionInfo.getFilepath();
+
+        DialogWithTitleClick click = new DialogWithTitleClick() {
+
+            @Override
+            public void onLeftClick() {
+                if (url != null && url.length() > 0) {
+                    showDownloadView(url);
+                }
+            }
+
+            @Override
+            public void onRightClick() {
+                // 退出
+                ActivityControl.onExit();
+            }
+        };
+
+        String content = mVersionInfo.getRemark();
+        if (content != null && content.length() > 0) {
+            PopBoxCreat.createDialogWithNodismiss(SplashActivity.this, "升级信息",
+                    content, "", "升级", "退出", click);
+        } else {
+            content = getResources().getString(R.string.update_2);
+            PopBoxCreat.createDialogWithNodismiss(SplashActivity.this, "升级信息",
+                    content, "", "升级", "退出", click);
+        }
+    }
+
+    /**
+     * 可选升级对话框
+     */
+    private void dialogUpdateChose() {
+        final String url = mVersionInfo.getFilepath();
+        DialogWithTitleClick click = new DialogWithTitleClick() {
+
+            @Override
+            public void onLeftClick() {
+                // 升级
+                // if (url != null && url.length() > 0) {
+                // Intent intent = new Intent();
+                // intent.setAction("android.intent.action.VIEW");
+                // Uri content_url = Uri.parse(url);
+                // intent.setData(content_url);
+                // startActivity(intent);
+                //
+                // ActivityControl.onExit();
+                // }
+
+                if (url != null && url.length() > 0) {
+                    showDownloadView(url);
+                }
+            }
+
+            @Override
+            public void onRightClick() {
+                // 以后再说
+                jumpLogic();
+            }
+        };
+
+        String content = mVersionInfo.getRemark();
+        if (content != null && content.length() > 0) {
+            PopBoxCreat.createDialogWithNodismiss(SplashActivity.this, "升级信息",
+                    content, "", "升级", "以后再说", click);
+        } else {
+            content = getResources().getString(R.string.update_1);
+            PopBoxCreat.createDialogWithNodismiss(SplashActivity.this, "升级信息",
+                    content, "", "升级", "以后再说", click);
+        }
+    }
+
+
     private Handler mHandler = new Handler() {
 
         @Override
@@ -138,7 +291,7 @@ public class SplashActivity extends BaseActivity implements Callback {
         }
     };
 
-    private BaseParser.ResultCallback listener_version = new BaseParser.ResultCallback() {
+    private ResultCallback listener_version = new ResultCallback() {
 
         @Override
         public void onSuccess(BaseResponseInfo o) {
@@ -167,7 +320,7 @@ public class SplashActivity extends BaseActivity implements Callback {
 
     };
 
-    private BaseParser.ResultCallback listener_login = new BaseParser.ResultCallback() {
+    private ResultCallback listener_login = new ResultCallback() {
 
         @Override
         public void onSuccess(BaseResponseInfo o) {

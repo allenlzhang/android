@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +29,7 @@ import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.systemconfig.URLConfig;
 import com.carlt.yema.ui.view.PopBoxCreat;
 import com.carlt.yema.ui.view.UUToast;
+import com.carlt.yema.utils.Log;
 import com.carlt.yema.utils.StringUtils;
 
 import org.json.JSONException;

@@ -258,6 +258,9 @@ public class URLConfig {
     // 获取车辆详情
     private static String M_GET_CAR_SETTING = "car/getCarSetting";
 
+    // 查询新版本
+    private static String M_GET_APP_UPDATE = "comm/appUpdate";
+
     //信鸽token保存
     private static String M_REGISTERXGPUSH_URL = "user/saveXingeToken";
 
@@ -526,6 +529,9 @@ public class URLConfig {
     }
     public static String getM_GET_CAR_SETTING(){
         return getYemaURL(M_GET_CAR_SETTING);
+    }
+    public static String getM_GET_APP_UPDATE(){
+        return getYemaURL(M_GET_APP_UPDATE);
     }
 
     /***********************旅行相册（其他接口在上面添加）***********************/

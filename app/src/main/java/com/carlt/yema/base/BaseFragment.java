@@ -4,12 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.carlt.yema.data.BaseResponseInfo;
+import com.carlt.yema.utils.Log;
 
 /**
  * Created by user on 2016/12/23.

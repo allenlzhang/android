@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 
 import com.carlt.yema.R;
 import com.carlt.yema.YemaApplication;
@@ -17,6 +16,7 @@ import com.carlt.yema.data.car.SecretaryMessageInfo;
 import com.carlt.yema.model.LoginInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.ui.fragment.CarMainFragment;
+import com.carlt.yema.utils.Log;
 import com.carlt.yema.utils.MyParse;
 import com.tencent.android.tpush.XGPushBaseReceiver;
 import com.tencent.android.tpush.XGPushClickedResult;

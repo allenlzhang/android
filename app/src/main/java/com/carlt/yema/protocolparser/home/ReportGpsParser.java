@@ -1,11 +1,10 @@
 package com.carlt.yema.protocolparser.home;
 
-import android.util.Log;
-
 import com.carlt.yema.data.BaseResponseInfo;
 import com.carlt.yema.data.ReportGpsInfo;
 import com.carlt.yema.protocolparser.BaseParser;
 import com.carlt.yema.utils.ILog;
+import com.carlt.yema.utils.Log;
 import com.google.gson.JsonArray;
 
 import java.util.ArrayList;

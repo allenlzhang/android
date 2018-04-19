@@ -29,7 +29,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class PhotoDisplayActivity extends LoadingActivity implements View.OnClickListener {
 
@@ -94,10 +96,10 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
             case R.id.photo_delete:
                 mDialog = PopBoxCreat.createDialogWithProgress(this, "正在删除...");
                 mDialog.show();
+                int imageId=intent.getIntExtra("imageId", -1);
                 if (intent.getIntExtra("imageId", -1) > 0) {
                     deleteImages();
-                } else {
-                    deleteLocaleImage();
+                    deleteLocaleImage(imageId);
                 }
                 break;
         }
@@ -152,14 +154,17 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
         }
     }
 
-    private void deleteLocaleImage(){
-        if (TextUtils.isEmpty(intent.getStringExtra("imagePath"))) {
-            return;
-        }
-        File imageFile=new File(intent.getStringExtra("imagePath"));
-        imageFile.delete();
-        if (mDialog!=null) {
-            mDialog.dismiss();
+    private void deleteLocaleImage(int imageId){
+        File travelDir = new File(LocalConfig.mTravelImageCacheSavePath_SD);
+        File[] travelImages = travelDir.listFiles();
+        List<File> imageList = Arrays.asList(travelImages);
+        if (imageList!=null&&imageList.size()>0) {
+            for (int i = 0; i < imageList.size(); i++) {
+                File imageFile=imageList.get(i);
+                if (imageFile.getAbsoluteFile().toString().contains(String.valueOf(imageId))) {
+                    imageFile.delete();
+                }
+            }
         }
     }
 
@@ -173,6 +178,7 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
             if (mDialog != null) {
                 mDialog.dismiss();
             }
+            finish();
         }
 
         @Override

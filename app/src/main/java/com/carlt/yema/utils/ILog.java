@@ -9,12 +9,12 @@ import android.text.TextUtils;
  */
 public class ILog {
 
-	public static boolean flag = true;
+	public static boolean flag = false;
 
 	public static void e(String tag, String info) {
 		if (flag) {
             tag = generateSurrfix(tag);
-			android.util.Log.e(tag, info);
+			com.carlt.yema.utils.Log.e(tag, info);
 		}
 
 	}
@@ -22,7 +22,7 @@ public class ILog {
 	public static void v(String tag, String info) {
 		if (flag) {
             tag = generateSurrfix(tag);
-			android.util.Log.v(tag, info);
+			com.carlt.yema.utils.Log.v(tag, info);
 		}
 
 	}
@@ -30,7 +30,7 @@ public class ILog {
 	public static void i(String tag, String info) {
 		if (flag) {
             tag = generateSurrfix(tag);
-			android.util.Log.i(tag, info);
+			com.carlt.yema.utils.Log.i(tag, info);
 		}
 
 	}
@@ -38,7 +38,7 @@ public class ILog {
 	public static void d(String tag, String info) {
         if (flag) {
             tag = generateSurrfix(tag);
-            android.util.Log.d(tag, info);
+            com.carlt.yema.utils.Log.d(tag, info);
         }
 
     }

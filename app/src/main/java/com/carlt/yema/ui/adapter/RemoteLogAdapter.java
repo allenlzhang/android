@@ -4,7 +4,6 @@ package com.carlt.yema.ui.adapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 
 import com.carlt.yema.R;
 import com.carlt.yema.data.remote.RemoteLogInfo;
+import com.carlt.yema.utils.Log;
 
 import java.util.ArrayList;
 

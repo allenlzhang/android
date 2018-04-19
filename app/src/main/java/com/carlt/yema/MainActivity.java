@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carlt.yema.base.BaseActivity;
-import com.carlt.yema.base.BaseActivityGroup;
 import com.carlt.yema.base.BaseFragment;
 import com.carlt.yema.control.ActivityControl;
-import com.carlt.yema.ui.activity.login.UserLoginActivity;
 import com.carlt.yema.ui.adapter.FragmentAdapter;
 import com.carlt.yema.ui.fragment.RemoteMainFragment;
 import com.carlt.yema.ui.view.NoScrollViewPager;
+import com.carlt.yema.utils.Log;
 
 public class MainActivity extends BaseActivity {
 

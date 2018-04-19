@@ -4,7 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
+
+import com.carlt.yema.utils.Log;
 
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
