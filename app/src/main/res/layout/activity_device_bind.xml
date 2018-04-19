@@ -26,10 +26,10 @@
         android:layout_marginRight="12dip"
         android:layout_marginTop="8dp"
         android:background="@drawable/login_input_bg"
-        android:maxLength="17"
         android:digits="@string/vin_filter_string"
         android:gravity="center_vertical"
-        android:hint="@string/usercenter_vin_code" />
+        android:hint="@string/usercenter_vin_code"
+        android:maxLength="17" />
 
     <TextView
         android:id="@+id/btn_select_car"

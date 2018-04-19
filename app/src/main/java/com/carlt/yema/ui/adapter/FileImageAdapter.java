@@ -10,62 +10,40 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.carlt.yema.R;
-import com.carlt.yema.data.set.AlbumImageInfo;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
+import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by marller on 2018\4\1 0001.
  */
 
-public class AlbumImageAdapter extends BaseAdapter {
+public class FileImageAdapter extends BaseAdapter {
 
-    private static final String TAG = AlbumImageAdapter.class.getName();
+    private static final String TAG = FileImageAdapter.class.getName();
 
     private LayoutInflater inflater;
 
     private Context context;
 
-    private ArrayList<AlbumImageInfo> albumImageInfos;
+    private List<File> imagePaths;
 
     private static HashMap<Integer, Boolean> isSelected;
 
     private boolean isHide = true;
 
 
-    public AlbumImageAdapter(Context context, ArrayList<AlbumImageInfo> albumImageInfos) {
+    public FileImageAdapter(Context context, List<File> imagePaths) {
         this.context = context;
-        this.albumImageInfos = albumImageInfos;
+        this.imagePaths = imagePaths;
         isSelected = new HashMap<>();
         inflater = LayoutInflater.from(context);
-        if (this.albumImageInfos!=null&&this.albumImageInfos.size()>0) {
-            //按时间排序
-            Collections.sort(this.albumImageInfos, new Comparator<AlbumImageInfo>() {
-                @Override
-                public int compare(AlbumImageInfo albumImageInfo, AlbumImageInfo albumImageInfo1) {
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    Date date1 = null, date2 = null;
-                    try {
-                        date1 = simpleDateFormat.parse(albumImageInfo.getUploadTime());
-                        date2 = simpleDateFormat.parse(albumImageInfo1.getUploadTime());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    return date2.compareTo(date1);
-                }
-            });
-            checkedInit();
-        }
+        checkedInit();
     }
 
     public void checkedInit() {
-        for (int i = 0; i < albumImageInfos.size(); i++) {
+        for (int i = 0; i < imagePaths.size(); i++) {
             getIsSelected().put(i, false);
         }
     }
@@ -74,12 +52,12 @@ public class AlbumImageAdapter extends BaseAdapter {
         return isHide;
     }
 
-    public ArrayList<AlbumImageInfo> getAlbumImageInfos() {
-        return albumImageInfos;
+    public List<File> getAlbumImageInfos() {
+        return imagePaths;
     }
 
-    public void setAlbumImageInfos(ArrayList<AlbumImageInfo> albumImageInfos) {
-        this.albumImageInfos = albumImageInfos;
+    public void setAlbumImageInfos(List<File> imagePaths) {
+        this.imagePaths = imagePaths;
     }
 
     /**
@@ -91,12 +69,12 @@ public class AlbumImageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return albumImageInfos == null ? 0 : albumImageInfos.size();
+        return imagePaths == null ? 0 : imagePaths.size();
     }
 
     @Override
-    public AlbumImageInfo getItem(int i) {
-        return albumImageInfos.get(i);
+    public File getItem(int i) {
+        return imagePaths.get(i);
     }
 
     @Override
@@ -107,7 +85,7 @@ public class AlbumImageAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
-        AlbumImageInfo mAlbumImageInfo = getItem(i);
+        File imageFile = getItem(i);
         if (view == null) {
             viewHolder = new ViewHolder();
             view = inflater.inflate(R.layout.album_image_list_item, null);
@@ -123,7 +101,7 @@ public class AlbumImageAdapter extends BaseAdapter {
         } else {
             viewHolder.status.setVisibility(View.VISIBLE);
         }
-        Glide.with(context).load(mAlbumImageInfo.getThumbnailPath()).into(viewHolder.image);
+        Glide.with(context).load(imageFile).into(viewHolder.image);
         return view;
     }
 
@@ -137,7 +115,7 @@ public class AlbumImageAdapter extends BaseAdapter {
     }
 
     public static void setIsSelected(HashMap<Integer, Boolean> isSelected) {
-        AlbumImageAdapter.isSelected = isSelected;
+        FileImageAdapter.isSelected = isSelected;
     }
 
 }

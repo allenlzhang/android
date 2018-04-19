@@ -30,7 +30,11 @@ public class LocalConfig {
      */
     public static String mImageCacheSavePath_SD = Environment.getExternalStorageDirectory()
             .toString() + "/yema/img/";
-
+    /**
+     * 记录图片资源保存PATH SD卡
+     */
+    public static String mTravelImageCacheSavePath_SD = Environment.getExternalStorageDirectory()
+            .toString() + "/yema/img/travel/";
     /**
      * 记录图片资源保存PATH 内部存储器
      */

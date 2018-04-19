@@ -94,7 +94,11 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
             case R.id.photo_delete:
                 mDialog = PopBoxCreat.createDialogWithProgress(this, "正在删除...");
                 mDialog.show();
-                deleteImages();
+                if (intent.getIntExtra("imageId", -1) > 0) {
+                    deleteImages();
+                } else {
+                    deleteLocaleImage();
+                }
                 break;
         }
     }
@@ -119,7 +123,10 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
             InputStream in = pictureUrl.openStream();
             Bitmap bitmap = BitmapFactory.decodeStream(in);
             in.close();
-            String pictureName = LocalConfig.mImageCacheSavePath_SD + System.currentTimeMillis() + ".png";
+            String pictureName = LocalConfig.mTravelImageCacheSavePath_SD + "travel_"+ intent.getStringExtra("imageId")+ ".png";
+            if (url.equals(pictureName)) {
+                return;
+            }
             File file = new File(pictureName);
             FileOutputStream out;
 
@@ -142,6 +149,17 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
             HashMap<String, String> params = new HashMap<>();
             params.put("id", intent.getIntExtra("imageId", -1) + "");
             parser.executePost(URLConfig.getAlbumUrl(URLConfig.ALBUM_DELETE), params);
+        }
+    }
+
+    private void deleteLocaleImage(){
+        if (TextUtils.isEmpty(intent.getStringExtra("imagePath"))) {
+            return;
+        }
+        File imageFile=new File(intent.getStringExtra("imagePath"));
+        imageFile.delete();
+        if (mDialog!=null) {
+            mDialog.dismiss();
         }
     }
 

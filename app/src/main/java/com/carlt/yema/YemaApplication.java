@@ -135,6 +135,7 @@ public class YemaApplication extends Application {
         FileUtil.openOrCreatDir(LocalConfig.mDownLoadFileSavePath_Absolute);
         FileUtil.openOrCreatDir(LocalConfig.mErroLogSavePath_SD);
         FileUtil.openOrCreatDir(LocalConfig.mTracksSavePath_SD);
+        FileUtil.openOrCreatDir(LocalConfig.mTravelImageCacheSavePath_SD);
 
     }
 
