@@ -91,7 +91,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
 
     private void initComponent() {
         login_version = (TextView) findViewById(R.id.login_version);
-        login_version.setText(YemaApplication.VersionName);
+        login_version.setText(String.format(getResources().getString(R.string.version),YemaApplication.VersionName));
         forgot_passwd = (TextView) findViewById(R.id.forgot_passwd);
         forgot_passwd.setOnClickListener(this);
         user_regist = (TextView) findViewById(R.id.user_regist);

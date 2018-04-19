@@ -155,8 +155,9 @@ public class CPControl {
                         String id = item.getId();
                         if (id.equals(airState)) {
                             item.setSelect(true);
-                            break;
-                        }
+                        }else {
+							item.setSelect(false);
+						}
                     }
                     airMainInfo.setState(airState);
                     mListener_temp.onSuccess(airMainInfo);
