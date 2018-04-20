@@ -4,7 +4,9 @@ import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -26,6 +28,7 @@ import com.carlt.yema.utils.LocalConfig;
 import com.carlt.yema.utils.Log;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -532,6 +535,16 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
+            // 最后通知图库更新
+            try {
+                MediaStore.Images.Media.insertImage(TravelAlbumActivity.this.getContentResolver(), LocalConfig.mTravelImageCacheSavePath_SD + "travel_", info.getId() + ".png", null);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri uri = Uri.fromFile(file);
+            intent.setData(uri);
+            TravelAlbumActivity.this.sendBroadcast(intent);
         } catch (IOException e) {
             e.printStackTrace();
         }

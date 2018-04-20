@@ -1,5 +1,6 @@
 package com.carlt.yema;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -55,9 +56,27 @@ public class SplashActivity extends BaseActivity implements Callback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        splash();
     }
 
     private void splash() {
+        requestPermissions(SplashActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new RequestPermissionCallBack() {
+            @Override
+            public void granted() {
+                FileUtil.openOrCreatDir(LocalConfig.mImageCacheSavePath_SD);
+                FileUtil.openOrCreatDir(LocalConfig.mImageCacheSavePath_Absolute);
+                FileUtil.openOrCreatDir(LocalConfig.mDownLoadFileSavePath_SD);
+                FileUtil.openOrCreatDir(LocalConfig.mDownLoadFileSavePath_Absolute);
+                FileUtil.openOrCreatDir(LocalConfig.mErroLogSavePath_SD);
+                FileUtil.openOrCreatDir(LocalConfig.mTracksSavePath_SD);
+                FileUtil.openOrCreatDir(LocalConfig.mTravelImageCacheSavePath_SD);
+            }
+
+            @Override
+            public void denied() {
+                UUToast.showUUToast(YemaApplication.getInstanse(),"未获取到权限，存储权限不能用");
+            }
+        });
         FileUtil.openOrCreatDir(LocalConfig.mImageCacheSavePath_SD);
         FileUtil.openOrCreatDir(LocalConfig.mImageCacheSavePath_Absolute);
         FileUtil.openOrCreatDir(LocalConfig.mDownLoadFileSavePath_SD);
@@ -71,8 +90,8 @@ public class SplashActivity extends BaseActivity implements Callback {
         account = mUseInfo.getAccount();
         password = mUseInfo.getPassword();
 //        CPControl.GetVersion(listener_version);
-        getVersion();
-//        jumpLogic();
+//        getVersion();
+        jumpLogic();
     }
 
     private void getVersion() {
@@ -113,7 +132,7 @@ public class SplashActivity extends BaseActivity implements Callback {
 
     @Override
     protected void onResume() {
-        splash();
+
         super.onResume();
     }
 
@@ -264,7 +283,7 @@ public class SplashActivity extends BaseActivity implements Callback {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
-                    splash();
+                   splash();
                     break;
                 case 3:
                     useTimes++;
