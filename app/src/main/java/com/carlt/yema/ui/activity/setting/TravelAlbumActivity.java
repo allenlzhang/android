@@ -113,9 +113,10 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             if (albumImageInfos != null && albumImageInfos.size() > 0) {
                 adapter = new AlbumImageAdapter(TravelAlbumActivity.this, albumImageInfos);
                 album_list.setAdapter(adapter);
-            } else {
-                initLocalImages(bInfo);
             }
+//            else {
+//                initLocalImages(bInfo);
+//            }
         }
 
         @Override
@@ -167,6 +168,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                 isSelectAll = true;
                 if (albumImageInfos != null && albumImageInfos.size() > 0) {
                     selectAll();
+                    selectAllFile();
                 }
                 break;
             case R.id.album_delete:
@@ -412,11 +414,16 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             idEditing = false;
             isSelectAll = false;
             if (albumImageInfos != null && albumImageInfos.size() > 0) {
-                adapter.setIsHide(false);
-                adapter.notifyDataSetChanged();
+                if (adapter!=null) {
+                    adapter.setIsHide(false);
+                    adapter.notifyDataSetChanged();
+                }
             } else {
-                imageAdapter.setIsHide(false);
-                imageAdapter.notifyDataSetChanged();
+                if (imageAdapter!=null) {
+                    imageAdapter.setIsHide(false);
+                    imageAdapter.notifyDataSetChanged();
+                }
+
             }
         } else {
             setBtnOptText(getResources().getString(R.string.travel_album_edit));
