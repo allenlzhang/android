@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:horizontalSpacing="5dp"
+        android:horizontalSpacing="3dp"
         android:numColumns="4"
         android:background="@color/white"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="5dp"/>
+        android:verticalSpacing="3dp"/>
     <RelativeLayout
         android:id="@+id/album_image_item_opt"
         android:layout_width="match_parent"

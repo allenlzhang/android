@@ -9,7 +9,7 @@ import android.text.TextUtils;
  */
 public class ILog {
 
-	public static boolean flag = false;
+	public static boolean flag = true;
 
 	public static void e(String tag, String info) {
 		if (flag) {

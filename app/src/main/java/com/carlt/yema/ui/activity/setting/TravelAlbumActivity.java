@@ -124,18 +124,36 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         }
     };
 
-    private void initLocalImages(BaseResponseInfo bInfo){
-        File travelDir = new File(LocalConfig.mTravelImageCacheSavePath_SD);
-        File[] travelImages = travelDir.listFiles();
-        imageList = Arrays.asList(travelImages);
-        if (travelImages != null && travelImages.length > 0) {
-            loadSuccessUI();
-            imageAdapter = new FileImageAdapter(TravelAlbumActivity.this, imageList);
-            album_list.setAdapter(imageAdapter);
-        } else {
-            bInfo.setInfo("暂未拉取到图片");
-            loadonErrorUI(bInfo);
-        }
+    private void initLocalImages(final BaseResponseInfo bInfo) {
+        requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new RequestPermissionCallBack() {
+            @Override
+            public void granted() {
+                File travelDir = new File(LocalConfig.mTravelImageCacheSavePath_SD);
+                File[] travelImages = travelDir.listFiles();
+                if (travelImages != null && travelImages.length > 0) {
+                    imageList = Arrays.asList(travelImages);
+                    if (travelImages != null && travelImages.length > 0) {
+                        loadSuccessUI();
+                        imageAdapter = new FileImageAdapter(TravelAlbumActivity.this, imageList);
+                        album_list.setAdapter(imageAdapter);
+                    } else {
+                        bInfo.setInfo("暂未拉取到图片");
+                        loadonErrorUI(bInfo);
+                    }
+                } else {
+                    bInfo.setInfo("暂未拉取到图片");
+                    loadonErrorUI(bInfo);
+                }
+            }
+
+            @Override
+            public void denied() {
+                UUToast.showUUToast(TravelAlbumActivity.this, "部分权限获取失败，正常功能受到影响");
+                bInfo.setInfo("暂未拉取到图片");
+                loadonErrorUI(bInfo);
+            }
+        });
+
     }
 
 
@@ -185,7 +203,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         if (album_image_item_opt.getVisibility() == View.GONE) {
             if (albumImageInfos != null && albumImageInfos.size() > 0) {
                 final AlbumImageInfo info = (AlbumImageInfo) adapterView.getItemAtPosition(i);
-                requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, new RequestPermissionCallBack() {
+                requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, new RequestPermissionCallBack() {
                     @Override
                     public void granted() {
                         new Thread() {
@@ -224,12 +242,20 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                     AlbumImageAdapter.ViewHolder holder = (AlbumImageAdapter.ViewHolder) view.getTag();
                     holder.status.toggle();
                     AlbumImageAdapter.getIsSelected().put(i, holder.status.isChecked());
+                    if (!holder.status.isChecked()) {
+                        isSelectAll = false;
+                    }
+                    adapter.notifyDataSetChanged();
                 }
             } else {
                 if (!imageAdapter.isIsHide()) {
                     FileImageAdapter.ViewHolder holder = (FileImageAdapter.ViewHolder) view.getTag();
                     holder.status.toggle();
                     FileImageAdapter.getIsSelected().put(i, holder.status.isChecked());
+                    if (!holder.status.isChecked()) {
+                        isSelectAll = false;
+                    }
+                    imageAdapter.notifyDataSetChanged();
                 }
             }
         }
@@ -248,17 +274,19 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             Iterator<Integer> iterator = idx.iterator();
             File travelDir = new File(LocalConfig.mTravelImageCacheSavePath_SD);
             File[] travelImages = travelDir.listFiles();
-            imageList = Arrays.asList(travelImages);
+            if (travelImages != null && travelImages.length > 0) {
+                imageList = Arrays.asList(travelImages);
+            }
             StringBuilder builder = new StringBuilder();
             while (iterator.hasNext()) {
                 int selectIndex = iterator.next();
                 if (AlbumImageAdapter.getIsSelected().get(selectIndex)) {
                     int imageId = albumImageInfos.get(selectIndex).getId();
                     builder.append(imageId).append(",");
-                    albumImageInfos.remove(selectIndex);
-                    if (imageList!=null&&imageList.size()>0) {
+//                    albumImageInfos.remove(selectIndex);
+                    if (imageList != null && imageList.size() > 0) {
                         for (int i = 0; i < imageList.size(); i++) {
-                            File imageFile=imageList.get(i);
+                            File imageFile = imageList.get(i);
                             if (imageFile.getAbsoluteFile().toString().contains(String.valueOf(imageId))) {
                                 imageFile.delete();
                             }
@@ -278,9 +306,9 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
     }
 
 
-    /*
-        * 删除照片
-        * */
+    /**
+     * 删除照片
+     */
     private void deleteImageFiles() {
 
         if (FileImageAdapter.getIsSelected() != null) {
@@ -290,11 +318,13 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
             while (iterator.hasNext()) {
                 int selectIndex = iterator.next();
                 if (FileImageAdapter.getIsSelected().get(selectIndex)) {
-                    File imageFile = imageList.get(selectIndex);
-                    if (imageFile != null) {
-                        imageFile.delete();
+                    if (imageList != null && imageList.size() > 0) {
+                        File imageFile = imageList.get(selectIndex);
+                        if (imageFile != null) {
+                            imageFile.delete();
+                        }
+                        builder.append(imageFile.getAbsoluteFile()).append(",");
                     }
-                    builder.append(imageFile.getAbsoluteFile()).append(",");
                 }
             }
             initData();
@@ -324,11 +354,13 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
         }
         File travelDir = new File(LocalConfig.mTravelImageCacheSavePath_SD);
         File[] travelImages = travelDir.listFiles();
-        imageList = Arrays.asList(travelImages);
-        if (imageList != null && imageList.size() > 0) {
-            for (int i = 0; i < imageList.size(); i++) {
-                File imageFile = imageList.get(i);
-                imageFile.delete();
+        if (travelImages != null && travelImages.length > 0) {
+            imageList = Arrays.asList(travelImages);
+            if (imageList != null && imageList.size() > 0) {
+                for (int i = 0; i < imageList.size(); i++) {
+                    File imageFile = imageList.get(i);
+                    imageFile.delete();
+                }
             }
         }
         String paramIdx = builder.substring(0, builder.length() - 1);
@@ -342,14 +374,17 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
     private void deleteAllImageFiles() {
         File travelDir = new File(LocalConfig.mTravelImageCacheSavePath_SD);
         File[] travelImages = travelDir.listFiles();
-        imageList = Arrays.asList(travelImages);
-        if (imageList != null && imageList.size() > 0) {
-            for (int i = 0; i < imageList.size(); i++) {
-                File imageFile = imageList.get(i);
-                imageFile.delete();
+        if (travelImages != null && travelImages.length > 0) {
+            imageList = Arrays.asList(travelImages);
+            if (imageList != null && imageList.size() > 0) {
+                for (int i = 0; i < imageList.size(); i++) {
+                    File imageFile = imageList.get(i);
+                    imageFile.delete();
+                }
+                changeAlbumStatus();
             }
-            changeAlbumStatus();
         }
+
     }
 
     /**
@@ -437,8 +472,8 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
                 adapter.notifyDataSetChanged();
             }
         }
-        if (imageAdapter!=null) {
-            if (imageList!=null&&imageList.size()>0) {
+        if (imageAdapter != null) {
+            if (imageList != null && imageList.size() > 0) {
                 imageAdapter.setAlbumImageInfos(imageList);
                 imageAdapter.checkedInit();
                 imageAdapter.setIsHide(true);
@@ -448,8 +483,8 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
     }
 
     /**
-      * 全不选
-      */
+     * 全不选
+     */
     private void cancelSelectallFiles() {
         // 遍历list的长度，将已选的按钮设为未选
         if (imageAdapter != null) {
@@ -476,7 +511,7 @@ public class TravelAlbumActivity extends LoadingActivity implements View.OnClick
     }
 
     public void savePicture(AlbumImageInfo info) {
-        Log.d(TAG,"savePicture------->"+info.getImagePath());
+        Log.d(TAG, "savePicture------->" + info.getImagePath());
         try {
             URL pictureUrl = new URL(info.getImagePath());
             InputStream in = pictureUrl.openStream();

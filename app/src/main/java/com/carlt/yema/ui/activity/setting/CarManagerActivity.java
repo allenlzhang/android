@@ -324,7 +324,7 @@ public class CarManagerActivity extends LoadingActivity implements View.OnClickL
             } else {
                 car_type_txt.setText("--");
             }
-            if (!TextUtils.isEmpty(carSettingInfo.getBuydate())) {
+            if (!TextUtils.isEmpty(carSettingInfo.getBuydate())&&!carSettingInfo.getBuydate().equals("0")) {
                 purchase_time_txt.setText((carSettingInfo.getBuydate()));
                 LoginInfo.setBuydate(carSettingInfo.getBuydate());
             } else {

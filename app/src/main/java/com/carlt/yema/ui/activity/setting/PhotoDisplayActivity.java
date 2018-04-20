@@ -45,8 +45,9 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_display);
-        initTitle("");
+        initTitle("旅行相册");
         intent = getIntent();
+
         initComponent();
     }
 
@@ -54,6 +55,7 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
         image_display = $ViewByID(R.id.image_display);
         if (intent != null && !TextUtils.isEmpty(intent.getStringExtra("imagePath"))) {
             Glide.with(this).load(intent.getStringExtra("imagePath")).into(image_display);
+            loadSuccessUI();
         }
         photo_save = $ViewByID(R.id.photo_save);
         photo_save.setOnClickListener(this);
@@ -113,6 +115,7 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
                     if (mDialog!=null) {
                         mDialog.dismiss();
                     }
+                    UUToast.showUUToast(PhotoDisplayActivity.this,"下载成功");
                     break;
             }
             super.handleMessage(msg);

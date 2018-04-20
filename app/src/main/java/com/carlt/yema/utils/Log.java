@@ -9,31 +9,31 @@ package com.carlt.yema.utils;
  */
 public class Log {
 
-	public static boolean flag = false;
+	public static boolean flag = true;
 
 	public static void e(String tag, String info) {
 		if (flag) {
-			com.carlt.yema.utils.Log.e(tag, info);
+			android.util.Log.e(tag, info);
 		}
 
 	}
 
 	public static void v(String tag, String info) {
 		if (flag) {
-			com.carlt.yema.utils.Log.v(tag, info);
+			android.util.Log.v(tag, info);
 		}
 
 	}
 	public static void d(String tag, String info) {
 		if (flag) {
-			com.carlt.yema.utils.Log.d(tag, info);
+			android.util.Log.d(tag, info);
 		}
 
 	}
 
 	public static void i(String tag, String info) {
 		if (flag) {
-			com.carlt.yema.utils.Log.i(tag, info);
+			android.util.Log.i(tag, info);
 
 		}
 
