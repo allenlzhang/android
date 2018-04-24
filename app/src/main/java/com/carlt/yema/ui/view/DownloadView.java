@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.FileProvider;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,8 +127,14 @@ public class DownloadView {
             // 本地已存在完整文件
             Uri uri = Uri.fromFile(mFile);
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 启动新的activity
-            intent.setDataAndType(uri, "application/vnd.android.package-archive");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                Uri contentUri = FileProvider.getUriForFile(mContext, "com.carlt.yema.fileprovider", mFile);
+                intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+            } else {
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 启动新的activity
+                intent.setDataAndType(uri, "application/vnd.android.package-archive");
+            }
             mContext.startActivity(intent);
             ActivityControl.onExit();
 
@@ -233,8 +241,17 @@ public class DownloadView {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 启动新的activity
                     intent.setDataAndType(uri, "application/vnd.android.package-archive");
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        Uri contentUri = FileProvider.getUriForFile(mContext, "com.carlt.yema.fileprovider", mFile);
+                        intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+                    } else {
+                        intent.setDataAndType(Uri.fromFile(mFile), "application/vnd.android.package-archive");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    }
                     mContext.startActivity(intent);
-                    ActivityControl.onExit();
+//                    ActivityControl.onExit();
+                    ActivityControl.clearAllActivity();
                     break;
                 case 3:
                     // 下载失败

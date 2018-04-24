@@ -90,8 +90,8 @@ public class SplashActivity extends BaseActivity implements Callback {
         account = mUseInfo.getAccount();
         password = mUseInfo.getPassword();
 //        CPControl.GetVersion(listener_version);
-//        getVersion();
-        jumpLogic();
+        getVersion();
+//        jumpLogic();
     }
 
     private void getVersion() {
@@ -107,7 +107,7 @@ public class SplashActivity extends BaseActivity implements Callback {
         public void onSuccess(BaseResponseInfo bInfo) {
             mVersionInfo = (VersionInfo) bInfo.getValue();
             int status = mVersionInfo.getStatus();
-
+//            status=VersionInfo.STATUS_ABLE;
             switch (status) {
                 case VersionInfo.STATUS_ENABLE:
                     // 不升级
@@ -218,7 +218,8 @@ public class SplashActivity extends BaseActivity implements Callback {
             @Override
             public void onRightClick() {
                 // 退出
-                ActivityControl.onExit();
+//                ActivityControl.onExit();
+                ActivityControl.clearAllActivity();
             }
         };
 

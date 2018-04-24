@@ -5,9 +5,11 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,6 +27,7 @@ import com.carlt.yema.ui.view.UUToast;
 import com.carlt.yema.utils.LocalConfig;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -101,7 +104,7 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
                 int imageId=intent.getIntExtra("imageId", -1);
                 if (intent.getIntExtra("imageId", -1) > 0) {
                     deleteImages();
-                    deleteLocaleImage(imageId);
+//                    deleteLocaleImage(imageId);
                 }
                 break;
         }
@@ -128,17 +131,28 @@ public class PhotoDisplayActivity extends LoadingActivity implements View.OnClic
             InputStream in = pictureUrl.openStream();
             Bitmap bitmap = BitmapFactory.decodeStream(in);
             in.close();
-            String pictureName = LocalConfig.mTravelImageCacheSavePath_SD + "travel_"+ intent.getStringExtra("imageId")+ ".png";
+            int imageId=intent.getIntExtra("imageId",-1);
+            if (imageId>0) {
+            String pictureName = LocalConfig.mTravelImageCacheSavePath_SD + "travel_"+ intent.getIntExtra("imageId",-1)+ ".png";
             if (url.equals(pictureName)) {
                 return;
             }
             File file = new File(pictureName);
             FileOutputStream out;
-
             out = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
+                try {
+                    MediaStore.Images.Media.insertImage(PhotoDisplayActivity.this.getContentResolver(), LocalConfig.mTravelImageCacheSavePath_SD + "travel_", imageId + ".png", null);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                Uri uri = Uri.fromFile(file);
+                intent.setData(uri);
+                PhotoDisplayActivity.this.sendBroadcast(intent);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
