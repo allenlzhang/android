@@ -7,7 +7,7 @@ android {
         applicationId "com.carlt.yema"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 100
+        versionCode 110
         versionName "1.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
