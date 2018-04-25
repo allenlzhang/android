@@ -53,6 +53,7 @@ public class LoginControl {
                             DeviceBindActivity.class);
 
                     mContext.startActivity(loginIntent);
+                    mContext.finish();
                 } else {
                     boolean isUpdating = LoginInfo.isUpgradeing();
                     // 是否需要升级

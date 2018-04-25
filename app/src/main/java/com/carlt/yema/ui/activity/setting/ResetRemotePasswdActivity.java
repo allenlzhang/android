@@ -88,6 +88,7 @@ public class ResetRemotePasswdActivity extends BaseActivity implements View.OnCl
             UUToast.showUUToast(ResetRemotePasswdActivity.this, "远程控制密码修改成功");
             Intent intent = new Intent(ResetRemotePasswdActivity.this, AccountSecurityActivity.class);
             startActivity(intent);
+            finish();
         }
 
         @Override

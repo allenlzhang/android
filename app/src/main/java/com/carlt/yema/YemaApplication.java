@@ -23,7 +23,7 @@ import java.util.UUID;
 
 public class YemaApplication extends Application {
 
-    public static int Version_API = 110;
+    public static int Version_API = 100;
 
     public static int VERSION_API_REMOTE = 100;// 远程下发相关Api版本
 
@@ -31,7 +31,7 @@ public class YemaApplication extends Application {
 
     public static String VersionName;
 
-    public static boolean Formal_Version = false;
+    public static boolean Formal_Version = true;
     public static String TOKEN = "";
 
     public static android.content.pm.PackageManager PackageManager;

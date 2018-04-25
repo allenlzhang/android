@@ -62,6 +62,7 @@ public class RemotePasswdManageActivity extends BaseActivity implements View.OnC
                 break;
             case R.id.remote_set_passwd:
                 Intent setRemotePasswd=new Intent(this,RemotePswResetActivity3.class);
+                setRemotePasswd.putExtra(RemotePswResetActivity3.TYPE,RemotePswResetActivity3.TYPE_SAFETY);
                 startActivity(setRemotePasswd);
                 break;
         }

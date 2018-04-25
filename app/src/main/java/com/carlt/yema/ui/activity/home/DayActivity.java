@@ -77,7 +77,7 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_day);
-        initTitle("");
+        initTitle("行车日报");
         init();
         try {
             dayInitialValue = getIntent().getStringExtra(ReportActivity.DAY_INITIAL);
@@ -425,6 +425,35 @@ public class DayActivity extends LoadingActivity implements OnClickListener {
             TextView mGpsTrack;
         }
 
+    }
+    /**
+     * 使用此方法，需要在 setContentView activity 里 加入layout_title
+     *
+     * 只有 一个文字标题和返回键的标题
+     * @param titleString
+     */
+    protected void initTitle(String titleString) {
+
+        try{
+            backTV = $ViewByID(R.id.back);
+            titleTV = $ViewByID(R.id.title);
+        }catch (Exception e){
+            //是设置标题出错
+            return;
+        }
+        if(null != backTV){
+            backTV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 获取用户计算后的结果
+                    setResult(2);
+                    finish();
+                }
+            });
+        }
+        if(null != titleTV){
+            titleTV.setText(titleString);
+        }
     }
 
 }

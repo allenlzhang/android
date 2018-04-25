@@ -7,12 +7,25 @@ android {
         applicationId "com.carlt.yema"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 110
-        versionName "1.1.0"
+        versionCode 100
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-
+//    signingConfigs {
+//        release {
+//            storeFile file('C:/Users/Daisy/Desktop/hz17car_key.key')
+//            storePassword "hz17car"
+//            keyAlias "联云"
+//            keyPassword "hz17car"
+//        }
+//        debug {
+//            storeFile file('C:/Users/Daisy/Desktop/hz17car_key.key')
+//            storePassword "hz17car"
+//            keyAlias "联云"
+//            keyPassword "hz17car"
+//        }
+//    }
     buildTypes {
         release {
             minifyEnabled false

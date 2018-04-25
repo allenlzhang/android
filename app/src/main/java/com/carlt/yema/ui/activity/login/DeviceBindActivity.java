@@ -169,6 +169,7 @@ public class DeviceBindActivity extends BaseActivity implements View.OnClickList
             activateIntent.putExtra("vin",vinCode);
             activateIntent.putExtra("carType",carTitle);
             startActivity(activateIntent);
+            finish();
         }
 
         @Override

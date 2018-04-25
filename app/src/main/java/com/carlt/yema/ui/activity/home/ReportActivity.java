@@ -228,10 +228,11 @@ public class ReportActivity extends BaseActivityGroup implements CompoundButton.
         container.addView(view);
 
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // 获取用户计算后的结果
+            setResult(2);
             finish();
             return true;
         } else if (keyCode == MENU) {

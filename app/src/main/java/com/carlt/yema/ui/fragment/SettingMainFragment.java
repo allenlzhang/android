@@ -128,8 +128,8 @@ public class SettingMainFragment extends BaseFragment implements View.OnClickLis
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        if (!TextUtils.isEmpty(LoginInfo.getAvatar_img())) {
+        String a = LoginInfo.getAvatar_img();
+        if (!TextUtils.isEmpty(a)&&!TextUtils.equals(a,"0")) {
             Glide.with(this).load(LoginInfo.getAvatar_img()).into(avatar);
         }
         if (!TextUtils.isEmpty(LoginInfo.getRealname())) {

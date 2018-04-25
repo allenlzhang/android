@@ -213,6 +213,7 @@ public class ActivityControl {
 						}
 					});
 		}
+
 		int size = mActivityList.size();
 		for (int i = 0; i < size; i++) {
 			if (null != mActivityList.get(i)) {

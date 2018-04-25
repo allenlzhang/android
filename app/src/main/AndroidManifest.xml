@@ -105,7 +105,7 @@
         <activity android:name=".ui.activity.setting.AboutYemaActivity" />
         <activity android:name=".ui.activity.setting.PhoneAuthenticationActivity" />
         <activity android:name=".ui.activity.setting.ResetCetifiedPhoneActivity" />
-        <activity android:name=".ui.activity.setting.AccountSecurityActivity" />
+        <activity android:name=".ui.activity.setting.AccountSecurityActivity" android:launchMode="singleTask"/>
         <activity android:name=".ui.activity.carstate.CarTiresStateActivity" />
         <activity android:name=".ui.activity.setting.RemotePasswdManageActivity" />
         <activity android:name=".ui.activity.setting.ResetRemotePasswdActivity" />
