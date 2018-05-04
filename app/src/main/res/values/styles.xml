@@ -254,6 +254,10 @@
         <item name="android:background">@mipmap/tab_bg</item>
         <item name="android:gravity">center</item>
     </style>
-
+    <!--密码输入框弹出动画-->
+    <style name="dialog_style" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
 
 </resources>
