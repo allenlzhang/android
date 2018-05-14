@@ -20,7 +20,7 @@
     <string name="usercenter_push_validate">发送验证码</string>
     <string name="usercenter_push_validate1">重发验证码</string>
     <string name="_car_real_condation">实时车况</string>
-    <string name="usercenter_pin_code">请输入车辆PIN码</string>V
+    <string name="usercenter_pin_code">请输入车辆PIN码</string>
     <string name="usercenter_vin_code">请输入车辆VIN码</string>
     <string name="_car_select_type">请选择车型</string>
     <string name="device_bind_tx">绑定设备</string>
